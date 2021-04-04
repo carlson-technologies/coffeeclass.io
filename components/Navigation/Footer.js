@@ -15,7 +15,7 @@ const Footer = () => {
             align="center"
             ml={100}
         >
-            <Divider w="80%" />
+            <Divider w="80%" my={10} />
             <Text fontSize="lg">Find An Error On This Page? Fix It On GitHub</Text>
             <Text>Copyright &copy; CoffeClass LLC</Text>
             <Text>Designed And Built By Benjamin Carlson With Next.js Chakra-UI</Text>

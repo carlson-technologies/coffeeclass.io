@@ -15,7 +15,7 @@ export default function PostPage({ source, frontMatter }) {
                 <h1>{frontMatter.title}</h1>
                 <p>{frontMatter.description}</p>
             </div>
-            <main>{content}</main>
+            {content}
         </Layout>
     )
 }

@@ -21,6 +21,7 @@ const Container = ({ children }) => {
             <Flex
                 as="main"
                 flexDirection="column"
+                mt={50}
             >
                 <MotionBox
                     initial={{ opacity: 0 }}

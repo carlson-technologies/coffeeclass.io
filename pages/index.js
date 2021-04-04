@@ -8,8 +8,8 @@ import {
     Badge
 } from '@chakra-ui/react'
 import Container from '../components/Container'
-import Image from 'next/image'
 import NextLink from 'next/link'
+import Tutorial from '../components/Cards/Tutorial'
 
 export default function Index() {
     return (
@@ -18,10 +18,9 @@ export default function Index() {
                 spacing={8}
                 px={4}
             >
-                <Flex flexDir="column">
+                <Flex flexDir="column" mx={5}>
                     <Flex
                         flexDir="row"
-                        mt={100}
                         justify="center"
                         align="center"
                     >
@@ -38,25 +37,36 @@ export default function Index() {
                         </Flex>
 
                         {/* Right Side */}
-                        <Flex w={600}>
-                            <Box bgColor="gray.100" p={5} borderRadius={5}>
-                                <Image
-                                    width={550}
-                                    height={350}
-                                    objectFit="contain"
-                                    src="/test.png"
-                                />
-                                <Heading>Firebase + Next.js Quickstart</Heading>
-                                <Text>Learn how to connect Next.js to Google's Firebase and
+                        <Tutorial
+                            src="/test.png"
+                            title="Firebase + Next.js Quickstart"
+                            description="Learn how to connect Next.js to Google's Firebase and
                                 use authentication, cloud Firestore, Realtime Database, and
-                                cloud storage.</Text>
-                                <Badge colorScheme="cyan" mr={2}>#chakra</Badge>
-                                <Badge colorScheme="cyan">#nextjs</Badge>
-                            </Box>
-                        </Flex>
+                                cloud storage."
+                            tags={["chakra", "nextjs"]}
+                        />
+
                     </Flex>
 
-                <Heading as="h3" size="lg" mt={10}>Browse The Latest Tutorials</Heading>
+                    <Heading as="h3" size="lg" my={10}>Browse The Latest Tutorials</Heading>
+                    <Flex wrap="wrap" justify="space-between">
+                        <Tutorial
+                            src="/test.png"
+                            title="Firebase + Next.js Quickstart"
+                            description="Learn how to connect Next.js to Google's Firebase and
+                                use authentication, cloud Firestore, Realtime Database, and
+                                cloud storage."
+                            tags={["chakra", "nextjs"]}
+                        />
+                        <Tutorial
+                            src="/test.png"
+                            title="Firebase + Next.js Quickstart"
+                            description="Learn how to connect Next.js to Google's Firebase and
+                                use authentication, cloud Firestore, Realtime Database, and
+                                cloud storage."
+                            tags={["chakra", "nextjs"]}
+                        />
+                    </Flex>
 
                 </Flex>
             </Stack>

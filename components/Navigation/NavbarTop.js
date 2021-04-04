@@ -3,7 +3,8 @@ import {
     Box,
     IconButton
 } from '@chakra-ui/react'
-import { HamburgerIcon, MoonIcon } from '@chakra-ui/icons'
+import { HamburgerIcon } from '@chakra-ui/icons'
+import DarkModeSwitch from './DarkModeSwitch'
 
 const NavBarTop = () => {
     return (
@@ -15,18 +16,11 @@ const NavBarTop = () => {
             borderRadius={5}
             mt={3}
             mr={3}
+            boxShadow='0 4px 12px 0 rgba(0, 0, 0, 0.3)'
         >
+            <DarkModeSwitch />
             <IconButton
-                size="lg"
-                _hover={{
-                    textDecoration: 'none',
-                    color: 'white'
-                }}
-                icon={
-                    <MoonIcon />
-                }
-            />
-            <IconButton
+                aria-label="Open Menu"
                 size="lg"
                 _hover={{
                     textDecoration: 'none',

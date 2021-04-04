@@ -19,7 +19,6 @@ export default function About() {
             >
                 <Flex
                     flexDir="column"
-                    mt={50}
                 >
                     <Heading as="h1">About Coffeeclass</Heading>
                     <Divider mt={2} />

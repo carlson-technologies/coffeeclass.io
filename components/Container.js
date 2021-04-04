@@ -8,7 +8,10 @@ import {
 } from '@chakra-ui/react'
 import NavbarLeft from '../components/Navigation/NavbarLeft'
 import NavbarTop from '../components/Navigation/NavbarTop'
+import Footer from '../components/Navigation/Footer'
+import { motion } from "framer-motion"
 
+const MotionBox = motion(Box)
 
 const Container = ({ children }) => {
     return (
@@ -18,9 +21,17 @@ const Container = ({ children }) => {
             <Flex
                 as="main"
                 flexDirection="column"
-                ml={100}
             >
-                {children}
+                <MotionBox
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    <div style={{ minHeight: '100vh', marginLeft: '100px' }}>
+                        {children}
+                    </div>
+                </MotionBox>
+                <Footer />
             </Flex>
         </>
     )

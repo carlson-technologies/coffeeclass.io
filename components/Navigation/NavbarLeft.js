@@ -1,3 +1,4 @@
+import React, { useState } from 'react'
 import {
     Flex,
     Box,
@@ -5,10 +6,11 @@ import {
     Text,
     Button
 } from '@chakra-ui/react'
-import { ChevronDownIcon } from '@chakra-ui/icons'
+import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 import NextLink from 'next/link'
 
 const NavBarLeft = () => {
+    const [display, changeDisplay] = useState('none')
     return (
         <Box
             w={100}
@@ -21,15 +23,25 @@ const NavBarLeft = () => {
         >
             <Flex
                 flexDir="column"
-                justify="space-around"
-                h="400px"
                 align="center"
             >
+                <NextLink href="/" passHref>
+                    <Button
+                        as="a"
+                        variant="ghost"
+                        aria-label="Home"
+                        my={5}
+                    >
+                        Home
+                    </Button>
+                </NextLink>
+
                 <NextLink href="/snippets" passHref>
                     <Button
                         as="a"
                         variant="ghost"
                         aria-label="Snippets"
+                        my={5}
                     >
                         Snippets
                     </Button>
@@ -39,7 +51,8 @@ const NavBarLeft = () => {
                     <Button
                         as="a"
                         variant="ghost"
-                        aria-label="Snippets"
+                        aria-label="Learn"
+                        my={5}
                     >
                         Learn
                     </Button>
@@ -49,15 +62,43 @@ const NavBarLeft = () => {
                     <Button
                         as="a"
                         variant="ghost"
-                        aria-label="Snippets"
+                        aria-label="Tutorials"
+                        my={5}
                     >
                         Tutorials
                     </Button>
                 </NextLink>
 
-                <IconButton icon={<ChevronDownIcon />} />
+                {display == 'none' &&
+                    <IconButton
+                        onClick={() => changeDisplay('flex')}
+                        icon={<ChevronDownIcon />}
+                    />
+                }
+
+                <Flex
+                    display={display}
+                    flexDir="column"
+                    align="center"
+                >
+                    <NextLink href="/about" passHref>
+                        <Button
+                            as="a"
+                            variant="ghost"
+                            aria-label="About"
+                            my={5}
+                        >
+                            About
+                    </Button>
+                    </NextLink>
+
+                    <IconButton
+                        onClick={() => changeDisplay('none')}
+                        icon={<ChevronUpIcon />}
+                    />
+                </Flex>
             </Flex>
-        </Box>
+        </Box >
     )
 }
 

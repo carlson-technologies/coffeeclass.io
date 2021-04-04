@@ -1,5 +1,8 @@
+import { Heading, Text } from '@chakra-ui/react'
+
 const MDXComponents = {
-    p: (props) => <p style={{ fontSize: '20px' }} {...props} />,
+    h1: (props) => <Heading as="h1" style={{ fontSize: '30px' }} {...props} />,
+    p: (props) => <Text style={{ fontSize: '20px' }} {...props} />,
 }
 
 export default MDXComponents

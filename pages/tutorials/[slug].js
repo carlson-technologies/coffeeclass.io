@@ -4,7 +4,7 @@ import hydrate from 'next-mdx-remote/hydrate'
 import renderToString from 'next-mdx-remote/render-to-string'
 import path from 'path'
 import Layout from '../../components/Layout'
-import { snippetsFilePaths, SNIPPETS_PATH } from '../../utils/mdxUtils'
+import { tutorialsFilePaths, TUTORIALS_PATH } from '../../utils/mdxUtils'
 import MDXComponents from '../../components/MDXComponents'
 
 export default function PostPage({ source, frontMatter }) {
@@ -21,7 +21,7 @@ export default function PostPage({ source, frontMatter }) {
 }
 
 export const getStaticProps = async ({ params }) => {
-    const snippetsPath = path.join(SNIPPETS_PATH, `${params.slug}.mdx`)
+    const snippetsPath = path.join(TUTORIALS_PATH, `${params.slug}.mdx`)
     const source = fs.readFileSync(snippetsPath)
 
     const { content, data } = matter(source)
@@ -45,7 +45,7 @@ export const getStaticProps = async ({ params }) => {
 }
 
 export const getStaticPaths = async () => {
-    const paths = snippetsFilePaths
+    const paths = tutorialsFilePaths
         // Remove file extensions for page paths
         .map((path) => path.replace(/\.mdx?$/, ''))
         // Map the path into the static paths object required by Next.js

@@ -14,7 +14,7 @@ import fs from 'fs'
 import matter from 'gray-matter'
 import Link from 'next/link'
 import path from 'path'
-import { snippetsFilePaths, SNIPPETS_PATH } from '../../utils/mdxUtils'
+import { tutorialsFilePaths, TUTORIALS_PATH } from '../../utils/mdxUtils'
 
 export default function Index({ posts }) {
     return (
@@ -24,13 +24,13 @@ export default function Index({ posts }) {
                 px={4}
             >
                 <Flex flexDir="column">
-                    <Heading>Snippets</Heading>
+                    <Heading>Tutorials</Heading>
                     <ul>
                         {posts.map((post) => (
                             <li key={post.filePath}>
                                 <Link
-                                    as={`/snippets/${post.filePath.replace(/\.mdx?$/, '')}`}
-                                    href={`/snippets/[slug]`}
+                                    as={`/tutorials/${post.filePath.replace(/\.mdx?$/, '')}`}
+                                    href={`/tutorials/[slug]`}
                                 >
                                     <a>{post.data.title}</a>
                                 </Link>
@@ -44,8 +44,8 @@ export default function Index({ posts }) {
 }
 
 export function getStaticProps() {
-    const posts = snippetsFilePaths.map((filePath) => {
-        const source = fs.readFileSync(path.join(SNIPPETS_PATH, filePath))
+    const posts = tutorialsFilePaths.map((filePath) => {
+        const source = fs.readFileSync(path.join(TUTORIALS_PATH, filePath))
         const { content, data } = matter(source)
 
         return {

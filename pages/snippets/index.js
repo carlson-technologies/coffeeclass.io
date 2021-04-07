@@ -1,20 +1,14 @@
 import {
     Heading,
     Flex,
-    Button,
-    Stack,
-    Text,
-    Box,
-    Badge
+    Stack
 } from '@chakra-ui/react'
 import Container from '../../components/Container'
-import Image from 'next/image'
-import NextLink from 'next/link'
 import fs from 'fs'
 import matter from 'gray-matter'
-import Link from 'next/link'
 import path from 'path'
 import { snippetsFilePaths, SNIPPETS_PATH } from '../../utils/mdxUtils'
+import Snippet from '../../components/Cards/Snippet'
 
 export default function Index({ posts }) {
     return (
@@ -23,20 +17,21 @@ export default function Index({ posts }) {
                 spacing={8}
                 px={4}
             >
-                <Flex flexDir="column">
-                    <Heading>Snippets</Heading>
-                    <ul>
+                <Flex flexDir="column" mt={50}>
+                    <Heading as="h1" size="2xl" mb={4} textAlign="center">Coffeeclass Snippets ✂️</Heading>
+                    <Flex flexDir="column">
                         {posts.map((post) => (
-                            <li key={post.filePath}>
-                                <Link
-                                    as={`/snippets/${post.filePath.replace(/\.mdx?$/, '')}`}
-                                    href={`/snippets/[slug]`}
-                                >
-                                    <a>{post.data.title}</a>
-                                </Link>
-                            </li>
+                            <Snippet
+                                key={post.filePath}
+                                src={`/content/snippets/${post.filePath.replace(/\.mdx?$/, '')}/${post.data.featureImg}`}
+                                title={post.data.title}
+                                description={post.data.description}
+                                tags={post.data.tags}
+                                as={`/snippets/${post.filePath.replace(/\.mdx?$/, '')}`}
+                                href={`/snippets/[slug]`}
+                            />
                         ))}
-                    </ul>
+                    </Flex>
                 </Flex>
             </Stack>
         </Container>

@@ -1,9 +1,6 @@
 import {
     Flex,
-    Box,
-    IconButton,
     Text,
-    Button,
     Divider
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
@@ -13,13 +10,14 @@ const Footer = () => {
         <Flex
             flexDir="column"
             align="center"
-            ml={100}
+            ml={[0, 0, 100]}
+            mb={4}
         >
-            <Divider w="80%" my={10} />
-            <Text fontSize="lg">Find An Error On This Page? Fix It On GitHub</Text>
-            <Text>Copyright &copy; CoffeClass LLC</Text>
-            <Text>Designed And Built By Benjamin Carlson With Next.js Chakra-UI</Text>
-            <Flex flexDir="row">
+            <Divider w="80%" mb={4} mt={8} />
+            <Text fontSize="sm">Find An Error On This Page? Fix It On GitHub</Text>
+            <Text fontSize="sm">Copyright &copy; CoffeClass LLC</Text>
+            <Text fontSize="sm">Designed And Built By Benjamin Carlson With Next.js / Chakra-UI / MDX</Text>
+            <Flex fontSize="sm" flexDir="row">
                 <Text>
                     <NextLink href="/terms" passHref>Terms</NextLink>
                     {` • `}

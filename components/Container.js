@@ -1,9 +1,5 @@
 import {
     Flex,
-    Text,
-    Link,
-    IconButton,
-    SimpleGrid,
     Box
 } from '@chakra-ui/react'
 import NavbarLeft from '../components/Navigation/NavbarLeft'
@@ -21,16 +17,20 @@ const Container = ({ children }) => {
             <Flex
                 as="main"
                 flexDirection="column"
-                mt={50}
+                // mt={50}
             >
                 <MotionBox
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <div style={{ minHeight: '100vh', marginLeft: '100px' }}>
+                    <Flex
+                        display="block"
+                        minH="100vh"
+                        ml={[0, 0, 100]}
+                    >
                         {children}
-                    </div>
+                    </Flex>
                 </MotionBox>
                 <Footer />
             </Flex>

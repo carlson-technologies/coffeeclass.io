@@ -6,7 +6,12 @@ import {
     Divider,
     useColorMode
 } from '@chakra-ui/react'
+import { NextSeo } from 'next-seo'
 import Container from '../components/Container'
+
+const url = 'https://coffeeclass.io/about'
+const title = 'About – Coffeeclass'
+const description = 'Coffeeclass offers programming tutorials through this website and their YouTube channel.'
 
 export default function About() {
     const { colorMode } = useColorMode()
@@ -16,6 +21,16 @@ export default function About() {
     }
     return (
         <Container>
+            <NextSeo
+                title={title}
+                description={description}
+                canonical={url}
+                openGraph={{
+                    url,
+                    title,
+                    description
+                }}
+            />
             <Stack
                 spacing={8}
                 px={4}
@@ -27,7 +42,7 @@ export default function About() {
                     <Heading as="h1" size="2xl">About Coffeeclass</Heading>
                     <Divider mt={2} />
                     <Heading as="h3" size="lg" mt={6} my={2}>What Is Coffeeclass?</Heading>
-                    <Text mb={2} color={color[colorMode]}>Coffeeclass offers programming through this website and their YouTube channel.</Text>
+                    <Text mb={2} color={color[colorMode]}>Coffeeclass offers programming tutorials through this website and their YouTube channel.</Text>
                     <Heading as="h3" size="lg" mt={6} my={2}>Who Is Coffeeclass?</Heading>
                     <Text mb={2} color={color[colorMode]}>Coffeeclass is created by Benjamin carlson.</Text>
                     <Heading as="h3" size="lg" mt={6} my={2}>How Do I Use Coffeeclass?</Heading>

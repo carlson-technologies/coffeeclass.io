@@ -5,12 +5,17 @@ import {
     Text,
     useColorMode
 } from '@chakra-ui/react'
+import { NextSeo } from 'next-seo'
 import Container from '../../components/Container'
 import fs from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
 import { tutorialsFilePaths, TUTORIALS_PATH } from '../../utils/mdxUtils'
 import Tutorial from '../../components/Cards/Tutorial'
+
+const url = 'https://coffeeclass.io/tutorials'
+const title = 'Tutorials – Coffeeclass'
+const description = 'Tutorials are involved and usually correspond to a YouTube video. They typically take 15 minutes at a minimum to complete.'
 
 export default function Index({ posts }) {
     const { colorMode } = useColorMode()
@@ -20,6 +25,16 @@ export default function Index({ posts }) {
     }
     return (
         <Container>
+            <NextSeo
+                title={title}
+                description={description}
+                canonical={url}
+                openGraph={{
+                    url,
+                    title,
+                    description
+                }}
+            />
             <Stack
                 spacing={8}
                 px={4}
@@ -30,7 +45,7 @@ export default function Index({ posts }) {
                     <Flex wrap="wrap">
                         {posts.map((post) => (
                             <Tutorial
-                                key={post.filePath}
+                                key={post.data.title}
                                 src={`/content/tutorials/${post.filePath.replace(/\.mdx?$/, '')}/${post.data.featureImg}`}
                                 title={post.data.title}
                                 description={post.data.description}

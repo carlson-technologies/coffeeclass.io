@@ -10,7 +10,7 @@ const SEO = ({ title, summary, publishedAt, url, image, author }) => {
     return (
         <>
             <NextSeo
-                title={`${title} – CoffeeClass`}
+                title={`${title} – Coffeeclass`}
                 description={summary}
                 canonical={url}
                 openGraph={{

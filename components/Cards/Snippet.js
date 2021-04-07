@@ -22,6 +22,7 @@ export default function Snippet({ title, description, tags, href, as }) {
         <Flex
             w="100%"
             justify="center"
+            key={title}
         >
             <Box
                 bgColor={bgColor[colorMode]}
@@ -36,7 +37,7 @@ export default function Snippet({ title, description, tags, href, as }) {
                 <Heading><Link href={href} as={as}>{title}</Link></Heading>
                 <Text fontSize="lg"><Link href={href} as={as}>{description}</Link></Text>
                 {tags?.map((tag) => {
-                    return (<Badge colorScheme="cyan" mr={2}>#{tag}</Badge>)
+                    return (<Badge key={tag} colorScheme="cyan" mr={2}>#{tag}</Badge>)
                 })}
             </Box>
         </Flex>

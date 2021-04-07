@@ -7,14 +7,29 @@ import {
     Box,
     Divider
 } from '@chakra-ui/react'
+import { NextSeo } from 'next-seo'
 import Container from '../components/Container'
 import NextLink from 'next/link'
 import Tutorial from '../components/Cards/Tutorial'
 import Snippet from '../components/Cards/Snippet'
 
+const url = 'https://coffeeclass.io/'
+const title = 'Home – Coffeeclass'
+const description = 'Browse a variety of programming tutorials and snippets on Coffeclass.'
+
 export default function Index() {
     return (
         <Container>
+            <NextSeo
+                title={title}
+                description={description}
+                canonical={url}
+                openGraph={{
+                    url,
+                    title,
+                    description
+                }}
+            />
             <Stack
                 spacing={8}
                 px={4}
@@ -49,7 +64,6 @@ export default function Index() {
                         {/* Right Side */}
                         <Flex alignSelf={['start', 'start', 'center']}>
                             <Tutorial
-                                key={1}
                                 src="/content/tutorials/add-firebase-to-nextjs/feature.png"
                                 title="Firebase + Next.js Quickstart"
                                 description="Learn how to connect Next.js to Google's Firebase and
@@ -68,7 +82,6 @@ export default function Index() {
                         <Heading as="h3" size="lg" mb={4} id="explore">Browse The Latest Tutorials</Heading>
                         <Flex wrap="wrap" justify="space-between">
                             <Tutorial
-                                key={2}
                                 src="/content/tutorials/add-firebase-to-nextjs/feature.png"
                                 title="Firebase + Next.js Quickstart"
                                 description="Learn how to connect Next.js to Google's Firebase and
@@ -86,7 +99,6 @@ export default function Index() {
                     <Flex as="section" flexDir="column">
                         <Heading as="h3" size="lg" mb={10}>Only Have 5 Minutes? Check Out Some Snippets!</Heading>
                         <Snippet
-                            key={3}
                             title="Chakra-UI Responsive Navigation Bar"
                             description="Learn how to create a responsive navigation bar using Chakra-UI."
                             tags={["chakra"]}

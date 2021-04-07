@@ -6,7 +6,12 @@ import {
     Divider,
     useColorMode
 } from '@chakra-ui/react'
+import { NextSeo } from 'next-seo'
 import Container from '../components/Container'
+
+const url = 'https://coffeeclass.io/learn'
+const title = 'Learn – Coffeeclass'
+const description = 'Learn programming languages quickly and easily.'
 
 export default function Learn() {
     const { colorMode } = useColorMode()
@@ -16,6 +21,16 @@ export default function Learn() {
     }
     return (
         <Container>
+            <NextSeo
+                title={title}
+                description={description}
+                canonical={url}
+                openGraph={{
+                    url,
+                    title,
+                    description
+                }}
+            />
             <Stack
                 spacing={8}
                 px={4}

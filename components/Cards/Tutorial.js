@@ -19,7 +19,12 @@ export default function Tutorial({ src, title, description, tags, href, as }) {
         dark: 'gray.700'
     }
     return (
-        <Flex w={['100%', '100%', 500]} my={2} mt={[10, 10, 0]}>
+        <Flex
+            w={['100%', '100%', 500]}
+            my={2}
+            mt={[10, 10, 0]}
+            key={title}
+        >
             <Box bgColor={bgColor[colorMode]} p={5} borderRadius={5} overflow="hidden">
                 <MotionBox
                     initial={{ opacity: 0 }}
@@ -43,7 +48,7 @@ export default function Tutorial({ src, title, description, tags, href, as }) {
                 <Heading><Link href={href} as={as}>{title}</Link></Heading>
                 <Text><Link href={href} as={as}>{description}</Link></Text>
                 {tags?.map((tag) => {
-                    return (<Badge colorScheme="cyan" mr={2}>#{tag}</Badge>)
+                    return (<Badge key={tag} colorScheme="cyan" mr={2}>#{tag}</Badge>)
                 })}
             </Box>
         </Flex>

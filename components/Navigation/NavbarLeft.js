@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react'
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 import NextLink from 'next/link'
-import { FiInfo, FiScissors, FiBookOpen, FiEdit2, FiHome } from "react-icons/fi"
+import { FiInfo, FiScissors, FiBookOpen, FiEdit2, FiHome, FiBookmark } from "react-icons/fi"
 
 const NavBarLeft = () => {
     const [display, changeDisplay] = useState('none')
@@ -141,6 +141,27 @@ const NavBarLeft = () => {
                     align="center"
                     w="100%"
                 >
+                    <NextLink href="/tags" passHref>
+                        <WrapItem w="100%">
+                            <Tooltip
+                                hasArrow
+                                label="Tags"
+                                placement="right"
+                                closeDelay={100}
+                            >
+                                <Button
+                                    variant="ghost"
+                                    aria-label="Tags"
+                                    my={5}
+                                    w="100%"
+                                    _hover={{ background: 'none' }}
+                                >
+                                    <Icon as={FiBookmark} fontSize="2xl" />
+                                </Button>
+                            </Tooltip>
+                        </WrapItem>
+                    </NextLink>
+
                     <NextLink href="/about" passHref>
                         <WrapItem w="100%">
                             <Tooltip

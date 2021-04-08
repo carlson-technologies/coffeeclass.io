@@ -7,7 +7,8 @@ import {
     useColorMode,
     Tooltip,
     WrapItem,
-    Icon
+    Icon,
+    Text
 } from '@chakra-ui/react'
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 import NextLink from 'next/link'
@@ -56,7 +57,10 @@ const NavBarLeft = () => {
                                 w="100%"
                                 _hover={{ background: 'none' }}
                             >
-                                <Icon as={FiHome} fontSize="2xl" />
+                                <Flex flexDir="column" align="center">
+                                    <Icon as={FiHome} fontSize="2xl" />
+                                    <Text fontSize="x-small">Beta</Text>
+                                </Flex>
                             </Button>
                         </Tooltip>
                     </WrapItem>

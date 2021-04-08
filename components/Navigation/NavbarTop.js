@@ -4,7 +4,9 @@ import {
     Box,
     IconButton,
     useColorMode,
-    Button
+    Button,
+    Heading,
+    Divider
 } from '@chakra-ui/react'
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import DarkModeSwitch from './DarkModeSwitch'
@@ -86,64 +88,107 @@ const NavBarTop = () => {
                         onClick={() => changeDisplay('none')}
                     />
                 </Flex>
+
                 <Flex
-                    flexDir="column"
-                    align="center"
+                    flexDir={["column", "row", "row", "row"]}
+                    justify="space-around"
                 >
-                    <NextLink href="/" passHref>
-                        <Button
-                            as="a"
-                            variant="ghost"
-                            aria-label="Home"
-                            w="100%"
-                        >
-                            Home
-                    </Button>
-                    </NextLink>
+                    {/* Content Column */}
+                    <Flex
+                        flexDir="column"
+                        align="center"
+                    >
+                        <Heading as="h4" size="sm">Content</Heading>
+                        <Divider mt={2} w="90%" />
 
-                    <NextLink href="/snippets" passHref>
-                        <Button
-                            as="a"
-                            variant="ghost"
-                            aria-label="Snippets"
-                            w="100%"
-                        >
-                            Snippets
+                        <NextLink href="/" passHref>
+                            <Button
+                                as="a"
+                                variant="ghost"
+                                aria-label="Home"
+                                w="100%"
+                            >
+                                Home
                     </Button>
-                    </NextLink>
+                        </NextLink>
 
-                    <NextLink href="/learn" passHref>
-                        <Button
-                            as="a"
-                            variant="ghost"
-                            aria-label="Learn"
-                            w="100%"
-                        >
-                            Learn
+                        <NextLink href="/snippets" passHref>
+                            <Button
+                                as="a"
+                                variant="ghost"
+                                aria-label="Snippets"
+                                w="100%"
+                            >
+                                Snippets
                     </Button>
-                    </NextLink>
+                        </NextLink>
 
-                    <NextLink href="/tutorials" passHref>
-                        <Button
-                            as="a"
-                            variant="ghost"
-                            aria-label="Tutorials"
-                            w="100%"
-                        >
-                            Tutorials
+                        <NextLink href="/learn" passHref>
+                            <Button
+                                as="a"
+                                variant="ghost"
+                                aria-label="Learn"
+                                w="100%"
+                            >
+                                Learn
                     </Button>
-                    </NextLink>
+                        </NextLink>
 
-                    <NextLink href="/about" passHref>
-                        <Button
-                            as="a"
-                            variant="ghost"
-                            aria-label="About"
-                            w="100%"
-                        >
-                            About
+                        <NextLink href="/tutorials" passHref>
+                            <Button
+                                as="a"
+                                variant="ghost"
+                                aria-label="Tutorials"
+                                w="100%"
+                            >
+                                Tutorials
+                    </Button>
+                        </NextLink>
+
+                        <NextLink href="/tags" passHref>
+                            <Button
+                                as="a"
+                                variant="ghost"
+                                aria-label="Tags"
+                                w="100%"
+                            >
+                                Tags
                         </Button>
-                    </NextLink>
+                        </NextLink>
+                    </Flex>
+
+                    {/* Company Column */}
+                    <Flex
+                        flexDir="column"
+                        align="center"
+                        mt={[10, 0, 0, 0]}
+                    >
+                        <Heading as="h4" size="sm">Company</Heading>
+                        <Divider mt={2} w="90%" />
+
+                        <NextLink href="/about" passHref>
+                            <Button
+                                as="a"
+                                variant="ghost"
+                                aria-label="About"
+                                w="100%"
+                            >
+                                About
+                        </Button>
+                        </NextLink>
+
+                    </Flex>
+
+                    {/* Current Page Navigation Column */}
+                    <Flex
+                        flexDir="column"
+                        align="center"
+                        mt={[10, 0, 0, 0]}
+                    >
+                        <Heading as="h4" size="sm">Page Navigation</Heading>
+                        <Divider mt={2} w="90%" />
+
+                    </Flex>
                 </Flex>
             </Flex>
         </>

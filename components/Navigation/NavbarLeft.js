@@ -13,6 +13,7 @@ import {
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 import NextLink from 'next/link'
 import { FiInfo, FiScissors, FiBookOpen, FiEdit2, FiHome, FiBookmark } from "react-icons/fi"
+import { useRouter } from 'next/router'
 
 const NavBarLeft = () => {
     const [display, changeDisplay] = useState('none')
@@ -25,6 +26,8 @@ const NavBarLeft = () => {
         light: '0 4px 12px 0 rgba(0, 0, 0, 0.3)',
         dark: '0 4px 12px 0 rgba(0, 0, 0, 1)'
     }
+    const router = useRouter()
+    const slug = router.asPath
     return (
         <Box
             w={100}
@@ -58,7 +61,7 @@ const NavBarLeft = () => {
                                 _hover={{ background: 'none' }}
                             >
                                 <Flex flexDir="column" align="center">
-                                    <Icon as={FiHome} fontSize="2xl" />
+                                    <Icon as={FiHome} fontSize="2xl" color={slug == '/' ? 'cyan' : null}/>
                                     <Text fontSize="x-small">Beta</Text>
                                 </Flex>
                             </Button>
@@ -82,7 +85,7 @@ const NavBarLeft = () => {
                                 w="100%"
                                 _hover={{ background: 'none' }}
                             >
-                                <Icon as={FiScissors} fontSize="2xl" />
+                                <Icon as={FiScissors} fontSize="2xl" color={slug.includes('snippets') ? 'cyan' : null} />
                             </Button>
                         </Tooltip>
                     </WrapItem>
@@ -103,7 +106,7 @@ const NavBarLeft = () => {
                                 w="100%"
                                 _hover={{ background: 'none' }}
                             >
-                                <Icon as={FiEdit2} fontSize="2xl"/>
+                                <Icon as={FiEdit2} fontSize="2xl" color={slug.includes('learn') ? 'cyan' : null}/>
                             </Button>
                         </Tooltip>
                     </WrapItem>
@@ -124,7 +127,7 @@ const NavBarLeft = () => {
                                 w="100%"
                                 _hover={{ background: 'none' }}
                             >
-                                <Icon as={FiBookOpen} fontSize="2xl" />
+                                <Icon as={FiBookOpen} fontSize="2xl" color={slug.includes('tutorials') ? 'cyan' : null} />
                             </Button>
                         </Tooltip>
                     </WrapItem>
@@ -160,7 +163,7 @@ const NavBarLeft = () => {
                                     w="100%"
                                     _hover={{ background: 'none' }}
                                 >
-                                    <Icon as={FiBookmark} fontSize="2xl" />
+                                    <Icon as={FiBookmark} fontSize="2xl" color={slug.includes('tags') ? 'cyan' : null} />
                                 </Button>
                             </Tooltip>
                         </WrapItem>
@@ -181,7 +184,7 @@ const NavBarLeft = () => {
                                     w="100%"
                                     _hover={{ background: 'none' }}
                                 >
-                                    <Icon as={FiInfo} fontSize="2xl" />
+                                    <Icon as={FiInfo} fontSize="2xl" color={slug.includes('about') ? 'cyan' : null} />
                                 </Button>
                             </Tooltip>
                         </WrapItem>

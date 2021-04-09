@@ -17,9 +17,11 @@ import {
     Flex,
     Badge,
     Tooltip,
-    useColorMode
+    useColorMode,
+    Avatar
 } from '@chakra-ui/react'
 import { YoutubeIcon, GitHubIcon } from '../../components/CustomIcons'
+import NextLink from 'next/link'
 
 export default function PostPage({ source, frontMatter }) {
     const content = hydrate(source, { MDXComponents })
@@ -30,38 +32,48 @@ export default function PostPage({ source, frontMatter }) {
     }
     return (
         <Layout frontMatter={frontMatter}>
-            <Flex flexDir={["column", "column", "row"]}>
-                <Flex w={['100%', '100%', 1000]}>
-                    <Heading as="h1" size="2xl">{frontMatter.title}</Heading>
+            <Flex flexDir="column">
+                <Flex align="center" mb={2}>
+                    {frontMatter.tags?.map((tag) => {
+                        return (
+                            <NextLink key={tag} href={`/tags/${tag}`} passHref>
+                                <Link href={`/${tag}`}>
+                                    <Badge colorScheme="cyan" mr={2}>#{tag}</Badge>
+                                </Link>
+                            </NextLink>
+                        )
+                    })}
+                    •
+                    <Text mx={2} color={color[colorMode]} fontSize="sm">{format(parseISO(frontMatter.publishedAt), 'MMMM dd, yyyy')}</Text>
+                    •
+                    <Text mx={2} color={color[colorMode]} fontSize="sm">{frontMatter.readingTime.text} min read</Text>
                 </Flex>
-                <Flex flexDir="column">
-                    <Text fontSize="xl" mt={2} color={color[colorMode]}>{frontMatter.description}</Text>
-                    <Text fontSize="md" mt={1} color={color[colorMode]}>
-                        By {frontMatter.author} on {format(parseISO(frontMatter.publishedAt), 'MMMM dd, yyyy')}</Text>
-                    <Text size="md" color={color[colorMode]}>{frontMatter.readingTime?.text} min read</Text>
-                    <Flex align="center">
-                        {frontMatter.githubURL &&
-                            <Tooltip hasArrow label="Link To Code">
-                                <Link isExternal href={frontMatter?.githubURL} w="fit-content">
-                                    <GitHubIcon fontSize="2xl" mt={2} mr={2} />
+                <Heading as="h1" size="2xl" fontWeight="normal">{frontMatter.title}</Heading>
+                <Text fontSize="xl" mt={2} color={color[colorMode]}>{frontMatter.description}</Text>
+                <Flex align="center" my={2}>
+                    <Avatar src={`/authors/${frontMatter.authorImage}`} mr={2}></Avatar>
+                    <Flex flexDir="column">
+                        <Text>By {frontMatter.author}</Text>
+                        <Text color={color[colorMode]}>{frontMatter.authorPosition}</Text>
+                    </Flex>
+                </Flex>
+                <Flex align="center">
+                    {frontMatter.githubURL &&
+                        <Tooltip hasArrow label="Link To This Post's Code" closeDelay={100}>
+                            <Link isExternal href={frontMatter?.githubURL} w="fit-content">
+                                <GitHubIcon fontSize="2xl" mt={2} mr={2} />
+                            </Link>
+                        </Tooltip>
+                    }
+                    {frontMatter.youtubeId?.map((id) => {
+                        return (
+                            <Tooltip hasArrow label="Link To This Post As A YouTube Video" closeDelay={100}>
+                                <Link isExternal href={id} w="fit-content">
+                                    <YoutubeIcon fontSize="2xl" mt={2} mr={2} />
                                 </Link>
                             </Tooltip>
-                        }
-                        {frontMatter.youtubeId?.map((id) => {
-                            return (
-                                <Tooltip hasArrow label="Link To Related YouTube Video">
-                                    <Link isExternal href={id} w="fit-content">
-                                        <YoutubeIcon fontSize="2xl" mt={2} mr={2} />
-                                    </Link>
-                                </Tooltip>
-                            )
-                        })}
-                        {frontMatter.tags?.map((tag) => {
-                            return (
-                                <Badge mt={2} mr={2}>{tag}</Badge>
-                            )
-                        })}
-                    </Flex>
+                        )
+                    })}
                 </Flex>
             </Flex>
             <Divider mt={4} />

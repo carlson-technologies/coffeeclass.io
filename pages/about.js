@@ -51,6 +51,9 @@ export default function About() {
                     <Text mb={2} color={color[colorMode]}>To present complex programming ideas in an easy to follow format.</Text>
                     <Heading as="h3" size="lg" mt={6} my={2}>When Was Coffeeclass Created?</Heading>
                     <Text mb={2} color={color[colorMode]}>Started tutorials in April 2020 but re-branded to Coffeeclass in April 2021.</Text>
+                    <Heading as="h3" size="lg" mt={6} my={2}>Open Source</Heading>
+                    <Text mb={2} color={color[colorMode]}>Coffeclass is 100% open source - down to this website. This site was built using Nex.js, Chakra-UI, and
+                    deployed on Vercel. If you find an error or want to write a guest post, feel free to submit a pull request on GitHub!</Text>
                 </Flex>
             </Stack>
         </Container>

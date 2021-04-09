@@ -52,9 +52,38 @@ export default function Layout({ frontMatter, children }) {
             <Divider w="90%" my={1} alignSelf="center" />
             {frontMatter?.headings.map((h) => {
               return (
-                <Heading as="h4" size="md" my={1} key={h}>
-                  <Link href={`#${h}`}>{h}</Link>
-                </Heading>
+                <>
+                  {
+                    h.h2 &&
+                    <Text as="h4" my={1} key={h.h2}>
+                      <Link href={`#${h.h2}`}>{h.h2}</Link>
+                    </Text>
+                  }
+                  {
+                    h.h3 &&
+                    <Text as="h4" my={1} ml={2} key={h.h3}>
+                      <Link href={`#${h.h3}`}>- {h.h3}</Link>
+                    </Text>
+                  }
+                  {
+                    h.h4 &&
+                    <Text as="h4" my={1} ml={4} key={h.h4}>
+                      <Link href={`#${h.h4}`}>- {h.h4}</Link>
+                    </Text>
+                  }
+                  {
+                    h.h5 &&
+                    <Text as="h4" my={1} ml={6} key={h.h5}>
+                      <Link href={`#${h.h5}`}>- {h.h5}</Link>
+                    </Text>
+                  }
+                  {
+                    h.h6 &&
+                    <Text as="h4" my={1} ml={8} key={h.h6}>
+                      <Link href={`#${h.h6}`}>- {h.h6}</Link>
+                    </Text>
+                  }
+                </>
               )
             })}
           </Flex>

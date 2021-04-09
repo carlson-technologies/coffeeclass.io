@@ -9,10 +9,6 @@
   </url>
 
   <url>
-    <loc>https://coffeeclass.io/learn</loc>
-  </url>
-
-  <url>
     <loc
       >https://coffeeclass.io/snippets/create-responsive-navbar-using-chakra-ui</loc
     >
@@ -20,6 +16,10 @@
 
   <url>
     <loc>https://coffeeclass.io/tutorials/add-firebase-to-nextjs</loc>
+  </url>
+
+  <url>
+    <loc>https://coffeeclass.io/learn/algorithms/what-is-big-o</loc>
   </url>
 
   <url>

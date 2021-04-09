@@ -1,0 +1,8 @@
+{
+    "routes": [
+        {
+            "title": "Algorithms",
+            "path": "/learn/algorithms"
+        }
+    ]
+}

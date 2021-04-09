@@ -1,0 +1,21 @@
+{
+    "title": "Algorithms",
+    "routes": [
+        {
+            "title": "What Is Big O?",
+            "path": "/learn/algorithms/what-is-big-o"
+        },
+        {
+            "title": "Bubble Sort",
+            "path": "/learn/algorithms/bubble-sort"
+        },
+        {
+            "title": "Selection Sort",
+            "path": "/learn/algorithms/selection-sort"
+        },
+        {
+            "title": "Insertion Sort",
+            "path": "/learn/algorithms/insertion-sort"
+        }
+    ]
+}

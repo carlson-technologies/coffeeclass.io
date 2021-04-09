@@ -4,22 +4,26 @@ import {
     Stack,
     Text,
     Divider,
-    useColorMode
+    useColorMode,
+    Link
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
-import Container from '../components/Container'
+import Container from '../../components/Container'
+import subjects from "../../configs/learn.json"
 
 const url = 'https://coffeeclass.io/learn'
 const title = 'Learn – Coffeeclass'
 const description = 'Learn programming languages quickly and easily.'
 
-export default function Learn() {
+export default function Index() {
+    const data = subjects.routes
     const { colorMode } = useColorMode()
     const color = {
         light: 'gray.700',
         dark: 'gray.300'
     }
     return (
+        console.log(data),
         <Container>
             <NextSeo
                 title={title}
@@ -41,9 +45,19 @@ export default function Learn() {
                 >
                     <Heading as="h1" size="2xl">Coffeeclass Learn</Heading>
                     <Divider mt={2} />
-                    <Text mt={8} color={color[colorMode]} fontSize="xl">Coming soon!</Text>
+                    <Flex flexDir="column">
+                        {
+                            data.map((item, index) => {
+                                return (
+                                    <Text fontSize="large" key={index}>
+                                        <Link href={item.path}>{item.title}</Link>
+                                    </Text>
+                                )
+                            })
+                        }
+                    </Flex>
                 </Flex>
             </Stack>
         </Container>
-    )
+    ) 
 }

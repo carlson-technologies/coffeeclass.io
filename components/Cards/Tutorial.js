@@ -9,6 +9,7 @@ import {
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from "framer-motion"
+import NextLink from 'next/link'
 
 const MotionBox = motion(Box)
 
@@ -18,6 +19,10 @@ export default function Tutorial({ src, title, description, tags, href, as }) {
         light: 'gray.100',
         dark: 'gray.700'
     }
+    const boxShadowColor = {
+        light: '0 4px 12px 0 rgba(0, 0, 0, 0.3)',
+        dark: '0 4px 12px 0 rgba(0, 0, 0, 1)'
+    }
     return (
         <Flex
             w={['100%', '100%', 500]}
@@ -25,7 +30,13 @@ export default function Tutorial({ src, title, description, tags, href, as }) {
             mt={[10, 10, 0]}
             key={title}
         >
-            <Box bgColor={bgColor[colorMode]} p={5} borderRadius={5} overflow="hidden">
+            <Box
+                bgColor={bgColor[colorMode]}
+                p={5}
+                borderRadius={5}
+                overflow="hidden"
+                boxShadow={boxShadowColor[colorMode]}
+            >
                 <MotionBox
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -47,9 +58,19 @@ export default function Tutorial({ src, title, description, tags, href, as }) {
                 </MotionBox>
                 <Heading><Link href={href} as={as}>{title}</Link></Heading>
                 <Text><Link href={href} as={as}>{description}</Link></Text>
-                {tags?.map((tag) => {
-                    return (<Badge key={tag} colorScheme="cyan" mr={2}>#{tag}</Badge>)
-                })}
+                <Flex mt={2}>
+                    {tags?.map((tag) => {
+                        return (
+                            <Flex key={tag} mr={2} _hover={{ cursor: 'pointer' }}>
+                                <NextLink href={`/tags/${tag}`} passHref>
+                                    <Link href={`/${tag}`}>
+                                        <Badge colorScheme="cyan">#{tag}</Badge>
+                                    </Link>
+                                </NextLink>
+                            </Flex>
+                        )
+                    })}
+                </Flex>
             </Box>
         </Flex>
     )

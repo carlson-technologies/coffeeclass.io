@@ -7,6 +7,7 @@ import {
     useColorMode
 } from '@chakra-ui/react'
 import Link from 'next/link'
+import NextLink from 'next/link'
 
 export default function Snippet({ title, description, tags, href, as }) {
     const { colorMode } = useColorMode()
@@ -31,14 +32,24 @@ export default function Snippet({ title, description, tags, href, as }) {
                 boxShadow={boxShadowColor[colorMode]}
                 border='1px solid transparent'
                 _hover={{
-                    border: '1px solid #B7791F'
+                    border: '1px solid #41729F'
                 }}
             >
                 <Heading><Link href={href} as={as}>{title}</Link></Heading>
                 <Text fontSize="lg"><Link href={href} as={as}>{description}</Link></Text>
-                {tags?.map((tag) => {
-                    return (<Badge key={tag} colorScheme="cyan" mr={2}>#{tag}</Badge>)
-                })}
+                <Flex mt={2}>
+                    {tags?.map((tag) => {
+                        return (
+                            <Flex key={tag} mr={2} _hover={{cursor: 'pointer'}}>
+                                <NextLink href={`/tags/${tag}`} passHref>
+                                    <Link href={`/${tag}`}>
+                                        <Badge colorScheme="cyan">#{tag}</Badge>
+                                    </Link>
+                                </NextLink>
+                            </Flex>
+                        )
+                    })}
+                </Flex>
             </Box>
         </Flex>
     )

@@ -176,11 +176,31 @@ const NavBarTop = () => {
                                 About
                         </Button>
                         </NextLink>
+                        <NextLink href="/terms" passHref>
+                            <Button
+                                as="a"
+                                variant="ghost"
+                                aria-label="Terms And Conditions"
+                                w="100%"
+                            >
+                                Terms And Conditions
+                        </Button>
+                        </NextLink>
+                        <NextLink href="/privacy" passHref>
+                            <Button
+                                as="a"
+                                variant="ghost"
+                                aria-label="Privacy Policy"
+                                w="100%"
+                            >
+                                Privacy Policy
+                        </Button>
+                        </NextLink>
 
                     </Flex>
 
                     {/* Current Page Navigation Column */}
-                    <Flex
+                    {/* <Flex
                         flexDir="column"
                         align="center"
                         mt={[10, 0, 0, 0]}
@@ -188,7 +208,8 @@ const NavBarTop = () => {
                         <Heading as="h4" size="sm">Page Navigation</Heading>
                         <Divider mt={2} w="90%" />
 
-                    </Flex>
+                    </Flex> */}
+                    
                 </Flex>
             </Flex>
         </>

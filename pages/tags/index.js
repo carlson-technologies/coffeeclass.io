@@ -46,29 +46,33 @@ export default function Index({ tutorials, snippets }) {
                     flexDir="column"
                     mt={50}
                 >
-                    <Heading as="h1" size="2xl">All Tags</Heading>
+                    <Heading as="h1" size="2xl">All Tags 🏷️</Heading>
                     <Divider my={6} />
                     {/* This will work until we have duplicate tags */}
                     <Flex wrap="wrap">
                         {
                             tutorials.map(tut => tut.data.tags.map(tag => {
                                 return (
-                                    <NextLink key={tag} href={`/tags/${tag}`} passHref>
-                                        <Link href={`/${tag}`}>
-                                            <Badge colorScheme="cyan" mr={2} mb={2} p={1} fontSize="xl">#{tag}</Badge>
-                                        </Link>
-                                    </NextLink>
+                                    <Flex mr={2} mb={2} key={tag}>
+                                        <NextLink href={`/tags/${tag}`} passHref>
+                                            <Link href={`/${tag}`}>
+                                                <Badge colorScheme="brand" p={1} fontSize="xl">#{tag}</Badge>
+                                            </Link>
+                                        </NextLink>
+                                    </Flex>
                                 )
                             }))
                         }
                         {
                             snippets.map(snip => snip.data.tags.map(tag => {
                                 return (
-                                    <NextLink key={tag} href={`/tags/${tag}`} passHref>
-                                        <Link href={`/${tag}`}>
-                                            <Badge colorScheme="cyan" mr={2} mb={2} p={1} fontSize="xl">#{tag}</Badge>
-                                        </Link>
-                                    </NextLink>
+                                    <Flex mr={2} mb={2} key={tag}>
+                                        <NextLink href={`/tags/${tag}`} passHref>
+                                            <Link href={`/${tag}`}>
+                                                <Badge colorScheme="brand" p={1} fontSize="xl">#{tag}</Badge>
+                                            </Link>
+                                        </NextLink>
+                                    </Flex>
                                 )
                             }))
                         }

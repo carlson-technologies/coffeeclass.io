@@ -26,6 +26,10 @@ const NavBarLeft = () => {
         light: '0 4px 12px 0 rgba(0, 0, 0, 0.3)',
         dark: '0 4px 12px 0 rgba(0, 0, 0, 1)'
     }
+    const activeNavColor = {
+        light: '#4379ab',
+        dark: '#41729F'
+    }
     const router = useRouter()
     const slug = router.asPath
     return (
@@ -60,10 +64,7 @@ const NavBarLeft = () => {
                                 w="100%"
                                 _hover={{ background: 'none' }}
                             >
-                                <Flex flexDir="column" align="center">
-                                    <Icon as={FiHome} fontSize="2xl" color={slug == '/' ? 'cyan' : null}/>
-                                    <Text fontSize="x-small">Beta</Text>
-                                </Flex>
+                                <Icon as={FiHome} fontSize="2xl" color={slug == '/' ? activeNavColor[colorMode] : null} />
                             </Button>
                         </Tooltip>
                     </WrapItem>
@@ -85,7 +86,7 @@ const NavBarLeft = () => {
                                 w="100%"
                                 _hover={{ background: 'none' }}
                             >
-                                <Icon as={FiScissors} fontSize="2xl" color={slug.includes('snippets') ? 'cyan' : null} />
+                                <Icon as={FiScissors} fontSize="2xl" color={slug.includes('snippets') ? activeNavColor[colorMode] : null} />
                             </Button>
                         </Tooltip>
                     </WrapItem>
@@ -106,7 +107,7 @@ const NavBarLeft = () => {
                                 w="100%"
                                 _hover={{ background: 'none' }}
                             >
-                                <Icon as={FiEdit2} fontSize="2xl" color={slug.includes('learn') ? 'cyan' : null}/>
+                                <Icon as={FiEdit2} fontSize="2xl" color={slug.includes('learn') ? activeNavColor[colorMode] : null} />
                             </Button>
                         </Tooltip>
                     </WrapItem>
@@ -127,7 +128,7 @@ const NavBarLeft = () => {
                                 w="100%"
                                 _hover={{ background: 'none' }}
                             >
-                                <Icon as={FiBookOpen} fontSize="2xl" color={slug.includes('tutorials') ? 'cyan' : null} />
+                                <Icon as={FiBookOpen} fontSize="2xl" color={slug.includes('tutorials') ? activeNavColor[colorMode] : null} />
                             </Button>
                         </Tooltip>
                     </WrapItem>
@@ -163,7 +164,7 @@ const NavBarLeft = () => {
                                     w="100%"
                                     _hover={{ background: 'none' }}
                                 >
-                                    <Icon as={FiBookmark} fontSize="2xl" color={slug.includes('tags') ? 'cyan' : null} />
+                                    <Icon as={FiBookmark} fontSize="2xl" color={slug.includes('tags') ? activeNavColor[colorMode] : null} />
                                 </Button>
                             </Tooltip>
                         </WrapItem>
@@ -184,7 +185,7 @@ const NavBarLeft = () => {
                                     w="100%"
                                     _hover={{ background: 'none' }}
                                 >
-                                    <Icon as={FiInfo} fontSize="2xl" color={slug.includes('about') ? 'cyan' : null} />
+                                    <Icon as={FiInfo} fontSize="2xl" color={slug.includes('about') ? activeNavColor[colorMode] : null} />
                                 </Button>
                             </Tooltip>
                         </WrapItem>

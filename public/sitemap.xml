@@ -9,6 +9,14 @@
   </url>
 
   <url>
+    <loc>https://coffeeclass.io/privacy</loc>
+  </url>
+
+  <url>
+    <loc>https://coffeeclass.io/terms</loc>
+  </url>
+
+  <url>
     <loc
       >https://coffeeclass.io/snippets/create-responsive-navbar-using-chakra-ui</loc
     >
@@ -19,7 +27,11 @@
   </url>
 
   <url>
-    <loc>https://coffeeclass.io/learn/algorithms/what-is-big-o</loc>
+    <loc>https://coffeeclass.io/learn/python/installing-and-using-an-ide</loc>
+  </url>
+
+  <url>
+    <loc>https://coffeeclass.io/learn/python/introduction-to-python</loc>
   </url>
 
   <url>

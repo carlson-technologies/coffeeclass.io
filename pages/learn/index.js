@@ -5,7 +5,9 @@ import {
     Text,
     Divider,
     useColorMode,
-    Link
+    Link,
+    Button,
+    Image
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../../components/Container'
@@ -43,15 +45,27 @@ export default function Index() {
                     flexDir="column"
                     mt={50}
                 >
-                    <Heading as="h1" size="2xl">Coffeeclass Learn</Heading>
+                    <Heading as="h1" size="2xl">Coffeeclass Learn 🎒</Heading>
                     <Divider mt={2} />
                     <Flex flexDir="column">
                         {
                             data.map((item, index) => {
                                 return (
-                                    <Text fontSize="large" key={index}>
-                                        <Link href={item.path}>{item.title}</Link>
-                                    </Text>
+                                    <Link
+                                        href={item.path}
+                                        mt={2}
+                                        mr={2}
+                                        _hover={{ textDecor: 'none' }}
+                                        key={index}
+                                    >
+                                        <Button p={2} size="lg" aria-label={item.title}>
+                                            <Image
+                                                src={`learn-images/${item.image}`}
+                                                h='100%'
+                                            />
+                                            <Text ml={2}>{item.title}</Text>
+                                        </Button>
+                                    </Link>
                                 )
                             })
                         }
@@ -59,5 +73,5 @@ export default function Index() {
                 </Flex>
             </Stack>
         </Container>
-    ) 
+    )
 }

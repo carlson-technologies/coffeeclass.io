@@ -16,31 +16,31 @@ import {
     Link,
     Flex,
     Badge,
-    Tooltip,
     useColorMode,
     Avatar
 } from '@chakra-ui/react'
-import { YoutubeIcon, GitHubIcon } from '../../components/CustomIcons'
 import NextLink from 'next/link'
 
 export default function PostPage({ source, frontMatter }) {
     const content = hydrate(source, { MDXComponents })
     const { colorMode } = useColorMode()
     const color = {
-        light: 'gray.700',
-        dark: 'gray.300'
+        light: 'gray.600',
+        dark: 'gray.500'
     }
     return (
         <Layout frontMatter={frontMatter}>
             <Flex flexDir="column">
-                <Flex align="center" mb={2}>
+                <Flex align="center" alignSelf="center" mb={2}>
                     {frontMatter.tags?.map((tag) => {
                         return (
-                            <NextLink key={tag} href={`/tags/${tag}`} passHref>
-                                <Link href={`/${tag}`}>
-                                    <Badge colorScheme="cyan" mr={2}>#{tag}</Badge>
-                                </Link>
-                            </NextLink>
+                            <Flex key={tag} mr={2}>
+                                <NextLink href={`/tags/${tag}`} passHref>
+                                    <Link href={`/${tag}`}>
+                                        <Badge colorScheme="cyan">#{tag}</Badge>
+                                    </Link>
+                                </NextLink>
+                            </Flex>
                         )
                     })}
                     •
@@ -48,32 +48,23 @@ export default function PostPage({ source, frontMatter }) {
                     •
                     <Text mx={2} color={color[colorMode]} fontSize="sm">{frontMatter.readingTime.text} min read</Text>
                 </Flex>
-                <Heading as="h1" size="2xl" fontWeight="normal">{frontMatter.title}</Heading>
-                <Text fontSize="xl" mt={2} color={color[colorMode]}>{frontMatter.description}</Text>
-                <Flex align="center" my={2}>
-                    <Avatar src={`/authors/${frontMatter.authorImage}`} mr={2}></Avatar>
-                    <Flex flexDir="column">
-                        <Text>By {frontMatter.author}</Text>
-                        <Text color={color[colorMode]}>{frontMatter.authorPosition}</Text>
+                <Heading as="h1" size="2xl" fontWeight="medium" textAlign={["left", "left", "center"]}>{frontMatter.title}</Heading>
+                <Flex flexDir={['column', 'column', 'row']} mt={[0, 0, 4]}>
+                    <Text
+                        fontSize="xl"
+                        mt={2}
+                        color={color[colorMode]}
+                        w={["100%", "100%", "600px"]}
+                    >
+                        {frontMatter.description}
+                    </Text>
+                    <Flex align="center" my={2}>
+                        <Avatar src={`/authors/${frontMatter.authorImage}`} mr={2}></Avatar>
+                        <Flex flexDir="column">
+                            <Text>By {frontMatter.author}</Text>
+                            <Text color={color[colorMode]}>{frontMatter.authorPosition}</Text>
+                        </Flex>
                     </Flex>
-                </Flex>
-                <Flex align="center">
-                    {frontMatter.githubURL &&
-                        <Tooltip hasArrow label="Link To This Post's Code" closeDelay={100}>
-                            <Link isExternal href={frontMatter?.githubURL} w="fit-content">
-                                <GitHubIcon fontSize="2xl" mt={2} mr={2} />
-                            </Link>
-                        </Tooltip>
-                    }
-                    {frontMatter.youtubeId?.map((id) => {
-                        return (
-                            <Tooltip k={id} hasArrow label="Link To This Post As A YouTube Video" closeDelay={100}>
-                                <Link isExternal href={id} w="fit-content">
-                                    <YoutubeIcon fontSize="2xl" mt={2} mr={2} />
-                                </Link>
-                            </Tooltip>
-                        )
-                    })}
                 </Flex>
             </Flex>
             <Divider mt={4} />

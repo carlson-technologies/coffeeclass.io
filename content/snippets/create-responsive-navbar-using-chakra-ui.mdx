@@ -3,7 +3,7 @@ title: "Chakra-UI Responsive Navigation Bar"
 description: "Learn how to create a responsive navigation bar using Chakra-UI."
 author: "Benjamin Carlson"
 authorImage: 'benjamin-carlson.jpeg'
-authorPosition: 'Founder Coffeeclass LLC'
+authorPosition: 'Founder Coffeeclass'
 publishedAt: "2021-04-05"
 tags: ["chakra"]
 youtubeId: ["https://youtu.be/9paBIA2R5C0"]
@@ -28,8 +28,12 @@ nav-bar component that you can use in your React app.
 ## Setup
 
 We will be using Next.js in this example but it works for any react based framework. Navigate to the [Next.js GitHub repo](https://github.com/vercel/next.js/tree/canary/examples/with-chakra-ui) and
-clone their starter example using Chakra-UI. If you dont want
-to leave this page the command is simply `yarn create next-app --example with-chakra-ui with-chakra-ui-app`.
+clone their starter example using Chakra-UI. If you don't want
+to leave this page the command is:
+
+```bash
+yarn create next-app --example with-chakra-ui with-chakra-ui-app
+```
 
 Open this in your preferred IDE - mine is [VSCode](https://code.visualstudio.com/). Inside of `src/components`, open up the `DarkModeSwitch` component.
 This is the only file we will be modifying.
@@ -53,7 +57,7 @@ import NextLink from 'next/link'
 
 ## Adding Desktop Content
 
-First, wap everything inside of a `Flex` element. Then, add the below code.
+First, wrap everything inside of a `Flex` element. Then, add the below code.
 
 ```javascript:DarkModeSwitch.js
 <Flex>
@@ -203,7 +207,7 @@ Now we should be able to open and close the menu! It looks a bit messy though. L
 The important styles we added:
 
 - Setting the height to 100vh
-- Setting th width to 100vw
+- Setting the width to 100vw
 - Setting the position to fixed
 - Making z-index 20 so it is above the page content
 - Setting top and left to 0

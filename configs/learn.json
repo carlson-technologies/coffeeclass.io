@@ -1,8 +1,9 @@
 {
     "routes": [
         {
-            "title": "Algorithms",
-            "path": "/learn/algorithms"
+            "title": "Python",
+            "path": "/learn/python/introduction-to-python",
+            "image": "language-logo/python.png"
         }
     ]
 }

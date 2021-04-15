@@ -15,7 +15,7 @@ import Snippet from '../components/Cards/Snippet'
 
 const url = 'https://coffeeclass.io/'
 const title = 'Home – Coffeeclass'
-const description = 'Browse a variety of programming tutorials and snippets on Coffeclass.'
+const description = 'Learn to code and ship your app for free.'
 
 export default function Index() {
     return (
@@ -38,45 +38,40 @@ export default function Index() {
                 <Flex
                     flexDir="column"
                     mx={5}
-                    as="section"
                     maxW="100em"
-                    mt={50}
                 >
                     <Flex
                         flexDir={['column', 'column', 'row']}
                         justify="center"
                         align="center"
+                        h="100vh"
+                        as="section"
                     >
-                        {/* Left Side */}
-                        <Flex flexDir="column" w={['100%', '100%', 600]}>
-                            <Heading as="h1" size="2xl">Learn to code and ship your app idea.</Heading>
-                            <Heading as="h2" color="gray.500" size="md" mt={4}>Coffeeclass ☕ takes complex programming concepts and presents them in an easy to learn manner.</Heading>
-                            <Flex mt={8}>
+                        <Flex
+                            flexDir="column"
+                            w={['100%', '100%', 800]}
+                            align="center"
+                        >
+                            <Heading as="h1" size="3xl" textAlign="center">Learn to <Flex display="inline" color="brand.500">code</Flex> 👨‍💻
+                            and <Flex display="inline" color="red.400">ship</Flex> 🚀 your app for free.</Heading>
+                            <Heading as="h2" color="gray.500" textAlign="center" size="md" my={8} letterSpacing="wide">Coffeeclass ☕ takes complex programming concepts and presents them in an easy to learn manner.
+                            Browse snippets, tutorials, or learn a new skill.</Heading>
+                            <Flex
+                                flexDirection={['column', 'row', 'row']}
+                                w="100%"
+                                justify="center"
+                            >
                                 <NextLink href="#explore" passHref>
-                                    <Button mr={4} w={200}><Flex as="span" mr={4}>🔭</Flex> Explore Content</Button>
+                                    <Button mr={4} w={['100%', 200, 200]} colorScheme="brand"><Flex as="span" mr={4}>🔭</Flex> Explore Content</Button>
                                 </NextLink>
-                                <NextLink href="/about" passHref>
-                                    <Button variant="outline" w={200} to="/about">About</Button>
-                                </NextLink>
+                                <Flex mt={[4, 0, 0]}>
+                                    <NextLink href="/about" passHref>
+                                        <Button variant="outline" w={['100%', 200, 200]} colorScheme="brand" to="/about">About</Button>
+                                    </NextLink>
+                                </Flex>
                             </Flex>
                         </Flex>
-
-                        {/* Right Side */}
-                        <Flex alignSelf={['start', 'start', 'center']}>
-                            <Tutorial
-                                src="/content/tutorials/add-firebase-to-nextjs/feature.png"
-                                title="Firebase + Next.js Quickstart"
-                                description="Learn how to connect Next.js to Google's Firebase and
-                                use authentication, cloud Firestore, Realtime Database, and
-                                cloud storage."
-                                tags={["chakra", "nextjs"]}
-                                href="/tutorials/add-firebase-to-nextjs"
-                            />
-                        </Flex>
-
                     </Flex>
-
-                    <Divider my={8} />
 
                     <Flex as="section" flexDir="column">
                         <Heading as="h3" size="lg" mb={4} id="explore">Browse The Latest Tutorials</Heading>
@@ -87,7 +82,7 @@ export default function Index() {
                                 description="Learn how to connect Next.js to Google's Firebase and
                                 use authentication, cloud Firestore, Realtime Database, and
                                 cloud storage."
-                                tags={["chakra", "nextjs"]}
+                                tags={["firebase", "nextjs"]}
                                 href="/tutorials/add-firebase-to-nextjs"
                             />
                             {/* Add more here... Either 2 or 4 */}
@@ -108,15 +103,22 @@ export default function Index() {
 
                     <Divider my={8} />
 
-                    <Flex as="section" flexDir="row" align="center" justify="space-around">
-                        <Flex flexDir="column" w={500}>
+                    <Flex
+                        as="section"
+                        flexDir={["column", "column", "row"]}
+                        align="center"
+                        justify="space-around"
+                    >
+                        <Flex flexDir="column" w={['100%', '100%', 500]}>
                             <Heading as="h3" size="lg" mb={2}>What Is Coffeeclass?</Heading>
                             <Text mb={2}>Coffeeclass is a suite of programming tutorial tools including this website and this YouTube channel.</Text>
-                            <NextLink href="/about" passHref>
-                                <Button variant="outline" w={200} to="/about">Learn More</Button>
-                            </NextLink>
+                            <Flex mb={2}>
+                                <NextLink href="/about" passHref>
+                                    <Button variant="outline" colorScheme="brand" w={['100%', 200, 200]} to="/about">Learn More</Button>
+                                </NextLink>
+                            </Flex>
                         </Flex>
-                        <Flex w={500} justify="center">
+                        <Flex w={['100%', '100%', 500]} justify="center" mt={[]}>
                             <Box w={200} h={200} backgroundColor="gray.100" borderRadius="50%">
 
                             </Box>

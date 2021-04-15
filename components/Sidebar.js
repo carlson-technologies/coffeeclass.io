@@ -1,5 +1,5 @@
 import { useRouter } from "next/router"
-import algorithmsSidebar from "../configs/learn/algorithms.json"
+import pythonSidebar from "../configs/learn/python.json"
 import {
     Box,
     Flex,
@@ -14,7 +14,7 @@ import NextLink from 'next/link'
 export function getRoutes(slug) {
 
     const configMap = {
-        "/learn/algorithms": algorithmsSidebar
+        "/learn/python": pythonSidebar
     }
 
     const [_path, sidebar] =
@@ -43,10 +43,10 @@ const Sidebar = () => {
                 overscrollBehavior: "contain",
             }}
             w="270px"
-            top="10px"
-            h="calc(100vh - 10px)"
+            top="20px"
+            h="calc(100vh - 20px)"
             pr="8"
-            pb="8"
+            pb="4"
             pl="3"
             overflowY="auto"
             flexShrink={0}
@@ -55,7 +55,7 @@ const Sidebar = () => {
             <Flex
                 flexDirection="column"
             >
-                <Heading as="h4" size="md" textAlign="center">Chapters</Heading>
+                <Heading as="h4" size="md" textAlign="center">Chapters 🔖</Heading>
                 <Divider my={4} />
                 {routes.map((r) =>
                     // console.log(router.query.slug)

@@ -8,7 +8,8 @@ import {
     Tooltip,
     WrapItem,
     Icon,
-    Text
+    Text,
+    Image
 } from '@chakra-ui/react'
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 import NextLink from 'next/link'
@@ -53,7 +54,7 @@ const NavBarLeft = () => {
                     <WrapItem w="100%">
                         <Tooltip
                             hasArrow
-                            label="Home"
+                            label="coffeeclass.io Home"
                             placement="right"
                             closeDelay={100}
                         >
@@ -64,7 +65,17 @@ const NavBarLeft = () => {
                                 w="100%"
                                 _hover={{ background: 'none' }}
                             >
-                                <Icon as={FiHome} fontSize="2xl" color={slug == '/' ? activeNavColor[colorMode] : null} />
+                                <Flex
+                                    flexDir="column"
+                                    align="center"
+                                >
+                                    <Image
+                                        src="/favicons/coffee-only-transparent-bg.png"
+                                        w={50}
+                                    />
+                                    {/* <Icon as={FiHome} fontSize="2xl" color={slug == '/' ? activeNavColor[colorMode] : null} /> */}
+                                    {/* <Text fontSize="xs" mt={2} color={slug == '/' ? activeNavColor[colorMode] : null}>coffeeclass.io</Text> */}
+                                </Flex>
                             </Button>
                         </Tooltip>
                     </WrapItem>
@@ -92,7 +103,7 @@ const NavBarLeft = () => {
                     </WrapItem>
                 </NextLink>
 
-                <NextLink href="/learn" passHref>
+                {/* <NextLink href="/learn" passHref>
                     <WrapItem w="100%">
                         <Tooltip
                             hasArrow
@@ -111,7 +122,7 @@ const NavBarLeft = () => {
                             </Button>
                         </Tooltip>
                     </WrapItem>
-                </NextLink>
+                </NextLink> */}
 
                 <NextLink href="/tutorials" passHref>
                     <WrapItem w="100%">

@@ -10,7 +10,7 @@ const prismBaseTheme = css`
     color: ${theme.colors.gray[800]};
     background: none;
     font-family: ${theme.fonts.mono};
-    font-size: ${theme.fontSizes[2]};
+    font-size: ${theme.fontSizes.lg};
     text-align: left;
     word-spacing: normal;
     word-break: normal;
@@ -149,7 +149,7 @@ export const prismLightTheme = css`
   :not(pre) > code[class*='language-'],
   pre[class*='language-'] {
     background: ${theme.colors.gray[50]};
-    border: 1px solid ${theme.colors.gray[200]};
+    border: 0px solid ${theme.colors.gray[200]};
   }
   .mdx-marker {
     background-color: hsla(204, 45%, 96%, 1);
@@ -216,7 +216,7 @@ export const prismDarkTheme = css`
   :not(pre) > code[class*='language-'],
   pre[class*='language-'] {
     background: ${theme.colors.gray[800]};
-    border: 1px solid ${theme.colors.gray[700]};
+    border: 0px solid ${theme.colors.gray[700]};
   }
   .mdx-marker {
     background-color: ${theme.colors.gray[700]};

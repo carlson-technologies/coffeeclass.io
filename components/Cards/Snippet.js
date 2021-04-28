@@ -3,7 +3,7 @@ import {
     Flex,
     Text,
     Box,
-    Badge,
+    Tag,
     useColorMode
 } from '@chakra-ui/react'
 import Link from 'next/link'
@@ -28,7 +28,7 @@ export default function Snippet({ title, description, tags, href, as }) {
             <Box
                 bgColor={bgColor[colorMode]}
                 p={5} borderRadius={5}
-                w="90%"
+                w="100%"
                 boxShadow={boxShadowColor[colorMode]}
                 border='1px solid transparent'
                 _hover={{
@@ -43,7 +43,7 @@ export default function Snippet({ title, description, tags, href, as }) {
                             <Flex key={tag} mr={2} _hover={{cursor: 'pointer'}}>
                                 <NextLink href={`/tags/${tag}`} passHref>
                                     <Link href={`/${tag}`}>
-                                        <Badge colorScheme="cyan">#{tag}</Badge>
+                                        <Tag size="lg" colorScheme="blue">#{tag}</Tag>
                                     </Link>
                                 </NextLink>
                             </Flex>

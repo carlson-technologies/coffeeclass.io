@@ -15,9 +15,10 @@ import {
     Divider,
     Link,
     Flex,
-    Badge,
     useColorMode,
-    Avatar
+    Avatar,
+    Tag,
+    Tooltip
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
 
@@ -30,45 +31,62 @@ export default function PostPage({ source, frontMatter }) {
     }
     return (
         <Layout frontMatter={frontMatter}>
-            <Flex flexDir="column">
-                <Flex align="center" alignSelf="center" mb={2}>
-                    {frontMatter.tags?.map((tag) => {
-                        return (
-                            <Flex key={tag} mr={2}>
-                                <NextLink href={`/tags/${tag}`} passHref>
-                                    <Link href={`/${tag}`}>
-                                        <Badge colorScheme="cyan">#{tag}</Badge>
-                                    </Link>
-                                </NextLink>
-                            </Flex>
-                        )
-                    })}
+            <Flex flexDir="column" w={['100%', '100%', '70%']} alignSelf="center">
+                <Flex
+                    align="center"
+                    justify={["left", "left", "center"]}
+                    mb={2}
+                    flexDir={['column', 'row', 'row']}
+                >
+                    <Flex mb={[2, 0, 0]}>
+                        {frontMatter.tags?.map((tag) => {
+                            return (
+                                <Flex key={tag} mr={2}>
+                                    <NextLink href={`/tags/${tag}`} _hover={{ textDecor: 'none' }} passHref>
+                                        <Tooltip hasArrow label={`View posts relating to ${tag}`}>
+                                            <Link href={`/tags/${tag}`} _hover={{ textDecor: 'none' }}>
+                                                <Tag size="sm">#{tag}</Tag>
+                                            </Link>
+                                        </Tooltip>
+                                    </NextLink>
+                                </Flex>
+                            )
+                        })}
+                    </Flex>
+                    <Flex display={['none', 'flex', 'flex']}>•</Flex>
+                    <Flex>
+                        <Text mx={2} color={color[colorMode]} fontSize="sm">{format(parseISO(frontMatter.publishedAt), 'MMMM dd, yyyy')}</Text>
                     •
-                    <Text mx={2} color={color[colorMode]} fontSize="sm">{format(parseISO(frontMatter.publishedAt), 'MMMM dd, yyyy')}</Text>
-                    •
-                    <Text mx={2} color={color[colorMode]} fontSize="sm">{frontMatter.readingTime.text} min read</Text>
-                </Flex>
-                <Heading as="h1" size="2xl" fontWeight="medium" textAlign={["left", "left", "center"]}>{frontMatter.title}</Heading>
-                <Flex flexDir={['column', 'column', 'row']} mt={[0, 0, 4]}>
-                    <Text
-                        fontSize="xl"
-                        mt={2}
-                        color={color[colorMode]}
-                        w={["100%", "100%", "600px"]}
-                    >
-                        {frontMatter.description}
-                    </Text>
-                    <Flex align="center" my={2}>
-                        <Avatar src={`/authors/${frontMatter.authorImage}`} mr={2}></Avatar>
-                        <Flex flexDir="column">
-                            <Text>By {frontMatter.author}</Text>
-                            <Text color={color[colorMode]}>{frontMatter.authorPosition}</Text>
-                        </Flex>
+                    <Text mx={2} color={color[colorMode]} fontSize="sm">{frontMatter.readingTime.text}</Text>
                     </Flex>
                 </Flex>
+                <Heading as="h1" size="2xl" textAlign={["left", "left", "center"]}>{frontMatter.title}</Heading>
+                <Text
+                    fontSize="xl"
+                    mt={2}
+                    color={color[colorMode]}
+                    textAlign={["left", "left", "center"]}
+                >
+                    {frontMatter.description}
+                </Text>
             </Flex>
-            <Divider mt={4} />
-            {content}
+            <Divider mt={12} w="30%" alignSelf="center" />
+            <Flex
+                flexDir="column"
+                w={["100%", "100%", "60%"]}
+                alignSelf="center"
+                maxW="800px"
+            >
+                {content}
+            </Flex>
+            <Divider mt={12} w="30%" alignSelf="center" />
+            <Flex align="center" mt={4} justify={["left", "left", "center"]}>
+                <Avatar src={`/authors/${frontMatter.authorImage}`} mr={2}></Avatar>
+                <Flex flexDir="column">
+                    <Text>Written By <Link href={`/authors/${frontMatter.author}`}>{frontMatter.author}</Link></Text>
+                    <Text color={color[colorMode]}>{frontMatter.authorPosition}</Text>
+                </Flex>
+            </Flex>
         </Layout>
     )
 }

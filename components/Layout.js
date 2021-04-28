@@ -32,11 +32,12 @@ export default function Layout({ frontMatter, children }) {
           flexDir="column"
           m={[0, 0, 5]}
           px={[4, 4, 0]}
-          w={frontMatter.headings ? ["100%", "100%", "calc(100% - 300px)"] : '100%'}
+          w="100%"
+          // w={frontMatter.headings ? ["100%", "100%", "calc(100% - 300px)"] : '100%'}
         >
           {children}
         </Flex>
-        {frontMatter?.headings &&
+        {/* {frontMatter?.headings &&
           <Flex
             w={200}
             bgColor={bgColor[colorMode]}
@@ -111,7 +112,7 @@ export default function Layout({ frontMatter, children }) {
               <Link href='#__next'>Top</Link>
             </Text>
           </Flex>
-        }
+        } */}
       </Flex>
     </Container>
   )

@@ -24,9 +24,10 @@ const Footer = () => {
             ml={[0, 0, 100]}
             mb={4}
             px={4}
+            as="footer"
         >
             <Divider w="80%" mb={4} mt={8} />
-            <Text fontSize="sm" textAlign="center">Find An Error On This Page? <Link href={`${editLinkBase}${extension == '.js' ? '/pages' : '/content'}${slug}${extension}`} color="blue.500" isExternal>Fix It On GitHub</Link></Text>
+            {/* <Text fontSize="sm" textAlign="center">Find An Error On This Page? <Link href={`${editLinkBase}${extension == '.js' ? '/pages' : '/content'}${slug}${extension}`} color="blue.500" isExternal>Fix It On GitHub</Link></Text> */}
             {/* <Text fontSize="sm">Copyright &copy; Coffeclass LLC</Text> */}
             <Text fontSize="sm" textAlign="center">Designed And Built By <Link href="https://benjamincarlson.io" color="blue.500" isExternal>Benjamin Carlson</Link> using <Link href="https://nextjs.org" color="blue.500" isExternal>Next.js</Link> and <Link href="https://chakra-ui.com" color="blue.500" isExternal>Chakra-UI</Link></Text>
             <Flex fontSize="sm" flexDir="row">

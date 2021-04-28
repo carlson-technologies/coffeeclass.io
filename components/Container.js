@@ -15,7 +15,6 @@ const Container = ({ children }) => {
             <NavbarTop />
             <NavbarLeft />
             <Flex
-                as="main"
                 flexDirection="column"
                 // mt={50}
             >
@@ -28,6 +27,7 @@ const Container = ({ children }) => {
                         display="block"
                         minH="100vh"
                         ml={[0, 0, 100]}
+                        as="main"
                     >
                         {children}
                     </Flex>

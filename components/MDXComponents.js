@@ -33,7 +33,7 @@ const CustomLink = (props) => {
 }
 
 const DocsHeading = (props) => (
-    console.log(props),
+    // console.log(props),
     <Heading
         css={{
             scrollMarginTop: '100px',
@@ -51,8 +51,6 @@ const DocsHeading = (props) => (
             '&[id]:hover a': { opacity: 1 }
         }}
         {...props}
-        mb="1em"
-        mt="2em"
     >
         <Box>
             {props.children}
@@ -86,19 +84,19 @@ const CustomP = (props) => {
         dark: 'gray.300'
     }
     return (
-        <Text fontSize="20px" my={4} color={color[colorMode]} {...props} />
+        <Text fontSize="xl" my={4} color={color[colorMode]} {...props} />
     )
 }
 
 const MDXComponents = {
     h1: (props) => <Heading as="h1" size="2xl" {...props} />,
-    h2: (props) => <DocsHeading as="h2" size="xl" mt={6} mb={4} {...props} />,
+    h2: (props) => <DocsHeading as="h2" size="xl" mt="1em" {...props} />,
     h3: (props) => <DocsHeading as="h3" size="lg" {...props} />,
     h4: (props) => <DocsHeading as="h4" size="md" {...props} />,
     h5: (props) => <DocsHeading as="h5" size="sm" {...props} />,
     h6: (props) => <DocsHeading as="h6" size="xs" {...props} />,
     p: CustomP,
-    inlineCode: (props) => <Code colorScheme="blue" fontSize="0.84em" {...props} />,
+    inlineCode: (props) => <Code colorScheme="gray" fontSize="0.84em" {...props} />,
     ul: (props) => <UnorderedList my={4} {...props} />,
     ol: (props) => <OrderedList my={4} {...props} />,
     li: (props) => <ListItem my={2} fontSize="xl" {...props} />,

@@ -6,7 +6,8 @@ import {
     useColorMode,
     Button,
     Heading,
-    Divider
+    Divider,
+    Image
 } from '@chakra-ui/react'
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import DarkModeSwitch from './DarkModeSwitch'
@@ -69,10 +70,11 @@ const NavBarTop = () => {
                 zIndex={20}
                 overflowY="auto"
                 flexDir="column"
-                // w="300px"
+            // w="300px"
             >
                 <Flex justify="flex-end">
                     <IconButton
+                    pos="absolute"
                         mt={2}
                         mr={2}
                         bgColor={bgColor[colorMode]}
@@ -88,6 +90,8 @@ const NavBarTop = () => {
                         onClick={() => changeDisplay('none')}
                     />
                 </Flex>
+
+                <Image alignSelf="center" src="/favicons/logo-transparent-bg.png" w={[100, 125, 150]} />
 
                 <Flex
                     flexDir={["column", "row", "row", "row"]}
@@ -107,9 +111,10 @@ const NavBarTop = () => {
                                 variant="ghost"
                                 aria-label="Home"
                                 w="100%"
+                                _hover={{ background: 'none' }}
                             >
                                 Home
-                    </Button>
+                            </Button>
                         </NextLink>
 
                         <NextLink href="/snippets" passHref>
@@ -118,21 +123,23 @@ const NavBarTop = () => {
                                 variant="ghost"
                                 aria-label="Snippets"
                                 w="100%"
+                                _hover={{ background: 'none' }}
                             >
                                 Snippets
                     </Button>
                         </NextLink>
 
-                        <NextLink href="/learn" passHref>
+                        {/* <NextLink href="/learn" passHref>
                             <Button
                                 as="a"
                                 variant="ghost"
                                 aria-label="Learn"
                                 w="100%"
+                                _hover={{ background: 'none' }}
                             >
                                 Learn
-                    </Button>
-                        </NextLink>
+                            </Button>
+                        </NextLink> */}
 
                         <NextLink href="/tutorials" passHref>
                             <Button
@@ -140,6 +147,7 @@ const NavBarTop = () => {
                                 variant="ghost"
                                 aria-label="Tutorials"
                                 w="100%"
+                                _hover={{ background: 'none' }}
                             >
                                 Tutorials
                     </Button>
@@ -151,6 +159,7 @@ const NavBarTop = () => {
                                 variant="ghost"
                                 aria-label="Tags"
                                 w="100%"
+                                _hover={{ background: 'none' }}
                             >
                                 Tags
                         </Button>
@@ -172,6 +181,7 @@ const NavBarTop = () => {
                                 variant="ghost"
                                 aria-label="About"
                                 w="100%"
+                                _hover={{ background: 'none' }}
                             >
                                 About
                         </Button>
@@ -182,6 +192,7 @@ const NavBarTop = () => {
                                 variant="ghost"
                                 aria-label="Terms And Conditions"
                                 w="100%"
+                                _hover={{ background: 'none' }}
                             >
                                 Terms And Conditions
                         </Button>
@@ -192,6 +203,7 @@ const NavBarTop = () => {
                                 variant="ghost"
                                 aria-label="Privacy Policy"
                                 w="100%"
+                                _hover={{ background: 'none' }}
                             >
                                 Privacy Policy
                         </Button>
@@ -209,7 +221,7 @@ const NavBarTop = () => {
                         <Divider mt={2} w="90%" />
 
                     </Flex> */}
-                    
+
                 </Flex>
             </Flex>
         </>

@@ -4,7 +4,9 @@ import {
     Stack,
     Grid,
     Divider,
-    useColorMode
+    useColorMode,
+    Tag,
+    Link
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../../../components/Container'
@@ -19,10 +21,10 @@ import Tutorial from '../../../components/Cards/Tutorial'
 
 export default function Index({ tutorials, snippets }) {
     const router = useRouter()
-    const { tag } = router.query
-    const url = `https://coffeeclass.io/tag/${tag}`
+    const { author } = router.query
+    const url = `https://coffeeclass.io/tag/${author}`
     const title = 'Tags – Coffeeclass'
-    const description = `Articles relating to ${tag}`
+    const description = `Articles relating to ${author}`
     const { colorMode } = useColorMode()
     const color = {
         light: 'gray.700',
@@ -52,44 +54,51 @@ export default function Index({ tutorials, snippets }) {
                     flexDir="column"
                     mt={50}
                 >
-                    <Heading as="h1" size="2xl">#{tag}</Heading>
+                    <Heading as="h1" size="2xl">{author}</Heading>
+                    <Flex my={2}>
+                        <Tag mr={2} size="lg"><Link href="https://benjamincarlson.io" isExternal>Website</Link></Tag>
+                        <Tag mr={2} size="lg"><Link href="https://github.com/bjcarlson42" isExternal>GitHub</Link></Tag>
+                    </Flex>
                     <Divider mt={2} />
                     <Heading my={4} as="h2">Snippets</Heading>
                     <Flex flexDir="column">
                         <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
                             {
-                                snippets.map(post => post.data.tags.map(t => {
+                                snippets.map(s => {
+                                    // console.log(s)
+                                    // console.log(s.author)
+                                    // console.log(author)
                                     return (
-                                        t == tag ?
+                                        s.data.author == author ?
                                             <Snippet
-                                                key={post.data.title}
-                                                src={`/content/snippets/${post.filePath.replace(/\.mdx?$/, '')}/${post.data.featureImg}`}
-                                                title={post.data.title}
-                                                description={post.data.description}
-                                                tags={post.data.tags}
-                                                as={`/snippets/${post.filePath.replace(/\.mdx?$/, '')}`}
+                                                key={s.data.title}
+                                                src={`/content/snippets/${s.filePath.replace(/\.mdx?$/, '')}/${s.data.featureImg}`}
+                                                title={s.data.title}
+                                                description={s.data.description}
+                                                tags={s.data.tags}
+                                                as={`/snippets/${s.filePath.replace(/\.mdx?$/, '')}`}
                                                 href={`/snippets/[slug]`}
                                             /> : null
                                     )
-                                }))
+                                })
                             }
                         </Grid>
                         <Heading my={4} as="h3">Tutorials</Heading>
                         {
-                            tutorials.map(post => post.data.tags.map(t => {
+                            tutorials.map(t => {
                                 return (
-                                    t == tag ?
+                                    t.data.author == author ?
                                         <Tutorial
-                                            key={post.data.title}
-                                            src={`/content/tutorials/${post.filePath.replace(/\.mdx?$/, '')}/${post.data.featureImg}`}
-                                            title={post.data.title}
-                                            description={post.data.description}
-                                            tags={post.data.tags}
-                                            as={`/tutorials/${post.filePath.replace(/\.mdx?$/, '')}`}
+                                            key={t.data.title}
+                                            src={`/content/tutorials/${t.filePath.replace(/\.mdx?$/, '')}/${t.data.featureImg}`}
+                                            title={t.data.title}
+                                            description={t.data.description}
+                                            tags={t.data.tags}
+                                            as={`/tutorials/${t.filePath.replace(/\.mdx?$/, '')}`}
                                             href={`/tutorials/[slug]`}
                                         /> : null
                                 )
-                            }))
+                            })
                         }
                     </Flex>
                 </Flex>

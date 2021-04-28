@@ -5,19 +5,27 @@ import {
     Stack,
     Text,
     Box,
-    Divider
+    Divider,
+    Grid,
+    Image,
+    Link
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../components/Container'
 import NextLink from 'next/link'
 import Tutorial from '../components/Cards/Tutorial'
 import Snippet from '../components/Cards/Snippet'
+import fs from 'fs'
+import matter from 'gray-matter'
+import path from 'path'
+import { snippetsFilePaths, SNIPPETS_PATH } from '../utils/mdxUtils'
+import { tutorialsFilePaths, TUTORIALS_PATH } from '../utils/mdxUtils'
 
 const url = 'https://coffeeclass.io/'
 const title = 'Home – Coffeeclass'
 const description = 'Learn to code and ship your app for free.'
 
-export default function Index() {
+export default function Index({ snippets, tutorials }) {
     return (
         <Container>
             <NextSeo
@@ -62,11 +70,11 @@ export default function Index() {
                                 justify="center"
                             >
                                 <NextLink href="#explore" passHref>
-                                    <Button mr={4} w={['100%', 200, 200]} colorScheme="brand"><Flex as="span" mr={4}>🔭</Flex> Explore Content</Button>
+                                    <Button mr={4} w={['100%', 200, 200]} colorScheme="blue"><Flex as="span" mr={4}>🔭</Flex> Explore Content</Button>
                                 </NextLink>
                                 <Flex mt={[4, 0, 0]}>
                                     <NextLink href="/about" passHref>
-                                        <Button variant="outline" w={['100%', 200, 200]} colorScheme="brand" to="/about">About</Button>
+                                        <Button variant="outline" w={['100%', 200, 200]} colorScheme="blue" to="/about">About</Button>
                                     </NextLink>
                                 </Flex>
                             </Flex>
@@ -93,12 +101,19 @@ export default function Index() {
 
                     <Flex as="section" flexDir="column">
                         <Heading as="h3" size="lg" mb={10}>Only Have 5 Minutes? Check Out Some Snippets!</Heading>
-                        <Snippet
-                            title="Chakra-UI Responsive Navigation Bar"
-                            description="Learn how to create a responsive navigation bar using Chakra-UI."
-                            tags={["chakra"]}
-                            href="/snippets/create-responsive-navbar-using-chakra-ui"
-                        />
+                        <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
+                            {snippets.map((post) => (
+                                <Snippet
+                                    key={post.data.title}
+                                    src={`/content/snippets/${post.filePath.replace(/\.mdx?$/, '')}/${post.data.featureImg}`}
+                                    title={post.data.title}
+                                    description={post.data.description}
+                                    tags={post.data.tags}
+                                    as={`/snippets/${post.filePath.replace(/\.mdx?$/, '')}`}
+                                    href={`/snippets/[slug]`}
+                                />
+                            ))}
+                        </Grid>
                     </Flex>
 
                     <Divider my={8} />
@@ -111,16 +126,16 @@ export default function Index() {
                     >
                         <Flex flexDir="column" w={['100%', '100%', 500]}>
                             <Heading as="h3" size="lg" mb={2}>What Is Coffeeclass?</Heading>
-                            <Text mb={2}>Coffeeclass is a suite of programming tutorial tools including this website and this YouTube channel.</Text>
+                            <Text mb={2}>Coffeeclass is a suite of programming tutorial tools including this website and <Link color="blue.500" href="https://youtube.com/benjamincarlson" isExternal>this YouTube channel</Link>.</Text>
                             <Flex mb={2}>
                                 <NextLink href="/about" passHref>
-                                    <Button variant="outline" colorScheme="brand" w={['100%', 200, 200]} to="/about">Learn More</Button>
+                                    <Button variant="outline" colorScheme="blue" w={['100%', 200, 200]} to="/about">Learn More</Button>
                                 </NextLink>
                             </Flex>
                         </Flex>
                         <Flex w={['100%', '100%', 500]} justify="center" mt={[]}>
-                            <Box w={200} h={200} backgroundColor="gray.100" borderRadius="50%">
-
+                            <Box w={200} h={200}>
+                                <Image src="favicons/logo-transparent-bg.png" />
                             </Box>
                         </Flex>
                     </Flex>
@@ -129,4 +144,32 @@ export default function Index() {
             </Stack>
         </Container>
     )
+}
+
+export function getStaticProps() {
+    const tutorials = tutorialsFilePaths.map((filePath) => {
+        const source = fs.readFileSync(path.join(TUTORIALS_PATH, filePath))
+        const { content, data } = matter(source)
+
+        return {
+            content,
+            data,
+            filePath,
+        }
+    }).slice(0, 4)
+
+    const snippets = snippetsFilePaths.map((filePath) => {
+        const source = fs.readFileSync(path.join(SNIPPETS_PATH, filePath))
+        const { content, data } = matter(source)
+
+        return {
+            content,
+            data,
+            filePath,
+        }
+    }).slice(0,4)
+
+    // console.log(snippets)
+
+    return { props: { tutorials, snippets } }
 }

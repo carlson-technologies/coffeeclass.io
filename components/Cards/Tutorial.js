@@ -3,7 +3,7 @@ import {
     Flex,
     Text,
     Box,
-    Badge,
+    Tag,
     useColorMode
 } from '@chakra-ui/react'
 import Image from 'next/image'
@@ -64,7 +64,7 @@ export default function Tutorial({ src, title, description, tags, href, as }) {
                             <Flex key={tag} mr={2} _hover={{ cursor: 'pointer' }}>
                                 <NextLink href={`/tags/${tag}`} passHref>
                                     <Link href={`/${tag}`}>
-                                        <Badge colorScheme="cyan">#{tag}</Badge>
+                                        <Tag size="lg" colorScheme="blue">#{tag}</Tag>
                                     </Link>
                                 </NextLink>
                             </Flex>

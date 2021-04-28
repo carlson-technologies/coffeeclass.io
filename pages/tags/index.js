@@ -5,7 +5,7 @@ import {
     Link,
     Divider,
     useColorMode,
-    Badge
+    Tag
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../../components/Container'
@@ -56,7 +56,7 @@ export default function Index({ tutorials, snippets }) {
                                     <Flex mr={2} mb={2} key={tag}>
                                         <NextLink href={`/tags/${tag}`} passHref>
                                             <Link href={`/${tag}`}>
-                                                <Badge colorScheme="brand" p={1} fontSize="xl">#{tag}</Badge>
+                                                <Tag size="lg" colorScheme="blue">#{tag}</Tag>
                                             </Link>
                                         </NextLink>
                                     </Flex>
@@ -69,7 +69,7 @@ export default function Index({ tutorials, snippets }) {
                                     <Flex mr={2} mb={2} key={tag}>
                                         <NextLink href={`/tags/${tag}`} passHref>
                                             <Link href={`/${tag}`}>
-                                                <Badge colorScheme="brand" p={1} fontSize="xl">#{tag}</Badge>
+                                                <Tag size="lg" colorScheme="blue">#{tag}</Tag>
                                             </Link>
                                         </NextLink>
                                     </Flex>

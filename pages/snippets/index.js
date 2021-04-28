@@ -3,7 +3,8 @@ import {
     Flex,
     Stack,
     useColorMode,
-    Text
+    Text,
+    Grid
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../../components/Container'
@@ -42,8 +43,7 @@ export default function Index({ posts }) {
                 <Flex flexDir="column" mt={50}>
                     <Heading as="h1" size="2xl" mb={4} textAlign="center">Coffeeclass Snippets ✂️</Heading>
                     <Text color={color[colorMode]} mb={8} fontSize="lg" textAlign="center">Snippets are code bits that you can easily copy and paste into your project.</Text>
-
-                    <Flex flexDir="column">
+                    <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
                         {posts.map((post) => (
                             <Snippet
                                 key={post.data.title}
@@ -55,7 +55,7 @@ export default function Index({ posts }) {
                                 href={`/snippets/[slug]`}
                             />
                         ))}
-                    </Flex>
+                    </Grid>
                 </Flex>
             </Stack>
         </Container>

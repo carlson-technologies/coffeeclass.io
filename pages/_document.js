@@ -10,6 +10,9 @@ export default class MyDocument extends NextDocument {
             <Html lang="en">
                 <GoogleFonts href="https://fonts.googleapis.com/css?family=Inter&display=swap" />
                 <Head>
+                    {/* Google Adsense */}
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8586017200531248"
+                        crossorigin="anonymous"></script>
                     {/* Global Site Tag (gtag.js) - Google Analytics */}
                     <script
                         async

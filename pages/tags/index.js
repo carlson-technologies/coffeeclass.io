@@ -21,11 +21,14 @@ const title = 'Tags – Coffeeclass'
 const description = `Tags for Coffeeclass`
 
 export default function Index({ tutorials, snippets }) {
-    const { colorMode } = useColorMode()
-    const color = {
-        light: 'gray.700',
-        dark: 'gray.300'
-    }
+    var tagArray = []
+    tutorials.map(tut => tut.data.tags.map(tag => {
+        tagArray.push(tag)
+    }))
+    snippets.map(snip => snip.data.tags.map(tag => {
+        tagArray.push(tag)
+    }))
+    var tagArray = [...new Set(tagArray)]
     return (
         <Container>
             <NextSeo
@@ -48,10 +51,9 @@ export default function Index({ tutorials, snippets }) {
                 >
                     <Heading as="h1" size="2xl">All Tags 🏷️</Heading>
                     <Divider my={6} />
-                    {/* This will work until we have duplicate tags */}
                     <Flex wrap="wrap">
                         {
-                            tutorials.map(tut => tut.data.tags.map(tag => {
+                            tagArray.map(tag => {
                                 return (
                                     <Flex mr={2} mb={2} key={tag}>
                                         <NextLink href={`/tags/${tag}`} passHref>
@@ -61,20 +63,7 @@ export default function Index({ tutorials, snippets }) {
                                         </NextLink>
                                     </Flex>
                                 )
-                            }))
-                        }
-                        {
-                            snippets.map(snip => snip.data.tags.map(tag => {
-                                return (
-                                    <Flex mr={2} mb={2} key={tag}>
-                                        <NextLink href={`/tags/${tag}`} passHref>
-                                            <Link href={`/${tag}`}>
-                                                <Tag size="lg" colorScheme="blue">#{tag}</Tag>
-                                            </Link>
-                                        </NextLink>
-                                    </Flex>
-                                )
-                            }))
+                            })
                         }
                     </Flex>
                 </Flex>

@@ -9,10 +9,10 @@ import {
 import Link from 'next/link'
 import NextLink from 'next/link'
 
-export default function Snippet({ title, description, tags, href, as }) {
+export default function Snippet({ title, description, tags, href, as, mainTag }) {
     const { colorMode } = useColorMode()
     const bgColor = {
-        light: 'gray.100',
+        light: 'gray.50',
         dark: 'gray.700'
     }
     const boxShadowColor = {
@@ -43,7 +43,7 @@ export default function Snippet({ title, description, tags, href, as }) {
                             <Flex key={tag} mr={2} _hover={{cursor: 'pointer'}}>
                                 <NextLink href={`/tags/${tag}`} passHref>
                                     <Link href={`/${tag}`}>
-                                        <Tag size="lg" colorScheme="blue">#{tag}</Tag>
+                                        <Tag size="lg" colorScheme={mainTag == tag ? "blue" : "gray"} fontWeight={mainTag == tag ? "bold" : null}>#{tag}</Tag>
                                     </Link>
                                 </NextLink>
                             </Flex>

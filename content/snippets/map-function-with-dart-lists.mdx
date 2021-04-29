@@ -11,8 +11,8 @@ tags: ["dart", "flutter"]
 
 ## The Problem
 
-Recently, I was building a Flutter app for the final project in one of my college classes.
-I needeed to map over an array of users when a user logged in and check if their username, password, and security question answer matched what was
+Recently, I was building a [Flutter](https://flutter.dev/?gclid=Cj0KCQjwsqmEBhDiARIsANV8H3aB8Bs-JYv8Pupzys4lwa3Trgh2gIfCWxUGsf4BuCIVxM0VJnT6sikaAmc_EALw_wcB&gclsrc=aw.ds) app and
+I needed to map over an array of users when a user logged in and check if their username, password, and security question answer matched what was
 in the database (the userArray). I tried to do something like this:
 
 ```dart
@@ -29,10 +29,9 @@ userArray
             });
 ```
 
-Quick note: I removed some of my project specific logic and only included the important parts
-so it is easier to follow.
+> Quick note: I removed some of my project specific logic and only included the important parts so it is easier to follow.
 
-This code logs the user in if they are user 1. This looks like it should work, right? Unfortunately, it doesn't. It will not break either. Instead,
+This code logs the user in *if* they are user 1. This looks like it should work, right? Unfortunately, it doesn't. It will not break either. Instead,
 nothing will happen. This makes it hard to debug.
 
 ## The Solution
@@ -50,11 +49,52 @@ userArray
             } else {
                     // don't log user in
                 }
-            }).toList(); // added .toList() here!
+            }).toList(); // add .toList() here!
 ```
 
 ## Why This Works
 
-Unlike in JavaScript, in Dart when you `.map()` over an object, the `Iterable` that
+Unlike in [JavaScript](https://www.javascript.com/), in Dart when you `.map()` over an object, the `Iterable` that
 is returned is `lazy`. This means it is not evaulated by calling `.map()`. To `evaulate` it, we need to call `.toList()`. You
 can read more about this [here](https://api.dart.dev/stable/2.12.4/dart-core/Iterable-class.html).
+
+If you want to quickly see this in action, open up [DartPad](https://dartpad.dev/?null_safety=true) and paste in the code below (with added print statements)
+with and without `.toList()`.
+
+```dart
+void main() {
+  var userArray = ['User 1', 'User 2', 'User 3'];
+
+userArray
+    .map((user) => {
+            if (user == 'User 1')
+            {
+                print('logging user 1 in!')
+            } else {
+                    print('Not user 1, can\'t log in!')
+                }
+            }).toList(); // Remove .toList() to see no output!
+}
+```
+
+## From The Flutter Docs
+
+<br />
+
+### .map()
+
+> `Iterable<T>` `map<T>`(T Function(String) f)
+
+Returns a new lazy Iterable with elements that are created by calling f on each element of this Iterable in iteration order.
+
+This method returns a view of the mapped elements. As long as the returned Iterable is not iterated over, the supplied function f will not be invoked. The transformed elements will not be cached. Iterating multiple times over the returned Iterable will invoke the supplied function f multiple times on the same element.
+
+Methods on the returned iterable are allowed to omit calling f on any element where the result isn't needed. For example, elementAt may call f only once.
+
+### .toList()
+
+> `List<Set<Set<void>>>` toList({bool growable = true})
+
+Creates a List containing the elements of this Iterable.
+
+The elements are in iteration order. The list is fixed-length if growable is false.

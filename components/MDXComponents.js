@@ -7,9 +7,30 @@ import {
     useColorMode,
     Link,
     Box,
-    OrderedList
+    OrderedList,
+    Alert
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
+
+const Quote = (props) => {
+    const { colorMode } = useColorMode()
+    const bgColor = {
+        light: 'blue.50',
+        dark: 'blue.900'
+    }
+
+    return (
+        <Alert
+            mt={2}
+            w="100%"
+            bg={bgColor[colorMode]}
+            variant="left-accent"
+            status="info"
+            py={0}
+            {...props}
+        />
+    )
+}
 
 const CustomLink = (props) => {
     const { colorMode } = useColorMode()
@@ -101,6 +122,7 @@ const MDXComponents = {
     ol: (props) => <OrderedList my={4} {...props} />,
     li: (props) => <ListItem my={2} fontSize="xl" {...props} />,
     a: CustomLink,
+    blockquote: Quote,
 }
 
 export default MDXComponents

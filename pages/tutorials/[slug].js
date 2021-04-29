@@ -79,12 +79,18 @@ export default function PostPage({ source, frontMatter }) {
             >
                 {content}
             </Flex>
-            <Divider mt={12} w="30%" alignSelf="center" />
-            <Flex align="center" mt={4} justify={["left", "left", "center"]}>
-                <Avatar src={`/authors/${frontMatter.authorImage}`} mr={2}></Avatar>
-                <Flex flexDir="column">
-                    <Text>Written By <Link href={`/authors/${frontMatter.author}`}>{frontMatter.author}</Link></Text>
+            <Divider my={12} w="30%" alignSelf="center" />
+            <Flex
+                align="center"
+                mt={4}
+                justify="center"
+                flexDir="column"
+            >
+                <Avatar src={`/authors/${frontMatter.authorImage}`} size="xl" mb={2} />
+                <Flex flexDir="column" align="center">
+                    <Text>Written By {frontMatter.author}</Text>
                     <Text color={color[colorMode]}>{frontMatter.authorPosition}</Text>
+                    <Text mt={4}><Link href={`/authors/${frontMatter.author}`} textDecor="underline" fontWeight="bold">More Articles By {frontMatter.author}</Link></Text>
                 </Flex>
             </Flex>
         </Layout>

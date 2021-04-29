@@ -69,6 +69,7 @@ export default function Index({ tutorials, snippets }) {
                                                 tags={post.data.tags}
                                                 as={`/snippets/${post.filePath.replace(/\.mdx?$/, '')}`}
                                                 href={`/snippets/[slug]`}
+                                                mainTag={tag}
                                             /> : null
                                     )
                                 }))
@@ -87,6 +88,7 @@ export default function Index({ tutorials, snippets }) {
                                             tags={post.data.tags}
                                             as={`/tutorials/${post.filePath.replace(/\.mdx?$/, '')}`}
                                             href={`/tutorials/[slug]`}
+                                            mainTag={tag}
                                         /> : null
                                 )
                             }))

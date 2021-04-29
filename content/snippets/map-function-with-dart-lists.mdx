@@ -36,7 +36,7 @@ nothing will happen. This makes it hard to debug.
 
 ## The Solution
 
-The simple solition is to add `.toList()` to the end of the map statement.
+The simple solution is to add `.toList()` to the end of the map statement.
 
 ```dart
 var userArray = ['User 1', 'User 2', 'User 3'];
@@ -55,7 +55,7 @@ userArray
 ## Why This Works
 
 Unlike in [JavaScript](https://www.javascript.com/), in Dart when you `.map()` over an object, the `Iterable` that
-is returned is `lazy`. This means it is not evaulated by calling `.map()`. To `evaulate` it, we need to call `.toList()`. You
+is returned is `lazy`. This means it is not evaluated by calling `.map()`. To `evaluate` it, we need to call `.toList()`. You
 can read more about this [here](https://api.dart.dev/stable/2.12.4/dart-core/Iterable-class.html).
 
 If you want to quickly see this in action, open up [DartPad](https://dartpad.dev/?null_safety=true) and paste in the code below (with added print statements)

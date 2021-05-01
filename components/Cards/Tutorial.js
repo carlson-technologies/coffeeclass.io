@@ -52,6 +52,7 @@ export default function Tutorial({ src, title, description, tags, href, as, main
                                 height={350}
                                 objectFit="contain"
                                 src={src}
+                                alt={title}
                             />
                         </Flex>
                     </MotionBox>

@@ -208,7 +208,17 @@ const NavBarTop = () => {
                                 Privacy Policy
                         </Button>
                         </NextLink>
-
+                        <NextLink href="/disclaimer" passHref>
+                            <Button
+                                as="a"
+                                variant="ghost"
+                                aria-label="Disclaimer"
+                                w="100%"
+                                _hover={{ background: 'none' }}
+                            >
+                                Disclaimer
+                        </Button>
+                        </NextLink>
                     </Flex>
 
                     {/* Current Page Navigation Column */}

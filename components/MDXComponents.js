@@ -8,9 +8,12 @@ import {
     Link,
     Box,
     OrderedList,
-    Alert
+    Alert,
+    ListIcon
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
+import { ArrowForwardIcon } from '@chakra-ui/icons'
+import { useRouter } from 'next/router'
 
 const Quote = (props) => {
     const { colorMode } = useColorMode()
@@ -33,6 +36,7 @@ const Quote = (props) => {
 }
 
 const CustomLink = (props) => {
+    // const router = useRouter()
     const { colorMode } = useColorMode()
     const color = {
         light: 'hsl(208, 99%, 44%)',
@@ -41,7 +45,7 @@ const CustomLink = (props) => {
 
     const href = props.href
     const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'))
-
+    // console.log(router.pathname)
     if (isInternalLink) {
         return (
             <NextLink href={href} passHref>
@@ -51,6 +55,21 @@ const CustomLink = (props) => {
     }
 
     return <Link color={color[colorMode]} isExternal {...props} />
+}
+
+const CustomListItem = (props) => {
+    return (
+        <>
+            <ListItem
+                my={2}
+                fontSize="xl"
+                listStyleType="none"
+            >
+                <ListIcon as={ArrowForwardIcon} color="blue.500" />
+                {props.children}
+            </ListItem>
+        </>
+    )
 }
 
 const DocsHeading = (props) => (
@@ -120,7 +139,7 @@ const MDXComponents = {
     inlineCode: (props) => <Code colorScheme="gray" fontSize="0.84em" {...props} />,
     ul: (props) => <UnorderedList my={4} {...props} />,
     ol: (props) => <OrderedList my={4} {...props} />,
-    li: (props) => <ListItem my={2} fontSize="xl" {...props} />,
+    li: CustomListItem,
     a: CustomLink,
     blockquote: Quote,
 }

@@ -37,6 +37,10 @@ const prettier = require('prettier');
             <url>
                 <loc>https://coffeeclass.io/snippets</loc>
             </url>
+
+            <url>
+                <loc>https://coffeeclass.io/learn</loc>
+            </url>
         </urlset>
     `;
 

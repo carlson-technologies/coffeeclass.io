@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
     Heading,
     Flex,
@@ -30,11 +31,8 @@ export default function Index({ tutorials, snippets }) {
         light: 'gray.700',
         dark: 'gray.300'
     }
+
     return (
-
-        // tutorials.map(tut => tut.data.tags.map(tag => console.log(tag)))
-        // tutorials.map(tut => tut.data.tags.map(tag => console.log(tag == 'Firebase')))
-
         <Container>
             <NextSeo
                 title={title}
@@ -54,8 +52,8 @@ export default function Index({ tutorials, snippets }) {
                     flexDir="column"
                     mt={50}
                 >
-                    <Heading as="h1" size="2xl">{author}</Heading>
-                    <Flex my={2}>
+                    <Heading as="h1" size="2xl" textAlign="center">{author}</Heading>
+                    <Flex my={2} justifyContent="center" mt={2}>
                         <Tag mr={2} size="lg"><Link href="https://benjamincarlson.io" isExternal>Website</Link></Tag>
                         <Tag mr={2} size="lg"><Link href="https://github.com/bjcarlson42" isExternal>GitHub</Link></Tag>
                     </Flex>
@@ -65,9 +63,6 @@ export default function Index({ tutorials, snippets }) {
                         <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
                             {
                                 snippets.map(s => {
-                                    // console.log(s)
-                                    // console.log(s.author)
-                                    // console.log(author)
                                     return (
                                         s.data.author == author ?
                                             <Snippet

@@ -18,9 +18,11 @@ import {
     useColorMode,
     Avatar,
     Tag,
-    Tooltip
+    Tooltip,
+    Button
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
+import Comments from '../../components/Comments'
 
 export default function PostPage({ source, frontMatter }) {
     const content = hydrate(source, { MDXComponents })
@@ -58,6 +60,8 @@ export default function PostPage({ source, frontMatter }) {
                         <Text mx={2} color={color[colorMode]} fontSize="sm">{format(parseISO(frontMatter.publishedAt), 'MMMM dd, yyyy')}</Text>
                     •
                     <Text mx={2} color={color[colorMode]} fontSize="sm">{frontMatter.readingTime.text}</Text>
+                    •
+                    <Text mx={2} color={color[colorMode]} fontSize="sm" fontWeight="bold"><Link href="#comments" passHref>Comments</Link></Text>
                     </Flex>
                 </Flex>
                 <Heading as="h1" size="2xl" textAlign={["left", "left", "center"]}>{frontMatter.title}</Heading>
@@ -70,7 +74,7 @@ export default function PostPage({ source, frontMatter }) {
                     {frontMatter.description}
                 </Text>
             </Flex>
-            <Divider mt={12} w="30%" alignSelf="center" />
+            <Divider my={12} w="30%" alignSelf="center" />
             <Flex
                 flexDir="column"
                 w={["100%", "100%", "60%"]}
@@ -79,7 +83,25 @@ export default function PostPage({ source, frontMatter }) {
             >
                 {content}
             </Flex>
-            <Divider my={12} w="30%" alignSelf="center" />
+            <Flex
+                justify="center"
+                flexDir="column"
+                mt={8}
+            >
+                <Button
+                    variant="outline"
+                    w={['100%', 250, 300]}
+                    alignSelf="center"
+                >
+                    <Link
+                        href="#comments"
+                        passHref
+                    >
+                        Leave A Comment
+                    </Link>
+                </Button>
+            </Flex>
+            <Divider mt={12} mb={4} w="30%" alignSelf="center" />
             <Flex
                 align="center"
                 mt={4}
@@ -93,6 +115,8 @@ export default function PostPage({ source, frontMatter }) {
                     <Text mt={4}><Link href={`/authors/${frontMatter.author}`} textDecor="underline" fontWeight="bold">More Articles By {frontMatter.author}</Link></Text>
                 </Flex>
             </Flex>
+            <Divider my={12} w="30%" alignSelf="center" />
+            <Comments />
         </Layout>
     )
 }

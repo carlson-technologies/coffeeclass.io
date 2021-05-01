@@ -5,6 +5,10 @@
   </url>
 
   <url>
+    <loc>https://coffeeclass.io/disclaimer</loc>
+  </url>
+
+  <url>
     <loc>https://coffeeclass.io</loc>
   </url>
 
@@ -14,6 +18,10 @@
 
   <url>
     <loc>https://coffeeclass.io/terms</loc>
+  </url>
+
+  <url>
+    <loc>https://coffeeclass.io/tutorials/add-firebase-to-nextjs</loc>
   </url>
 
   <url>
@@ -31,10 +39,6 @@
   </url>
 
   <url>
-    <loc>https://coffeeclass.io/tutorials/add-firebase-to-nextjs</loc>
-  </url>
-
-  <url>
     <loc>https://coffeeclass.io/learn/python/installing-and-using-an-ide</loc>
   </url>
 
@@ -48,5 +52,9 @@
 
   <url>
     <loc>https://coffeeclass.io/snippets</loc>
+  </url>
+
+  <url>
+    <loc>https://coffeeclass.io/learn</loc>
   </url>
 </urlset>

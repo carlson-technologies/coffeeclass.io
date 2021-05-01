@@ -14,7 +14,7 @@ const SEO = {
         description,
         images: [
             {
-                url: 'https://coffeeclass.io/images/logo.png',
+                url: 'https://coffeeclass.io/favicons/logo-white-bg.png',
                 alt: title
             }
         ]

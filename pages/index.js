@@ -23,7 +23,7 @@ import { tutorialsFilePaths, TUTORIALS_PATH } from '../utils/mdxUtils'
 
 const url = 'https://coffeeclass.io/'
 const title = 'Home – Coffeeclass'
-const description = 'Learn to code and ship your app for free.'
+const description = 'Free programming tutorials, advice, snippets covering beginner Python, intermediate Python, advanced Python, JavaScript, algorithms, Next.js, react, and more all for free on Coffeeclass.'
 
 export default function Index({ snippets, tutorials }) {
     return (
@@ -84,16 +84,17 @@ export default function Index({ snippets, tutorials }) {
                     <Flex as="section" flexDir="column">
                         <Heading as="h3" size="lg" mb={4} id="explore">Browse The Latest Tutorials</Heading>
                         <Flex wrap="wrap" justify="space-between">
-                            <Tutorial
-                                src="/content/tutorials/add-firebase-to-nextjs/feature.png"
-                                title="Firebase + Next.js Quickstart"
-                                description="Learn how to connect Next.js to Google's Firebase and
-                                use authentication, cloud Firestore, Realtime Database, and
-                                cloud storage."
-                                tags={["firebase", "nextjs"]}
-                                href="/tutorials/add-firebase-to-nextjs"
-                            />
-                            {/* Add more here... Either 2 or 4 */}
+                            {tutorials.map((post) => (
+                                <Tutorial
+                                    key={post.data.title}
+                                    src={`/content/tutorials/${post.filePath.replace(/\.mdx?$/, '')}/${post.data.featureImg}`}
+                                    title={post.data.title}
+                                    description={post.data.description}
+                                    tags={post.data.tags}
+                                    as={`/tutorials/${post.filePath.replace(/\.mdx?$/, '')}`}
+                                    href={`/tutorials/[slug]`}
+                                />
+                            ))}
                         </Flex>
                     </Flex>
 
@@ -135,11 +136,10 @@ export default function Index({ snippets, tutorials }) {
                         </Flex>
                         <Flex w={['100%', '100%', 500]} justify="center" mt={[]}>
                             <Box w={200} h={200}>
-                                <Image src="favicons/logo-transparent-bg.png" />
+                                <Image src="favicons/logo-transparent-bg.png" alt="Coffeeclass Logo" />
                             </Box>
                         </Flex>
                     </Flex>
-
                 </Flex>
             </Stack>
         </Container>
@@ -167,7 +167,7 @@ export function getStaticProps() {
             data,
             filePath,
         }
-    }).slice(0,4)
+    }).slice(0, 4)
 
     // console.log(snippets)
 

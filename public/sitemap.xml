@@ -21,10 +21,6 @@
   </url>
 
   <url>
-    <loc>https://coffeeclass.io/tutorials/add-firebase-to-nextjs</loc>
-  </url>
-
-  <url>
     <loc>https://coffeeclass.io/snippets/add-google-analytics-to-nextjs</loc>
   </url>
 
@@ -36,6 +32,10 @@
 
   <url>
     <loc>https://coffeeclass.io/snippets/map-function-with-dart-lists</loc>
+  </url>
+
+  <url>
+    <loc>https://coffeeclass.io/tutorials/add-firebase-to-nextjs</loc>
   </url>
 
   <url>

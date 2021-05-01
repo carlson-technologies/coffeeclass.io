@@ -108,7 +108,7 @@ export default function PostPage({ source, frontMatter }) {
                 justify="center"
                 flexDir="column"
             >
-                <Avatar src={`/authors/${frontMatter.authorImage}`} size="xl" mb={2} />
+                <Avatar src={`/authors/${frontMatter.authorImage}`} size="xl" mb={2} alt={`Image of ${frontMatter.author}`} />
                 <Flex flexDir="column" align="center">
                     <Text>Written By {frontMatter.author}</Text>
                     <Text color={color[colorMode]}>{frontMatter.authorPosition}</Text>

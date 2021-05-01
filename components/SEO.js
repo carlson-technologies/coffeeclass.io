@@ -2,6 +2,7 @@ import { NextSeo, ArticleJsonLd } from 'next-seo'
 
 const SEO = ({ title, seoDescription, publishedAt, url, author }) => {
     const date = new Date(publishedAt).toISOString()
+    // const dataModified = dataModified ? new Date(modifiedAt).toISOString() : date
     const featuredImage = {
         url: `https://coffeeclass.io/favicons/logo-white-bg.png`,
         alt: title
@@ -10,7 +11,7 @@ const SEO = ({ title, seoDescription, publishedAt, url, author }) => {
     return (
         <>
             <NextSeo
-                title={`${title} – Coffeeclass`}
+                title={`${title} | Coffeeclass`}
                 description={seoDescription}
                 canonical={url}
                 openGraph={{

@@ -13,7 +13,6 @@ import {
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import { ArrowForwardIcon } from '@chakra-ui/icons'
-import { useRouter } from 'next/router'
 
 const Quote = (props) => {
     const { colorMode } = useColorMode()
@@ -24,7 +23,7 @@ const Quote = (props) => {
 
     return (
         <Alert
-            mt={2}
+            my={2}
             w="100%"
             bg={bgColor[colorMode]}
             variant="left-accent"
@@ -131,7 +130,7 @@ const CustomP = (props) => {
 const MDXComponents = {
     h1: (props) => <Heading as="h1" size="2xl" {...props} />,
     h2: (props) => <DocsHeading as="h2" size="xl" mt="1em" {...props} />,
-    h3: (props) => <DocsHeading as="h3" size="lg" {...props} />,
+    h3: (props) => <DocsHeading as="h3" size="lg" mt=".5em" {...props} />,
     h4: (props) => <DocsHeading as="h4" size="md" {...props} />,
     h5: (props) => <DocsHeading as="h5" size="sm" {...props} />,
     h6: (props) => <DocsHeading as="h6" size="xs" {...props} />,

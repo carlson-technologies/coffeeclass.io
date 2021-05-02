@@ -28,8 +28,8 @@ const NavBarLeft = () => {
         dark: '0 4px 12px 0 rgba(0, 0, 0, 1)'
     }
     const activeNavColor = {
-        light: '#4379ab',
-        dark: '#41729F'
+        light: 'black',
+        dark: 'white'
     }
     const router = useRouter()
     const slug = router.asPath
@@ -58,25 +58,28 @@ const NavBarLeft = () => {
                             placement="right"
                             closeDelay={100}
                         >
-                            <Button
-                                variant="ghost"
-                                aria-label="Home"
-                                my={5}
-                                w="100%"
-                                _hover={{ background: 'none' }}
-                            >
-                                <Flex
-                                    flexDir="column"
-                                    align="center"
+                            <Box borderRight={`2px solid ${slug == '/' ? activeNavColor[colorMode] : null}`} w="100%">
+
+                                <Button
+                                    variant="ghost"
+                                    aria-label="Home"
+                                    my={5}
+                                    w="100%"
+                                    _hover={{ background: 'none' }}
                                 >
-                                    <Image
+                                    <Flex
+                                        flexDir="column"
+                                        align="center"
+                                    >
+                                        {/* <Image
                                         src="/favicons/coffee-only-transparent-bg.png"
                                         w={50}
-                                    />
-                                    {/* <Icon as={FiHome} fontSize="2xl" color={slug == '/' ? activeNavColor[colorMode] : null} /> */}
-                                    {/* <Text fontSize="xs" mt={2} color={slug == '/' ? activeNavColor[colorMode] : null}>coffeeclass.io</Text> */}
-                                </Flex>
-                            </Button>
+                                    /> */}
+                                        <Icon as={FiHome} fontSize="2xl" color={slug == '/' ? activeNavColor[colorMode] : null} />
+                                        <Text fontSize="xs" mt={2}>coffeeclass.io</Text>
+                                    </Flex>
+                                </Button>
+                            </Box>
                         </Tooltip>
                     </WrapItem>
                 </NextLink>
@@ -90,15 +93,17 @@ const NavBarLeft = () => {
                             placement="right"
                             closeDelay={100}
                         >
-                            <Button
-                                variant="ghost"
-                                aria-label="Snippets"
-                                my={5}
-                                w="100%"
-                                _hover={{ background: 'none' }}
-                            >
-                                <Icon as={FiScissors} fontSize="2xl" color={slug.includes('snippets') ? activeNavColor[colorMode] : null} />
-                            </Button>
+                            <Box borderRight={`2px solid ${slug.includes('snippets') ? activeNavColor[colorMode] : null}`} w="100%">
+                                <Button
+                                    variant="ghost"
+                                    aria-label="Snippets"
+                                    my={5}
+                                    w="100%"
+                                    _hover={{ background: 'none' }}
+                                >
+                                    <Icon as={FiScissors} fontSize="2xl" />
+                                </Button>
+                            </Box>
                         </Tooltip>
                     </WrapItem>
                 </NextLink>
@@ -132,15 +137,17 @@ const NavBarLeft = () => {
                             placement="right"
                             closeDelay={100}
                         >
-                            <Button
-                                variant="ghost"
-                                aria-label="Tutorials"
-                                my={5}
-                                w="100%"
-                                _hover={{ background: 'none' }}
-                            >
-                                <Icon as={FiBookOpen} fontSize="2xl" color={slug.includes('tutorials') ? activeNavColor[colorMode] : null} />
-                            </Button>
+                            <Box borderRight={`2px solid ${slug.includes('tutorials') ? activeNavColor[colorMode] : null}`} w="100%">
+                                <Button
+                                    variant="ghost"
+                                    aria-label="Tutorials"
+                                    my={5}
+                                    w="100%"
+                                    _hover={{ background: 'none' }}
+                                >
+                                    <Icon as={FiBookOpen} fontSize="2xl" />
+                                </Button>
+                            </Box>
                         </Tooltip>
                     </WrapItem>
                 </NextLink>
@@ -168,15 +175,17 @@ const NavBarLeft = () => {
                                 placement="right"
                                 closeDelay={100}
                             >
-                                <Button
-                                    variant="ghost"
-                                    aria-label="Tags"
-                                    my={5}
-                                    w="100%"
-                                    _hover={{ background: 'none' }}
-                                >
-                                    <Icon as={FiBookmark} fontSize="2xl" color={slug.includes('tags') ? activeNavColor[colorMode] : null} />
-                                </Button>
+                                <Box borderRight={`2px solid ${slug.includes('tags') ? activeNavColor[colorMode] : null}`} w="100%">
+                                    <Button
+                                        variant="ghost"
+                                        aria-label="Tags"
+                                        my={5}
+                                        w="100%"
+                                        _hover={{ background: 'none' }}
+                                    >
+                                        <Icon as={FiBookmark} fontSize="2xl" color={slug.includes('tags') ? activeNavColor[colorMode] : null} />
+                                    </Button>
+                                </Box>
                             </Tooltip>
                         </WrapItem>
                     </NextLink>
@@ -189,15 +198,17 @@ const NavBarLeft = () => {
                                 placement="right"
                                 closeDelay={100}
                             >
-                                <Button
-                                    variant="ghost"
-                                    aria-label="About"
-                                    my={5}
-                                    w="100%"
-                                    _hover={{ background: 'none' }}
-                                >
-                                    <Icon as={FiInfo} fontSize="2xl" color={slug.includes('about') ? activeNavColor[colorMode] : null} />
-                                </Button>
+                                <Box borderRight={`2px solid ${slug.includes('about') ? activeNavColor[colorMode] : null}`} w="100%">
+                                    <Button
+                                        variant="ghost"
+                                        aria-label="About"
+                                        my={5}
+                                        w="100%"
+                                        _hover={{ background: 'none' }}
+                                    >
+                                        <Icon as={FiInfo} fontSize="2xl" color={slug.includes('about') ? activeNavColor[colorMode] : null} />
+                                    </Button>
+                                </Box>
                             </Tooltip>
                         </WrapItem>
                     </NextLink>

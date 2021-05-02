@@ -23,6 +23,11 @@ export default function Index({ posts }) {
         light: 'gray.700',
         dark: 'gray.300'
     }
+    const tutorialsOrderedByPublishedDate = posts
+        .sort(
+            (a, b) =>
+                Number(new Date(b.data.publishedAt)) - Number(new Date(a.data.publishedAt))
+        )
     return (
         <Container>
             <NextSeo
@@ -43,7 +48,7 @@ export default function Index({ posts }) {
                     <Heading as="h1" size="2xl" mb={4}>Coffeeclass Tutorials 📚</Heading>
                     <Text color={color[colorMode]} mb={8} fontSize="lg">Tutorials are involved and usually correspond to a YouTube video. They typically take 15 minutes at a minimum to complete.</Text>
                     <Flex wrap="wrap">
-                        {posts.map((post) => (
+                        {tutorialsOrderedByPublishedDate.map((post) => (
                             <Tutorial
                                 key={post.data.title}
                                 src={`/content/tutorials/${post.filePath.replace(/\.mdx?$/, '')}/${post.data.featureImg}`}

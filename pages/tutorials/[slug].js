@@ -95,6 +95,7 @@ export default function PostPage({ source, frontMatter }) {
                 >
                     <Link
                         href="#comments"
+                        _hover={{ textDecor: 'none' }}
                         passHref
                     >
                         Leave A Comment
@@ -112,7 +113,7 @@ export default function PostPage({ source, frontMatter }) {
                 <Flex flexDir="column" align="center">
                     <Text>Written By {frontMatter.author}</Text>
                     <Text color={color[colorMode]}>{frontMatter.authorPosition}</Text>
-                    <Text mt={4}><Link href={`/authors/${frontMatter.author}`} textDecor="underline" fontWeight="bold">More Articles By {frontMatter.author}</Link></Text>
+                    <Text mt={4}><Link href={`/authors/${frontMatter.author}`} fontWeight="bold">More Articles By {frontMatter.author}</Link></Text>
                 </Flex>
             </Flex>
             <Divider my={12} w="30%" alignSelf="center" />

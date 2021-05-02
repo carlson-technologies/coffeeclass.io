@@ -24,6 +24,13 @@ export default function Index({ posts }) {
         light: 'gray.700',
         dark: 'gray.300'
     }
+    console.log(posts)
+    const snippetsOrderedByPublishedDate = posts
+        .sort(
+            (a, b) =>
+                Number(new Date(b.data.publishedAt)) - Number(new Date(a.data.publishedAt))
+        )
+    console.log(snippetsOrderedByPublishedDate)
     return (
         <Container>
             <NextSeo
@@ -44,7 +51,7 @@ export default function Index({ posts }) {
                     <Heading as="h1" size="2xl" mb={4} textAlign="center">Coffeeclass Snippets ✂️</Heading>
                     <Text color={color[colorMode]} mb={8} fontSize="lg" textAlign="center">Snippets are code bits that you can easily copy and paste into your project.</Text>
                     <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
-                        {posts.map((post) => (
+                        {snippetsOrderedByPublishedDate.map((post) => (
                             <Snippet
                                 key={post.data.title}
                                 src={`/content/snippets/${post.filePath.replace(/\.mdx?$/, '')}/${post.data.featureImg}`}

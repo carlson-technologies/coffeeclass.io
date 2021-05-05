@@ -20,19 +20,10 @@ import Tutorial from '../../../components/Cards/Tutorial'
 export default function Index({ tutorials, snippets }) {
     const router = useRouter()
     const { tag } = router.query
-    const url = `https://coffeeclass.io/tag/${tag}`
+    const url = `https://coffeeclass.io/tags/${tag}`
     const title = 'Tags – Coffeeclass'
     const description = `Articles relating to ${tag}`
-    const { colorMode } = useColorMode()
-    const color = {
-        light: 'gray.700',
-        dark: 'gray.300'
-    }
     return (
-
-        // tutorials.map(tut => tut.data.tags.map(tag => console.log(tag)))
-        // tutorials.map(tut => tut.data.tags.map(tag => console.log(tag == 'Firebase')))
-
         <Container>
             <NextSeo
                 title={title}

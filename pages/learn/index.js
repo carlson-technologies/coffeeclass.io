@@ -25,7 +25,6 @@ export default function Index() {
         dark: 'gray.300'
     }
     return (
-        console.log(data),
         <Container>
             <NextSeo
                 title={title}

@@ -16,33 +16,43 @@ export default function Snippet({ title, description, tags, href, as, mainTag })
         dark: 'gray.700'
     }
     const boxShadowColor = {
-        light: '0 4px 12px 0 rgba(0, 0, 0, 0.3)',
-        dark: '0 4px 12px 0 rgba(0, 0, 0, 1)'
+        light: '0px 8px 26px rgba(0, 0, 0, 0.1)',
+        dark: '0px 8px 26px rgba(0, 0, 0, 0.9)'
     }
     return (
         <Flex
             w="100%"
             justify="center"
             key={title}
+            _hover={{
+                boxShadow: boxShadowColor[colorMode],
+            }}
         >
             <Box
                 bgColor={bgColor[colorMode]}
-                p={5} borderRadius={5}
+                p={5}
+                borderRadius={5}
                 w="100%"
-                boxShadow={boxShadowColor[colorMode]}
-                border='1px solid transparent'
-                _hover={{
-                    border: '1px solid #41729F'
-                }}
             >
                 <Heading><Link href={href} as={as}>{title}</Link></Heading>
                 <Text fontSize="lg"><Link href={href} as={as}>{description}</Link></Text>
                 <Flex mt={2}>
                     {tags?.map((tag) => {
                         return (
-                            <Flex key={tag} mr={2} _hover={{ cursor: 'pointer' }}>
+                            <Flex
+                                mr={2}
+                                key={tag}
+                                _hover={{
+                                    textDecor: 'none',
+                                    opacity: '.5'
+                                }}
+                                cursor="pointer"
+                            >
                                 <NextLink href={`/tags/${tag}`} passHref>
-                                    <Tag size="lg" colorScheme={mainTag == tag ? "blue" : "gray"} fontWeight={mainTag == tag ? "bold" : null}>#{tag}</Tag>
+                                    <Link href={`/${tag}`}
+                                    >
+                                        <Tag size="lg" colorScheme={mainTag == tag ? "blue" : "gray"}>#{tag}</Tag>
+                                    </Link>
                                 </NextLink>
                             </Flex>
                         )

@@ -150,7 +150,7 @@ const NavBarTop = () => {
                                 _hover={{ background: 'none' }}
                             >
                                 Tutorials
-                    </Button>
+                            </Button>
                         </NextLink>
 
                         <NextLink href="/tags" passHref>
@@ -163,6 +163,18 @@ const NavBarTop = () => {
                             >
                                 Tags
                         </Button>
+                        </NextLink>
+
+                        <NextLink href="/search" passHref>
+                            <Button
+                                as="a"
+                                variant="ghost"
+                                aria-label="Search"
+                                w="100%"
+                                _hover={{ background: 'none' }}
+                            >
+                                Search
+                            </Button>
                         </NextLink>
                     </Flex>
 

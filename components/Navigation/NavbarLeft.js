@@ -13,7 +13,7 @@ import {
 } from '@chakra-ui/react'
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 import NextLink from 'next/link'
-import { FiInfo, FiScissors, FiBookOpen, FiEdit2, FiHome, FiBookmark } from "react-icons/fi"
+import { FiInfo, FiScissors, FiBookOpen, FiHome, FiBookmark, FiSearch } from "react-icons/fi"
 import { useRouter } from 'next/router'
 
 const NavBarLeft = () => {
@@ -207,6 +207,29 @@ const NavBarLeft = () => {
                                         _hover={{ background: 'none' }}
                                     >
                                         <Icon as={FiInfo} fontSize="2xl" color={slug.includes('about') ? activeNavColor[colorMode] : null} />
+                                    </Button>
+                                </Box>
+                            </Tooltip>
+                        </WrapItem>
+                    </NextLink>
+
+                    <NextLink href="/search" passHref>
+                        <WrapItem w="100%">
+                            <Tooltip
+                                hasArrow
+                                label="Search"
+                                placement="right"
+                                closeDelay={100}
+                            >
+                                <Box borderRight={`2px solid ${slug.includes('search') ? activeNavColor[colorMode] : null}`} w="100%">
+                                    <Button
+                                        variant="ghost"
+                                        aria-label="Search"
+                                        my={5}
+                                        w="100%"
+                                        _hover={{ background: 'none' }}
+                                    >
+                                        <Icon as={FiSearch} fontSize="2xl" color={slug.includes('search') ? activeNavColor[colorMode] : null} />
                                     </Button>
                                 </Box>
                             </Tooltip>

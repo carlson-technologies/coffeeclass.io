@@ -24,13 +24,11 @@ export default function Index({ posts }) {
         light: 'gray.700',
         dark: 'gray.300'
     }
-    console.log(posts)
     const snippetsOrderedByPublishedDate = posts
         .sort(
             (a, b) =>
                 Number(new Date(b.data.publishedAt)) - Number(new Date(a.data.publishedAt))
         )
-    console.log(snippetsOrderedByPublishedDate)
     return (
         <Container>
             <NextSeo

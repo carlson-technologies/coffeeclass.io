@@ -62,9 +62,20 @@ export default function Tutorial({ src, title, description, tags, href, as, main
                 <Flex mt={2}>
                     {tags?.map((tag) => {
                         return (
-                            <Flex key={tag} mr={2} _hover={{ cursor: 'pointer' }}>
+                            <Flex
+                                mr={2}
+                                key={tag}
+                                _hover={{
+                                    textDecor: 'none',
+                                    opacity: '.5'
+                                }}
+                                cursor="pointer"
+                            >
                                 <NextLink href={`/tags/${tag}`} passHref>
-                                    <Tag size="lg" colorScheme={mainTag == tag ? "blue" : "gray"} fontWeight={mainTag == tag ? "bold" : null}>#{tag}</Tag>
+                                    <Link href={`/${tag}`}
+                                    >
+                                        <Tag size="lg" colorScheme={mainTag == tag ? "blue" : "gray"}>#{tag}</Tag>
+                                    </Link>
                                 </NextLink>
                             </Flex>
                         )

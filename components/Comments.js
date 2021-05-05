@@ -13,7 +13,7 @@ export default class Comments extends Component {
         scriptEl.setAttribute("crossorigin", "anonymous");
         scriptEl.setAttribute("async", true);
         scriptEl.setAttribute("repo", "bjcarlson42/comments-coffeeclass.io");
-        scriptEl.setAttribute("issue-term", "url");
+        scriptEl.setAttribute("issue-term", "og:title");
         scriptEl.setAttribute("theme", utteranceTheme);
         this.commentBox.current.appendChild(scriptEl);
     }

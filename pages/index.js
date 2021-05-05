@@ -8,7 +8,9 @@ import {
     Divider,
     Grid,
     Image,
-    Link
+    Link,
+    Icon,
+    useColorMode
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../components/Container'
@@ -20,12 +22,33 @@ import matter from 'gray-matter'
 import path from 'path'
 import { snippetsFilePaths, SNIPPETS_PATH } from '../utils/mdxUtils'
 import { tutorialsFilePaths, TUTORIALS_PATH } from '../utils/mdxUtils'
+import { ChevronRightIcon } from '@chakra-ui/icons'
 
 const url = 'https://coffeeclass.io/'
 const title = 'Home – Coffeeclass'
 const description = 'Free programming tutorials, advice, snippets covering beginner Python, intermediate Python, advanced Python, JavaScript, algorithms, Next.js, react, and more all for free on Coffeeclass.'
 
 export default function Index({ snippets, tutorials }) {
+    const { colorMode } = useColorMode()
+    const borderBottomColor = {
+        light: 'black',
+        dark: 'white'
+    }
+    const color = {
+        light: 'gray.600',
+        dark: 'gray.300'
+    }
+    const snippetsOrderedByPublishedDate = snippets
+        .sort(
+            (a, b) =>
+                Number(new Date(b.data.publishedAt)) - Number(new Date(a.data.publishedAt))
+        ).slice(0, 4)
+
+    const tutorialsOrderedByPublishedDate = tutorials
+        .sort(
+            (a, b) =>
+                Number(new Date(b.data.publishedAt)) - Number(new Date(a.data.publishedAt))
+        ).slice(0, 4)
     return (
         <Container>
             <NextSeo
@@ -62,7 +85,8 @@ export default function Index({ snippets, tutorials }) {
                         >
                             <Heading as="h1" size="3xl" textAlign="center">Learn to <Flex display="inline" color="brand.500">code</Flex> 👨‍💻
                             and <Flex display="inline" color="red.400">ship</Flex> 🚀 your app for free.</Heading>
-                            <Heading as="h2" color="gray.500" textAlign="center" size="md" my={8} letterSpacing="wide">Coffeeclass ☕ takes complex programming concepts and presents them in an easy to learn manner.
+                            
+                            <Heading as="h2" color={color[colorMode]} textAlign="center" size="md" my={8} letterSpacing="wide">Coffeeclass ☕ takes complex programming concepts and presents them in an easy to learn manner.
                             Browse snippets, tutorials, or learn a new skill.</Heading>
                             <Flex
                                 flexDirection={['column', 'row', 'row']}
@@ -70,11 +94,11 @@ export default function Index({ snippets, tutorials }) {
                                 justify="center"
                             >
                                 <NextLink href="#explore" passHref>
-                                    <Button mr={4} w={['100%', 200, 200]} colorScheme="blue"><Flex as="span" mr={4}>🔭</Flex> Explore Content</Button>
+                                    <Button mr={4} w={['100%', 200, 200]}><Flex as="span" mr={4}>🔭</Flex> Explore Content</Button>
                                 </NextLink>
                                 <Flex mt={[4, 0, 0]}>
                                     <NextLink href="/about" passHref>
-                                        <Button variant="outline" w={['100%', 200, 200]} colorScheme="blue" to="/about">About</Button>
+                                        <Button variant="outline" w={['100%', 200, 200]} to="/about">About</Button>
                                     </NextLink>
                                 </Flex>
                             </Flex>
@@ -84,7 +108,7 @@ export default function Index({ snippets, tutorials }) {
                     <Flex as="section" flexDir="column">
                         <Heading as="h3" size="lg" mb={4} id="explore">Browse The Latest Tutorials</Heading>
                         <Flex wrap="wrap" justify="space-between">
-                            {tutorials.map((post) => (
+                            {tutorialsOrderedByPublishedDate.map((post) => (
                                 <Tutorial
                                     key={post.data.title}
                                     src={`/content/tutorials/${post.filePath.replace(/\.mdx?$/, '')}/${post.data.featureImg}`}
@@ -103,7 +127,7 @@ export default function Index({ snippets, tutorials }) {
                     <Flex as="section" flexDir="column">
                         <Heading as="h3" size="lg" mb={10}>Only Have 5 Minutes? Check Out Some Snippets!</Heading>
                         <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
-                            {snippets.map((post) => (
+                            {snippetsOrderedByPublishedDate.map((post) => (
                                 <Snippet
                                     key={post.data.title}
                                     src={`/content/snippets/${post.filePath.replace(/\.mdx?$/, '')}/${post.data.featureImg}`}
@@ -115,6 +139,18 @@ export default function Index({ snippets, tutorials }) {
                                 />
                             ))}
                         </Grid>
+                        <Flex justify="center" mt={8}>
+                            <Flex _hover={{ cursor: 'pointer' }}>
+                                <NextLink href="/snippets">
+                                    <Box borderBottom={`1px solid ${borderBottomColor[colorMode]}`}>
+                                        <Flex align="center">
+                                            <Text>View All Snippets</Text>
+                                            <Icon as={ChevronRightIcon} />
+                                        </Flex>
+                                    </Box>
+                                </NextLink>
+                            </Flex>
+                        </Flex>
                     </Flex>
 
                     <Divider my={8} />
@@ -156,7 +192,7 @@ export function getStaticProps() {
             data,
             filePath,
         }
-    }).slice(0, 4)
+    })
 
     const snippets = snippetsFilePaths.map((filePath) => {
         const source = fs.readFileSync(path.join(SNIPPETS_PATH, filePath))
@@ -167,9 +203,7 @@ export function getStaticProps() {
             data,
             filePath,
         }
-    }).slice(0, 4)
-
-    // console.log(snippets)
+    })
 
     return { props: { tutorials, snippets } }
 }

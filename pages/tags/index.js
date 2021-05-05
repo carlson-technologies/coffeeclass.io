@@ -16,7 +16,7 @@ import { snippetsFilePaths, SNIPPETS_PATH } from '../../utils/mdxUtils'
 import { tutorialsFilePaths, TUTORIALS_PATH } from '../../utils/mdxUtils'
 import NextLink from 'next/link'
 
-const url = `https://coffeeclass.io/tag`
+const url = `https://coffeeclass.io/tags`
 const title = 'Tags – Coffeeclass'
 const description = `Tags for Coffeeclass`
 
@@ -57,8 +57,14 @@ export default function Index({ tutorials, snippets }) {
                                 return (
                                     <Flex mr={2} mb={2} key={tag}>
                                         <NextLink href={`/tags/${tag}`} passHref>
-                                            <Link href={`/${tag}`}>
-                                                <Tag size="lg" colorScheme="blue">#{tag}</Tag>
+                                            <Link 
+                                            href={`/${tag}`}
+                                            _hover={{
+                                                textDecor: 'none',
+                                                opacity: '.5'
+                                            }}
+                                            >
+                                                <Tag size="lg">#{tag}</Tag>
                                             </Link>
                                         </NextLink>
                                     </Flex>

@@ -39,25 +39,27 @@ export default function About() {
                 <Flex
                     flexDir="column"
                     mt={50}
+                    w="60%"
+                    alignSelf="center"
                 >
                     <Heading as="h1" size="2xl">About Coffeeclass 👋</Heading>
                     <Divider mt={2} />
-                    <Heading as="h2" size="lg" mb={2} mt={4} fontWeight="medium">Who Is Coffeeclass?</Heading>
+                    <Heading as="h2" size="lg" mb={2} mt={4} fontWeight={700} letterSpacing="tight">Who Is Coffeeclass?</Heading>
                     <Text mb={2} color={color[colorMode]} fontSize="large">Coffeeclass is created by <Link color="blue.500" href="https://benjamincarlson.io" isExternal>Benjamin Carlson</Link>.</Text>
                     
-                    <Heading as="h2" size="lg" my={2} mt={4} fontWeight="medium">What Is Coffeeclass?</Heading>
+                    <Heading as="h2" size="lg" my={2} mt={4} fontWeight={700} letterSpacing="tight">What Is Coffeeclass?</Heading>
                     <Text mb={2} color={color[colorMode]} fontSize="large">Coffeeclass is a programming/computer science education service offering tutorials through this website and their <Link color="blue.500" href="https://youtube.com/benjamincarlson" isExternal>YouTube channel</Link>.</Text>
                     
-                    <Heading as="h2" size="lg" mb={2} mt={4} fontWeight="medium">Where Is Coffeeclass Located?</Heading>
+                    <Heading as="h2" size="lg" mb={2} mt={4} fontWeight={700} letterSpacing="tight">Where Is Coffeeclass Located?</Heading>
                     <Text mb={2} color={color[colorMode]} fontSize="large">Coffeeclass is 100% online.</Text>
 
-                    <Heading as="h2" size="lg" my={2} mt={4} fontWeight="medium">When Was Coffeeclass Created?</Heading>
+                    <Heading as="h2" size="lg" my={2} mt={4} fontWeight={700} letterSpacing="tight">When Was Coffeeclass Created?</Heading>
                     <Text mb={2} color={color[colorMode]} fontSize="large">Ben started creating programming tutorials in April 2020 on his website and YouTube channel, but re-branded to Coffeeclass (coffeeclass.io) in April 2021.</Text>
                     
-                    <Heading as="h2" size="lg" my={2} mt={4} fontWeight="medium">Why Was Coffeeclass Created?</Heading>
+                    <Heading as="h2" size="lg" my={2} mt={4} fontWeight={700} letterSpacing="tight">Why Was Coffeeclass Created?</Heading>
                     <Text mb={2} color={color[colorMode]} fontSize="large">To present complex programming ideas in an easy, and fun, to follow format.</Text>
                     
-                    <Heading as="h2" size="lg" my={2} mt={4} fontWeight="medium">How Do I Use Coffeeclass?</Heading>
+                    <Heading as="h2" size="lg" my={2} mt={4} fontWeight={700} letterSpacing="tight">How Do I Use Coffeeclass?</Heading>
                     <Text mb={2} color={color[colorMode]} fontSize="large">This is completely up to you! This site is growing by the day but at the moment, our two main services
                     are <Link color="blue.500" href="/tutorials">Coffeeclass Tutorials</Link> and <Link color="blue.500" href="/snippets">Coffeeclass Snippets</Link>.</Text>
                 </Flex>

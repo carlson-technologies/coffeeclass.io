@@ -14,6 +14,22 @@ const prettier = require('prettier');
     const sitemap = `
         <?xml version="1.0" encoding="UTF-8"?>
         <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+            <url>
+                <loc>https://coffeeclass.io/authors</loc>
+            </url>
+
+            <url>
+                <loc>https://coffeeclass.io/snippets</loc>
+            </url>
+
+            <url>
+                <loc>https://coffeeclass.io/tags</loc>
+            </url>
+
+            <url>
+                <loc>https://coffeeclass.io/tutorials</loc>
+            </url>     
+                   
             ${pages
             .map((page) => {
                 const path = page
@@ -29,18 +45,6 @@ const prettier = require('prettier');
                     `;
             })
             .join('')}
-
-            <url>
-                <loc>https://coffeeclass.io/tutorials</loc>
-            </url>
-            
-            <url>
-                <loc>https://coffeeclass.io/snippets</loc>
-            </url>
-
-            <url>
-                <loc>https://coffeeclass.io/learn</loc>
-            </url>
         </urlset>
     `;
 

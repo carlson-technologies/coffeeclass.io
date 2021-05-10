@@ -12,7 +12,7 @@ export default class Comments extends Component {
         scriptEl.setAttribute("src", "https://utteranc.es/client.js");
         scriptEl.setAttribute("crossorigin", "anonymous");
         scriptEl.setAttribute("async", true);
-        scriptEl.setAttribute("repo", "bjcarlson42/comments-coffeeclass.io");
+        scriptEl.setAttribute("repo", "coffeeclass/comments-coffeeclass.io");
         scriptEl.setAttribute("issue-term", "og:title");
         scriptEl.setAttribute("theme", utteranceTheme);
         this.commentBox.current.appendChild(scriptEl);

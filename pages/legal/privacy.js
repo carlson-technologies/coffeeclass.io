@@ -8,7 +8,7 @@ import {
     ListItem
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
-import Container from '../components/Container'
+import Container from '../../components/Container'
 
 const url = 'https://coffeeclass.io/privacy'
 const title = 'Privacy Policy – Coffeeclass'

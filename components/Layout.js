@@ -24,6 +24,7 @@ export default function Layout({ frontMatter, children }) {
     light: '0 4px 12px 0 rgba(0, 0, 0, 0.3)',
     dark: '0 4px 12px 0 rgba(0, 0, 0, 0.9)'
   }
+
   return (
     <Container>
       <SEO url={`https://coffeeclass.io${slug}`} {...frontMatter} />
@@ -32,12 +33,12 @@ export default function Layout({ frontMatter, children }) {
           flexDir="column"
           m={[0, 0, 5]}
           px={[4, 4, 0]}
-          w="100%"
-          // w={frontMatter.headings ? ["100%", "100%", "calc(100% - 300px)"] : '100%'}
+          // w="100%"
+          w={frontMatter.headers ? ["100%", "100%", "calc(100% - 300px)"] : '100%'}
         >
           {children}
         </Flex>
-        {/* {frontMatter?.headings &&
+        {frontMatter?.headers &&
           <Flex
             w={200}
             bgColor={bgColor[colorMode]}
@@ -52,7 +53,7 @@ export default function Layout({ frontMatter, children }) {
           >
             <Text textAlign="center" fontSize="lg">Sections 📑</Text>
             <Divider w="90%" my={1} alignSelf="center" />
-            <Flex align="center" alignSelf="center">
+            <Flex align="center" alignSelf="center" color="brand_one.500">
               {frontMatter.githubURL &&
                 <Tooltip hasArrow label="Link To This Post's Code" closeDelay={100}>
                   <Link isExternal href={frontMatter?.githubURL} w="fit-content">
@@ -62,7 +63,7 @@ export default function Layout({ frontMatter, children }) {
               }
               {frontMatter.youtubeId?.map((id) => {
                 return (
-                  <Tooltip k={id} hasArrow label="Link To This Post As A YouTube Video" closeDelay={100}>
+                  <Tooltip key={id} hasArrow label="Link To This Post As A YouTube Video" closeDelay={100}>
                     <Link isExternal href={id} w="fit-content">
                       <YoutubeIcon fontSize="2xl" mt={2} mr={2} />
                     </Link>
@@ -70,41 +71,12 @@ export default function Layout({ frontMatter, children }) {
                 )
               })}
             </Flex>
-            <Divider w="90%" my={1} alignSelf="center" />
-            {frontMatter?.headings.map((h) => {
+            {(frontMatter.youtubeId || frontMatter.githubURL) && <Divider w="90%" my={1} alignSelf="center" />}
+            {frontMatter?.headers.map((h) => {
               return (
-                <>
-                  {
-                    h.h2 &&
-                    <Heading as="h4" size="sm" fontWeight="semibold" my={1} key={h.h2}>
-                      <Link href={`#${h.h2}`}>{h.h2}</Link>
-                    </Heading>
-                  }
-                  {
-                    h.h3 &&
-                    <Heading as="h4" size="sm" fontWeight="normal" my={1} ml={2} key={h.h3}>
-                      <Link href={`#${h.h3}`}>- {h.h3}</Link>
-                    </Heading>
-                  }
-                  {
-                    h.h4 &&
-                    <Heading as="h4" size="sm" fontWeight="normal" my={1} ml={4} key={h.h4}>
-                      <Link href={`#${h.h4}`}>- {h.h4}</Link>
-                    </Heading>
-                  }
-                  {
-                    h.h5 &&
-                    <Heading as="h4" size="sm" fontWeight="normal" my={1} ml={6} key={h.h5}>
-                      <Link href={`#${h.h5}`}>- {h.h5}</Link>
-                    </Heading>
-                  }
-                  {
-                    h.h6 &&
-                    <Heading as="h4" size="sm" fontWeight="normal" my={1} ml={8} key={h.h6}>
-                      <Link href={`#${h.h6}`}>- {h.h6}</Link>
-                    </Heading>
-                  }
-                </>
+                <Heading as="h4" size="sm" fontWeight="normal" my={1} key={h.text}>
+                  <Link href={`#${h.text}`} ml={(h.level - 2) * 2}>{h.text}</Link>
+                </Heading>
               )
             })}
             <Divider />
@@ -112,7 +84,7 @@ export default function Layout({ frontMatter, children }) {
               <Link href='#__next'>Top</Link>
             </Text>
           </Flex>
-        } */}
+        }
       </Flex>
     </Container>
   )

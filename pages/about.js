@@ -20,6 +20,10 @@ export default function About() {
         light: 'gray.700',
         dark: 'gray.300'
     }
+    const headerColor = {
+        light: 'brand_one.600',
+        dark: 'brand_one.500'
+    }
     return (
         <Container>
             <NextSeo
@@ -39,16 +43,16 @@ export default function About() {
                 <Flex
                     flexDir="column"
                     mt={50}
-                    w="60%"
+                    w={["100%","100%","60%"]}
                     alignSelf="center"
                 >
-                    <Heading as="h1" size="2xl">About Coffeeclass 👋</Heading>
+                    <Heading as="h1" size="2xl" letterSpacing="tight" color={headerColor[colorMode]}>About Coffeeclass 👋</Heading>
                     <Divider mt={2} />
                     <Heading as="h2" size="lg" mb={2} mt={4} fontWeight={700} letterSpacing="tight">Who Is Coffeeclass?</Heading>
-                    <Text mb={2} color={color[colorMode]} fontSize="large">Coffeeclass is created by <Link color="blue.500" href="https://benjamincarlson.io" isExternal>Benjamin Carlson</Link>.</Text>
+                    <Text mb={2} color={color[colorMode]} fontSize="large">Coffeeclass is created by <Link color="brand_one.500" href="https://benjamincarlson.io" isExternal>Benjamin Carlson</Link>.</Text>
                     
                     <Heading as="h2" size="lg" my={2} mt={4} fontWeight={700} letterSpacing="tight">What Is Coffeeclass?</Heading>
-                    <Text mb={2} color={color[colorMode]} fontSize="large">Coffeeclass is a programming/computer science education service offering tutorials through this website and their <Link color="blue.500" href="https://youtube.com/benjamincarlson" isExternal>YouTube channel</Link>.</Text>
+                    <Text mb={2} color={color[colorMode]} fontSize="large">Coffeeclass is a programming/computer science education service offering tutorials through this website and their <Link color="brand_one.500" href="https://youtube.com/benjamincarlson" isExternal>YouTube channel</Link>.</Text>
                     
                     <Heading as="h2" size="lg" mb={2} mt={4} fontWeight={700} letterSpacing="tight">Where Is Coffeeclass Located?</Heading>
                     <Text mb={2} color={color[colorMode]} fontSize="large">Coffeeclass is 100% online.</Text>
@@ -61,7 +65,7 @@ export default function About() {
                     
                     <Heading as="h2" size="lg" my={2} mt={4} fontWeight={700} letterSpacing="tight">How Do I Use Coffeeclass?</Heading>
                     <Text mb={2} color={color[colorMode]} fontSize="large">This is completely up to you! This site is growing by the day but at the moment, our two main services
-                    are <Link color="blue.500" href="/tutorials">Coffeeclass Tutorials</Link> and <Link color="blue.500" href="/snippets">Coffeeclass Snippets</Link>.</Text>
+                    are <Link color="brand_one.500" href="/tutorials">Coffeeclass Tutorials</Link> and <Link color="brand_one.500" href="/snippets">Coffeeclass Snippets</Link>.</Text>
                 </Flex>
             </Stack>
         </Container>

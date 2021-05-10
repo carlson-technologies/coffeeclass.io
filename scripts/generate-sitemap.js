@@ -19,6 +19,18 @@ const prettier = require('prettier');
             </url>
 
             <url>
+                <loc>https://coffeeclass.io/legal/disclaimer</loc>
+            </url>
+
+            <url>
+                <loc>https://coffeeclass.io/legal/privacy</loc>
+            </url>
+
+            <url>
+                <loc>https://coffeeclass.io/legal/terms</loc>
+            </url>
+
+            <url>
                 <loc>https://coffeeclass.io/snippets</loc>
             </url>
 

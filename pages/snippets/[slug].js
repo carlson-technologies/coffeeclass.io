@@ -23,6 +23,7 @@ import {
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import Comments from '../../components/Comments'
+import getHeaders from '../../components/get-headers'
 
 export default function PostPage({ source, frontMatter }) {
     const content = hydrate(source, { MDXComponents })
@@ -61,8 +62,8 @@ export default function PostPage({ source, frontMatter }) {
                     •
                     <Text mx={2} color={color[colorMode]} fontSize="sm">{frontMatter.readingTime.text}</Text>
                     •
-                    <Text mx={2} color={color[colorMode]} fontSize="sm" fontWeight="bold"><Link href="#comments" passHref>Comments</Link></Text>
-                    </Flex> 
+                    <Text mx={2} color={color[colorMode]} fontSize="sm" fontWeight="bold"><Link href="#comments">Comments</Link></Text>
+                    </Flex>
                 </Flex>
                 <Heading as="h1" size="2xl" textAlign={["left", "left", "center"]}>{frontMatter.title}</Heading>
                 <Text
@@ -74,7 +75,7 @@ export default function PostPage({ source, frontMatter }) {
                     {frontMatter.description}
                 </Text>
             </Flex>
-            <Divider my={12} w="30%" alignSelf="center" />
+            <Divider my={[4, 8, 12]} w={["100%", "100%", "30%"]} alignSelf="center" />
             <Flex
                 flexDir="column"
                 w={["100%", "100%", "60%"]}
@@ -96,7 +97,6 @@ export default function PostPage({ source, frontMatter }) {
                     <Link
                         href="#comments"
                         _hover={{ textDecor: 'none' }}
-                        passHref
                     >
                         Leave A Comment
                     </Link>
@@ -125,8 +125,14 @@ export default function PostPage({ source, frontMatter }) {
 export const getStaticProps = async ({ params }) => {
     const snippetsPath = path.join(SNIPPETS_PATH, `${params.slug}.mdx`)
     const source = fs.readFileSync(snippetsPath)
-
     const { content, data } = matter(source)
+    // const headings = getHeaders(content)
+    // console.log(headings)
+
+    // const headings = Promise.resolve(getHeaders(content))
+    //     .then(function (value) {
+    //         console.log(value);
+    //     })
 
     const mdxSource = await renderToString(content, {
         MDXComponents,
@@ -146,6 +152,7 @@ export const getStaticProps = async ({ params }) => {
             source: mdxSource,
             frontMatter: {
                 readingTime: readingTime(content),
+                headers: await getHeaders(content),
                 ...data
             },
         },

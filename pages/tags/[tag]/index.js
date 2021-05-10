@@ -23,6 +23,11 @@ export default function Index({ tutorials, snippets }) {
     const url = `https://coffeeclass.io/tags/${tag}`
     const title = 'Tags – Coffeeclass'
     const description = `Articles relating to ${tag}`
+    const { colorMode } = useColorMode()
+    const headerColor = {
+        light: 'brand_one.600',
+        dark: 'brand_one.500'
+    }
     return (
         <Container>
             <NextSeo
@@ -43,7 +48,7 @@ export default function Index({ tutorials, snippets }) {
                     flexDir="column"
                     mt={50}
                 >
-                    <Heading as="h1" size="2xl">#{tag}</Heading>
+                    <Heading as="h1" size="2xl" letterSpacing="tight" color={headerColor[colorMode]}>#{tag}</Heading>
                     <Divider mt={2} />
                     <Heading my={4} as="h2">Snippets</Heading>
                     <Flex flexDir="column">

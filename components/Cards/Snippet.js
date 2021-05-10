@@ -12,7 +12,7 @@ import NextLink from 'next/link'
 export default function Snippet({ title, description, tags, href, as, mainTag }) {
     const { colorMode } = useColorMode()
     const bgColor = {
-        light: 'gray.50',
+        light: 'gray.200',
         dark: 'gray.700'
     }
     const boxShadowColor = {
@@ -51,7 +51,7 @@ export default function Snippet({ title, description, tags, href, as, mainTag })
                                 <NextLink href={`/tags/${tag}`} passHref>
                                     <Link href={`/${tag}`}
                                     >
-                                        <Tag size="lg" colorScheme={mainTag == tag ? "blue" : "gray"}>#{tag}</Tag>
+                                        <Text fontSize="lg" color={mainTag == tag ? "brand_one.500" : "custom_yellow.800"}>#{tag}</Text>
                                     </Link>
                                 </NextLink>
                             </Flex>

@@ -27,11 +27,10 @@ export default function Index({ tutorials, snippets }) {
     const title = 'Tags – Coffeeclass'
     const description = `Articles relating to ${author}`
     const { colorMode } = useColorMode()
-    const color = {
-        light: 'gray.700',
-        dark: 'gray.300'
+    const headerColor = {
+        light: 'brand_one.600',
+        dark: 'brand_one.500'
     }
-
     return (
         <Container>
             <NextSeo
@@ -52,7 +51,7 @@ export default function Index({ tutorials, snippets }) {
                     flexDir="column"
                     mt={50}
                 >
-                    <Heading as="h1" size="2xl" textAlign="center">{author}</Heading>
+                    <Heading as="h1" size="2xl" textAlign="center" letterSpacing="tight" color={headerColor[colorMode]}>{author}</Heading>
                     <Flex my={2} justifyContent="center" mt={2}>
                         <Tag mr={2} size="lg"><Link href="https://benjamincarlson.io" isExternal>Website</Link></Tag>
                         <Tag mr={2} size="lg"><Link href="https://github.com/bjcarlson42" isExternal>GitHub</Link></Tag>

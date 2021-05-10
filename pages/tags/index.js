@@ -21,6 +21,11 @@ const title = 'Tags – Coffeeclass'
 const description = `Tags for Coffeeclass`
 
 export default function Index({ tutorials, snippets }) {
+    const { colorMode } = useColorMode()
+    const headerColor = {
+        light: 'brand_one.600',
+        dark: 'brand_one.500'
+    }
     var tagArray = []
     tutorials.map(tut => tut.data.tags.map(tag => {
         tagArray.push(tag)
@@ -49,7 +54,7 @@ export default function Index({ tutorials, snippets }) {
                     flexDir="column"
                     mt={50}
                 >
-                    <Heading as="h1" size="2xl">All Tags 🏷️</Heading>
+                    <Heading as="h1" size="2xl" color={headerColor[colorMode]} letterSpacing="tight">All Tags 🏷️</Heading>
                     <Divider my={6} />
                     <Flex wrap="wrap">
                         {
@@ -64,7 +69,7 @@ export default function Index({ tutorials, snippets }) {
                                                 opacity: '.5'
                                             }}
                                             >
-                                                <Tag size="lg">#{tag}</Tag>
+                                                <Tag size="lg" colorScheme="custom_yellow">#{tag}</Tag>
                                             </Link>
                                         </NextLink>
                                     </Flex>

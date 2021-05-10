@@ -8,8 +8,7 @@ import {
     Tooltip,
     WrapItem,
     Icon,
-    Text,
-    Image
+    Text
 } from '@chakra-ui/react'
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 import NextLink from 'next/link'
@@ -30,6 +29,16 @@ const NavBarLeft = () => {
     const activeNavColor = {
         light: 'black',
         dark: 'white'
+    }
+    const color = {
+        light: 'black',
+        dark: 'white'
+    }
+    const homeColor = {
+        light: 'black',
+        dark: 'white'
+        // light: 'brand_one.500',
+        // dark: 'brand_one.400'
     }
     const router = useRouter()
     const slug = router.asPath
@@ -58,8 +67,7 @@ const NavBarLeft = () => {
                             placement="right"
                             closeDelay={100}
                         >
-                            <Box borderRight={`2px solid ${slug == '/' ? activeNavColor[colorMode] : null}`} w="100%">
-
+                            <Box w="100%" borderRight={`2px solid ${slug == '/' ? activeNavColor[colorMode] : null}`} w="100%">
                                 <Button
                                     variant="ghost"
                                     aria-label="Home"
@@ -71,12 +79,8 @@ const NavBarLeft = () => {
                                         flexDir="column"
                                         align="center"
                                     >
-                                        {/* <Image
-                                        src="/favicons/coffee-only-transparent-bg.png"
-                                        w={50}
-                                    /> */}
-                                        <Icon as={FiHome} fontSize="2xl" color={slug == '/' ? activeNavColor[colorMode] : null} />
-                                        <Text fontSize="xs" mt={2}>coffeeclass.io</Text>
+                                        <Icon as={FiHome} fontSize="2xl" color={homeColor[colorMode]} />
+                                        <Text fontSize="xs" mt={2} color={homeColor[colorMode]}>coffeeclass.io</Text>
                                     </Flex>
                                 </Button>
                             </Box>
@@ -101,33 +105,12 @@ const NavBarLeft = () => {
                                     w="100%"
                                     _hover={{ background: 'none' }}
                                 >
-                                    <Icon as={FiScissors} fontSize="2xl" />
+                                    <Icon as={FiScissors} fontSize="2xl" color={color[colorMode]} />
                                 </Button>
                             </Box>
                         </Tooltip>
                     </WrapItem>
                 </NextLink>
-
-                {/* <NextLink href="/learn" passHref>
-                    <WrapItem w="100%">
-                        <Tooltip
-                            hasArrow
-                            label="Learn"
-                            placement="right"
-                            closeDelay={100}
-                        >
-                            <Button
-                                variant="ghost"
-                                aria-label="Learn"
-                                my={5}
-                                w="100%"
-                                _hover={{ background: 'none' }}
-                            >
-                                <Icon as={FiEdit2} fontSize="2xl" color={slug.includes('learn') ? activeNavColor[colorMode] : null} />
-                            </Button>
-                        </Tooltip>
-                    </WrapItem>
-                </NextLink> */}
 
                 <NextLink href="/tutorials" passHref>
                     <WrapItem w="100%">
@@ -145,7 +128,7 @@ const NavBarLeft = () => {
                                     w="100%"
                                     _hover={{ background: 'none' }}
                                 >
-                                    <Icon as={FiBookOpen} fontSize="2xl" />
+                                    <Icon as={FiBookOpen} fontSize="2xl" color={color[colorMode]} />
                                 </Button>
                             </Box>
                         </Tooltip>
@@ -183,7 +166,7 @@ const NavBarLeft = () => {
                                         w="100%"
                                         _hover={{ background: 'none' }}
                                     >
-                                        <Icon as={FiBookmark} fontSize="2xl" color={slug.includes('tags') ? activeNavColor[colorMode] : null} />
+                                        <Icon as={FiBookmark} fontSize="2xl" color={color[colorMode]} />
                                     </Button>
                                 </Box>
                             </Tooltip>
@@ -206,7 +189,7 @@ const NavBarLeft = () => {
                                         w="100%"
                                         _hover={{ background: 'none' }}
                                     >
-                                        <Icon as={FiInfo} fontSize="2xl" color={slug.includes('about') ? activeNavColor[colorMode] : null} />
+                                        <Icon as={FiInfo} fontSize="2xl" color={color[colorMode]} />
                                     </Button>
                                 </Box>
                             </Tooltip>
@@ -229,7 +212,7 @@ const NavBarLeft = () => {
                                         w="100%"
                                         _hover={{ background: 'none' }}
                                     >
-                                        <Icon as={FiSearch} fontSize="2xl" color={slug.includes('search') ? activeNavColor[colorMode] : null} />
+                                        <Icon as={FiSearch} fontSize="2xl" color={color[colorMode]} />
                                     </Button>
                                 </Box>
                             </Tooltip>

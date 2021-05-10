@@ -15,11 +15,11 @@ const GlobalStyle = ({ children }) => {
         styles={css`
           ${colorMode === 'light' ? prismLightTheme : prismDarkTheme};
           #__next {
-            background-color: ${colorMode === 'light' ? 'white' : '#15161a'};
+            background-color: ${colorMode === 'light' ? '#f7f7fa' : '#15161a'};
             color: ${colorMode === 'light' ? 'black' : 'white'};
           }
           html {
-            background-color: ${colorMode === 'light' ? 'white' : '#15161a'};
+            background-color: ${colorMode === 'light' ? '#f7f7fa' : '#15161a'};
           }
         `}
       />

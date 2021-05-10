@@ -13,7 +13,8 @@ import {
     InputGroup,
     Input,
     InputRightElement,
-    Tag
+    Tag,
+    useColorMode
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../components/Container'
@@ -43,6 +44,11 @@ export default function Search({ snippets, tutorials }) {
             frontMatter.data.title.toLowerCase().includes(searchValue.toLowerCase()) ||
             frontMatter.data.description.toLowerCase().includes(searchValue.toLowerCase())
         )
+    const { colorMode } = useColorMode()
+    const headerColor = {
+        light: 'brand_one.600',
+        dark: 'brand_one.500'
+    }
     return (
         <Container>
             <NextSeo
@@ -64,7 +70,7 @@ export default function Search({ snippets, tutorials }) {
                     flexDir="column"
                     mt={50}
                 >
-                    <Heading as="h1" size="2xl">Search</Heading>
+                    <Heading as="h1" size="2xl" color={headerColor[colorMode]} letterSpacing="tight">Search</Heading>
                     <InputGroup my={4} w="50%">
                         <Input
                             aria-label="Search by title and summary"
@@ -93,7 +99,6 @@ export default function Search({ snippets, tutorials }) {
                                         <Td>
                                             <Link
                                                 href={`${type}${p.filePath.replace(/\.mdx?$/, '')}`}
-                                                passHref
                                             >
                                                 {p.data.title}
                                             </Link>

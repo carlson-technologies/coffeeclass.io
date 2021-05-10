@@ -3,12 +3,27 @@
   <url>
     <loc>https://coffeeclass.io/authors</loc>
   </url>
+
+  <url>
+    <loc>https://coffeeclass.io/legal/disclaimer</loc>
+  </url>
+
+  <url>
+    <loc>https://coffeeclass.io/legal/privacy</loc>
+  </url>
+
+  <url>
+    <loc>https://coffeeclass.io/legal/terms</loc>
+  </url>
+
   <url>
     <loc>https://coffeeclass.io/snippets</loc>
   </url>
+
   <url>
     <loc>https://coffeeclass.io/tags</loc>
   </url>
+
   <url>
     <loc>https://coffeeclass.io/tutorials</loc>
   </url>
@@ -18,15 +33,7 @@
   </url>
 
   <url>
-    <loc>https://coffeeclass.io/disclaimer</loc>
-  </url>
-
-  <url>
     <loc>https://coffeeclass.io</loc>
-  </url>
-
-  <url>
-    <loc>https://coffeeclass.io/privacy</loc>
   </url>
 
   <url>
@@ -34,7 +41,7 @@
   </url>
 
   <url>
-    <loc>https://coffeeclass.io/terms</loc>
+    <loc>https://coffeeclass.io/tutorials/add-firebase-to-nextjs</loc>
   </url>
 
   <url>
@@ -62,7 +69,7 @@
   </url>
 
   <url>
-    <loc>https://coffeeclass.io/tutorials/add-firebase-to-nextjs</loc>
+    <loc>https://coffeeclass.io/snippets/nextjs-mdx-quickstart</loc>
   </url>
 
   <url>

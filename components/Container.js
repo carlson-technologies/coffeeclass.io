@@ -18,20 +18,20 @@ const Container = ({ children }) => {
                 flexDirection="column"
                 // mt={50}
             >
-                <MotionBox
+                {/* <MotionBox
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5 }}
-                >
+                > */}
                     <Flex
                         display="block"
                         minH="100vh"
-                        ml={[0, 0, 100]}
+                        ml={[0, 0, 150]}
                         as="main"
                     >
                         {children}
                     </Flex>
-                </MotionBox>
+                {/* </MotionBox> */}
                 <Footer />
             </Flex>
         </>

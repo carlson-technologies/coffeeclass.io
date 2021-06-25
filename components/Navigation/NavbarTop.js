@@ -74,7 +74,7 @@ const NavBarTop = () => {
             >
                 <Flex justify="flex-end">
                     <IconButton
-                    pos="absolute"
+                        pos="absolute"
                         mt={2}
                         mr={2}
                         bgColor={bgColor[colorMode]}
@@ -129,7 +129,7 @@ const NavBarTop = () => {
                     </Button>
                         </NextLink>
 
-                        {/* <NextLink href="/learn" passHref>
+                        <NextLink href="/learn" passHref>
                             <Button
                                 as="a"
                                 variant="ghost"
@@ -139,7 +139,7 @@ const NavBarTop = () => {
                             >
                                 Learn
                             </Button>
-                        </NextLink> */}
+                        </NextLink>
 
                         <NextLink href="/tutorials" passHref>
                             <Button

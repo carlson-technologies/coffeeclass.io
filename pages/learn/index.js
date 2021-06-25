@@ -24,6 +24,10 @@ export default function Index() {
         light: 'gray.700',
         dark: 'gray.300'
     }
+    const headerColor = {
+        light: 'brand_one.600',
+        dark: 'brand_one.500'
+    }
     return (
         <Container>
             <NextSeo
@@ -44,27 +48,29 @@ export default function Index() {
                     flexDir="column"
                     mt={50}
                 >
-                    <Heading as="h1" size="2xl">Coffeeclass Learn 🎒</Heading>
+                    <Heading as="h1" size="2xl" letterSpacing="tight" color={headerColor[colorMode]}>Coffeeclass Learn 🎒</Heading>
+                    <Heading as="h2" size="md" fontWeight="normal" mt={4}>Learn programming skills like Python easily!</Heading>
                     <Divider mt={2} />
                     <Flex flexDir="column">
                         {
                             data.map((item, index) => {
                                 return (
-                                    <Link
-                                        href={item.path}
-                                        mt={2}
-                                        mr={2}
-                                        _hover={{ textDecor: 'none' }}
-                                        key={index}
-                                    >
-                                        <Button p={2} size="lg" aria-label={item.title}>
-                                            <Image
-                                                src={`learn-images/${item.image}`}
-                                                h='100%'
-                                            />
-                                            <Text ml={2}>{item.title}</Text>
-                                        </Button>
-                                    </Link>
+                                    <Flex key={index}>
+                                        <Link
+                                            href={item.path}
+                                            mt={2}
+                                            mr={2}
+                                            _hover={{ textDecor: 'none' }}
+                                        >
+                                            <Button p={2} size="lg" aria-label={item.title}>
+                                                <Image
+                                                    src={`learn-images/${item.image}`}
+                                                    h='100%'
+                                                />
+                                                <Text ml={2}>{item.title}</Text>
+                                            </Button>
+                                        </Link>
+                                    </Flex>
                                 )
                             })
                         }

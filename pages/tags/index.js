@@ -69,7 +69,7 @@ export default function Index({ tutorials, snippets }) {
                                                 opacity: '.5'
                                             }}
                                             >
-                                                <Tag size="lg" colorScheme="custom_yellow">#{tag}</Tag>
+                                                <Tag size="lg" colorScheme="orange">#{tag}</Tag>
                                             </Link>
                                         </NextLink>
                                     </Flex>

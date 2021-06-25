@@ -21,6 +21,12 @@ const GlobalStyle = ({ children }) => {
           html {
             background-color: ${colorMode === 'light' ? '#f7f7fa' : '#15161a'};
           }
+          ::selection {
+            background-color: #FBD38D;
+          }
+          ::-moz-selection {
+            background: #FBD38D;
+          }
         `}
       />
       {children}

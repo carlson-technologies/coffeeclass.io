@@ -122,9 +122,9 @@ const prismBaseTheme = css`
   .remark-code-title {
     padding: ${theme.space[2]} ${theme.space[4]};
     font-family: ${theme.fonts.mono};
-    background: ${theme.colors.gray[200]};
+    background: ${theme.colors.orange[200]};
     color: ${theme.colors.gray[800]};
-    border: 1px solid ${theme.colors.gray[200]};
+    border: 1px solid ${theme.colors.orange[200]};
     border-top-left-radius: ${theme.radii.lg};
     border-top-right-radius: ${theme.radii.lg};
     font-size: 0.8rem;
@@ -148,8 +148,8 @@ export const prismLightTheme = css`
   }
   :not(pre) > code[class*='language-'],
   pre[class*='language-'] {
-    background: ${theme.colors.gray[50]};
-    border: 0px solid ${theme.colors.gray[200]};
+    background: ${theme.colors.orange[50]};
+    border: 0px solid ${theme.colors.orange[200]};
   }
   .mdx-marker {
     background-color: hsla(204, 45%, 96%, 1);
@@ -222,8 +222,8 @@ export const prismDarkTheme = css`
     background-color: ${theme.colors.gray[700]};
   }
   .remark-code-title {
-    background: ${theme.colors.gray[700]};
-    color: ${theme.colors.gray[100]};
+    background: ${theme.colors.orange[200]};
+    color: ${theme.colors.gray[800]};
     border: 1px solid ${theme.colors.gray[700]};
   }
 `

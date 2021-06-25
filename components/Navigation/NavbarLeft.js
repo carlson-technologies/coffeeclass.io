@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react'
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 import NextLink from 'next/link'
-import { FiInfo, FiScissors, FiBookOpen, FiHome, FiBookmark, FiSearch } from "react-icons/fi"
+import { FiInfo, FiEdit2, FiScissors, FiBookOpen, FiHome, FiBookmark, FiSearch } from "react-icons/fi"
 import { useRouter } from 'next/router'
 
 const NavBarLeft = () => {
@@ -44,7 +44,7 @@ const NavBarLeft = () => {
     const slug = router.asPath
     return (
         <Box
-            w={100}
+            w={150}
             h="100vh"
             bgColor={bgColor[colorMode]}
             pos="fixed"
@@ -67,7 +67,7 @@ const NavBarLeft = () => {
                             placement="right"
                             closeDelay={100}
                         >
-                            <Box w="100%" borderRight={`2px solid ${slug == '/' ? activeNavColor[colorMode] : null}`} w="100%">
+                            <Box borderRight={`2px solid ${slug == '/' ? activeNavColor[colorMode] : null}`} w="100%">
                                 <Button
                                     variant="ghost"
                                     aria-label="Home"
@@ -88,6 +88,30 @@ const NavBarLeft = () => {
                     </WrapItem>
                 </NextLink>
 
+                <NextLink href="/learn" passHref>
+                    <WrapItem w="100%">
+                        <Tooltip
+                            hasArrow
+                            label="Learn"
+                            placement="right"
+                            closeDelay={100}
+                        >
+                            <Box borderRight={`2px solid ${slug.includes('learn') ? activeNavColor[colorMode] : null}`} w="100%">
+                                <Button
+                                    variant="ghost"
+                                    aria-label="Learn"
+                                    my={5}
+                                    w="100%"
+                                    _hover={{ background: 'none' }}
+                                    justifyContent="start"
+                                >
+                                    <Icon as={FiEdit2} fontSize="2xl" mr={2} color={slug.includes('learn') ? activeNavColor[colorMode] : null} />
+                                    <Text fontSize="sm">Learn</Text>
+                                </Button>
+                            </Box>
+                        </Tooltip>
+                    </WrapItem>
+                </NextLink>
 
                 <NextLink href="/snippets" passHref>
                     <WrapItem w="100%">
@@ -104,8 +128,10 @@ const NavBarLeft = () => {
                                     my={5}
                                     w="100%"
                                     _hover={{ background: 'none' }}
+                                    justifyContent="start"
                                 >
-                                    <Icon as={FiScissors} fontSize="2xl" color={color[colorMode]} />
+                                    <Icon as={FiScissors} fontSize="2xl" mr={2} color={color[colorMode]} />
+                                    <Text fontSize="sm">Snippets</Text>
                                 </Button>
                             </Box>
                         </Tooltip>
@@ -127,8 +153,10 @@ const NavBarLeft = () => {
                                     my={5}
                                     w="100%"
                                     _hover={{ background: 'none' }}
+                                    justifyContent="start"
                                 >
-                                    <Icon as={FiBookOpen} fontSize="2xl" color={color[colorMode]} />
+                                    <Icon as={FiBookOpen} fontSize="2xl" mr={2} color={color[colorMode]} />
+                                    <Text fontSize="sm">Tutorials</Text>
                                 </Button>
                             </Box>
                         </Tooltip>
@@ -165,8 +193,10 @@ const NavBarLeft = () => {
                                         my={5}
                                         w="100%"
                                         _hover={{ background: 'none' }}
+                                        justifyContent="start"
                                     >
-                                        <Icon as={FiBookmark} fontSize="2xl" color={color[colorMode]} />
+                                        <Icon as={FiBookmark} fontSize="2xl" mr={2} color={color[colorMode]} />
+                                        <Text fontSize="sm">Tags</Text>
                                     </Button>
                                 </Box>
                             </Tooltip>
@@ -188,8 +218,10 @@ const NavBarLeft = () => {
                                         my={5}
                                         w="100%"
                                         _hover={{ background: 'none' }}
+                                        justifyContent="start"
                                     >
-                                        <Icon as={FiInfo} fontSize="2xl" color={color[colorMode]} />
+                                        <Icon as={FiInfo} fontSize="2xl" mr={2} color={color[colorMode]} />
+                                        <Text fontSize="sm">About</Text>
                                     </Button>
                                 </Box>
                             </Tooltip>
@@ -211,8 +243,10 @@ const NavBarLeft = () => {
                                         my={5}
                                         w="100%"
                                         _hover={{ background: 'none' }}
+                                        justifyContent="start"
                                     >
-                                        <Icon as={FiSearch} fontSize="2xl" color={color[colorMode]} />
+                                        <Icon as={FiSearch} fontSize="2xl" mr={2} color={color[colorMode]} />
+                                        <Text fontSize="sm">Search</Text>
                                     </Button>
                                 </Box>
                             </Tooltip>

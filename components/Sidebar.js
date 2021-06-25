@@ -31,8 +31,12 @@ const Sidebar = () => {
     const router = useRouter()
     const { colorMode } = useColorMode()
     const sideBarActiveColor = {
-        light: 'gray.100',
-        dark: 'gray.600'
+        light: 'brand_one.200',
+        dark: 'brand_one.600'
+    }
+    const sideBarHoverColor = {
+        light: 'brand_one.50',
+        dark: 'brand_one.500'
     }
     // routes[0].path.split('').reverse().join('').split('/')[0].split('').reverse().join('')
     return (
@@ -55,15 +59,16 @@ const Sidebar = () => {
             <Flex
                 flexDirection="column"
             >
-                <Heading as="h4" size="md" textAlign="center">Chapters 🔖</Heading>
+                <Heading as="h4" size="md" textAlign="center">Modules 🔖</Heading>
                 <Divider my={4} />
                 {routes.map((r) =>
-                    // console.log(router.query.slug)
-                    // console.log(r.path.includes(router.query.slug))
-                    <NextLink href={r.path} passHref key={r.title}>
+                    <Link href={r.path} key={r.title} _hover={{
+                        textDecoration: 'none'
+                    }}>
                         <Box
                             _hover={{
-                                textDecoration: 'none'
+                                textDecoration: 'none',
+                                backgroundColor: r.path.includes(router.query.slug) ? sideBarActiveColor[colorMode] : sideBarHoverColor[colorMode]
                             }}
                             w="100%"
                             my={2}
@@ -71,13 +76,9 @@ const Sidebar = () => {
                             p={1}
                             backgroundColor={r.path.includes(router.query.slug) ? sideBarActiveColor[colorMode] : null}
                         >
-                            <Link _hover={{
-                                textDecoration: 'none'
-                            }}>
-                                <Text>{r.title}</Text>
-                            </Link>
+                            <Text py="1px" pl={1}>{r.title}</Text>
                         </Box>
-                    </NextLink>
+                    </Link>
                 )}
             </Flex>
         </Box>

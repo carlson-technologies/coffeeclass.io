@@ -198,7 +198,7 @@ const NavBarTop = () => {
                                 About
                         </Button>
                         </NextLink>
-                        <NextLink href="/terms" passHref>
+                        <NextLink href="/legal/terms" passHref>
                             <Button
                                 as="a"
                                 variant="ghost"
@@ -209,7 +209,7 @@ const NavBarTop = () => {
                                 Terms And Conditions
                         </Button>
                         </NextLink>
-                        <NextLink href="/privacy" passHref>
+                        <NextLink href="/legal/privacy" passHref>
                             <Button
                                 as="a"
                                 variant="ghost"
@@ -220,7 +220,7 @@ const NavBarTop = () => {
                                 Privacy Policy
                         </Button>
                         </NextLink>
-                        <NextLink href="/disclaimer" passHref>
+                        <NextLink href="/legal/disclaimer" passHref>
                             <Button
                                 as="a"
                                 variant="ghost"

@@ -3,7 +3,8 @@ import {
     Flex,
     Stack,
     Text,
-    Box
+    Box,
+    Link
 } from '@chakra-ui/react'
 import Sidebar from '../components/Sidebar'
 import Pagination from '../components/Pagination'
@@ -55,10 +56,7 @@ export default function LearnLayout({ children, frontMatter }) {
                             {frontMatter.title}
                         </Heading>
                         {children}
-                        {frontMatter.lastUpdated ?
-                            <Text fontSize="sm" alignSelf="center">Last updated on {format(parseISO(frontMatter.lastUpdated), 'MMMM dd, yyyy')}</Text> :
-                            <Text fontSize="sm" alignSelf="center">Last updated on {format(parseISO(frontMatter.publishedAt), 'MMMM dd, yyyy')}</Text>
- }
+                        {frontMatter.lastUpdated && <Text color="gray.500" fontSize="sm" alignSelf="center">Last updated on {format(parseISO(frontMatter.lastUpdated ? frontMatter.lastUpdated : frontMatter.publishedAt), 'MMMM dd, yyyy')}    </Text>}
                         <Pagination />
                     </Stack>
                 </MotionBox>

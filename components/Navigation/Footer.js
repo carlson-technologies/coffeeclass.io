@@ -3,20 +3,19 @@ import {
     Text,
     Divider,
     useColorMode,
-    Box
+    Box,
+    Link,
+    Image
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
+import year from '../../lib/current_date'
 
 const Footer = () => {
     const { colorMode } = useColorMode()
-    const color = {
-        light: 'gray.700',
-        dark: 'gray.300'
-    }
-    const underlineColor = {
-        light: 'band_one.500',
-        dark: 'brand_one.500'
+    const logoColor = {
+        light: 'dark',
+        dark: 'light'
     }
     const router = useRouter()
     return (
@@ -29,7 +28,22 @@ const Footer = () => {
             as="footer"
         >
             {router.pathname != '/' && <Divider w="80%" mb={4} />}
-            <Text fontSize="sm">Copyright &copy; 2021 Coffeclass LLC</Text>
+            <Text as="small">&copy; Copyright {year}, Carlson Technologies LLC. All Rights Reserved.</Text>
+            <Flex my={2}>
+                <Link
+                    href="https://vercel.com/?utm_source=carlson-technologies&utm_campaign=oss"
+                    isExternal
+                    _hover={{
+                        textDecor: 'none',
+                        opacity: .7
+                    }}
+                >
+                    <Flex align="center">
+                        <Text mr={1}>Powered by</Text>
+                        <Image src={`/vercel/logotype/${logoColor[colorMode]}/vercel-logotype-${logoColor[colorMode]}.png`} w={100} />
+                    </Flex>
+                </Link>
+            </Flex>
             <Flex fontSize="sm" flexDir="row" mt={1} color="brand_one.500">
                 <Box borderBottom="1px solid" mr={2}>
                     <Text>

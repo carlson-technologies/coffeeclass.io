@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://coffeeclass.io/authors</loc>
+  </url>
+
+  <url>
     <loc>https://coffeeclass.io/legal/disclaimer</loc>
   </url>
 
@@ -37,10 +41,6 @@
   </url>
 
   <url>
-    <loc>https://coffeeclass.io/tutorials/add-firebase-to-nextjs</loc>
-  </url>
-
-  <url>
     <loc>https://coffeeclass.io/snippets/add-comments-to-nextjs-website</loc>
   </url>
 
@@ -66,6 +66,10 @@
 
   <url>
     <loc>https://coffeeclass.io/snippets/nextjs-mdx-quickstart</loc>
+  </url>
+
+  <url>
+    <loc>https://coffeeclass.io/tutorials/add-firebase-to-nextjs</loc>
   </url>
 
   <url>

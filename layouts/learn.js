@@ -36,7 +36,7 @@ export default function LearnLayout({ children, frontMatter }) {
             />
             <Flex
                 // justifyContent="center"
-                ml={[0, 0, 2]}
+                ml={[0, 0, 0, 0, 2, 2]}
             >
                 <Sidebar />
                 <MotionBox
@@ -47,7 +47,7 @@ export default function LearnLayout({ children, frontMatter }) {
                         as="article"
                         spacing={8}
                         alignItems="flex-start"
-                        ml={[0, 0, 250]}
+                        ml={[0, 0, 0, 0, 250, 250]}
                         px={4}
                         mt={50}
                         maxW='1000px'

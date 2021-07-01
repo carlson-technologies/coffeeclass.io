@@ -3,7 +3,7 @@ import matter from 'gray-matter'
 import hydrate from 'next-mdx-remote/hydrate'
 import renderToString from 'next-mdx-remote/render-to-string'
 import path from 'path'
-import Layout from '../../components/Layout'
+import Layout from '../../layouts/post'
 import { snippetsFilePaths, SNIPPETS_PATH } from '../../utils/mdxUtils'
 import MDXComponents from '../../components/MDXComponents'
 import mdxPrism from 'mdx-prism'
@@ -23,25 +23,29 @@ import {
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import Comments from '../../components/Comments'
-import getHeaders from '../../components/get-headers'
+import getHeaders from '../../lib/get-headers'
 
 export default function PostPage({ source, frontMatter }) {
     const content = hydrate(source, { MDXComponents })
     const { colorMode } = useColorMode()
     const color = {
-        light: 'gray.700',
-        dark: 'gray.300'
+        light: 'gray.600',
+        dark: 'gray.500'
     }
     return (
         <Layout frontMatter={frontMatter}>
-            <Flex flexDir="column" w={['100%', '100%', '70%']} alignSelf="center">
+            <Flex
+                flexDir="column"
+                w={['100%', '100%', '100%', '100%', '100%', '70%']}
+                alignSelf="center"
+            >
                 <Flex
                     align="center"
-                    justify={["left", "left", "center"]}
+                    justify={["left", "left", "left", "center", "center", "center"]}
                     mb={2}
-                    flexDir={['column', 'row', 'row']}
+                    flexDir={['column', 'column', 'column', 'row', 'row', 'row']}
                 >
-                    <Flex mb={[2, 0, 0]}>
+                    <Flex mb={[2, 2, 2, 0, 0, 0]}>
                         {frontMatter.tags?.map((tag) => {
                             return (
                                 <Flex key={tag} mr={2}>
@@ -56,29 +60,28 @@ export default function PostPage({ source, frontMatter }) {
                             )
                         })}
                     </Flex>
-                    <Flex display={['none', 'flex', 'flex']}>•</Flex>
+                    <Flex display={['none', 'none', 'none', 'flex', 'flex', 'flex']}>•</Flex>
                     <Flex>
                         <Text mx={2} color={color[colorMode]} fontSize="sm">{format(parseISO(frontMatter.publishedAt), 'MMMM dd, yyyy')}</Text>
-                    •
-                    <Text mx={2} color={color[colorMode]} fontSize="sm">{frontMatter.readingTime.text}</Text>
-                    •
-                    <Text mx={2} color={color[colorMode]} fontSize="sm" fontWeight="bold"><Link href="#comments">Comments</Link></Text>
+                        •
+                        <Text mx={2} color={color[colorMode]} fontSize="sm">{frontMatter.readingTime.text}</Text>
+                        <Flex display={['none', 'none', 'none', 'flex', 'flex', 'flex']}>•</Flex>
+                        <Text display={['none', 'none', 'none', 'flex', 'flex', 'flex']} mx={2} color={color[colorMode]} fontSize="sm" fontWeight="bold"><Link href="#comments">Comments</Link></Text>
                     </Flex>
                 </Flex>
-                <Heading as="h1" size="2xl" textAlign={["left", "left", "center"]}>{frontMatter.title}</Heading>
+                <Heading as="h1" size="2xl" textAlign={["left", "left", "left", "center", "center", "center"]}>{frontMatter.title}</Heading>
                 <Text
                     fontSize="xl"
                     mt={2}
                     color={color[colorMode]}
-                    textAlign={["left", "left", "center"]}
+                    textAlign={["left", "left", "left", "center", "center", "center"]}
                 >
                     {frontMatter.description}
                 </Text>
             </Flex>
-            <Divider my={[4, 8, 12]} w={["100%", "100%", "30%"]} alignSelf="center" />
             <Flex
                 flexDir="column"
-                w={["100%", "100%", "60%"]}
+                w={["100%", "100%", "100%", "100%", "100%", "60%"]}
                 alignSelf="center"
                 maxW="800px"
             >
@@ -91,7 +94,7 @@ export default function PostPage({ source, frontMatter }) {
             >
                 <Button
                     variant="outline"
-                    w={['100%', 250, 300]}
+                    w={['100%', '100%', '100%', 200, 250, 300]}
                     alignSelf="center"
                 >
                     <Link

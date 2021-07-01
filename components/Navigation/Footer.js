@@ -22,10 +22,11 @@ const Footer = () => {
         <Flex
             flexDir="column"
             align="center"
-            ml={[0, 0, 100]}
+            ml={[0, 0, 0, 0, 150, 150]}
             my={4}
             px={4}
             as="footer"
+            textAlign="center"
         >
             {router.pathname != '/' && <Divider w="80%" mb={4} />}
             <Text as="small">&copy; Copyright {year}, Carlson Technologies LLC. All Rights Reserved.</Text>

@@ -77,30 +77,30 @@ export default function Index({ snippets, tutorials }) {
                     maxW="100em"
                 >
                     <Flex
-                        flexDir={['column', 'column', 'row']}
+                        flexDir={['column', 'column', 'column', 'column', 'row', 'row']}
                         justify="center"
                         align="center"
-                        h="100vh"
+                        minH="100vh"
                         as="section"
                     >
                         <Flex
                             flexDir="column"
                             align="center"
                         >
-                            <Heading as="h1" size="4xl" textAlign="center" w={['100%', '100%', 900]}>Learn to code 👨‍💻 and ship 🚀 your app for free.</Heading>
-                            <Heading as="h2" color={color[colorMode]} textAlign="center" size="md" my={8} w={['100%', '100%', 600]}>Coffeeclass ☕ takes complex programming concepts and presents them in an easy to learn manner.
-                            Browse snippets, tutorials, or learn a new skill.</Heading>
+                            <Heading as="h1" size="4xl" textAlign="center" w={['100%', '100%', '100%', '100%', 700, 900]} mt={20}>Learn to code 👨‍💻 and ship 🚀 your app for free.</Heading>
+                            <Heading as="h2" color={color[colorMode]} textAlign="center" size="md" my={8} w={['100%', '100%', '100%', '100%', 400, 600]}>Coffeeclass ☕ takes complex programming concepts and presents them in an easy to learn manner.
+                                Browse snippets, tutorials, or learn a new skill.</Heading>
                             <Flex
-                                flexDirection={['column', 'row', 'row']}
+                                flexDirection={['column', 'column', 'column', 'row', 'row', 'row']}
                                 w="100%"
                                 justify="center"
                             >
                                 <NextLink href="#explore" passHref>
-                                    <Button mr={4} w={['100%', 200, 200]} colorScheme="brand_one" leftIcon="🔭">Explore Content</Button>
+                                    <Button mr={4} w={['100%', '100%', '100%', 200, 200, 200]} colorScheme="brand_one" leftIcon="🔭">Explore Content</Button>
                                 </NextLink>
-                                <Flex mt={[4, 0, 0]}>
+                                <Flex mt={[4, 4, 4, 0, 0, 0]}>
                                     <NextLink href="/about" passHref>
-                                        <Button variant="outline" w={['100%', 200, 200]} colorScheme="brand_one" to="/about">About</Button>
+                                        <Button variant="outline" w={['100%', '100%', '100%', 200, 200, 200]} colorScheme="brand_one" to="/about">About</Button>
                                     </NextLink>
                                 </Flex>
                             </Flex>
@@ -117,7 +117,7 @@ export default function Index({ snippets, tutorials }) {
                             id="explore"
                         >
                             Browse The Latest Tutorials
-                            </Heading>
+                        </Heading>
                         <Flex wrap="wrap" justify="space-between">
                             {tutorialsOrderedByPublishedDate.map((post) => (
                                 <Tutorial
@@ -142,8 +142,8 @@ export default function Index({ snippets, tutorials }) {
                             color={headerColor[colorMode]}
                         >
                             Only Have 5 Minutes? Check Out Some Snippets!
-                            </Heading>
-                        <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
+                        </Heading>
+                        <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(2, 1fr)"]} gap={6}>
                             {snippetsOrderedByPublishedDate.map((post) => (
                                 <Snippet
                                     key={post.data.title}
@@ -172,27 +172,27 @@ export default function Index({ snippets, tutorials }) {
 
                     <Flex
                         as="section"
-                        flexDir={["column", "column", "row"]}
+                        flexDir={["column", "column", "column", "column", "row", "row"]}
                         align="center"
                         justify="space-around"
-                        mt={8}
+                        mt={20}
                     >
-                        <Flex flexDir="column" w={['100%', '100%', 500]}>
+                        <Flex flexDir="column" w={['100%', '100%', '100%', '100%', 500, 500]}>
                             <Heading
                                 as="h3"
                                 size="lg"
                                 letterSpacing="tight"
                                 mb={2}>
                                 What Is Coffeeclass?
-                                </Heading>
+                            </Heading>
                             <Text mb={2}>Coffeeclass is a suite of programming tutorial tools including this website and <Link color="brand_one.500" href="https://youtube.com/benjamincarlson" isExternal>this YouTube channel</Link>.</Text>
                             <Flex mb={2}>
                                 <NextLink href="/about" passHref>
-                                    <Button variant="outline" colorScheme="brand_one" w={['100%', 200, 200]} to="/about">Learn More</Button>
+                                    <Button variant="outline" colorScheme="brand_one" w={['100%', '100%', '100%', 200, 200, 200]} to="/about">Learn More</Button>
                                 </NextLink>
                             </Flex>
                         </Flex>
-                        <Flex w={['100%', '100%', 500]} justify="center" mt={[]}>
+                        <Flex w={['100%', '100%', '100%', '100%', 500, 500]} justify="center">
                             <Box w={200} h={200}>
                                 <Image src="favicons/logo-transparent-bg.png" alt="Coffeeclass Logo" />
                             </Box>

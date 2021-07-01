@@ -54,7 +54,7 @@ const Sidebar = () => {
             pl="3"
             overflowY="auto"
             flexShrink={0}
-            display={{ base: "none", md: "block" }}
+            display={["none", "none", "none", "none", "block", "block"]}
         >
             <Flex
                 flexDirection="column"

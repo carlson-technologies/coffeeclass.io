@@ -136,6 +136,7 @@ const prismBaseTheme = css`
       border-top-left-radius: 0;
       border-top-right-radius: 0;
       margin-top: 0 !important;
+      max-height: 40em;
     }
   }
 `;

@@ -38,7 +38,7 @@ export default function Terms() {
                     maxW="100em"
                     mt={50}
                 >
-                    <Heading as="h1" size="3xl">Terms and Conditions</Heading>
+                    <Heading as="h1" size="2xl">Terms and Conditions</Heading>
                     <Text>Last updated: June 30, 2021</Text>
                     <Text>Please read these terms and conditions carefully before using Our Service.</Text>
                     <Heading as="h1">Interpretation and Definitions</Heading>

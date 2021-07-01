@@ -39,6 +39,9 @@ const NavBarTop = () => {
                 mt={3}
                 mr={3}
                 boxShadow={boxShadowColor[colorMode]}
+                as="nav"
+                aria-label="Nav 1"
+                zIndex="10"
             >
                 <DarkModeSwitch />
                 <IconButton
@@ -126,7 +129,7 @@ const NavBarTop = () => {
                                 _hover={{ background: 'none' }}
                             >
                                 Snippets
-                    </Button>
+                            </Button>
                         </NextLink>
 
                         <NextLink href="/learn" passHref>
@@ -162,7 +165,7 @@ const NavBarTop = () => {
                                 _hover={{ background: 'none' }}
                             >
                                 Tags
-                        </Button>
+                            </Button>
                         </NextLink>
 
                         <NextLink href="/search" passHref>
@@ -196,7 +199,7 @@ const NavBarTop = () => {
                                 _hover={{ background: 'none' }}
                             >
                                 About
-                        </Button>
+                            </Button>
                         </NextLink>
                         <NextLink href="/legal/terms" passHref>
                             <Button
@@ -207,7 +210,7 @@ const NavBarTop = () => {
                                 _hover={{ background: 'none' }}
                             >
                                 Terms And Conditions
-                        </Button>
+                            </Button>
                         </NextLink>
                         <NextLink href="/legal/privacy" passHref>
                             <Button
@@ -218,7 +221,7 @@ const NavBarTop = () => {
                                 _hover={{ background: 'none' }}
                             >
                                 Privacy Policy
-                        </Button>
+                            </Button>
                         </NextLink>
                         <NextLink href="/legal/disclaimer" passHref>
                             <Button
@@ -229,7 +232,7 @@ const NavBarTop = () => {
                                 _hover={{ background: 'none' }}
                             >
                                 Disclaimer
-                        </Button>
+                            </Button>
                         </NextLink>
                     </Flex>
 

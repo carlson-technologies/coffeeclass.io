@@ -52,7 +52,7 @@ export default function Index({ posts }) {
                 <Flex flexDir="column" mt={50}>
                     <Heading as="h1" size="2xl" mb={4} textAlign="center" color={headerColor[colorMode]} letterSpacing="tight">Coffeeclass Snippets ✂️</Heading>
                     <Text color={color[colorMode]} mb={8} fontSize="lg" textAlign="center">Snippets are code bits that you can easily copy and paste into your project.</Text>
-                    <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
+                    <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
                         {snippetsOrderedByPublishedDate.map((post) => (
                             <Snippet
                                 key={post.data.title}

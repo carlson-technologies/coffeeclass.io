@@ -1,9 +1,12 @@
+// These values are the chrome dev tool device sizes. 
+// We use em rather than px because chakra array syntax gives errors with px.
+// calculator: https://www.w3schools.com/tags/ref_pxtoemconversion.asp
+
 export const device = {
-    mobileS: '20em',
-    mobileM: '376px',
-    mobileL: '426px',
-    tablet: '769px',
-    laptop: '1025px',
-    laptopL: '1441px',
-    desktop: '2561px'
+    mobileS: '20.0625em',
+    mobileM: '23.5em',
+    mobileL: '26.625em',
+    tablet: '48.0625em',
+    laptop: '64.0625em',
+    laptopL: '90.0625em'
 }

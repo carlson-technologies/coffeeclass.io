@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { motion } from "framer-motion"
 import {
     Flex,
     Box,
@@ -51,8 +52,9 @@ const NavBarLeft = () => {
             left={0}
             top={0}
             as="nav"
+            aria-label="Nav 2"
             boxShadow={boxShadowColor[colorMode]}
-            display={['none', 'none', 'flex']}
+            display={['none', 'none', 'none', 'none', 'flex', 'flex']}
         >
             <Flex
                 flexDir="column"

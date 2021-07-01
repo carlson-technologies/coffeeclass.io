@@ -38,7 +38,7 @@ export default function Privacy() {
                     maxW="100em"
                     mt={50}
                 >
-                    <Heading as="h1" size="3xl">Disclaimer</Heading>
+                    <Heading as="h1" size="2xl">Disclaimer</Heading>
                     <Text>Last updated: June 30, 2021</Text>
                     <Heading as="h1">Interpretation and Definitions</Heading>
                     <Heading as="h2">Interpretation</Heading>

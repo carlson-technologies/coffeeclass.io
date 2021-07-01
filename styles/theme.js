@@ -1,5 +1,7 @@
 import { extendTheme } from "@chakra-ui/react"
 import { createBreakpoints } from "@chakra-ui/theme-tools"
+import '../constants/devices'
+import { device } from "../constants/devices"
 
 const fonts = {
     body: `Inter,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"`,
@@ -7,9 +9,12 @@ const fonts = {
 }
 
 const breakpoints = createBreakpoints({
-    sm: "30em",
-    md: "64em",
-    lg: "72em"
+    sm: device.mobileS,
+    md: device.mobileM,
+    lg: device.mobileL,
+    xl: device.tablet,
+    "2xl": device.laptop,
+    "3xl": device.laptopL
 })
 
 const config = {

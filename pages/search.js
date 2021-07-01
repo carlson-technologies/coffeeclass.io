@@ -71,7 +71,7 @@ export default function Search({ snippets, tutorials }) {
                     mt={50}
                 >
                     <Heading as="h1" size="2xl" color={headerColor[colorMode]} letterSpacing="tight">Search</Heading>
-                    <InputGroup my={4} w="50%">
+                    <InputGroup my={4} w={["100%", "100%", "100%", "100%", "100%", "50%"]}>
                         <Input
                             aria-label="Search by title and summary"
                             onChange={(e) => setSearchValue(e.target.value)}
@@ -81,53 +81,55 @@ export default function Search({ snippets, tutorials }) {
                             <SearchIcon color="gray.300" />
                         </InputRightElement>
                     </InputGroup>
-                    <Table>
-                        <Thead>
-                            <Tr>
-                                <Th>Title</Th>
-                                <Th>Summary</Th>
-                                <Th display={['none', 'none', 'table-cell']}>Tags</Th>
-                                <Th display={['none', 'none', 'table-cell']}>Author</Th>
-                                <Th display={['none', 'none', 'table-cell']}>Date Posted</Th>
-                            </Tr>
-                        </Thead>
-                        <Tbody>
-                            {filteredPosts.map((p, index) => {
-                                const type = p.data.type === 'tutorial' ? '/tutorials/' : '/snippets/'
-                                return (
-                                    <Tr key={index}>
-                                        <Td>
-                                            <Link
-                                                href={`${type}${p.filePath.replace(/\.mdx?$/, '')}`}
-                                            >
-                                                {p.data.title}
-                                            </Link>
-                                        </Td>
-                                        <Td>{p.data.description}</Td>
-                                        <Td display={['none', 'none', 'table-cell']}>{p.data.tags.map((t, index) => {
-                                            return (
-                                                <span style={{ padding: '1px' }} key={index}>
-                                                    <NextLink href={`/tags/${t}`} passHref>
-                                                        <Link
-                                                            href={`/${t}`}
-                                                            _hover={{
-                                                                textDecor: 'none',
-                                                                opacity: '.5'
-                                                            }}
-                                                        >
-                                                            <Tag size="sm">#{t}</Tag>
-                                                        </Link>
-                                                    </NextLink>
-                                                </span>
-                                            )
-                                        })}</Td>
-                                        <Td display={['none', 'none', 'table-cell']}>{p.data.author}</Td>
-                                        <Td display={['none', 'none', 'table-cell']}>{p.data.publishedAt}</Td>
-                                    </Tr>
-                                )
-                            })}
-                        </Tbody>
-                    </Table>
+                    <Flex overflow="auto">
+                        <Table>
+                            <Thead>
+                                <Tr>
+                                    <Th>Title</Th>
+                                    <Th>Summary</Th>
+                                    <Th>Tags</Th>
+                                    <Th>Author</Th>
+                                    <Th>Date Posted</Th>
+                                </Tr>
+                            </Thead>
+                            <Tbody>
+                                {filteredPosts.map((p, index) => {
+                                    const type = p.data.type === 'tutorial' ? '/tutorials/' : '/snippets/'
+                                    return (
+                                        <Tr key={index}>
+                                            <Td>
+                                                <Link
+                                                    href={`${type}${p.filePath.replace(/\.mdx?$/, '')}`}
+                                                >
+                                                    {p.data.title}
+                                                </Link>
+                                            </Td>
+                                            <Td>{p.data.description}</Td>
+                                            <Td>{p.data.tags.map((t, index) => {
+                                                return (
+                                                    <span style={{ padding: '1px' }} key={index}>
+                                                        <NextLink href={`/tags/${t}`} passHref>
+                                                            <Link
+                                                                href={`/${t}`}
+                                                                _hover={{
+                                                                    textDecor: 'none',
+                                                                    opacity: '.5'
+                                                                }}
+                                                            >
+                                                                <Tag size="sm">#{t}</Tag>
+                                                            </Link>
+                                                        </NextLink>
+                                                    </span>
+                                                )
+                                            })}</Td>
+                                            <Td>{p.data.author}</Td>
+                                            <Td>{p.data.publishedAt}</Td>
+                                        </Tr>
+                                    )
+                                })}
+                            </Tbody>
+                        </Table>
+                    </Flex>
                 </Flex>
             </Stack>
         </Container>

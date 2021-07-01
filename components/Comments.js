@@ -14,7 +14,7 @@ export default class Comments extends Component {
         scriptEl.setAttribute("data-repo-id", "MDEwOlJlcG9zaXRvcnkzNTQxODIwODI=");
         scriptEl.setAttribute("data-category", "Website Comments");
         scriptEl.setAttribute("data-category-id", "MDE4OkRpc2N1c3Npb25DYXRlZ29yeTMzMDc3MDQ5");
-        scriptEl.setAttribute("data-mapping", "url");
+        scriptEl.setAttribute("data-mapping", "title");
         scriptEl.setAttribute("data-reactions-enabled", "1");
         scriptEl.setAttribute("data-theme", "preferred_color_scheme");
         scriptEl.setAttribute("crossorigin", "anonymous");

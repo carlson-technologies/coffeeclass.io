@@ -9,7 +9,8 @@ import {
     Box,
     OrderedList,
     Alert,
-    Image
+    Image,
+    Flex
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
 
@@ -135,7 +136,7 @@ const MDXComponents = {
     li: CustomListItem,
     a: CustomLink,
     blockquote: Quote,
-    img: (props) => <Image h={400} {...props} />
+    img: (props) => <Image {...props}></Image>
 }
 
 export default MDXComponents

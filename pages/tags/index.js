@@ -12,8 +12,8 @@ import Container from '../../components/Container'
 import fs from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
-import { snippetsFilePaths, SNIPPETS_PATH } from '../../utils/mdxUtils'
-import { tutorialsFilePaths, TUTORIALS_PATH } from '../../utils/mdxUtils'
+import { snippetsFilePaths, SNIPPETS_PATH } from '../../lib/mdxUtils'
+import { tutorialsFilePaths, TUTORIALS_PATH } from '../../lib/mdxUtils'
 import NextLink from 'next/link'
 
 const url = `https://coffeeclass.io/tags`

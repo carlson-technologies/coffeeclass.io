@@ -38,7 +38,6 @@ const Sidebar = () => {
         light: 'brand_one.50',
         dark: 'brand_one.500'
     }
-    // routes[0].path.split('').reverse().join('').split('/')[0].split('').reverse().join('')
     return (
         <Box
             aria-label="Side Navigation"
@@ -62,23 +61,25 @@ const Sidebar = () => {
                 <Heading as="h4" size="md" textAlign="center">Modules 🔖</Heading>
                 <Divider my={4} />
                 {routes.map((r) =>
-                    <Link href={r.path} key={r.title} _hover={{
-                        textDecoration: 'none'
-                    }}>
-                        <Box
-                            _hover={{
-                                textDecoration: 'none',
-                                backgroundColor: r.path.includes(router.query.slug) ? sideBarActiveColor[colorMode] : sideBarHoverColor[colorMode]
-                            }}
-                            w="100%"
-                            my={2}
-                            borderRadius={5}
-                            p={1}
-                            backgroundColor={r.path.includes(router.query.slug) ? sideBarActiveColor[colorMode] : null}
-                        >
-                            <Text py="1px" pl={1}>{r.title}</Text>
-                        </Box>
-                    </Link>
+                    <NextLink href={r.path} passHref>
+                        <Link href={r.path} key={r.title} _hover={{
+                            textDecoration: 'none'
+                        }}>
+                            <Box
+                                _hover={{
+                                    textDecoration: 'none',
+                                    backgroundColor: r.path.includes(router.query.slug) ? sideBarActiveColor[colorMode] : sideBarHoverColor[colorMode]
+                                }}
+                                w="100%"
+                                my={2}
+                                borderRadius={5}
+                                p={1}
+                                backgroundColor={r.path.includes(router.query.slug) ? sideBarActiveColor[colorMode] : null}
+                            >
+                                <Text py="1px" pl={1}>{r.title}</Text>
+                            </Box>
+                        </Link>
+                    </NextLink>
                 )}
             </Flex>
         </Box>

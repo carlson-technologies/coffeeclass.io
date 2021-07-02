@@ -66,26 +66,42 @@ const Pagination = () => {
             color={color[colorMode]}
         >
             {pagination.prevRoute ?
-                <Flex
-                    align="center"
-                    _hover={{
-                        color: hoverColor[colorMode]
-                    }}
-                >
-                    <Icon as={ChevronLeftIcon}></Icon>
-                    <NextLink href={pagination.prevRoute.path} passHref>{pagination.prevRoute.title}</NextLink>
-                </Flex>
+                <NextLink href={pagination.prevRoute.path} passHref>
+                    <Link
+                        _hover={{
+                            color: hoverColor[colorMode]
+                        }}
+                    >
+                        <Flex
+                            align="center"
+                            _hover={{
+                                color: hoverColor[colorMode]
+                            }}
+                        >
+                            <Icon as={ChevronLeftIcon}></Icon>
+                            <Text>{pagination.prevRoute.title}</Text>
+                        </Flex>
+                    </Link>
+                </NextLink>
                 : <Text></Text>}
             {pagination.nextRoute ?
-                <Flex
-                    align="center"
-                    _hover={{
-                        color: hoverColor[colorMode]
-                    }}
-                >
-                    <NextLink href={pagination.nextRoute.path} passHref>{pagination.nextRoute.title}</NextLink>
-                    <Icon as={ChevronRightIcon}></Icon>
-                </Flex>
+                <NextLink href={pagination.nextRoute.path} passHref>
+                    <Link
+                        _hover={{
+                            color: hoverColor[colorMode]
+                        }}
+                    >
+                        <Flex
+                            align="center"
+                            _hover={{
+                                color: hoverColor[colorMode]
+                            }}
+                        >
+                            <Text>{pagination.nextRoute.title}</Text>
+                            <Icon as={ChevronRightIcon}></Icon>
+                        </Flex>
+                    </Link>
+                </NextLink>
                 : <Text></Text>}
         </Flex>
     )

@@ -12,8 +12,8 @@ import { useRouter } from 'next/router'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { snippetsFilePaths, SNIPPETS_PATH } from '../../../utils/mdxUtils'
-import { tutorialsFilePaths, TUTORIALS_PATH } from '../../../utils/mdxUtils'
+import { snippetsFilePaths, SNIPPETS_PATH } from '../../../lib/mdxUtils'
+import { tutorialsFilePaths, TUTORIALS_PATH } from '../../../lib/mdxUtils'
 import Snippet from '../../../components/Cards/Snippet'
 import Tutorial from '../../../components/Cards/Tutorial'
 
@@ -52,7 +52,7 @@ export default function Index({ tutorials, snippets }) {
                     <Divider mt={2} />
                     <Heading my={4} as="h2">Snippets</Heading>
                     <Flex flexDir="column">
-                        <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
+                        <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
                             {
                                 snippets.map(post => post.data.tags.map(t => {
                                     return (

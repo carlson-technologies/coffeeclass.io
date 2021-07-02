@@ -1,11 +1,11 @@
 import { MDXProvider } from '@mdx-js/react'
 import MDXComponents from '../components/MDXComponents'
-import { useColorMode, ColorModeProvider } from "@chakra-ui/react"
+import { useColorMode, ColorModeProvider, ChakraProvider } from "@chakra-ui/react"
 import { prismLightTheme, prismDarkTheme } from '../styles/prism'
 import { Global, css } from '@emotion/react'
 import { DefaultSeo } from 'next-seo'
 import SEO from '../next-seo.config'
-import { Chakra } from "../src/Chakra"
+import customTheme from '../styles/theme'
 
 const GlobalStyle = ({ children }) => {
   const { colorMode } = useColorMode()
@@ -36,19 +36,14 @@ const GlobalStyle = ({ children }) => {
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Chakra cookies={pageProps.cookies}>
-      <ColorModeProvider
-        options={{
-          useSystemColorMode: false,
-        }}>
-        <MDXProvider components={MDXComponents}>
-          <GlobalStyle>
-            <DefaultSeo {...SEO} />
-            <Component {...pageProps} />
-          </GlobalStyle>
-        </MDXProvider>
-      </ColorModeProvider>
-    </Chakra>
+    <ChakraProvider theme={customTheme}>
+      <MDXProvider components={MDXComponents}>
+        <GlobalStyle>
+          <DefaultSeo {...SEO} />
+          <Component {...pageProps} />
+        </GlobalStyle>
+      </MDXProvider>
+    </ChakraProvider>
   )
 }
 

@@ -11,7 +11,7 @@ import Container from '../../components/Container'
 import fs from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
-import { snippetsFilePaths, SNIPPETS_PATH } from '../../utils/mdxUtils'
+import { snippetsFilePaths, SNIPPETS_PATH } from '../../lib/mdxUtils'
 import Snippet from '../../components/Cards/Snippet'
 
 const url = 'https://coffeeclass.io/snippets'

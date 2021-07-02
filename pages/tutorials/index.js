@@ -10,7 +10,7 @@ import Container from '../../components/Container'
 import fs from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
-import { tutorialsFilePaths, TUTORIALS_PATH } from '../../utils/mdxUtils'
+import { tutorialsFilePaths, TUTORIALS_PATH } from '../../lib/mdxUtils'
 import Tutorial from '../../components/Cards/Tutorial'
 
 const url = 'https://coffeeclass.io/tutorials'

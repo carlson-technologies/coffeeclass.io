@@ -19,7 +19,7 @@ If you're a web developer, you've probably heard of [Jamstack](https://jamstack.
 
 There are a lot of popular Jamstack frameworks. The main ones are [Next.js](https://nextjs.org/), [Nuxt.js](https://nuxtjs.org/) [Gatsby](https://www.gatsbyjs.com/), [Hugo](https://gohugo.io/), and [Jekyll](https://jekyllrb.com/). Out of these 5, Next.js is by far the largest in terms of market share beating out second place Nuxt.js by over 3x.
 
-In this video, you will learn Next.js by building a developer portfolio complete with a blog. You will also learn some other awesome technologies in the process like chakra-ui, next-mdx-remote, next-seo, Vercel, and more.
+In this post, you will learn Next.js by building a developer portfolio complete with a blog. You will also learn some other awesome technologies in the process like chakra-ui, next-mdx-remote, next-seo, Vercel, and more.
 
 ![A pie chart comparing the top Jamstack frameworks](/content/tutorials/nextjs-crash-course-build-a-developer-portfolio-website/pie-chart.png)
 
@@ -203,7 +203,7 @@ We can now use vanilla javascript to fetch data from the GitHub api. As always, 
 
 Back inside of `projects.js` we can map over the data and display it.
 
-Recall, earlier in this video, we made a dynamic route accessible on `localhost:3000/projects/[pid]`. We can take advantage of that here by linking to that route passing in the project name. Then from this page, we can fetch additional data on that project or we could pass it in as part of the query string.
+Recall, earlier in this post, we made a dynamic route accessible on `localhost:3000/projects/[pid]`. We can take advantage of that here by linking to that route passing in the project name. Then from this page, we can fetch additional data on that project or we could pass it in as part of the query string.
 
 ### Blog
 
@@ -213,7 +213,7 @@ To create a blog, we will use next-mdx-remote.
 yarn add next-mdx-remote
 ```
 
-We can store blog posts where ever we want because we will be using `getStaticProps()` to fetch them. In this video, and in most cases, storing them locally is the best option. Let's create a folder called `posts` and add our first blog post. We can store the important parts of the post like the title, description and published date in whats called the `frontMatter`.
+We can store blog posts where ever we want because we will be using `getStaticProps()` to fetch them. In this post, and in most cases, storing them locally is the best option. Let's create a folder called `posts` and add our first blog post. We can store the important parts of the post like the title, description and published date in whats called the `frontMatter`.
 
 ```jsx
 ---

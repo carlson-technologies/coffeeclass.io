@@ -9,6 +9,7 @@ publishedAt: "2021-05-01"
 tags: ["react", "utteranc"]
 youtubeId: ["https://youtu.be/Yi0AMpJXrJ0"]
 type: "snippet"
+logoImage: ["utterances.png"]
 ---
 
 Adding comments to a [Jamstack](https://jamstack.org/) website is a challenge. The main reason for this is because
@@ -19,9 +20,9 @@ You can choose to connect a database such as [Firestore](https://firebase.google
 - time consuming
 - **costs money!**
 
-In this article, I'll show you how to connect [utteranc](https://utteranc.es/) to your React based application.
+In this article, I'll show you how to connect [utterances](https://utteranc.es/) to your React based application.
 
-## What Is Utteranc?
+## What Is Utterances?
 
 Utteranc under the hood interacts with the [GitHub api](https://docs.github.com/en/rest) to store all of your comments in the issues tab. According to their website, some of the pros of using utteranc are:
 
@@ -34,7 +35,7 @@ Utteranc under the hood interacts with the [GitHub api](https://docs.github.com/
 
 I don't know about you, but this sounds like a great comment solution.
 
-## Adding Utteranc To A React Website
+## Adding Utterances To A React Website
 
 If you want to add Utteranc to a simple html site, all you need to do is paste in a `<script>` tag. Unfortuantly, in React, we can't do this. We need to create a [custom component](https://reactjs.org/docs/components-and-props.html).
 
@@ -45,7 +46,7 @@ is pushed to, however, I recommend creating a new one just for the comments. You
 
 ![The comments GitHub repo for this website](/content/snippets/add-comments-to-nextjs-website/comments-coffeeclass-io.png)
 
-> ❗ Make sure this repo is public and that Utteranc is authorized. ❗
+> ❗ Make sure this repo is public and that Utterances is authorized. ❗
 
 ### Step 2: Create The React Component
 

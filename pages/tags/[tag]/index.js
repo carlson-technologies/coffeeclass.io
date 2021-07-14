@@ -66,29 +66,33 @@ export default function Index({ tutorials, snippets }) {
                                                 as={`/snippets/${post.filePath.replace(/\.mdx?$/, '')}`}
                                                 href={`/snippets/[slug]`}
                                                 mainTag={tag}
+                                                image={`/snippet-images/${post.data.logoImage[0]}`}
                                             /> : null
                                     )
                                 }))
                             }
                         </Grid>
                         <Heading my={4} as="h3">Tutorials</Heading>
-                        {
-                            tutorials.map(post => post.data.tags.map(t => {
-                                return (
-                                    t == tag ?
-                                        <Tutorial
-                                            key={post.data.title}
-                                            src={`/content/tutorials/${post.filePath.replace(/\.mdx?$/, '')}/${post.data.featureImg}`}
-                                            title={post.data.title}
-                                            description={post.data.description}
-                                            tags={post.data.tags}
-                                            as={`/tutorials/${post.filePath.replace(/\.mdx?$/, '')}`}
-                                            href={`/tutorials/[slug]`}
-                                            mainTag={tag}
-                                        /> : null
-                                )
-                            }))
-                        }
+                        <Flex wrap="wrap">
+                            {
+                                tutorials.map(post => post.data.tags.map(t => {
+                                    return (
+                                        t == tag ?
+                                            <Flex m={1, 1, 1, 2, 2, 2}>
+                                                <Tutorial
+                                                    key={post.data.title}
+                                                    src={`/content/tutorials/${post.filePath.replace(/\.mdx?$/, '')}/${post.data.featureImg}`}
+                                                    title={post.data.title}
+                                                    description={post.data.description}
+                                                    tags={post.data.tags}
+                                                    as={`/tutorials/${post.filePath.replace(/\.mdx?$/, '')}`}
+                                                    href={`/tutorials/[slug]`}
+                                                    mainTag={tag}
+                                                /></Flex> : null
+                                    )
+                                }))
+                            }
+                        </Flex>
                     </Flex>
                 </Flex>
             </Stack>

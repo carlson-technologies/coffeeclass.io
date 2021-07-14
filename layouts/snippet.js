@@ -2,13 +2,10 @@ import { useState, useEffect } from 'react'
 import Container from '../components/Container'
 import {
   Flex,
-  Heading,
-  Link,
   Box
 } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import SEO from '../components/SEO'
-import { YoutubeIcon, GitHubIcon } from '../components/CustomIcons'
 
 export default function Layout({ frontMatter, children }) {
   const router = useRouter()
@@ -22,11 +19,6 @@ export default function Layout({ frontMatter, children }) {
     let scrollPercent = scrollTop / (docHeight - winHeight);
     let scrollPercentRounded = Math.round(scrollPercent * 100);
     setWidth(scrollPercentRounded)
-
-    // this value is being passed into Confetti component
-    // we only want to set it off once so no need to ever set it back to false
-    // if (scrollPercentRounded == 100)
-    //     setFire(true)
   }
 
   useEffect(() => {
@@ -45,29 +37,10 @@ export default function Layout({ frontMatter, children }) {
           flexDir="column"
           mx={[0, 0, 0, 0, 1, 5]}
           px={[4, 4, 4, 2, 2, 0]}
-          w={frontMatter.headers ? ["100%", "100%", "100%", "100%", "calc(100% - 300px)", "calc(100% - 300px)"] : '100%'}
+          w="100%"
         >
           {children}
         </Flex>
-        {frontMatter?.headers &&
-          <Flex
-            w={200}
-            pos="fixed"
-            right={50}
-            top={100}
-            flexDir="column"
-            p={2}
-            display={['none', 'none', 'none', 'none', 'flex', 'flex']}
-          >
-            {frontMatter?.headers.map((h) => {
-              return (
-                <Heading as="h4" size="sm" fontWeight="normal" my={1} key={h.text}>
-                  <Link href={`#${h.text}`} ml={(h.level - 2) * 2}>{h.text}</Link>
-                </Heading>
-              )
-            })}
-          </Flex>
-        }
       </Flex>
     </Container>
   )

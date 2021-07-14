@@ -22,6 +22,10 @@ export default function Tutorial({ src, title, description, tags, href, as, main
         light: '0 4px 12px 0 rgba(0, 0, 0, 0.3)',
         dark: '0 4px 12px 0 rgba(0, 0, 0, 1)'
     }
+    const tagColor = {
+        light: 'gray.600',
+        dark: 'gray.300'
+    }
     return (
         <Flex
             w={['100%', '100%', '100%', 500]}
@@ -71,7 +75,7 @@ export default function Tutorial({ src, title, description, tags, href, as, main
                                 <NextLink href={`/tags/${tag}`} passHref>
                                     <Link href={`/${tag}`}
                                     >
-                                        <Text fontSize="lg" color={mainTag == tag ? "brand_one.500" : "gray.500"}>#{tag}</Text>
+                                        <Text fontSize="lg" fontWeight={mainTag == tag ? "bold" : "normal"} color={tagColor[colorMode]}>#{tag}</Text>
                                     </Link>
                                 </NextLink>
                             </Flex>

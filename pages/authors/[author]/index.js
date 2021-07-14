@@ -7,7 +7,8 @@ import {
     Divider,
     useColorMode,
     Tag,
-    Link
+    Link,
+    Avatar
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../../../components/Container'
@@ -51,6 +52,7 @@ export default function Index({ tutorials, snippets }) {
                     flexDir="column"
                     mt={50}
                 >
+                    <Avatar alignSelf="center" size="2xl" src="/authors/benjamin-carlson.jpeg" />
                     <Heading as="h1" size="2xl" textAlign="center" letterSpacing="tight" color={headerColor[colorMode]}>{author}</Heading>
                     <Flex my={2} justifyContent="center" mt={2}>
                         <Tag mr={2} size="lg"><Link href="https://benjamincarlson.io" isExternal>Website</Link></Tag>
@@ -72,28 +74,33 @@ export default function Index({ tutorials, snippets }) {
                                                 tags={s.data.tags}
                                                 as={`/snippets/${s.filePath.replace(/\.mdx?$/, '')}`}
                                                 href={`/snippets/[slug]`}
+                                                image={`/snippet-images/${s.data.logoImage[0]}`}
                                             /> : null
                                     )
                                 })
                             }
                         </Grid>
                         <Heading my={4} as="h3">Tutorials</Heading>
-                        {
-                            tutorials.map(t => {
-                                return (
-                                    t.data.author == author ?
-                                        <Tutorial
-                                            key={t.data.title}
-                                            src={`/content/tutorials/${t.filePath.replace(/\.mdx?$/, '')}/${t.data.featureImg}`}
-                                            title={t.data.title}
-                                            description={t.data.description}
-                                            tags={t.data.tags}
-                                            as={`/tutorials/${t.filePath.replace(/\.mdx?$/, '')}`}
-                                            href={`/tutorials/[slug]`}
-                                        /> : null
-                                )
-                            })
-                        }
+                        <Flex wrap="wrap">
+                            {
+                                tutorials.map(t => {
+                                    return (
+                                        t.data.author == author ?
+                                            <Flex m={1, 1, 1, 2, 2, 2}>
+                                                <Tutorial
+                                                    key={t.data.title}
+                                                    src={`/content/tutorials/${t.filePath.replace(/\.mdx?$/, '')}/${t.data.featureImg}`}
+                                                    title={t.data.title}
+                                                    description={t.data.description}
+                                                    tags={t.data.tags}
+                                                    as={`/tutorials/${t.filePath.replace(/\.mdx?$/, '')}`}
+                                                    href={`/tutorials/[slug]`}
+                                                />
+                                            </Flex> : null
+                                    )
+                                })
+                            }
+                        </Flex>
                     </Flex>
                 </Flex>
             </Stack>

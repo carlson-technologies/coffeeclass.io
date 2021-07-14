@@ -7,23 +7,24 @@ import Layout from '../../layouts/snippet'
 import { snippetsFilePaths, SNIPPETS_PATH } from '../../lib/mdxUtils'
 import MDXComponents from '../../components/MDXComponents'
 import mdxPrism from 'mdx-prism'
-import { parseISO, format } from 'date-fns'
 import readingTime from 'reading-time'
+import { parseISO, format } from 'date-fns'
 import {
     Heading,
     Text,
-    Divider,
     Link,
     Flex,
     useColorMode,
     Avatar,
-    Tag,
-    Tooltip,
-    Button
+    Button,
+    Image,
+    Badge,
+    Divider
 } from '@chakra-ui/react'
-import NextLink from 'next/link'
 import Comments from '../../components/Comments'
 import getHeaders from '../../lib/get-headers'
+import { motion } from 'framer-motion'
+import NextLink from 'next/link'
 
 export default function PostPage({ source, frontMatter }) {
     const content = hydrate(source, { MDXComponents })
@@ -34,93 +35,130 @@ export default function PostPage({ source, frontMatter }) {
     }
     return (
         <Layout frontMatter={frontMatter}>
-            <Flex
-                flexDir="column"
-                w={['100%', '100%', '100%', '100%', '100%', '70%']}
-                alignSelf="center"
+            <motion.div
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                style={{
+                    flexDir: "column",
+                    w: ['100%', '100%', '100%', '100%', '100%', '70%'],
+                    alignSelf: "center",
+                    maxW: "800px"
+                }}
             >
                 <Flex
-                    align="center"
-                    justify={["left", "left", "left", "center", "center", "center"]}
-                    mb={2}
-                    flexDir={['column', 'column', 'column', 'row', 'row', 'row']}
+                    flexDir="column"
+                    alignSelf="center"
+                    maxW="800px"
                 >
-                    <Flex mb={[2, 2, 2, 0, 0, 0]}>
-                        {frontMatter.tags?.map((tag) => {
-                            return (
-                                <Flex key={tag} mr={2}>
-                                    <NextLink href={`/tags/${tag}`} _hover={{ textDecor: 'none' }} passHref>
-                                        <Tooltip hasArrow label={`View posts relating to ${tag}`}>
-                                            <Link href={`/tags/${tag}`} _hover={{ textDecor: 'none' }}>
-                                                <Tag size="sm">#{tag}</Tag>
-                                            </Link>
-                                        </Tooltip>
+                    <Flex>
+                        {
+                            frontMatter.logoImage?.map((image, index) => (
+                                // If the image title includes "light", it has a dark mode image
+                                // so we need to use the correct image.
+                                image.includes('light') ?
+                                    <Image
+                                        key={index}
+                                        src={colorMode === "light" ? `/snippet-images/${image}` : `/snippet-images/${image.replace('light', 'dark')}`}
+                                        alt={frontMatter.logoImage}
+                                        w={100}
+                                        alignSelf="left"
+                                        mb={4}
+                                        mr={2}
+                                    /> :
+                                    <Image
+                                        key={index}
+                                        src={`/snippet-images/${image}`}
+                                        alt={frontMatter.logoImage}
+                                        w={100}
+                                        alignSelf="left"
+                                        mb={4}
+                                        mr={2}
+                                    />
+                            ))
+                        }
+                    </Flex>
+                    <Heading
+                        as="h1"
+                        size="2xl"
+                        textAlign="left"
+                    >
+                        {frontMatter.title}
+                    </Heading>
+                    <Text
+                        fontSize="xl"
+                        mt={2}
+                        color={color[colorMode]}
+                        textAlign="left"
+                    >
+                        {frontMatter.description}
+                    </Text>
+                </Flex>
+                <Flex
+                    flexDir="column"
+                    alignSelf="center"
+                    maxW="800px"
+                >
+                    {content}
+                </Flex>
+                <Flex
+                    justify="center"
+                    flexDir="column"
+                    mt={4}
+                >
+                    <Divider mb={4} />
+                    <Flex align="center" mb={8}>
+                        <Text color={color[colorMode]} fontSize="md">Published on {format(parseISO(frontMatter.publishedAt), 'MMMM dd, yyyy')} in</Text>
+                        <Flex ml={2}>
+                            {frontMatter.tags.map((tag, index) => (
+                                <Flex
+                                    mr={2}
+                                    key={index}
+                                    _hover={{
+                                        textDecor: 'none',
+                                        opacity: '.5'
+                                    }}
+                                    cursor="pointer"
+                                >
+                                    <NextLink href={`/tags/${tag}`} passHref>
+                                        <Link href={`/${tag}`}
+                                        >
+                                            <Badge fontSize="lg">#{tag}</Badge>
+                                        </Link>
                                     </NextLink>
                                 </Flex>
-                            )
-                        })}
+                            ))}
+                        </Flex>
                     </Flex>
-                    <Flex display={['none', 'none', 'none', 'flex', 'flex', 'flex']}>•</Flex>
-                    <Flex>
-                        <Text mx={2} color={color[colorMode]} fontSize="sm">{format(parseISO(frontMatter.publishedAt), 'MMMM dd, yyyy')}</Text>
-                        •
-                        <Text mx={2} color={color[colorMode]} fontSize="sm">{frontMatter.readingTime.text}</Text>
-                        <Flex display={['none', 'none', 'none', 'flex', 'flex', 'flex']}>•</Flex>
-                        <Text display={['none', 'none', 'none', 'flex', 'flex', 'flex']} mx={2} color={color[colorMode]} fontSize="sm" fontWeight="bold"><Link href="#comments">Comments</Link></Text>
-                    </Flex>
-                </Flex>
-                <Heading as="h1" size="2xl" textAlign={["left", "left", "left", "center", "center", "center"]}>{frontMatter.title}</Heading>
-                <Text
-                    fontSize="xl"
-                    mt={2}
-                    color={color[colorMode]}
-                    textAlign={["left", "left", "left", "center", "center", "center"]}
-                >
-                    {frontMatter.description}
-                </Text>
-            </Flex>
-            <Flex
-                flexDir="column"
-                w={["100%", "100%", "100%", "100%", "100%", "60%"]}
-                alignSelf="center"
-                maxW="800px"
-            >
-                {content}
-            </Flex>
-            <Flex
-                justify="center"
-                flexDir="column"
-                mt={8}
-            >
-                <Button
-                    variant="outline"
-                    w={['100%', '100%', '100%', 200, 250, 300]}
-                    alignSelf="center"
-                >
-                    <Link
-                        href="#comments"
-                        _hover={{ textDecor: 'none' }}
+                    <Button
+                        variant="outline"
+                        w={['100%', '100%', '100%', 200, 250, 300]}
+                        alignSelf="center"
+                        mb={8}
                     >
-                        Leave A Comment
-                    </Link>
-                </Button>
-            </Flex>
-            <Divider mt={12} mb={4} w="30%" alignSelf="center" />
-            <Flex
-                align="center"
-                mt={4}
-                justify="center"
-                flexDir="column"
-            >
-                <Avatar src={`/authors/${frontMatter.authorImage}`} size="xl" mb={2} alt={`Image of ${frontMatter.author}`} />
-                <Flex flexDir="column" align="center">
-                    <Text>Written By {frontMatter.author}</Text>
-                    <Text color={color[colorMode]}>{frontMatter.authorPosition}</Text>
-                    <Text mt={4}><Link href={`/authors/${frontMatter.author}`} fontWeight="bold">More Articles By {frontMatter.author}</Link></Text>
+                        <Link
+                            href="#comments"
+                            _hover={{ textDecor: 'none' }}
+                        >
+                            Leave A Comment
+                        </Link>
+                    </Button>
                 </Flex>
-            </Flex>
-            <Divider my={12} w="30%" alignSelf="center" />
-            <Comments />
+                <Flex
+                    align="center"
+                    mt={4}
+                    mb={6}
+                    justify="center"
+                    flexDir="column"
+                >
+                    <Avatar src={`/authors/${frontMatter.authorImage}`} size="xl" mb={2} alt={`Image of ${frontMatter.author}`} />
+                    <Flex flexDir="column" align="center">
+                        <Text>Written By {frontMatter.author}</Text>
+                        <Text color={color[colorMode]}>{frontMatter.authorPosition}</Text>
+                        <Text mt={4}><Link href={`/authors/${frontMatter.author}`} fontWeight="bold">More Articles By {frontMatter.author}</Link></Text>
+                    </Flex>
+                </Flex>
+                <Comments />
+            </motion.div>
         </Layout>
     )
 }

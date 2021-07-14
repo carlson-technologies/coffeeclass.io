@@ -153,6 +153,7 @@ export default function Index({ snippets, tutorials }) {
                                     tags={post.data.tags}
                                     as={`/snippets/${post.filePath.replace(/\.mdx?$/, '')}`}
                                     href={`/snippets/[slug]`}
+                                    image={`/snippet-images/${post.data.logoImage[0]}`}
                                 />
                             ))}
                         </Grid>

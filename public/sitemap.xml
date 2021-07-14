@@ -25,6 +25,10 @@
   </url>
 
   <url>
+    <loc>https://coffeeclass.io/404</loc>
+  </url>
+
+  <url>
     <loc>https://coffeeclass.io/about</loc>
   </url>
 
@@ -34,10 +38,6 @@
 
   <url>
     <loc>https://coffeeclass.io/search</loc>
-  </url>
-
-  <url>
-    <loc>https://coffeeclass.io/tutorials/add-firebase-to-nextjs</loc>
   </url>
 
   <url>
@@ -66,6 +66,16 @@
 
   <url>
     <loc>https://coffeeclass.io/snippets/nextjs-mdx-quickstart</loc>
+  </url>
+
+  <url>
+    <loc>https://coffeeclass.io/tutorials/add-firebase-to-nextjs</loc>
+  </url>
+
+  <url>
+    <loc
+      >https://coffeeclass.io/tutorials/nextjs-crash-course-build-a-developer-portfolio-website</loc
+    >
   </url>
 
   <url>

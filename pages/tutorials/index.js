@@ -3,7 +3,8 @@ import {
     Flex,
     Stack,
     Text,
-    useColorMode
+    useColorMode,
+    Grid
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../../components/Container'
@@ -53,15 +54,17 @@ export default function Index({ posts }) {
                     <Text color={color[colorMode]} mb={8} fontSize="lg">Tutorials are involved and usually correspond to a YouTube video. They typically take 15 minutes at a minimum to complete.</Text>
                     <Flex wrap="wrap">
                         {tutorialsOrderedByPublishedDate.map((post) => (
-                            <Tutorial
-                                key={post.data.title}
-                                src={`/content/tutorials/${post.filePath.replace(/\.mdx?$/, '')}/${post.data.featureImg}`}
-                                title={post.data.title}
-                                description={post.data.description}
-                                tags={post.data.tags}
-                                as={`/tutorials/${post.filePath.replace(/\.mdx?$/, '')}`}
-                                href={`/tutorials/[slug]`}
-                            />
+                            <Flex m={1, 1, 1, 2, 2, 2}>
+                                <Tutorial
+                                    key={post.data.title}
+                                    src={`/content/tutorials/${post.filePath.replace(/\.mdx?$/, '')}/${post.data.featureImg}`}
+                                    title={post.data.title}
+                                    description={post.data.description}
+                                    tags={post.data.tags}
+                                    as={`/tutorials/${post.filePath.replace(/\.mdx?$/, '')}`}
+                                    href={`/tutorials/[slug]`}
+                                />
+                            </Flex>
                         ))}
                     </Flex>
                 </Flex>

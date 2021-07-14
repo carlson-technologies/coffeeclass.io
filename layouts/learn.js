@@ -2,9 +2,7 @@ import {
     Heading,
     Flex,
     Stack,
-    Text,
-    Box,
-    Link
+    Text
 } from '@chakra-ui/react'
 import Sidebar from '../components/Sidebar'
 import Pagination from '../components/Pagination'
@@ -33,7 +31,6 @@ export default function LearnLayout({ children, frontMatter }) {
                 }}
             />
             <Flex
-                // justifyContent="center"
                 ml={[0, 0, 0, 0, 2, 2]}
             >
                 <Sidebar />

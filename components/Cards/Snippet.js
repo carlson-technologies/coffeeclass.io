@@ -51,7 +51,7 @@ export default function Snippet({ title, description, tags, href, as, mainTag })
                                 <NextLink href={`/tags/${tag}`} passHref>
                                     <Link href={`/${tag}`}
                                     >
-                                        <Text fontSize="lg" color={mainTag == tag ? "brand_one.500" : "custom_yellow.800"}>#{tag}</Text>
+                                        <Text fontSize="lg" color={mainTag == tag ? "brand_one.500" : "gray.500"}>#{tag}</Text>
                                     </Link>
                                 </NextLink>
                             </Flex>

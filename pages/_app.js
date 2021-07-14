@@ -1,6 +1,6 @@
 import { MDXProvider } from '@mdx-js/react'
 import MDXComponents from '../components/MDXComponents'
-import { useColorMode, ColorModeProvider, ChakraProvider } from "@chakra-ui/react"
+import { useColorMode, ChakraProvider } from "@chakra-ui/react"
 import { prismLightTheme, prismDarkTheme } from '../styles/prism'
 import { Global, css } from '@emotion/react'
 import { DefaultSeo } from 'next-seo'
@@ -15,11 +15,11 @@ const GlobalStyle = ({ children }) => {
         styles={css`
           ${colorMode === 'light' ? prismLightTheme : prismDarkTheme};
           #__next {
-            background-color: ${colorMode === 'light' ? '#f7f7fa' : '#15161a'};
+            background-color: ${colorMode === 'light' ? '#fff' : '#15161a'};
             color: ${colorMode === 'light' ? 'black' : 'white'};
           }
           html {
-            background-color: ${colorMode === 'light' ? '#f7f7fa' : '#15161a'};
+            background-color: ${colorMode === 'light' ? '#fff' : '#15161a'};
           }
           ::selection {
             background-color: ${colorMode === 'light' ? '#EAD9CD' : '#714B2F'};

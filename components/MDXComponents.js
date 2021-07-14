@@ -136,7 +136,7 @@ const MDXComponents = {
     li: CustomListItem,
     a: CustomLink,
     blockquote: Quote,
-    img: (props) => <Image {...props}></Image>
+    img: (props) => <Image {...props} borderRadius={5}></Image>,
 }
 
 export default MDXComponents

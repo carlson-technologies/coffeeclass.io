@@ -24,25 +24,28 @@ import matter from 'gray-matter'
 import path from 'path'
 import { snippetsFilePaths, SNIPPETS_PATH } from '../lib/mdxUtils'
 import { tutorialsFilePaths, TUTORIALS_PATH } from '../lib/mdxUtils'
+import { learnPythonFilePaths, LEARN_PYTHON_PATH } from '../lib/mdxUtils'
 import { SearchIcon } from '@chakra-ui/icons'
+import get_type from '../lib/get_type'
 
 const url = 'https://coffeeclass.io/search'
 const title = 'Search – Coffeeclass'
 const description = 'Search free programming tutorials on beginner Python, intermediate Python, advanced Python, JavaScript, algorithms, Next.js, react, and more all for free on Coffeeclass.'
 
-export default function Search({ snippets, tutorials }) {
+export default function Search({ snippets, tutorials, learn_python }) {
     const [searchValue, setSearchValue] = useState('')
     const allPosts = []
     snippets.map(s => { allPosts.push(s) })
     tutorials.map(t => { allPosts.push(t) })
+    learn_python.map(l_p => { allPosts.push(l_p) })
     const filteredPosts = allPosts
         .sort(
             (a, b) =>
                 Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt))
         )
         .filter((frontMatter) =>
-            frontMatter.data.title.toLowerCase().includes(searchValue.toLowerCase()) ||
-            frontMatter.data.description.toLowerCase().includes(searchValue.toLowerCase())
+            frontMatter.data?.title?.toLowerCase()?.includes(searchValue.toLowerCase()) ||
+            frontMatter.data?.description?.toLowerCase()?.includes(searchValue.toLowerCase())
         )
     const { colorMode } = useColorMode()
     const headerColor = {
@@ -85,6 +88,7 @@ export default function Search({ snippets, tutorials }) {
                         <Table>
                             <Thead>
                                 <Tr>
+                                    <Th>Type</Th>
                                     <Th>Title</Th>
                                     <Th>Summary</Th>
                                     <Th>Tags</Th>
@@ -94,18 +98,22 @@ export default function Search({ snippets, tutorials }) {
                             </Thead>
                             <Tbody>
                                 {filteredPosts.map((p, index) => {
-                                    const type = p.data.type === 'tutorial' ? '/tutorials/' : '/snippets/'
+                                    const type = get_type(p.data.type)
                                     return (
                                         <Tr key={index}>
+                                            <Td>{p.data.type}</Td>
                                             <Td>
                                                 <Link
-                                                    href={`${type}${p.filePath.replace(/\.mdx?$/, '')}`}
+                                                    href={
+                                                        p.data.type === 'learn' ?
+                                                            `${type}${p.data.language}/${p.filePath.replace(/\.mdx?$/, '')}`
+                                                            : `${type}${p.filePath.replace(/\.mdx?$/, '')}`}
                                                 >
                                                     {p.data.title}
                                                 </Link>
                                             </Td>
-                                            <Td>{p.data.description}</Td>
-                                            <Td>{p.data.tags.map((t, index) => {
+                                            <Td>{p.data?.description}</Td>
+                                            <Td>{p.data?.tags?.map((t, index) => {
                                                 return (
                                                     <span style={{ padding: '1px' }} key={index}>
                                                         <NextLink href={`/tags/${t}`} passHref>
@@ -122,8 +130,8 @@ export default function Search({ snippets, tutorials }) {
                                                     </span>
                                                 )
                                             })}</Td>
-                                            <Td>{p.data.author}</Td>
-                                            <Td>{p.data.publishedAt}</Td>
+                                            <Td>{p.data?.author}</Td>
+                                            <Td>{p.data?.publishedAt}</Td>
                                         </Tr>
                                     )
                                 })}
@@ -159,5 +167,16 @@ export function getStaticProps() {
         }
     })
 
-    return { props: { tutorials, snippets } }
+    const learn_python = learnPythonFilePaths.map((filePath) => {
+        const source = fs.readFileSync(path.join(LEARN_PYTHON_PATH, filePath))
+        const { content, data } = matter(source)
+
+        return {
+            content,
+            data,
+            filePath,
+        }
+    })
+
+    return { props: { tutorials, snippets, learn_python } }
 }

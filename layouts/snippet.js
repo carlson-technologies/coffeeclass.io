@@ -1,13 +1,9 @@
 import { useState, useEffect } from 'react'
 import Container from '../components/Container'
 import {
-  Divider,
   Flex,
   Heading,
-  Text,
   Link,
-  useColorMode,
-  Tooltip,
   Box
 } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
@@ -17,15 +13,6 @@ import { YoutubeIcon, GitHubIcon } from '../components/CustomIcons'
 export default function Layout({ frontMatter, children }) {
   const router = useRouter()
   const slug = router.asPath
-  const { colorMode } = useColorMode()
-  const bgColor = {
-    light: 'gray.100',
-    dark: 'gray.700'
-  }
-  const boxShadowColor = {
-    light: '0 4px 12px 0 rgba(0, 0, 0, 0.3)',
-    dark: '0 4px 12px 0 rgba(0, 0, 0, 0.9)'
-  }
 
   const [width, setWidth] = useState(0)
   const handleScroll = () => {

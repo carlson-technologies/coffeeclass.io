@@ -3,7 +3,7 @@ import matter from 'gray-matter'
 import hydrate from 'next-mdx-remote/hydrate'
 import renderToString from 'next-mdx-remote/render-to-string'
 import path from 'path'
-import Layout from '../../layouts/post'
+import Layout from '../../layouts/tutorial'
 import { tutorialsFilePaths, TUTORIALS_PATH } from '../../lib/mdxUtils'
 import MDXComponents from '../../components/MDXComponents'
 import mdxPrism from 'mdx-prism'
@@ -19,11 +19,12 @@ import {
     Avatar,
     Tag,
     Tooltip,
-    Button
+    Button,
+    Image
 } from '@chakra-ui/react'
-import NextLink from 'next/link'
 import Comments from '../../components/Comments'
 import getHeaders from '../../lib/get-headers'
+import { useRouter } from 'next/router'
 
 export default function PostPage({ source, frontMatter }) {
     const content = hydrate(source, { MDXComponents })
@@ -32,56 +33,43 @@ export default function PostPage({ source, frontMatter }) {
         light: 'gray.600',
         dark: 'gray.500'
     }
+    const router = useRouter()
+    const slug = router.query.slug
     return (
         <Layout frontMatter={frontMatter}>
             <Flex
                 flexDir="column"
-                w={['100%', '100%', '100%', '100%', '100%', '70%']}
+                w="100%"
                 alignSelf="center"
+                as="heading"
             >
-                <Flex
-                    align="center"
-                    justify={["left", "left", "left", "center", "center", "center"]}
-                    mb={2}
-                    flexDir={['column', 'column', 'column', 'row', 'row', 'row']}
+                <Heading
+                    as="h1"
+                    size="2xl"
+                    textAlign={["left", "left", "left", "center", "center", "center"]}
                 >
-                    <Flex mb={[2, 2, 2, 0, 0, 0]}>
-                        {frontMatter.tags?.map((tag) => {
-                            return (
-                                <Flex key={tag} mr={2}>
-                                    <NextLink href={`/tags/${tag}`} _hover={{ textDecor: 'none' }} passHref>
-                                        <Tooltip hasArrow label={`View posts relating to ${tag}`}>
-                                            <Link href={`/tags/${tag}`} _hover={{ textDecor: 'none' }}>
-                                                <Tag size="sm">#{tag}</Tag>
-                                            </Link>
-                                        </Tooltip>
-                                    </NextLink>
-                                </Flex>
-                            )
-                        })}
-                    </Flex>
-                    <Flex display={['none', 'none', 'none', 'flex', 'flex', 'flex']}>•</Flex>
-                    <Flex>
-                        <Text mx={2} color={color[colorMode]} fontSize="sm">{format(parseISO(frontMatter.publishedAt), 'MMMM dd, yyyy')}</Text>
-                        •
-                        <Text mx={2} color={color[colorMode]} fontSize="sm">{frontMatter.readingTime.text}</Text>
-                        <Flex display={['none', 'none', 'none', 'flex', 'flex', 'flex']}>•</Flex>
-                        <Text display={['none', 'none', 'none', 'flex', 'flex', 'flex']} mx={2} color={color[colorMode]} fontSize="sm" fontWeight="bold"><Link href="#comments">Comments</Link></Text>
-                    </Flex>
-                </Flex>
-                <Heading as="h1" size="2xl" textAlign={["left", "left", "left", "center", "center", "center"]}>{frontMatter.title}</Heading>
+                    {frontMatter.title}
+                </Heading>
                 <Text
-                    fontSize="xl"
+                    fontSize="2xl"
                     mt={2}
+                    mb={4}
                     color={color[colorMode]}
                     textAlign={["left", "left", "left", "center", "center", "center"]}
                 >
                     {frontMatter.description}
                 </Text>
+                <Image
+                    src={`/content/tutorials/${slug}/${frontMatter.featureImg}`}
+                    alt={frontMatter.title}
+                    maxW={800}
+                    borderRadius={15}
+                    alignSelf={[null, null, null, null, null, "center"]}
+                />
             </Flex>
             <Flex
                 flexDir="column"
-                w={["100%", "100%", "100%", "100%", "100%", "60%"]}
+                w="100%"
                 alignSelf="center"
                 maxW="800px"
             >

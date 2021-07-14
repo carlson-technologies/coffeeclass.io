@@ -24,7 +24,7 @@ export default function Tutorial({ src, title, description, tags, href, as, main
     }
     return (
         <Flex
-            w={['100%', '100%', 500]}
+            w={['100%', '100%', '100%', 500]}
             my={2}
             mt={[10, 10, 0]}
             key={title}
@@ -56,9 +56,7 @@ export default function Tutorial({ src, title, description, tags, href, as, main
                         </Flex>
                     </MotionBox>
                 </MotionBox>
-                <Heading><Link href={href} as={as}>{title}</Link></Heading>
-                <Text><Link href={href} as={as}>{description}</Link></Text>
-                <Flex mt={2}>
+                <Flex>
                     {tags?.map((tag) => {
                         return (
                             <Flex
@@ -73,13 +71,15 @@ export default function Tutorial({ src, title, description, tags, href, as, main
                                 <NextLink href={`/tags/${tag}`} passHref>
                                     <Link href={`/${tag}`}
                                     >
-                                        <Text fontSize="lg" color={mainTag == tag ? "brand_one.500" : "custom_yellow.800"}>#{tag}</Text>
+                                        <Text fontSize="lg" color={mainTag == tag ? "brand_one.500" : "gray.500"}>#{tag}</Text>
                                     </Link>
                                 </NextLink>
                             </Flex>
                         )
                     })}
                 </Flex>
+                <Heading><Link href={href} as={as}>{title}</Link></Heading>
+                <Text><Link href={href} as={as}>{description}</Link></Text>
             </Box>
         </Flex>
     )

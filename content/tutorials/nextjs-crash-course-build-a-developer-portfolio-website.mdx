@@ -251,7 +251,25 @@ The final step is to make a dynamic page for each individual blog post. Inside o
 
 Inside of `getStaticProps`, we are doing something very similar to what we did in `blog.js`, instead here we are only working with one blog post - the requested post. Declare a variable `postFilePath` and set it to the current url. Grab the source of the post using `fs`. Next, parse through the source using `gray-matter`. Finally, serialize the content and pass in any `mdxOptions` such as prism for code styling. Then, return the source and frontMatter.
 
-In our page component, pass both of these variables in. We are setting the content of the post by the line: `<MDXRemote {...source} components={components} />`. Now, you are probably wondering what the components variable is. That is where the markdown maps to its html element and it is also where we pass in our custom components. For example, we can declare a custom a tag like such: `a: (props) => <Link {...props} color={useColorModeValue("blue.700", "blue.400")} />,`. We can also set our `DarkModeSwitch` equal to our darkmode switch component in this line: `DarkModeSwitch: dynamic(() => import('../../components/DarkModeSwitch')),`. You should now be able to visit individual blog posts!
+In our page component, pass both of these variables in. We are setting the content of the post by the line: 
+
+```javascript:blog.js
+<MDXRemote {...source} components={components} />
+```
+
+Now, you are probably wondering what the components variable is. That is where the markdown maps to its html element and it is also where we pass in our custom components. For example, we can declare a custom a tag like such: 
+
+```javascript:blog.js
+a: (props) => <Link {...props} color={useColorModeValue("blue.700", "blue.400")} />,
+```
+
+We can also set our `DarkModeSwitch` equal to our darkmode switch component in this line:
+
+```javascript:blog.js
+DarkModeSwitch: dynamic(() => import('../../components/DarkModeSwitch')),
+```
+
+You should now be able to visit individual blog posts!
 
 ### Adding SEO
 

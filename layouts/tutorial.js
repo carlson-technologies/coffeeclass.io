@@ -36,11 +36,11 @@ export default function Layout({ frontMatter, children }) {
 
     const [width, setWidth] = useState(0)
     const handleScroll = () => {
-        let scrollTop = window.scrollY;
-        let docHeight = document.body.offsetHeight;
-        let winHeight = window.innerHeight;
-        let scrollPercent = scrollTop / (docHeight - winHeight);
-        let scrollPercentRounded = Math.round(scrollPercent * 100);
+        let scrollTop = window.scrollY
+        let docHeight = document.body.offsetHeight
+        let winHeight = window.innerHeight
+        let scrollPercent = scrollTop / (docHeight - winHeight)
+        let scrollPercentRounded = Math.round(scrollPercent * 100)
         setWidth(scrollPercentRounded)
 
         // this value is being passed into Confetti component
@@ -50,7 +50,7 @@ export default function Layout({ frontMatter, children }) {
     }
 
     useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll)
         return () => {
             window.removeEventListener('scroll', handleScroll)
         }
@@ -77,10 +77,26 @@ export default function Layout({ frontMatter, children }) {
                         mt={10}
                         display={['none', 'none', 'none', 'none', 'flex', 'flex']}
                     >
-                        <Flex justify="space-between" mb={2} mt={8}>
-                            <Link href={frontMatter.youtubeId} isExternal><IconButton w={75} bgColor={bgColor[colorMode]} icon={<YoutubeIcon />} mr={2} borderRadius={8} /></Link>
-                            <Link href={frontMatter.githubURL} isExternal><IconButton w={75} bgColor={bgColor[colorMode]} icon={<GitHubIcon />} borderRadius={8} /></Link>
-                        </Flex>
+                        <Link href={frontMatter.youtubeId} _hover={{ textDecor: 'none' }} mt={8} isExternal>
+                            <Button
+                                isFullWidth
+                                fontSize="sm"
+                                leftIcon={<YoutubeIcon fontSize="xl" />}
+                                bgColor={bgColor[colorMode]}
+                            >
+                                Watch on YouTube
+                            </Button>
+                        </Link>
+                        <Link href={frontMatter.githubURL} _hover={{ textDecor: 'none' }} my={2} isExternal>
+                            <Button
+                                isFullWidth
+                                fontSize="sm"
+                                leftIcon={<GitHubIcon fontSize="xl" />}
+                                bgColor={bgColor[colorMode]}
+                            >
+                                View Code
+                            </Button>
+                        </Link>
                         <Flex bgColor={bgColor[colorMode]} flexDir="column" p={3} borderRadius={10} mb={2}>
                             <List>
                                 <ListItem color={color[colorMode]} fontSize="sm">
@@ -89,7 +105,7 @@ export default function Layout({ frontMatter, children }) {
                                 </ListItem>
                                 <ListItem color={color[colorMode]} fontSize="sm">
                                     <ListIcon as={ArrowForwardIcon} color="orange.700" />
-                                    Est. reading time: {frontMatter.readingTime.text.replace('read', '')}
+                                    Reading time: {frontMatter.readingTime.text.replace('read', '')}
                                 </ListItem>
                                 <ListItem color={color[colorMode]} fontSize="sm" textDecor="underline">
                                     <ListIcon as={ArrowForwardIcon} color="orange.700" />
@@ -111,10 +127,27 @@ export default function Layout({ frontMatter, children }) {
                             })}
                         </Flex>
                         {frontMatter?.headers &&
-                            <Flex bgColor={bgColor[colorMode]} flexDir="column" p={3} borderRadius={10} mb={2}>
+                            <Flex bgColor={bgColor[colorMode]} flexDir="column" p={3} borderRadius={10} mb={2} as="nav" aria-label="Side header navigation">
+                                <Heading
+                                    color={color[colorMode]}
+                                    fontSize="sm"
+                                    fontWeight="bold"
+                                    textTransform="uppercase"
+                                    textAlign="center"
+                                >
+                                    On this page
+                                </Heading>
                                 {frontMatter?.headers.map((h) => {
                                     return (
-                                        <Heading as="h4" size="sm" fontWeight="normal" my={1} key={h.text} transition="all .3s ease-in-out" _hover={{ ml: "2" }}>
+                                        <Heading
+                                            as="h4"
+                                            size="sm"
+                                            fontWeight="normal"
+                                            my={1}
+                                            key={h.text}
+                                            transition="all .3s ease-in-out"
+                                            _hover={{ ml: "2" }}
+                                        >
                                             <Link href={`#${h.text}`} ml={(h.level - 2) * 2}>{h.text}</Link>
                                         </Heading>
                                     )
@@ -135,6 +168,11 @@ export default function Layout({ frontMatter, children }) {
                     </Flex>
                 </div>
             </Flex>
+            <style jsx>{`
+                .active {
+                    color: red !important;
+                }
+      `}</style>
         </Container>
     )
 }

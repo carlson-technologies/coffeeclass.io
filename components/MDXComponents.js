@@ -9,10 +9,10 @@ import {
     Box,
     OrderedList,
     Alert,
-    Image,
-    Flex
+    Image
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
+import SnippetStep from '../components/SnippetStep'
 
 const Quote = (props) => {
     const { colorMode } = useColorMode()
@@ -47,12 +47,12 @@ const CustomLink = (props) => {
     if (isInternalLink) {
         return (
             <NextLink href={href} passHref>
-                <Link color={color[colorMode]} {...props} />
+                <Box _hover={{ opacity: '.6' }} as="span" borderBottom="2px solid" borderBottomColor={`${color[colorMode]}`}><Link _hover={{ TextDecoder: 'none' }} color={color[colorMode]} {...props} /></Box>
             </NextLink>
         )
     }
 
-    return <Link color={color[colorMode]} isExternal {...props} />
+    return <Box _hover={{ opacity: '.6' }} as="span" borderBottom="2px solid" borderBottomColor={`${color[colorMode]}`}><Link _hover={{ TextDecoder: 'none' }} color={color[colorMode]} isExternal {...props} /></Box>
 }
 
 const CustomListItem = (props) => {
@@ -137,6 +137,7 @@ const MDXComponents = {
     a: CustomLink,
     blockquote: Quote,
     img: (props) => <Image {...props} borderRadius={5}></Image>,
+    SnippetStep
 }
 
 export default MDXComponents

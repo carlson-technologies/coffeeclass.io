@@ -1,7 +1,7 @@
 import fs from 'fs'
 import matter from 'gray-matter'
-import hydrate from 'next-mdx-remote/hydrate'
-import renderToString from 'next-mdx-remote/render-to-string'
+import { serialize } from 'next-mdx-remote/serialize'
+import { MDXRemote } from 'next-mdx-remote'
 import path from 'path'
 import LearnLayout from '../../../layouts/learn'
 import { learnPythonFilePaths, LEARN_PYTHON_PATH } from '../../../lib/mdxUtils'
@@ -10,10 +10,9 @@ import mdxPrism from 'mdx-prism'
 import readingTime from 'reading-time'
 
 export default function PostPage({ source, frontMatter }) {
-    const content = hydrate(source, { MDXComponents })
     return (
         <LearnLayout frontMatter={frontMatter}>
-            {content}
+            <MDXRemote {...source} components={MDXComponents} />
         </LearnLayout>
     )
 }
@@ -24,7 +23,7 @@ export const getStaticProps = async ({ params }) => {
 
     const { content, data } = matter(source)
 
-    const mdxSource = await renderToString(content, {
+    const mdxSource = await serialize(content, {
         MDXComponents,
         // Optionally pass remark/rehype plugins
         mdxOptions: {

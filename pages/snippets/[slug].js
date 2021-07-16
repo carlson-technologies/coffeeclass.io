@@ -1,7 +1,7 @@
 import fs from 'fs'
 import matter from 'gray-matter'
-import hydrate from 'next-mdx-remote/hydrate'
-import renderToString from 'next-mdx-remote/render-to-string'
+import { serialize } from 'next-mdx-remote/serialize'
+import { MDXRemote } from 'next-mdx-remote'
 import path from 'path'
 import Layout from '../../layouts/snippet'
 import { snippetsFilePaths, SNIPPETS_PATH } from '../../lib/mdxUtils'
@@ -27,7 +27,6 @@ import { motion } from 'framer-motion'
 import NextLink from 'next/link'
 
 export default function PostPage({ source, frontMatter }) {
-    const content = hydrate(source, { MDXComponents })
     const { colorMode } = useColorMode()
     const color = {
         light: 'gray.600',
@@ -55,31 +54,32 @@ export default function PostPage({ source, frontMatter }) {
                             frontMatter.logoImage?.map((image, index) => (
                                 // If the image title includes "light", it has a dark mode image
                                 // so we need to use the correct image.
+                                // This is not the best solution, but it works for now.
                                 image.includes('light') ?
                                     <Image
                                         key={index}
                                         src={colorMode === "light" ? `/snippet-images/${image}` : `/snippet-images/${image.replace('light', 'dark')}`}
                                         alt={frontMatter.logoImage}
-                                        w={100}
                                         alignSelf="left"
                                         mb={4}
                                         mr={2}
+                                        w="5em"
                                     /> :
                                     <Image
                                         key={index}
                                         src={`/snippet-images/${image}`}
                                         alt={frontMatter.logoImage}
-                                        w={100}
                                         alignSelf="left"
                                         mb={4}
                                         mr={2}
+                                        w="5em"
                                     />
                             ))
                         }
                     </Flex>
                     <Heading
                         as="h1"
-                        size="2xl"
+                        size="xl"
                         textAlign="left"
                     >
                         {frontMatter.title}
@@ -95,10 +95,9 @@ export default function PostPage({ source, frontMatter }) {
                 </Flex>
                 <Flex
                     flexDir="column"
-                    alignSelf="center"
                     maxW="800px"
                 >
-                    {content}
+                    <MDXRemote {...source} components={MDXComponents} />
                 </Flex>
                 <Flex
                     justify="center"
@@ -106,7 +105,7 @@ export default function PostPage({ source, frontMatter }) {
                     mt={4}
                 >
                     <Divider mb={4} />
-                    <Flex align="center" mb={8}>
+                    <Flex align="center" mb={8} flexDir={["column", "column", "column", "row", "row", "row"]}>
                         <Text color={color[colorMode]} fontSize="md">Published on {format(parseISO(frontMatter.publishedAt), 'MMMM dd, yyyy')} in</Text>
                         <Flex ml={2}>
                             {frontMatter.tags.map((tag, index) => (
@@ -167,15 +166,8 @@ export const getStaticProps = async ({ params }) => {
     const snippetsPath = path.join(SNIPPETS_PATH, `${params.slug}.mdx`)
     const source = fs.readFileSync(snippetsPath)
     const { content, data } = matter(source)
-    // const headings = getHeaders(content)
-    // console.log(headings)
 
-    // const headings = Promise.resolve(getHeaders(content))
-    //     .then(function (value) {
-    //         console.log(value);
-    //     })
-
-    const mdxSource = await renderToString(content, {
+    const mdxSource = await serialize(content, {
         MDXComponents,
         // Optionally pass remark/rehype plugins
         mdxOptions: {
@@ -193,7 +185,6 @@ export const getStaticProps = async ({ params }) => {
             source: mdxSource,
             frontMatter: {
                 readingTime: readingTime(content),
-                headers: await getHeaders(content),
                 ...data
             },
         },

@@ -2,7 +2,8 @@ import {
     Heading,
     Flex,
     Stack,
-    Text
+    Text,
+    Box
 } from '@chakra-ui/react'
 import Sidebar from '../components/Sidebar'
 import Pagination from '../components/Pagination'
@@ -17,7 +18,7 @@ export default function LearnLayout({ children, frontMatter }) {
     const slug = router.asPath
     const url = `https://coffeeclass${slug}`
     const title = `${frontMatter.title} - Coffeeclass`
-    const description = `${frontMatter.summary}`
+    const description = `${frontMatter.description}`
     return (
         <Container>
             <NextSeo
@@ -47,11 +48,16 @@ export default function LearnLayout({ children, frontMatter }) {
                         initial={{ y: -20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                     >
-                        <Heading as="h1" size="2xl">
-                            {frontMatter.title}
-                        </Heading>
+                        <Box>
+                            <Heading as="h1" size="2xl">
+                                {frontMatter.title}
+                            </Heading>
+                            <Text fontSize="lg">{frontMatter.description}</Text>
+                        </Box>
                         {children}
-                        {frontMatter.lastUpdated && <Text color="gray.500" fontSize="sm" textAlign="center">Last updated on {format(parseISO(frontMatter.lastUpdated ? frontMatter.lastUpdated : frontMatter.publishedAt), 'MMMM dd, yyyy')}    </Text>}
+                        <Box my={4}>
+                            {frontMatter.lastUpdated && <Text color="gray.500" fontSize="sm" textAlign="center">Last updated on {format(parseISO(frontMatter.lastUpdated ? frontMatter.lastUpdated : frontMatter.publishedAt), 'MMMM dd, yyyy')}    </Text>}
+                        </Box>
                         <Pagination />
                     </motion.div>
                 </Stack>

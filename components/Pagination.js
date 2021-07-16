@@ -1,13 +1,10 @@
 import { useRouter } from "next/router"
 import pythonSidebar from "../configs/learn/python.json"
 import {
-    Box,
     Flex,
     Text,
-    Heading,
     Link,
     useColorMode,
-    Divider,
     Icon
 } from "@chakra-ui/react"
 import NextLink from 'next/link'
@@ -22,9 +19,9 @@ export function getRoutes(slug) {
     const [_path, sidebar] =
         Object.entries(configMap).find(([path, _sidebar]) =>
             slug.startsWith(path),
-        ) ?? []
+        )
 
-    return sidebar?.routes ?? []
+    return sidebar?.routes
 }
 
 const Pagination = () => {
@@ -62,12 +59,15 @@ const Pagination = () => {
     return (
         <Flex
             justify="space-between"
+            align="center"
             w="100%"
             color={color[colorMode]}
+            flexDir={["column", "column", "column", "row", "row", "row"]}
         >
             {pagination.prevRoute ?
                 <NextLink href={pagination.prevRoute.path} passHref>
                     <Link
+                        href={pagination.prevRoute.path}
                         _hover={{
                             color: hoverColor[colorMode]
                         }}
@@ -87,6 +87,7 @@ const Pagination = () => {
             {pagination.nextRoute ?
                 <NextLink href={pagination.nextRoute.path} passHref>
                     <Link
+                        href={pagination.nextRoute.path}
                         _hover={{
                             color: hoverColor[colorMode]
                         }}

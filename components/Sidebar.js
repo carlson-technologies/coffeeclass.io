@@ -20,9 +20,9 @@ export function getRoutes(slug) {
     const [_path, sidebar] =
         Object.entries(configMap).find(([path, _sidebar]) =>
             slug.startsWith(path),
-        ) ?? []
+        )
 
-    return sidebar?.routes ?? []
+    return sidebar?.routes
 }
 
 const Sidebar = () => {
@@ -61,8 +61,8 @@ const Sidebar = () => {
                 <Heading as="h4" size="md" textAlign="center">Modules 🔖</Heading>
                 <Divider my={4} />
                 {routes.map((r) =>
-                    <NextLink href={r.path} passHref>
-                        <Link href={r.path} key={r.title} _hover={{
+                    <NextLink href={r.path} key={r.title} passHref>
+                        <Link href={r.path} _hover={{
                             textDecoration: 'none'
                         }}>
                             <Box

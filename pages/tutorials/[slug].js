@@ -1,13 +1,12 @@
 import fs from 'fs'
 import matter from 'gray-matter'
-import hydrate from 'next-mdx-remote/hydrate'
-import renderToString from 'next-mdx-remote/render-to-string'
+import { serialize } from 'next-mdx-remote/serialize'
+import { MDXRemote } from 'next-mdx-remote'
 import path from 'path'
 import Layout from '../../layouts/tutorial'
 import { tutorialsFilePaths, TUTORIALS_PATH } from '../../lib/mdxUtils'
 import MDXComponents from '../../components/MDXComponents'
 import mdxPrism from 'mdx-prism'
-import { parseISO, format } from 'date-fns'
 import readingTime from 'reading-time'
 import {
     Heading,
@@ -17,8 +16,6 @@ import {
     Flex,
     useColorMode,
     Avatar,
-    Tag,
-    Tooltip,
     Button,
     Image
 } from '@chakra-ui/react'
@@ -27,7 +24,6 @@ import getHeaders from '../../lib/get-headers'
 import { useRouter } from 'next/router'
 
 export default function PostPage({ source, frontMatter }) {
-    const content = hydrate(source, { MDXComponents })
     const { colorMode } = useColorMode()
     const color = {
         light: 'gray.600',
@@ -45,13 +41,13 @@ export default function PostPage({ source, frontMatter }) {
             >
                 <Heading
                     as="h1"
-                    size="2xl"
+                    size="xl"
                     textAlign={["left", "left", "left", "center", "center", "center"]}
                 >
                     {frontMatter.title}
                 </Heading>
                 <Text
-                    fontSize="2xl"
+                    fontSize="xl"
                     mt={2}
                     mb={4}
                     color={color[colorMode]}
@@ -73,7 +69,7 @@ export default function PostPage({ source, frontMatter }) {
                 alignSelf="center"
                 maxW="800px"
             >
-                {content}
+                <MDXRemote {...source} components={MDXComponents} />
             </Flex>
             <Flex
                 justify="center"
@@ -114,12 +110,12 @@ export default function PostPage({ source, frontMatter }) {
 }
 
 export const getStaticProps = async ({ params }) => {
-    const turorialsPath = path.join(TUTORIALS_PATH, `${params.slug}.mdx`)
-    const source = fs.readFileSync(turorialsPath)
+    const tutorialsPath = path.join(TUTORIALS_PATH, `${params.slug}.mdx`)
+    const source = fs.readFileSync(tutorialsPath)
 
     const { content, data } = matter(source)
 
-    const mdxSource = await renderToString(content, {
+    const mdxSource = await serialize(content, {
         MDXComponents,
         // Optionally pass remark/rehype plugins
         mdxOptions: {

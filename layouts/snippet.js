@@ -32,16 +32,15 @@ export default function Layout({ frontMatter, children }) {
     <Container>
       <SEO url={`https://coffeeclass.io${slug}`} {...frontMatter} />
       <Box h={1} as="div" bgGradient="linear(to-r, #EAD9CD, #714B2F)" position="fixed" top={0} left={0} zIndex={15} w={`${width}%`}></Box>
-      <Flex flexDir="row" mt={10}>
-        <Flex
-          flexDir="column"
-          mx={[0, 0, 0, 0, 1, 5]}
-          px={[4, 4, 4, 2, 2, 0]}
-          w="100%"
-        >
-          {children}
-        </Flex>
-      </Flex>
+      <Box
+        px={4}
+        mt={10}
+        w="100%"
+        display={["block", "block", "block", "block", "block", "flex"]}
+        justifyContent="center"
+      >
+        {children}
+      </Box>
     </Container>
   )
 }

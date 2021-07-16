@@ -38,7 +38,7 @@ export default function Snippet({ title, description, tags, href, as, mainTag, i
                 borderRadius={5}
                 w="100%"
             >
-                <Flex h="100%">
+                <Flex h="100%" flexDir={["column", "column", "column", "row", "row", "row"]}>
                     <Image
                         src={image}
                         alt={image}

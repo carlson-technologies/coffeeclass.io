@@ -143,7 +143,7 @@ export default function Index({ snippets, tutorials }) {
                         >
                             Only Have 5 Minutes? Check Out Some Snippets!
                         </Heading>
-                        <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(2, 1fr)"]} gap={6}>
+                        <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
                             {snippetsOrderedByPublishedDate.map((post) => (
                                 <Snippet
                                     key={post.data.title}

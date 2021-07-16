@@ -28,7 +28,7 @@ export default function Tutorial({ src, title, description, tags, href, as, main
     }
     return (
         <Flex
-            w={['100%', '100%', '100%', 500]}
+            w={['100%', '100%', '100%', '100%', 500, 500]}
             my={2}
             mt={[10, 10, 0]}
             key={title}

@@ -3,13 +3,55 @@ import {
     Text,
     Divider,
     useColorMode,
-    Box,
     Link,
-    Image
+    Image,
+    Heading
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
-import { useRouter } from 'next/router'
 import year from '../../lib/current_date'
+
+const FooterNavItem = ({ text, href }) => {
+    return (
+        <Text>
+            <NextLink href={href} passHref>
+                <Link href={href} textDecor="underline">
+                    {text}
+                </Link>
+            </NextLink>
+        </Text>
+    )
+}
+
+const FooterNavItemExternal = ({ text, href }) => {
+    return (
+        <Text>
+            <Link href={href} textDecor="underline" isExternal>
+                {text}
+            </Link>
+        </Text>
+    )
+}
+
+const FooterHeading = ({ title }) => {
+    const { colorMode } = useColorMode()
+    const headerColor = {
+        light: 'gray.500',
+        dark: 'gray.300'
+    }
+    return (
+        <Heading
+            as="h5"
+            size="xs"
+            textTransform="uppercase"
+            marginBottom={0}
+            marginTop={6}
+            color={headerColor[colorMode]}
+            alignSelf="flex-start"
+        >
+            {title}
+        </Heading>
+    )
+}
 
 const Footer = () => {
     const { colorMode } = useColorMode()
@@ -17,7 +59,6 @@ const Footer = () => {
         light: 'dark',
         dark: 'light'
     }
-    const router = useRouter()
     return (
         <Flex
             flexDir="column"
@@ -28,7 +69,45 @@ const Footer = () => {
             as="footer"
             textAlign="center"
         >
-            {router.pathname != '/' && <Divider w="80%" mb={4} />}
+            <Divider my={4} />
+            <Flex
+                justify="space-around"
+                w="100%"
+                maxW={1000}
+                my={4}
+                flexDir={["column", "column", "column", "row", "row", "row"]}
+                align="flex-start"
+            >
+                <Flex flexDir="column">
+                    <FooterHeading title="Legal" />
+                    <Flex flexDir="column" align="flex-start">
+                        <FooterNavItem text="Terms" href="/legal/terms" />
+                        <FooterNavItem text="Disclaimer" href="/legal/disclaimer" />
+                        <FooterNavItem text="Privacy Policy" href="/legal/privacy" />
+                    </Flex>
+                </Flex>
+                <Flex flexDir="column">
+                    <FooterHeading title="Content" />
+                    <Flex flexDir="column" align="flex-start">
+                        <FooterNavItem text="Tutorials" href="/tutorials" />
+                        <FooterNavItem text="Snippets" href="/snippets" />
+                        <FooterNavItem text="Learn" href="/learn" />
+                    </Flex>
+                </Flex>
+                <Flex flexDir="column">
+                    <FooterHeading title="Company" />
+                    <Flex flexDir="column" align="flex-start">
+                        <FooterNavItem text="About" href="/about" />
+                    </Flex>
+                </Flex>
+                <Flex flexDir="column">
+                    <FooterHeading title="Open Source" />
+                    <Flex flexDir="column" align="flex-start">
+                        <FooterNavItemExternal text="Code" href="https://github.com/carlson-technologies/coffeeclass.io" />
+                        <FooterNavItemExternal text="Roadmap" href="https://benjamincarlson.notion.site/609b8bb171844146a9bcd9fbabd171a8?v=341de17fff6149bea36dbafbe2f2cf88" />
+                    </Flex>
+                </Flex>
+            </Flex>
             <Text as="small">&copy; Copyright {year}, Carlson Technologies LLC. All Rights Reserved.</Text>
             <Flex my={2}>
                 <Link
@@ -40,29 +119,10 @@ const Footer = () => {
                     }}
                 >
                     <Flex align="center">
-                        <Text mr={1}>Powered by</Text>
-                        <Image src={`/vercel/logotype/${logoColor[colorMode]}/vercel-logotype-${logoColor[colorMode]}.png`} w={100} />
+                        <Text mr={1} fontSize="sm">Powered by</Text>
+                        <Image src={`/vercel/logotype/${logoColor[colorMode]}/vercel-logotype-${logoColor[colorMode]}.png`} w={75} />
                     </Flex>
                 </Link>
-            </Flex>
-            <Flex fontSize="sm" flexDir="row" mt={1} color="brand_one.500">
-                <Box borderBottom="1px solid" mr={2}>
-                    <Text>
-                        <NextLink href="/legal/terms" passHref>Terms</NextLink>
-                    </Text>
-                </Box>
-                {` • `}
-                <Box borderBottom="1px solid" mx={2}>
-                    <Text>
-                        <NextLink href="/legal/privacy" passHref>Privacy</NextLink>
-                    </Text>
-                </Box>
-                {` • `}
-                <Box borderBottom="1px solid" ml={2}>
-                    <Text>
-                        <NextLink href="/legal/disclaimer" passHref>Disclaimer</NextLink>
-                    </Text>
-                </Box>
             </Flex>
         </Flex>
     )

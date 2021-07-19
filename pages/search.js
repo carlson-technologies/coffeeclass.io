@@ -14,7 +14,8 @@ import {
     Input,
     InputRightElement,
     Tag,
-    useColorMode
+    useColorMode,
+    Text
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../components/Container'
@@ -27,6 +28,7 @@ import { tutorialsFilePaths, TUTORIALS_PATH } from '../lib/mdxUtils'
 import { learnPythonFilePaths, LEARN_PYTHON_PATH } from '../lib/mdxUtils'
 import { SearchIcon } from '@chakra-ui/icons'
 import get_type from '../lib/get_type'
+import { parseISO, format } from 'date-fns'
 
 const url = 'https://coffeeclass.io/search'
 const title = 'Search – Coffeeclass'
@@ -38,20 +40,38 @@ export default function Search({ snippets, tutorials, learn_python }) {
     snippets.map(s => { allPosts.push(s) })
     tutorials.map(t => { allPosts.push(t) })
     learn_python.map(l_p => { allPosts.push(l_p) })
+    
     const filteredPosts = allPosts
-        .sort(
-            (a, b) =>
-                Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt))
-        )
         .filter((frontMatter) =>
             frontMatter.data?.title?.toLowerCase()?.includes(searchValue.toLowerCase()) ||
             frontMatter.data?.description?.toLowerCase()?.includes(searchValue.toLowerCase())
         )
+
     const { colorMode } = useColorMode()
     const headerColor = {
         light: 'brand_one.600',
         dark: 'brand_one.500'
     }
+    const secondaryColor = {
+        light: 'gray.500',
+        dark: 'gray.600'
+    }
+    const tableColorBg = {
+        light: 'gray.200',
+        dark: 'gray.700',
+    }
+
+    function getEmojiTitle(post_type) {
+        switch (post_type) {
+            case 'tutorial':
+                return '📚 tutorial'
+            case 'snippet':
+                return '✂️ snippet'
+            case 'learn':
+                return '🎒 learn'
+        }
+    }
+
     return (
         <Container>
             <NextSeo
@@ -73,19 +93,29 @@ export default function Search({ snippets, tutorials, learn_python }) {
                     flexDir="column"
                     mt={50}
                 >
-                    <Heading as="h1" size="2xl" color={headerColor[colorMode]} letterSpacing="tight">Search</Heading>
-                    <InputGroup my={4} w={["100%", "100%", "100%", "100%", "100%", "50%"]}>
+                    <Heading
+                        as="h1"
+                        size="xl"
+                        letterSpacing="tight"
+                        textTransform="uppercase"
+                        color={headerColor[colorMode]}
+                    >
+                        Search
+                    </Heading>
+                    <InputGroup my={4}>
                         <Input
+                            focusBorderColor={headerColor[colorMode]}
                             aria-label="Search by title and summary"
                             onChange={(e) => setSearchValue(e.target.value)}
-                            placeholder="Search by title and summary"
+                            placeholder={`Search ${allPosts.length} results by title and summary`}
                         />
                         <InputRightElement>
-                            <SearchIcon color="gray.300" />
+                            <SearchIcon color={secondaryColor[colorMode]} />
                         </InputRightElement>
                     </InputGroup>
+                    <Text color={secondaryColor[colorMode]}>{filteredPosts.length} search {filteredPosts.length == 1 ? "result" : "results"}...</Text>
                     <Flex overflow="auto">
-                        <Table>
+                        <Table variant="unstyled">
                             <Thead>
                                 <Tr>
                                     <Th>Type</Th>
@@ -100,9 +130,9 @@ export default function Search({ snippets, tutorials, learn_python }) {
                                 {filteredPosts.map((p, index) => {
                                     const type = get_type(p.data.type)
                                     return (
-                                        <Tr key={index}>
-                                            <Td>{p.data.type}</Td>
-                                            <Td>
+                                        <Tr key={index} bg={index % 2 ? tableColorBg[colorMode] : null}>
+                                            <Td minW="130px" borderTopLeftRadius={10} borderBottomLeftRadius={10}>{getEmojiTitle(p.data.type)}</Td>
+                                            <Td minW="250px">
                                                 <Link
                                                     href={
                                                         p.data.type === 'learn' ?
@@ -112,26 +142,24 @@ export default function Search({ snippets, tutorials, learn_python }) {
                                                     {p.data.title}
                                                 </Link>
                                             </Td>
-                                            <Td>{p.data?.description}</Td>
+                                            <Td minW="250px">{p.data?.description}</Td>
                                             <Td>{p.data?.tags?.map((t, index) => {
                                                 return (
-                                                    <span style={{ padding: '1px' }} key={index}>
-                                                        <NextLink href={`/tags/${t}`} passHref>
-                                                            <Link
-                                                                href={`/${t}`}
-                                                                _hover={{
-                                                                    textDecor: 'none',
-                                                                    opacity: '.5'
-                                                                }}
-                                                            >
-                                                                <Tag size="sm">#{t}</Tag>
-                                                            </Link>
-                                                        </NextLink>
-                                                    </span>
+                                                    <NextLink href={`/tags/${t}`} key={index} passHref>
+                                                        <Link
+                                                            href={`/${t}`}
+                                                            _hover={{
+                                                                textDecor: 'none',
+                                                                opacity: '.5'
+                                                            }}
+                                                        >
+                                                            <Tag m={1} size="sm">#{t}</Tag>
+                                                        </Link>
+                                                    </NextLink>
                                                 )
                                             })}</Td>
                                             <Td>{p.data?.author}</Td>
-                                            <Td>{p.data?.publishedAt}</Td>
+                                            <Td minW="150px" borderTopEndRadius={10} borderBottomEndRadius={10}>{format(parseISO(p.data?.publishedAt), 'MMMM dd, yyyy')}</Td>
                                         </Tr>
                                     )
                                 })}

@@ -22,7 +22,6 @@ import {
     Divider
 } from '@chakra-ui/react'
 import Comments from '../../components/Comments'
-import getHeaders from '../../lib/get-headers'
 import { motion } from 'framer-motion'
 import NextLink from 'next/link'
 

@@ -20,6 +20,7 @@ const GlobalStyle = ({ children }) => {
           }
           html {
             background-color: ${colorMode === 'light' ? '#fff' : '#15161a'};
+            scroll-behavior: smooth;
           }
           ::selection {
             background-color: ${colorMode === 'light' ? '#EAD9CD' : '#714B2F'};

@@ -5,16 +5,26 @@ import {
     Text,
     useColorMode,
     Link,
-    Button
+    Button,
+    Icon
 } from '@chakra-ui/react'
 import Container from '../components/Container'
 import NextLink from 'next/link'
+import { Search2Icon } from '@chakra-ui/icons'
 
 export default function Custom404() {
     const { colorMode } = useColorMode()
-    const color = {
-        light: 'gray.700',
-        dark: 'gray.300'
+    const headerColor = {
+        light: 'brand_one.600',
+        dark: 'brand_one.500'
+    }
+    const bgColor = {
+        light: 'gray.100',
+        dark: 'gray.700'
+    }
+    const hoverColor = {
+        light: 'gray.300',
+        dark: 'gray.500'
     }
     return (
         <Container>
@@ -25,9 +35,29 @@ export default function Custom404() {
                 <Flex
                     flexDir="column"
                     mt={50}
-                    alignSelf="center"
                 >
-                    <Heading>This page doesn't seem to exist :( </Heading>
+                    <Heading
+                        as="h1"
+                        size="xl"
+                        letterSpacing="tight"
+                        textTransform="uppercase"
+                        color={headerColor[colorMode]}
+                    >
+                        This page doesn't seem to exist :(
+                    </Heading>
+                    <NextLink href="/search" passHref>
+                        <Link mx={2} href="/search">
+                            <Icon
+                                aria-label="Search Site"
+                                size="lg"
+                                _hover={{
+                                    textDecoration: 'none',
+                                    color: hoverColor[colorMode]
+                                }}
+                                as={Search2Icon}
+                            />
+                        </Link>
+                    </NextLink>
                     <NextLink href="/" passHref>
                         <Button w={200} my={4} href="/" as="a" colorScheme="orange">Go Home</Button>
                     </NextLink>

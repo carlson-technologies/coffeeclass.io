@@ -86,6 +86,7 @@ export default function Index({ snippets, tutorials }) {
                         <Flex
                             flexDir="column"
                             align="center"
+                            as="header"
                         >
                             <Heading as="h1" size="4xl" textAlign="center" w={['100%', '100%', '100%', '100%', 700, 900]} mt={20}>Learn to code 👨‍💻 and ship 🚀 your app for free.</Heading>
                             <Heading as="h2" color={color[colorMode]} textAlign="center" size="md" my={8} w={['100%', '100%', '100%', '100%', 400, 600]}>Coffeeclass ☕ takes complex programming concepts and presents them in an easy to learn manner.
@@ -109,7 +110,7 @@ export default function Index({ snippets, tutorials }) {
 
                     <Flex as="section" flexDir="column">
                         <Heading
-                            as="h3"
+                            as="h2"
                             size="lg"
                             my={4}
                             letterSpacing="tight"
@@ -135,7 +136,7 @@ export default function Index({ snippets, tutorials }) {
 
                     <Flex as="section" flexDir="column" mt={16}>
                         <Heading
-                            as="h3"
+                            as="h2"
                             size="lg"
                             mb={10}
                             letterSpacing="tight"
@@ -180,10 +181,12 @@ export default function Index({ snippets, tutorials }) {
                     >
                         <Flex flexDir="column" w={['100%', '100%', '100%', '100%', 500, 500]}>
                             <Heading
-                                as="h3"
+                                as="h2"
                                 size="lg"
                                 letterSpacing="tight"
-                                mb={2}>
+                                mb={2}
+                                textTransform="uppercase"
+                            >
                                 What Is Coffeeclass?
                             </Heading>
                             <Text mb={2}>Coffeeclass is a suite of programming tutorial tools including this website and <Link color="brand_one.500" href="https://youtube.com/benjamincarlson" isExternal>this YouTube channel</Link>.</Text>

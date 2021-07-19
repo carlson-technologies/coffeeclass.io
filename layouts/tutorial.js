@@ -7,7 +7,6 @@ import {
     useColorMode,
     Tooltip,
     Box,
-    IconButton,
     Tag,
     Button,
     ListItem,
@@ -33,6 +32,7 @@ export default function Layout({ frontMatter, children }) {
         light: 'gray.100',
         dark: 'whiteAlpha.100'
     }
+    const [activeHeader, setActiveHeader] = useState(frontMatter?.headers[0]?.text) // set to the first header to avoid a small window when the page loads where there is no active header
 
     const [width, setWidth] = useState(0)
     const handleScroll = () => {
@@ -42,14 +42,34 @@ export default function Layout({ frontMatter, children }) {
         let scrollPercent = scrollTop / (docHeight - winHeight)
         let scrollPercentRounded = Math.round(scrollPercent * 100)
         setWidth(scrollPercentRounded)
+    }
 
-        // this value is being passed into Confetti component
-        // we only want to set it off once so no need to ever set it back to false
-        // if (scrollPercentRounded == 100)
-        //     setFire(true)
+    const handleIntersectionObserver = () => {
+        let options = {
+            root: null,
+            rootMargin: '-350px',
+            threshold: 1.0
+        }
+        // grab all heading tags for the tutorial
+        const targets = document.getElementById('tutorial-content').querySelectorAll("h2, h3, h4, h5, h6")
+
+        const activeHeader = (target) => {
+            const headerObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setActiveHeader(entry.target.getAttribute("id"))
+                        observer.disconnect()
+                    }
+                })
+            }, options)
+
+            headerObserver.observe(target)
+        }
+        targets.forEach(activeHeader)
     }
 
     useEffect(() => {
+        handleIntersectionObserver()
         window.addEventListener('scroll', handleScroll)
         return () => {
             window.removeEventListener('scroll', handleScroll)
@@ -63,8 +83,8 @@ export default function Layout({ frontMatter, children }) {
                 <Flex
                     flexDir="column"
                     mx={[0, 0, 0, 0, 1, 1]}
-                    px={[4, 4, 4, 2, 1, 1]}
-                    w={frontMatter.headers ? ["100%", "100%", "100%", "100%", "calc(100% - 250px)", "calc(100% - 250px)"] : '100%'}
+                    px={[4, 4, 4, 2, 1, 4]}
+                    w={frontMatter.headers ? ["100%", "100%", "100%", "100%", "100%", "calc(100% - 250px)"] : '100%'}
                 >
                     {children}
                 </Flex>
@@ -75,7 +95,7 @@ export default function Layout({ frontMatter, children }) {
                         w={200}
                         flexDir="column"
                         mt={10}
-                        display={['none', 'none', 'none', 'none', 'flex', 'flex']}
+                        display={['none', 'none', 'none', 'none', 'none', 'flex']}
                     >
                         <Link href={frontMatter.youtubeId} _hover={{ textDecor: 'none' }} mt={8} isExternal>
                             <Button
@@ -116,7 +136,7 @@ export default function Layout({ frontMatter, children }) {
                         <Flex wrap="wrap" justify="space-between">
                             {frontMatter.tags?.map((tag) => {
                                 return (
-                                    <NextLink href={`/tags/${tag}`} _hover={{ textDecor: 'none' }} passHref>
+                                    <NextLink key={tag} href={`/tags/${tag}`} _hover={{ textDecor: 'none' }} passHref>
                                         <Tooltip hasArrow label={`View posts relating to ${tag}`}>
                                             <Link href={`/tags/${tag}`} _hover={{ textDecor: 'none' }}>
                                                 <Tag borderRadius={10} bgColor={bgColor[colorMode]} size="lg" mb={2}>#{tag}</Tag>
@@ -142,10 +162,10 @@ export default function Layout({ frontMatter, children }) {
                                         <Heading
                                             as="h4"
                                             size="sm"
-                                            fontWeight="normal"
+                                            fontWeight={activeHeader == h.text ? "bold" : "normal"}
                                             my={1}
                                             key={h.text}
-                                            transition="all .3s ease-in-out"
+                                            transition="margin .3s ease-in-out"
                                             _hover={{ ml: "2" }}
                                         >
                                             <Link href={`#${h.text}`} ml={(h.level - 2) * 2}>{h.text}</Link>
@@ -154,7 +174,7 @@ export default function Layout({ frontMatter, children }) {
                                 })}
                             </Flex>
                         }
-                        <Link href="#__next" w="100%" _hover={{ textDecor: 'none' }} passHref>
+                        <Link href="#__next" w="100%" _hover={{ textDecor: 'none' }}>
                             <Button
                                 fontWeight="normal"
                                 borderRadius={10}

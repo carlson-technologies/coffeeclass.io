@@ -54,7 +54,15 @@ export default function Index({ tutorials, snippets }) {
                     flexDir="column"
                     mt={50}
                 >
-                    <Heading as="h1" size="2xl" color={headerColor[colorMode]} letterSpacing="tight">All Tags 🏷️</Heading>
+                    <Heading
+                        as="h1"
+                        size="xl"
+                        letterSpacing="tight"
+                        textTransform="uppercase"
+                        color={headerColor[colorMode]}
+                    >
+                        All Tags 🏷️
+                    </Heading>
                     <Divider my={6} />
                     <Flex wrap="wrap">
                         {
@@ -62,12 +70,12 @@ export default function Index({ tutorials, snippets }) {
                                 return (
                                     <Flex mr={2} mb={2} key={tag}>
                                         <NextLink href={`/tags/${tag}`} passHref>
-                                            <Link 
-                                            href={`/${tag}`}
-                                            _hover={{
-                                                textDecor: 'none',
-                                                opacity: '.5'
-                                            }}
+                                            <Link
+                                                href={`/${tag}`}
+                                                _hover={{
+                                                    textDecor: 'none',
+                                                    opacity: '.5'
+                                                }}
                                             >
                                                 <Tag size="lg" colorScheme="orange">#{tag}</Tag>
                                             </Link>

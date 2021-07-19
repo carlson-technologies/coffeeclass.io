@@ -46,7 +46,15 @@ export default function About() {
                     w={["100%", "100%", "100%", "100%", "100%", "60%"]}
                     alignSelf="center"
                 >
-                    <Heading as="h1" size="2xl" letterSpacing="tight" color={headerColor[colorMode]}>About Coffeeclass 👋</Heading>
+                    <Heading
+                        as="h1"
+                        size="xl"
+                        letterSpacing="tight"
+                        textTransform="uppercase"
+                        color={headerColor[colorMode]}
+                    >
+                        About Coffeeclass 👋
+                    </Heading>
                     <Divider mt={2} />
                     <Heading as="h2" size="lg" mb={2} mt={4} fontWeight={700} letterSpacing="tight">Who Is Coffeeclass?</Heading>
                     <Text mb={2} color={color[colorMode]} fontSize="large">Coffeeclass is created by <Link color="brand_one.500" href="https://benjamincarlson.io" isExternal>Benjamin Carlson</Link>.</Text>

@@ -48,8 +48,16 @@ export default function Index() {
                     flexDir="column"
                     mt={50}
                 >
-                    <Heading as="h1" size="2xl" letterSpacing="tight" color={headerColor[colorMode]}>Coffeeclass Learn 🎒</Heading>
-                    <Heading as="h2" size="md" fontWeight="normal" mt={4}>Learn programming skills like Python easily!</Heading>
+                    <Heading
+                        as="h1"
+                        size="xl"
+                        letterSpacing="tight"
+                        textTransform="uppercase"
+                        color={headerColor[colorMode]}
+                    >
+                        Coffeeclass Learn 🎒
+                    </Heading>
+                    <Heading as="h2" size="md" fontWeight="normal" mt={2}>Learn a new language or skill, bookmark a module page for future reference, how you use Coffeeclass Learn is up to you.</Heading>
                     <Divider mt={2} />
                     <Flex flexDir="column">
                         {

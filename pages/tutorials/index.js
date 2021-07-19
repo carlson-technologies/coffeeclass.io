@@ -50,8 +50,16 @@ export default function Index({ posts }) {
                 px={4}
             >
                 <Flex flexDir="column" mt={50}>
-                    <Heading as="h1" size="2xl" mb={4} color={headerColor[colorMode]} letterSpacing="tight">Coffeeclass Tutorials 📚</Heading>
-                    <Text color={color[colorMode]} mb={8} fontSize="lg">Tutorials are involved and usually correspond to a YouTube video. They typically take 15 minutes at a minimum to complete.</Text>
+                    <Heading
+                        as="h1"
+                        size="xl"
+                        letterSpacing="tight"
+                        textTransform="uppercase"
+                        color={headerColor[colorMode]}
+                    >
+                        Coffeeclass Tutorials 📚
+                    </Heading>
+                    <Text color={color[colorMode]} mt={2} mb={8} fontSize="lg">Tutorials are involved and usually correspond to a YouTube video. They typically take 15 minutes at a minimum to complete.</Text>
                     <Flex wrap="wrap">
                         {tutorialsOrderedByPublishedDate.map((post) => (
                             <Flex m={1, 1, 1, 2, 2, 2}>

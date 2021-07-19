@@ -43,7 +43,7 @@ const FooterHeading = ({ title }) => {
             as="h5"
             size="xs"
             textTransform="uppercase"
-            marginBottom={0}
+            marginBottom={2}
             marginTop={6}
             color={headerColor[colorMode]}
             alignSelf="flex-start"
@@ -73,41 +73,46 @@ const Footer = () => {
             <Flex
                 justify="space-around"
                 w="100%"
-                maxW={1000}
+                maxW={[320, 320, 320, 1000, 1000, 1000]}
                 my={4}
                 flexDir={["column", "column", "column", "row", "row", "row"]}
-                align="flex-start"
             >
-                <Flex flexDir="column">
-                    <FooterHeading title="Legal" />
-                    <Flex flexDir="column" align="flex-start">
-                        <FooterNavItem text="Terms" href="/legal/terms" />
-                        <FooterNavItem text="Disclaimer" href="/legal/disclaimer" />
-                        <FooterNavItem text="Privacy Policy" href="/legal/privacy" />
+                <Flex justify={["space-between", "space-between", "space-between", "space-around", "space-around", "space-around"]} w="100%">
+                    <Flex flexDir="column">
+                        <FooterHeading title="Legal" />
+                        <Flex flexDir="column" align="flex-start">
+                            <FooterNavItem text="Terms" href="/legal/terms" />
+                            <FooterNavItem text="Disclaimer" href="/legal/disclaimer" />
+                            <FooterNavItem text="Privacy Policy" href="/legal/privacy" />
+                        </Flex>
+                    </Flex>
+                    <Flex flexDir="column">
+                        <FooterHeading title="Content" />
+                        <Flex flexDir="column" align={["flex-end", "flex-end", "flex-end", "flex-start", "flex-start", "flex-start"]}>
+                            <FooterNavItem text="Tutorials" href="/tutorials" />
+                            <FooterNavItem text="Snippets" href="/snippets" />
+                            <FooterNavItem text="Learn" href="/learn" />
+                        </Flex>
                     </Flex>
                 </Flex>
-                <Flex flexDir="column">
-                    <FooterHeading title="Content" />
-                    <Flex flexDir="column" align="flex-start">
-                        <FooterNavItem text="Tutorials" href="/tutorials" />
-                        <FooterNavItem text="Snippets" href="/snippets" />
-                        <FooterNavItem text="Learn" href="/learn" />
+
+                <Flex justify={["space-between", "space-between", "space-between", "space-around", "space-around", "space-around"]} w="100%">
+                    <Flex flexDir="column">
+                        <FooterHeading title="Company" />
+                        <Flex flexDir="column" align="flex-start">
+                            <FooterNavItem text="About" href="/about" />
+                        </Flex>
                     </Flex>
-                </Flex>
-                <Flex flexDir="column">
-                    <FooterHeading title="Company" />
-                    <Flex flexDir="column" align="flex-start">
-                        <FooterNavItem text="About" href="/about" />
-                    </Flex>
-                </Flex>
-                <Flex flexDir="column">
-                    <FooterHeading title="Open Source" />
-                    <Flex flexDir="column" align="flex-start">
-                        <FooterNavItemExternal text="Code" href="https://github.com/carlson-technologies/coffeeclass.io" />
-                        <FooterNavItemExternal text="Roadmap" href="https://benjamincarlson.notion.site/609b8bb171844146a9bcd9fbabd171a8?v=341de17fff6149bea36dbafbe2f2cf88" />
+                    <Flex flexDir="column">
+                        <FooterHeading title="Open Source" />
+                        <Flex flexDir="column" align={["flex-end", "flex-end", "flex-end", "flex-start", "flex-start", "flex-start"]}>
+                            <FooterNavItemExternal text="Code" href="https://github.com/carlson-technologies/coffeeclass.io" />
+                            <FooterNavItemExternal text="Roadmap" href="https://benjamincarlson.notion.site/609b8bb171844146a9bcd9fbabd171a8?v=341de17fff6149bea36dbafbe2f2cf88" />
+                        </Flex>
                     </Flex>
                 </Flex>
             </Flex>
+
             <Text as="small">&copy; Copyright {year}, Carlson Technologies LLC. All Rights Reserved.</Text>
             <Flex my={2}>
                 <Link

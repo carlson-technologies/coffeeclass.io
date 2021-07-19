@@ -39,14 +39,28 @@ export default function Snippet({ title, description, tags, href, as, mainTag, i
                 w="100%"
             >
                 <Flex h="100%" flexDir={["column", "column", "column", "row", "row", "row"]}>
-                    <Image
-                        src={image}
-                        alt={image}
-                        w={75}
-                        h={75}
-                        mr={4}
-                        alignSelf="center"
-                    />
+                    {/* If the image title includes "light", it has a dark mode image
+                    so we need to use the correct image.
+                    This is not the best solution, but it works for now. */}
+                    {image.includes('light') ?
+                        <Image
+                            src={colorMode === "light" ? image : image.replace('light', 'dark')}
+                            alt={image}
+                            alignSelf="left"
+                            mb={4}
+                            mr={4}
+                            w={75}
+                            h={75}
+                        /> :
+                        <Image
+                            src={image}
+                            alt={image}
+                            alignSelf="left"
+                            mb={4}
+                            mr={4}
+                            w={75}
+                            h={75}
+                        />}
                     <Flex flexDir="column">
                         <Heading><Link href={href} as={as}>{title}</Link></Heading>
                         <Text fontSize="lg"><Link href={href} as={as}>{description}</Link></Text>

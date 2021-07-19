@@ -67,48 +67,53 @@ const CustomListItem = (props) => {
     )
 }
 
+// const DocsHeading = (props) => (
+//     <Heading
+//         id={props.children}
+//         css={{
+//             scrollMarginTop: '100px',
+//             scrollSnapMargin: '100px', // Safari
+//             '&[id]': {
+//                 pointerEvents: 'none'
+//             },
+//             '&[id]:before': {
+//                 display: 'block',
+//                 height: ' 6rem',
+//                 marginTop: '-6rem',
+//                 visibility: 'hidden',
+//                 content: `""`
+//             },
+//             '&[id]:hover a': { opacity: 1 }
+//         }}
+//         {...props}
+//     >
+//         <Box>
+//             {props.children}
+//             {props.children && (
+//                 <Box
+//                     aria-label="anchor"
+//                     as="a"
+//                     color="brand_one.500"
+//                     fontWeight="normal"
+//                     outline="none"
+//                     _hover={{
+//                         opacity: 1,
+//                         boxShadow: 'outline'
+//                     }}
+//                     opacity="0"
+//                     ml="0.375rem"
+//                     href={`#${props.children}`}
+//                     id={props.children}
+//                 >
+//                     #
+//                 </Box>
+//             )}
+//         </Box>
+//     </Heading>
+// )
+
 const DocsHeading = (props) => (
-    <Heading
-        css={{
-            scrollMarginTop: '100px',
-            scrollSnapMargin: '100px', // Safari
-            '&[id]': {
-                pointerEvents: 'none'
-            },
-            '&[id]:before': {
-                display: 'block',
-                height: ' 6rem',
-                marginTop: '-6rem',
-                visibility: 'hidden',
-                content: `""`
-            },
-            '&[id]:hover a': { opacity: 1 }
-        }}
-        {...props}
-    >
-        <Box>
-            {props.children}
-            {props.children && (
-                <Box
-                    aria-label="anchor"
-                    as="a"
-                    color="brand_one.500"
-                    fontWeight="normal"
-                    outline="none"
-                    _hover={{
-                        opacity: 1,
-                        boxShadow: 'outline'
-                    }}
-                    opacity="0"
-                    ml="0.375rem"
-                    href={`#${props.children}`}
-                    id={props.children}
-                >
-                    #
-                </Box>
-            )}
-        </Box>
-    </Heading>
+    <Heading id={props.children} {...props}></Heading>
 )
 
 const CustomP = (props) => {

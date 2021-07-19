@@ -59,6 +59,7 @@ export default function PostPage({ source, frontMatter }) {
                     src={`/content/tutorials/${slug}/${frontMatter.featureImg}`}
                     alt={frontMatter.title}
                     maxW={800}
+                    w="100%"
                     borderRadius={15}
                     alignSelf={[null, null, null, null, null, "center"]}
                 />
@@ -68,6 +69,7 @@ export default function PostPage({ source, frontMatter }) {
                 w="100%"
                 alignSelf="center"
                 maxW="800px"
+                id="tutorial-content"
             >
                 <MDXRemote {...source} components={MDXComponents} />
             </Flex>

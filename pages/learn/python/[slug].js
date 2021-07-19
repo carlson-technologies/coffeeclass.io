@@ -8,11 +8,34 @@ import { learnPythonFilePaths, LEARN_PYTHON_PATH } from '../../../lib/mdxUtils'
 import MDXComponents from '../../../components/MDXComponents'
 import mdxPrism from 'mdx-prism'
 import readingTime from 'reading-time'
+import { motion } from 'framer-motion'
+import Pagination from '../../../components/Pagination'
+import { parseISO, format } from 'date-fns'
+import {
+    Heading,
+    Text,
+    Box
+} from '@chakra-ui/react'
 
 export default function PostPage({ source, frontMatter }) {
     return (
         <LearnLayout frontMatter={frontMatter}>
-            <MDXRemote {...source} components={MDXComponents} />
+            <motion.div
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+            >
+                <Box>
+                    <Heading as="h1" size="2xl">
+                        {frontMatter.title}
+                    </Heading>
+                    <Text fontSize="lg">{frontMatter.description}</Text>
+                </Box>
+                <MDXRemote {...source} components={MDXComponents} />
+                <Box my={4}>
+                    {frontMatter.lastUpdated && <Text color="gray.500" fontSize="sm" textAlign="center">Last updated on {format(parseISO(frontMatter.lastUpdated ? frontMatter.lastUpdated : frontMatter.publishedAt), 'MMMM dd, yyyy')}    </Text>}
+                </Box>
+                <Pagination />
+            </motion.div>
         </LearnLayout>
     )
 }

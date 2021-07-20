@@ -153,7 +153,7 @@ export default function Search({ snippets, tutorials, learn_python }) {
                                                                 opacity: '.5'
                                                             }}
                                                         >
-                                                            <Tag m={1} size="sm">#{t}</Tag>
+                                                            <Tag m={1} size="md">#{t}</Tag>
                                                         </Link>
                                                     </NextLink>
                                                 )

@@ -23,6 +23,7 @@ export default function PostPage({ source, frontMatter }) {
             <motion.div
                 initial={{ y: -20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: .5 }}
             >
                 <Box>
                     <Heading as="h1" size="2xl">

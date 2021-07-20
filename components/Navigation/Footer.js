@@ -12,7 +12,7 @@ import year from '../../lib/current_date'
 
 const FooterNavItem = ({ text, href }) => {
     return (
-        <Text>
+        <Text textAlign="left">
             <NextLink href={href} passHref>
                 <Link href={href} textDecor="underline">
                     {text}
@@ -24,7 +24,7 @@ const FooterNavItem = ({ text, href }) => {
 
 const FooterNavItemExternal = ({ text, href }) => {
     return (
-        <Text>
+        <Text textAlign="left">
             <Link href={href} textDecor="underline" isExternal>
                 {text}
             </Link>
@@ -47,6 +47,7 @@ const FooterHeading = ({ title }) => {
             marginTop={6}
             color={headerColor[colorMode]}
             alignSelf="flex-start"
+            textAlign="left"
         >
             {title}
         </Heading>
@@ -101,6 +102,7 @@ const Footer = () => {
                         <FooterHeading title="Company" />
                         <Flex flexDir="column" align="flex-start">
                             <FooterNavItem text="About" href="/about" />
+                            <FooterNavItemExternal text="Carlson Technologies" href="https://carlsontechnologies.dev/" />
                         </Flex>
                     </Flex>
                     <Flex flexDir="column">
@@ -108,6 +110,7 @@ const Footer = () => {
                         <Flex flexDir="column" align={["flex-end", "flex-end", "flex-end", "flex-start", "flex-start", "flex-start"]}>
                             <FooterNavItemExternal text="Code" href="https://github.com/carlson-technologies/coffeeclass.io" />
                             <FooterNavItemExternal text="Roadmap" href="https://benjamincarlson.notion.site/609b8bb171844146a9bcd9fbabd171a8?v=341de17fff6149bea36dbafbe2f2cf88" />
+                            <FooterNavItemExternal text="Developer Blog" href="https://developer.coffeeclass.io" />
                         </Flex>
                     </Flex>
                 </Flex>
@@ -125,7 +128,11 @@ const Footer = () => {
                 >
                     <Flex align="center">
                         <Text mr={1} fontSize="sm">Powered by</Text>
-                        <Image src={`/vercel/logotype/${logoColor[colorMode]}/vercel-logotype-${logoColor[colorMode]}.png`} w={75} />
+                        <Image
+                            src={`/vercel/logotype/${logoColor[colorMode]}/vercel-logotype-${logoColor[colorMode]}.png`}
+                            w={75}
+                            alt="Vercel Logo"
+                        />
                     </Flex>
                 </Link>
             </Flex>

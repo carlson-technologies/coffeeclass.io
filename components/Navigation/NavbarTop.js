@@ -7,16 +7,16 @@ import {
     Button,
     Heading,
     Divider,
-    Image,
-    Icon,
-    Link
+    Image
 } from '@chakra-ui/react'
 import { HamburgerIcon, CloseIcon, Search2Icon } from '@chakra-ui/icons'
 import DarkModeSwitch from './DarkModeSwitch'
 import NextLink from 'next/link'
+import { useRouter } from 'next/router'
 
 const NavBarTop = () => {
     const [display, changeDisplay] = useState('none')
+    const router = useRouter()
     const { colorMode } = useColorMode()
     const bgColor = {
         light: 'gray.100',
@@ -46,20 +46,19 @@ const NavBarTop = () => {
                 zIndex="10"
             >
                 <DarkModeSwitch />
-                <NextLink href="/search" passHref>
-                    <Link mx={2} href="/search">
-                        <Icon
-                            bgColor={bgColor[colorMode]}
-                            aria-label="Search Site"
-                            size="lg"
-                            _hover={{
-                                textDecoration: 'none',
-                                color: hoverColor[colorMode]
-                            }}
-                            as={Search2Icon}
-                        />
-                    </Link>
-                </NextLink>
+                <IconButton
+                    bgColor={bgColor[colorMode]}
+                    aria-label="Open Menu"
+                    size="lg"
+                    _hover={{
+                        textDecoration: 'none',
+                        color: hoverColor[colorMode]
+                    }}
+                    icon={
+                        <Search2Icon />
+                    }
+                    onClick={() => router.push('/search')}
+                />
                 <IconButton
                     bgColor={bgColor[colorMode]}
                     aria-label="Open Menu"

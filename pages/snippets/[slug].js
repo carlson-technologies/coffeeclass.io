@@ -36,6 +36,7 @@ export default function PostPage({ source, frontMatter }) {
             <motion.div
                 initial={{ y: -20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: .5 }}
                 style={{
                     flexDir: "column",
                     w: ['100%', '100%', '100%', '100%', '100%', '70%'],
@@ -86,6 +87,7 @@ export default function PostPage({ source, frontMatter }) {
                     <Text
                         fontSize="xl"
                         mt={2}
+                        mb={6}
                         color={color[colorMode]}
                         textAlign="left"
                     >

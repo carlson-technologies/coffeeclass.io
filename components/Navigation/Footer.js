@@ -8,7 +8,7 @@ import {
     Heading
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
-import year from '../../lib/current_date'
+import { year } from '../../lib/time'
 
 const FooterNavItem = ({ text, href }) => {
     return (

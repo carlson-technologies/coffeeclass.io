@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import {
     Flex,
     Box,
@@ -6,16 +5,27 @@ import {
     useColorMode,
     Button,
     Heading,
-    Divider,
-    Image
+    Drawer,
+    useDisclosure,
+    DrawerOverlay,
+    DrawerContent,
+    DrawerHeader,
+    DrawerBody,
+    Link,
+    ButtonGroup,
+    InputGroup,
+    Input,
+    InputRightElement
 } from '@chakra-ui/react'
 import { HamburgerIcon, CloseIcon, Search2Icon } from '@chakra-ui/icons'
 import DarkModeSwitch from './DarkModeSwitch'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
+import { getMessage } from '../../lib/time'
+import { SearchIcon } from '@chakra-ui/icons'
 
 const NavBarTop = () => {
-    const [display, changeDisplay] = useState('none')
+    const { isOpen, onOpen, onClose } = useDisclosure()
     const router = useRouter()
     const { colorMode } = useColorMode()
     const bgColor = {
@@ -29,6 +39,14 @@ const NavBarTop = () => {
     const boxShadowColor = {
         light: '0 4px 12px 0 rgba(0, 0, 0, 0.3)',
         dark: '0 4px 12px 0 rgba(0, 0, 0, 0.9)'
+    }
+    const secondaryColor = {
+        light: 'gray.500',
+        dark: 'gray.600'
+    }
+    const focusColor = {
+        light: 'brand_one.600',
+        dark: 'brand_one.500'
     }
     return (
         <>
@@ -70,197 +88,213 @@ const NavBarTop = () => {
                     icon={
                         <HamburgerIcon />
                     }
-                    onClick={() => changeDisplay('flex')}
+                    onClick={onOpen}
                 />
             </Box>
 
-            <Flex
-                w='100vw'
-                display={display}
-                bgColor={bgColor[colorMode]}
-                zIndex={20}
-                h="100vh"
-                pos="fixed"
-                top="0"
-                left="0"
-                zIndex={20}
-                overflowY="auto"
-                flexDir="column"
-            >
-                <Flex justify="flex-end">
-                    <IconButton
-                        pos="absolute"
-                        mt={2}
-                        mr={2}
-                        bgColor={bgColor[colorMode]}
-                        aria-label="Open Menu"
-                        size="lg"
-                        _hover={{
-                            textDecoration: 'none',
-                            color: hoverColor[colorMode]
-                        }}
-                        icon={
-                            <CloseIcon />
+            <Drawer onClose={onClose} isOpen={isOpen} size="sm">
+                <DrawerOverlay />
+                <DrawerContent>
+                    <DrawerHeader borderBottomWidth="1px">
+                        <Flex justify="space-between">
+                            <Heading as="h4" size="lg">{getMessage()}</Heading>
+                            <IconButton
+                                size="md"
+                                onClick={onClose}
+                                icon={<CloseIcon fontSize="xs" />}
+                                borderRadius={5}
+                            />
+                        </Flex>
+                    </DrawerHeader>
+                    <DrawerBody>
+                        <ButtonGroup spacing="4" justifyContent="space-around" w="100%" size="sm">
+                            <NextLink href="/learn" passHref>
+                                <Button colorScheme="brand_one" minW={[null, null, 110, 110, 110, 110]} href="/learn">Learn</Button>
+                            </NextLink>
+                            <NextLink href="/snippets" passHref>
+                                <Button colorScheme="brand_one" minW={[null, null, 110, 110, 110, 110]} href="/snippets">Snippets</Button>
+                            </NextLink>
+                            <NextLink href="/tutorials" passHref>
+                                <Button colorScheme="brand_one" minW={[null, null, 110, 110, 110, 110]} href="/tutorials">Tutorials</Button>
+                            </NextLink>
+                        </ButtonGroup>
+                        {router.pathname != '/search' &&
+                            <InputGroup my={4}>
+                                <Input
+                                    focusBorderColor={focusColor[colorMode]}
+                                    aria-label="Search by title and summary"
+                                    placeholder={`Search all posts!`}
+                                    onClick={() => router.push('/search')}
+                                />
+                                <InputRightElement>
+                                    <SearchIcon color={secondaryColor[colorMode]} />
+                                </InputRightElement>
+                            </InputGroup>
                         }
-                        onClick={() => changeDisplay('none')}
-                    />
-                </Flex>
+                        <Heading as="h4" size="sm" textTransform="uppercase" mt={4}>Content</Heading>
+                        <Flex flexDir="column" fontSize="lg">
+                            <NextLink href="/" passHref>
+                                <Link
+                                    href="/"
+                                    _hover={{ textDecor: 'none' }}
+                                    aria-label="Home"
+                                    color="gray.500"
+                                    transition="margin .3s ease-in-out"
+                                    _hover={{ ml: "2" }}
+                                >
+                                    Home
+                                </Link>
+                            </NextLink>
 
-                <Image alignSelf="center" src="/favicons/logo-transparent-bg.png" w={[100, 125, 150]} />
+                            <NextLink href="/snippets" passHref>
+                                <Link
+                                    href="/snippets"
+                                    _hover={{ textDecor: 'none' }}
+                                    aria-label="Snippets"
+                                    color="gray.500"
+                                    transition="margin .3s ease-in-out"
+                                    _hover={{ ml: "2" }}
+                                >
+                                    Snippets
+                                </Link>
+                            </NextLink>
 
-                <Flex
-                    flexDir={["column", "row", "row", "row"]}
-                    justify="space-around"
-                >
-                    {/* Content Column */}
-                    <Flex
-                        flexDir="column"
-                        align="center"
-                    >
-                        <Heading as="h4" size="sm">Content</Heading>
-                        <Divider mt={2} w="90%" />
+                            <NextLink href="/learn" passHref>
+                                <Link
+                                    href="/learn"
+                                    _hover={{ textDecor: 'none' }}
+                                    aria-label="Learn"
+                                    color="gray.500"
+                                    transition="margin .3s ease-in-out"
+                                    _hover={{ ml: "2" }}
+                                >
+                                    Learn
+                                </Link>
+                            </NextLink>
 
-                        <NextLink href="/" passHref>
-                            <Button
-                                as="a"
-                                variant="ghost"
-                                aria-label="Home"
-                                w="100%"
-                                _hover={{ background: 'none' }}
-                            >
-                                Home
-                            </Button>
-                        </NextLink>
+                            <NextLink href="/tutorials" passHref>
+                                <Link
+                                    href="/tutorials"
+                                    _hover={{ textDecor: 'none' }}
+                                    aria-label="Tutorials"
+                                    color="gray.500"
+                                    transition="margin .3s ease-in-out"
+                                    _hover={{ ml: "2" }}
+                                >
+                                    Tutorials
+                                </Link>
+                            </NextLink>
 
-                        <NextLink href="/snippets" passHref>
-                            <Button
-                                as="a"
-                                variant="ghost"
-                                aria-label="Snippets"
-                                w="100%"
-                                _hover={{ background: 'none' }}
-                            >
-                                Snippets
-                            </Button>
-                        </NextLink>
+                            <NextLink href="/tags" passHref>
+                                <Link
+                                    href="/tags"
+                                    _hover={{ textDecor: 'none' }}
+                                    aria-label="Tags"
+                                    color="gray.500"
+                                    transition="margin .3s ease-in-out"
+                                    _hover={{ ml: "2" }}
+                                >
+                                    Tags
+                                </Link>
+                            </NextLink>
+                        </Flex>
 
-                        <NextLink href="/learn" passHref>
-                            <Button
-                                as="a"
-                                variant="ghost"
-                                aria-label="Learn"
-                                w="100%"
-                                _hover={{ background: 'none' }}
-                            >
-                                Learn
-                            </Button>
-                        </NextLink>
-
-                        <NextLink href="/tutorials" passHref>
-                            <Button
-                                as="a"
-                                variant="ghost"
-                                aria-label="Tutorials"
-                                w="100%"
-                                _hover={{ background: 'none' }}
-                            >
-                                Tutorials
-                            </Button>
-                        </NextLink>
-
-                        <NextLink href="/tags" passHref>
-                            <Button
-                                as="a"
-                                variant="ghost"
-                                aria-label="Tags"
-                                w="100%"
-                                _hover={{ background: 'none' }}
-                            >
-                                Tags
-                            </Button>
-                        </NextLink>
-
-                        <NextLink href="/search" passHref>
-                            <Button
-                                as="a"
-                                variant="ghost"
-                                aria-label="Search"
-                                w="100%"
-                                _hover={{ background: 'none' }}
-                            >
-                                Search
-                            </Button>
-                        </NextLink>
-                    </Flex>
-
-                    {/* Company Column */}
-                    <Flex
-                        flexDir="column"
-                        align="center"
-                        mt={[10, 0, 0, 0]}
-                    >
-                        <Heading as="h4" size="sm">Company</Heading>
-                        <Divider mt={2} w="90%" />
-
-                        <NextLink href="/about" passHref>
-                            <Button
-                                as="a"
-                                variant="ghost"
-                                aria-label="About"
-                                w="100%"
-                                _hover={{ background: 'none' }}
-                            >
-                                About
-                            </Button>
-                        </NextLink>
-                        <NextLink href="/legal/terms" passHref>
-                            <Button
-                                as="a"
-                                variant="ghost"
-                                aria-label="Terms And Conditions"
-                                w="100%"
-                                _hover={{ background: 'none' }}
-                            >
-                                Terms And Conditions
-                            </Button>
-                        </NextLink>
-                        <NextLink href="/legal/privacy" passHref>
-                            <Button
-                                as="a"
-                                variant="ghost"
-                                aria-label="Privacy Policy"
-                                w="100%"
-                                _hover={{ background: 'none' }}
-                            >
-                                Privacy Policy
-                            </Button>
-                        </NextLink>
-                        <NextLink href="/legal/disclaimer" passHref>
-                            <Button
-                                as="a"
-                                variant="ghost"
-                                aria-label="Disclaimer"
-                                w="100%"
-                                _hover={{ background: 'none' }}
-                            >
-                                Disclaimer
-                            </Button>
-                        </NextLink>
-                    </Flex>
-
-                    {/* Current Page Navigation Column */}
-                    {/* <Flex
-                        flexDir="column"
-                        align="center"
-                        mt={[10, 0, 0, 0]}
-                    >
-                        <Heading as="h4" size="sm">Page Navigation</Heading>
-                        <Divider mt={2} w="90%" />
-
-                    </Flex> */}
-
-                </Flex>
-            </Flex>
+                        <Heading as="h4" size="sm" textTransform="uppercase" mt={4}>Company</Heading>
+                        <Flex flexDir="column" fontSize="lg">
+                            <NextLink href="/about" passHref>
+                                <Link
+                                    href="/about"
+                                    _hover={{ textDecor: 'none' }}
+                                    aria-label="About"
+                                    color="gray.500"
+                                    transition="margin .3s ease-in-out"
+                                    _hover={{ ml: "2" }}
+                                >
+                                    About
+                                </Link>
+                            </NextLink>
+                            <NextLink href="/legal/terms" passHref>
+                                <Link
+                                    href="/legal/terms"
+                                    _hover={{ textDecor: 'none' }}
+                                    aria-label="Terms And Conditions"
+                                    color="gray.500"
+                                    transition="margin .3s ease-in-out"
+                                    _hover={{ ml: "2" }}
+                                >
+                                    Terms And Conditions
+                                </Link>
+                            </NextLink>
+                            <NextLink href="/legal/privacy" passHref>
+                                <Link
+                                    href="/legal/privacy"
+                                    _hover={{ textDecor: 'none' }}
+                                    aria-label="Privacy Policy"
+                                    color="gray.500"
+                                    transition="margin .3s ease-in-out"
+                                    _hover={{ ml: "2" }}
+                                >
+                                    Privacy Policy
+                                </Link>
+                            </NextLink>
+                            <NextLink href="/legal/disclaimer" passHref>
+                                <Link
+                                    href="/legal/disclaimer"
+                                    _hover={{ textDecor: 'none' }}
+                                    aria-label="Disclaimer"
+                                    color="gray.500"
+                                    transition="margin .3s ease-in-out"
+                                    _hover={{ ml: "2" }}
+                                >
+                                    Disclaimer
+                                </Link>
+                            </NextLink>
+                        </Flex>
+                        <Heading as="h4" size="sm" textTransform="uppercase" mt={4}>Open Source</Heading>
+                        <Flex flexDir="column" fontSize="lg">
+                            <NextLink href="https://github.com/carlson-technologies/coffeeclass.io" passHref>
+                                <Link
+                                    isExternal
+                                    href="https://github.com/carlson-technologies/coffeeclass.io"
+                                    _hover={{ textDecor: 'none' }}
+                                    aria-label="Code"
+                                    color="gray.500"
+                                    transition="margin .3s ease-in-out"
+                                    _hover={{ ml: "2" }}
+                                >
+                                    Code
+                                </Link>
+                            </NextLink>
+                            <NextLink href="https://benjamincarlson.notion.site/609b8bb171844146a9bcd9fbabd171a8?v=341de17fff6149bea36dbafbe2f2cf88" passHref>
+                                <Link
+                                    isExternal
+                                    href="https://benjamincarlson.notion.site/609b8bb171844146a9bcd9fbabd171a8?v=341de17fff6149bea36dbafbe2f2cf88"
+                                    _hover={{ textDecor: 'none' }}
+                                    aria-label="Roadmap"
+                                    color="gray.500"
+                                    transition="margin .3s ease-in-out"
+                                    _hover={{ ml: "2" }}
+                                >
+                                    Roadmap
+                                </Link>
+                            </NextLink>
+                            <NextLink href="https://developer.coffeeclass.io" passHref>
+                                <Link
+                                    isExternal
+                                    href="https://developer.coffeeclass.io"
+                                    _hover={{ textDecor: 'none' }}
+                                    aria-label="Developer Blog"
+                                    color="gray.500"
+                                    transition="margin .3s ease-in-out"
+                                    _hover={{ ml: "2" }}
+                                >
+                                    Developer Blog
+                                </Link>
+                            </NextLink>
+                        </Flex>
+                    </DrawerBody>
+                </DrawerContent>
+            </Drawer>
         </>
     )
 }

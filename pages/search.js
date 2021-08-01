@@ -40,7 +40,7 @@ export default function Search({ snippets, tutorials, learn_python }) {
     snippets.map(s => { allPosts.push(s) })
     tutorials.map(t => { allPosts.push(t) })
     learn_python.map(l_p => { allPosts.push(l_p) })
-    
+
     const filteredPosts = allPosts
         .filter((frontMatter) =>
             frontMatter.data?.title?.toLowerCase()?.includes(searchValue.toLowerCase()) ||
@@ -104,6 +104,7 @@ export default function Search({ snippets, tutorials, learn_python }) {
                     </Heading>
                     <InputGroup my={4}>
                         <Input
+                            autoFocus
                             focusBorderColor={headerColor[colorMode]}
                             aria-label="Search by title and summary"
                             onChange={(e) => setSearchValue(e.target.value)}

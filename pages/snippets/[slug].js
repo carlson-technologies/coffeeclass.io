@@ -10,7 +10,6 @@ import mdxPrism from 'mdx-prism'
 import readingTime from 'reading-time'
 import { parseISO, format } from 'date-fns'
 import {
-    Heading,
     Text,
     Link,
     Flex,
@@ -41,59 +40,10 @@ export default function PostPage({ source, frontMatter }) {
                     flexDir: "column",
                     w: ['100%', '100%', '100%', '100%', '100%', '70%'],
                     alignSelf: "center",
-                    maxW: "800px"
+                    maxW: "800px",
                 }}
             >
-                <Flex
-                    flexDir="column"
-                    alignSelf="center"
-                    maxW="800px"
-                >
-                    <Flex>
-                        {
-                            frontMatter.logoImage?.map((image, index) => (
-                                // If the image title includes "light", it has a dark mode image
-                                // so we need to use the correct image.
-                                // This is not the best solution, but it works for now.
-                                image.includes('light') ?
-                                    <Image
-                                        key={index}
-                                        src={colorMode === "light" ? `/snippet-images/${image}` : `/snippet-images/${image.replace('light', 'dark')}`}
-                                        alt={frontMatter.logoImage}
-                                        alignSelf="left"
-                                        mb={4}
-                                        mr={2}
-                                        w="5em"
-                                    /> :
-                                    <Image
-                                        key={index}
-                                        src={`/snippet-images/${image}`}
-                                        alt={frontMatter.logoImage}
-                                        alignSelf="left"
-                                        mb={4}
-                                        mr={2}
-                                        w="5em"
-                                    />
-                            ))
-                        }
-                    </Flex>
-                    <Heading
-                        as="h1"
-                        size="xl"
-                        textAlign="left"
-                    >
-                        {frontMatter.title}
-                    </Heading>
-                    <Text
-                        fontSize="xl"
-                        mt={2}
-                        mb={6}
-                        color={color[colorMode]}
-                        textAlign="left"
-                    >
-                        {frontMatter.description}
-                    </Text>
-                </Flex>
+                
                 <Flex
                     flexDir="column"
                     maxW="800px"

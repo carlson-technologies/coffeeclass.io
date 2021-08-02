@@ -4,7 +4,7 @@ import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
 import path from 'path'
 import LearnLayout from '../../../layouts/learn'
-import { learnPythonFilePaths, LEARN_PYTHON_PATH } from '../../../lib/mdxUtils'
+import { learnChakraUIFilePaths, LEARN_CHAKRAUI_PATH } from '../../../lib/mdxUtils'
 import MDXComponents from '../../../components/MDXComponents'
 import mdxPrism from 'mdx-prism'
 import readingTime from 'reading-time'
@@ -19,7 +19,7 @@ import {
 
 export default function PostPage({ source, frontMatter }) {
     return (
-        <LearnLayout frontMatter={frontMatter} src="python.png" alt="Python Image">
+        <LearnLayout frontMatter={frontMatter} src="chakra-ui.png" alt="Chakra UI Image">
             <motion.div
                 initial={{ y: -20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -42,8 +42,8 @@ export default function PostPage({ source, frontMatter }) {
 }
 
 export const getStaticProps = async ({ params }) => {
-    const learnPythonPath = path.join(LEARN_PYTHON_PATH, `${params.slug}.mdx`)
-    const source = fs.readFileSync(learnPythonPath)
+    const learnChakraUIPath = path.join(LEARN_CHAKRAUI_PATH, `${params.slug}.mdx`)
+    const source = fs.readFileSync(learnChakraUIPath)
 
     const { content, data } = matter(source)
 
@@ -72,7 +72,7 @@ export const getStaticProps = async ({ params }) => {
 }
 
 export const getStaticPaths = async () => {
-    const paths = learnPythonFilePaths
+    const paths = learnChakraUIFilePaths
         // Remove file extensions for page paths
         .map((path) => path.replace(/\.mdx?$/, ''))
         // Map the path into the static paths object required by Next.js

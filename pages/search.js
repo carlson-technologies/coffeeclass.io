@@ -26,6 +26,7 @@ import path from 'path'
 import { snippetsFilePaths, SNIPPETS_PATH } from '../lib/mdxUtils'
 import { tutorialsFilePaths, TUTORIALS_PATH } from '../lib/mdxUtils'
 import { learnPythonFilePaths, LEARN_PYTHON_PATH } from '../lib/mdxUtils'
+import { learnChakraUIFilePaths, LEARN_CHAKRAUI_PATH } from '../lib/mdxUtils'
 import { SearchIcon } from '@chakra-ui/icons'
 import get_type from '../lib/get_type'
 import { parseISO, format } from 'date-fns'
@@ -34,17 +35,24 @@ const url = 'https://coffeeclass.io/search'
 const title = 'Search – Coffeeclass'
 const description = 'Search free programming tutorials on beginner Python, intermediate Python, advanced Python, JavaScript, algorithms, Next.js, react, and more all for free on Coffeeclass.'
 
-export default function Search({ snippets, tutorials, learn_python }) {
+export default function Search({ snippets, tutorials, learn_python, learn_chakraui }) {
     const [searchValue, setSearchValue] = useState('')
     const allPosts = []
     snippets.map(s => { allPosts.push(s) })
     tutorials.map(t => { allPosts.push(t) })
     learn_python.map(l_p => { allPosts.push(l_p) })
+    learn_chakraui.map(l_c => { allPosts.push(l_c) })
+
+    allPosts.sort((a, b) => {
+        return Number(new Date(b.data.publishedAt)) - Number(new Date(a.data.publishedAt))
+    })
 
     const filteredPosts = allPosts
         .filter((frontMatter) =>
             frontMatter.data?.title?.toLowerCase()?.includes(searchValue.toLowerCase()) ||
-            frontMatter.data?.description?.toLowerCase()?.includes(searchValue.toLowerCase())
+            frontMatter.data?.description?.toLowerCase()?.includes(searchValue.toLowerCase()) ||
+            frontMatter.data?.tags?.some(tag => tag.toLowerCase().includes(searchValue.toLowerCase())) ||
+            frontMatter.data?.author?.toLowerCase()?.includes(searchValue.toLowerCase())
         )
 
     const { colorMode } = useColorMode()
@@ -106,9 +114,9 @@ export default function Search({ snippets, tutorials, learn_python }) {
                         <Input
                             autoFocus
                             focusBorderColor={headerColor[colorMode]}
-                            aria-label="Search by title and summary"
+                            aria-label="Search by title, summary, tags, and author"
                             onChange={(e) => setSearchValue(e.target.value)}
-                            placeholder={`Search ${allPosts.length} results by title and summary`}
+                            placeholder={`Search ${allPosts.length} results by title, summary, tags, and author`}
                         />
                         <InputRightElement>
                             <SearchIcon color={secondaryColor[colorMode]} />
@@ -207,5 +215,16 @@ export function getStaticProps() {
         }
     })
 
-    return { props: { tutorials, snippets, learn_python } }
+    const learn_chakraui = learnChakraUIFilePaths.map((filePath) => {
+        const source = fs.readFileSync(path.join(LEARN_CHAKRAUI_PATH, filePath))
+        const { content, data } = matter(source)
+
+        return {
+            content,
+            data,
+            filePath,
+        }
+    })
+
+    return { props: { tutorials, snippets, learn_python, learn_chakraui } }
 }

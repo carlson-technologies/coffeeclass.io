@@ -1,0 +1,13 @@
+{
+  "title": "Chakra UI",
+  "routes": [
+    {
+      "title": "What Is Chakra UI?",
+      "path": "/learn/chakra-ui/what-is-chakra-ui"
+    },
+    {
+      "title": "Getting Started",
+      "path": "/learn/chakra-ui/getting-started-with-chakra-ui"
+    }
+  ]
+}

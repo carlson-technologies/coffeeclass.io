@@ -1,5 +1,6 @@
 import { useRouter } from "next/router"
 import pythonSidebar from "../configs/learn/python.json"
+import chakraUISidebar from "../configs/learn/chakra-ui.json"
 import {
     Box,
     Flex,
@@ -7,14 +8,15 @@ import {
     Heading,
     Link,
     useColorMode,
-    Divider
+    Divider,
+    Image
 } from "@chakra-ui/react"
-import NextLink from 'next/link'
 
 export function getRoutes(slug) {
 
     const configMap = {
-        "/learn/python": pythonSidebar
+        "/learn/python": pythonSidebar,
+        "/learn/chakra-ui": chakraUISidebar
     }
 
     const [_path, sidebar] =
@@ -25,7 +27,7 @@ export function getRoutes(slug) {
     return sidebar?.routes
 }
 
-const Sidebar = () => {
+const Sidebar = ({ src, alt }) => {
     const { pathname } = useRouter()
     const routes = getRoutes(pathname)
     const router = useRouter()
@@ -58,10 +60,17 @@ const Sidebar = () => {
             <Flex
                 flexDirection="column"
             >
-                <Heading as="h4" size="md" textAlign="center">Modules 🔖</Heading>
+                <Flex flexDirection="column" alignItems="center">
+                    <Image
+                        src={`/learn-images/language-logo/${src}`}
+                        alt={alt}
+                        h={35}
+                        w={35}
+                    />
+                    <Heading as="h4" size="md" mt={4}>Modules 🔖</Heading>
+                </Flex>
                 <Divider my={4} />
                 {routes.map((r) =>
-                    // <NextLink href={r.path} key={r.title} passHref>
                     <Link
                         key={r.title}
                         href={r.path}
@@ -82,7 +91,6 @@ const Sidebar = () => {
                             <Text py="1px" pl={1}>{r.title}</Text>
                         </Box>
                     </Link>
-                    // </NextLink>
                 )}
             </Flex>
         </Box>

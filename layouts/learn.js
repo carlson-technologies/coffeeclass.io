@@ -7,7 +7,7 @@ import { NextSeo } from 'next-seo'
 import Container from '../components/Container'
 import { useRouter } from 'next/router'
 
-export default function LearnLayout({ children, frontMatter }) {
+export default function LearnLayout({ children, frontMatter, src, alt }) {
     const router = useRouter()
     const slug = router.asPath
     const url = `https://coffeeclass${slug}`
@@ -28,7 +28,7 @@ export default function LearnLayout({ children, frontMatter }) {
             <Flex
                 ml={[0, 0, 0, 0, 2, 2]}
             >
-                <Sidebar />
+                <Sidebar src={src} alt={alt} />
                 <Stack
                     as="article"
                     spacing={8}

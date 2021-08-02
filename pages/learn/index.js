@@ -59,7 +59,7 @@ export default function Index() {
                     </Heading>
                     <Heading as="h2" size="md" fontWeight="normal" mt={2}>Learn a new language or skill, bookmark a module page for future reference, how you use Coffeeclass Learn is up to you.</Heading>
                     <Divider mt={2} />
-                    <Flex flexDir="column">
+                    <Flex>
                         {
                             data.map((item, index) => {
                                 return (

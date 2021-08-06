@@ -36,8 +36,6 @@ export default function LearnLayout({ children, frontMatter, src, alt }) {
         const activeHeader = (target) => {
             const headerObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
-                    // console.log(entry.isIntersecting)
-                    console.log(entry)
                     if (entry.isIntersecting) {
                         setActiveHeader(entry.target.getAttribute("id"))
                         observer.disconnect()

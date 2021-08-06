@@ -54,9 +54,7 @@ export default function Layout({ frontMatter, children }) {
         const targets = document.getElementById('tutorial-content').querySelectorAll("h2, h3, h4, h5, h6")
         const activeHeader = (target) => {
             const headerObserver = new IntersectionObserver((entries, observer) => {
-                console.log(entries)
                 entries.forEach(entry => {
-                    console.log(entry)
                     if (entry.isIntersecting) {
                         setActiveHeader(entry.target.getAttribute("id"))
                         observer.disconnect()

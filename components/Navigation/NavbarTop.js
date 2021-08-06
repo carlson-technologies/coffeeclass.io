@@ -15,7 +15,7 @@ import {
     ButtonGroup,
     InputGroup,
     Input,
-    InputRightElement
+    InputRightElement,
 } from '@chakra-ui/react'
 import { HamburgerIcon, CloseIcon, Search2Icon } from '@chakra-ui/icons'
 import DarkModeSwitch from './DarkModeSwitch'

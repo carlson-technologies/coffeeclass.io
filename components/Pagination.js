@@ -1,5 +1,6 @@
 import { useRouter } from "next/router"
 import pythonSidebar from "../configs/learn/python.json"
+import chakraUISidebar from "../configs/learn/chakra-ui.json"
 import {
     Flex,
     Text,
@@ -7,13 +8,13 @@ import {
     useColorMode,
     Icon
 } from "@chakra-ui/react"
-import NextLink from 'next/link'
 import { ChevronRightIcon, ChevronLeftIcon } from '@chakra-ui/icons'
 
 export function getRoutes(slug) {
 
     const configMap = {
-        "/learn/python": pythonSidebar
+        "/learn/python": pythonSidebar,
+        "/learn/chakra-ui": chakraUISidebar
     }
 
     const [_path, sidebar] =
@@ -58,6 +59,7 @@ const Pagination = () => {
 
     return (
         <Flex
+            as="section"
             justify="space-between"
             align="center"
             w="100%"
@@ -65,7 +67,6 @@ const Pagination = () => {
             flexDir={["column", "column", "column", "row", "row", "row"]}
         >
             {pagination.prevRoute ?
-                // <NextLink href={pagination.prevRoute.path} passHref>
                 <Link
                     href={pagination.prevRoute.path}
                     _hover={{
@@ -82,10 +83,8 @@ const Pagination = () => {
                         <Text>{pagination.prevRoute.title}</Text>
                     </Flex>
                 </Link>
-                // </NextLink>
                 : <Text></Text>}
             {pagination.nextRoute ?
-                // <NextLink href={pagination.nextRoute.path} passHref>
                 <Link
                     href={pagination.nextRoute.path}
                     _hover={{
@@ -102,7 +101,6 @@ const Pagination = () => {
                         <Icon as={ChevronRightIcon}></Icon>
                     </Flex>
                 </Link>
-                // </NextLink>
                 : <Text></Text>}
         </Flex>
     )

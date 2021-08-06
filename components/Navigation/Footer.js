@@ -64,7 +64,7 @@ const Footer = () => {
         <Flex
             flexDir="column"
             align="center"
-            ml={[0, 0, 0, 0, 150, 150]}
+            ml={[0, 0, 0, 0, 55, 55]}
             my={4}
             px={4}
             as="footer"

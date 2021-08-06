@@ -7,7 +7,8 @@ import {
     useColorMode,
     Link,
     Button,
-    Image
+    Image,
+    Badge
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../../components/Container'
@@ -59,7 +60,7 @@ export default function Index() {
                     </Heading>
                     <Heading as="h2" size="md" fontWeight="normal" mt={2}>Learn a new language or skill, bookmark a module page for future reference, how you use Coffeeclass Learn is up to you.</Heading>
                     <Divider mt={2} />
-                    <Flex flexDir="column">
+                    <Flex wrap="wrap">
                         {
                             data.map((item, index) => {
                                 return (
@@ -76,6 +77,7 @@ export default function Index() {
                                                     h='100%'
                                                 />
                                                 <Text ml={2}>{item.title}</Text>
+                                                {item.new && <Badge colorScheme="purple" ml={2} fontSize="lg">New!</Badge>}
                                             </Button>
                                         </Link>
                                     </Flex>

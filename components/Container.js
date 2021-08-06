@@ -17,7 +17,7 @@ const Container = ({ children }) => {
                 <Flex
                     display="block"
                     minH="100vh"
-                    ml={[0, 0, 0, 0, 150, 150]}
+                    ml={[0, 0, 0, 0, 55, 55]}
                     as="main"
                 >
                     {children}

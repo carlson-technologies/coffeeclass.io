@@ -1,5 +1,6 @@
 import { useRouter } from "next/router"
 import pythonSidebar from "../configs/learn/python.json"
+import chakraUISidebar from "../configs/learn/chakra-ui.json"
 import {
     Box,
     Flex,
@@ -7,14 +8,16 @@ import {
     Heading,
     Link,
     useColorMode,
-    Divider
+    Divider,
+    Image,
+    Badge,
 } from "@chakra-ui/react"
-import NextLink from 'next/link'
 
 export function getRoutes(slug) {
 
     const configMap = {
-        "/learn/python": pythonSidebar
+        "/learn/python": pythonSidebar,
+        "/learn/chakra-ui": chakraUISidebar
     }
 
     const [_path, sidebar] =
@@ -25,7 +28,7 @@ export function getRoutes(slug) {
     return sidebar?.routes
 }
 
-const Sidebar = () => {
+const Sidebar = ({ src, alt }) => {
     const { pathname } = useRouter()
     const routes = getRoutes(pathname)
     const router = useRouter()
@@ -40,28 +43,33 @@ const Sidebar = () => {
     }
     return (
         <Box
-            aria-label="Side Navigation"
-            pos="fixed"
+            aria-label="Sidebar Navigation"
+            pos="sticky"
             sx={{
                 overscrollBehavior: "contain",
             }}
-            w="270px"
-            top="20px"
-            h="calc(100vh - 20px)"
-            pr="8"
-            pb="4"
-            pl="3"
+            w="300px"
+            top="4em"
+            maxH="calc(100vh - 5em)"
+            h="fit-content"
+            mt="5em"
             overflowY="auto"
             flexShrink={0}
-            display={["none", "none", "none", "none", "none", "block"]}
         >
             <Flex
                 flexDirection="column"
             >
-                <Heading as="h4" size="md" textAlign="center">Modules 🔖</Heading>
+                <Flex flexDirection="column" alignItems="center">
+                    <Image
+                        src={`/learn-images/language-logo/${src}`}
+                        alt={alt}
+                        h={35}
+                        w={35}
+                    />
+                    <Heading as="h4" size="md" mt={4}>Modules 🔖</Heading>
+                </Flex>
                 <Divider my={4} />
                 {routes.map((r) =>
-                    // <NextLink href={r.path} key={r.title} passHref>
                     <Link
                         key={r.title}
                         href={r.path}
@@ -73,16 +81,19 @@ const Sidebar = () => {
                                 textDecoration: 'none',
                                 backgroundColor: r.path.includes(router.query.slug) ? sideBarActiveColor[colorMode] : sideBarHoverColor[colorMode]
                             }}
+                            transition="background-color .15s ease-in-out"
                             w="100%"
                             my={2}
                             borderRadius={5}
                             p={1}
                             backgroundColor={r.path.includes(router.query.slug) ? sideBarActiveColor[colorMode] : null}
                         >
-                            <Text py="1px" pl={1}>{r.title}</Text>
+                            <Flex justify="space-between" align="center">
+                                <Text py="1px" pl={1}>{r.title}</Text>
+                                {r.new && <Badge colorScheme="purple">New!</Badge>}
+                            </Flex>
                         </Box>
                     </Link>
-                    // </NextLink>
                 )}
             </Flex>
         </Box>

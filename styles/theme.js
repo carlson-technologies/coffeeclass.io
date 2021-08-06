@@ -14,12 +14,13 @@ const breakpoints = createBreakpoints({
     lg: device.mobileL,
     xl: device.tablet,
     "2xl": device.laptop,
-    "3xl": device.laptopL
+    "3xl": device.laptopL,
 })
 
 const config = {
     initialColorMode: "light",
     useSystemColorMode: false,
+    cssVarPrefix: "coffeeclassio",
 }
 
 const colors = {

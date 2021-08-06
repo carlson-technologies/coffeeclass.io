@@ -33,8 +33,8 @@ export default function Layout({ frontMatter, children }) {
         dark: 'whiteAlpha.100'
     }
     const [activeHeader, setActiveHeader] = useState(frontMatter?.headers[0]?.text) // set to the first header to avoid a small window when the page loads where there is no active header
-
     const [width, setWidth] = useState(0)
+    
     const handleScroll = () => {
         let scrollTop = window.scrollY
         let docHeight = document.body.offsetHeight
@@ -52,10 +52,11 @@ export default function Layout({ frontMatter, children }) {
         }
         // grab all heading tags for the tutorial
         const targets = document.getElementById('tutorial-content').querySelectorAll("h2, h3, h4, h5, h6")
-
         const activeHeader = (target) => {
             const headerObserver = new IntersectionObserver((entries, observer) => {
+                console.log(entries)
                 entries.forEach(entry => {
+                    console.log(entry)
                     if (entry.isIntersecting) {
                         setActiveHeader(entry.target.getAttribute("id"))
                         observer.disconnect()
@@ -75,6 +76,7 @@ export default function Layout({ frontMatter, children }) {
             window.removeEventListener('scroll', handleScroll)
         }
     })
+
     return (
         <Container>
             <SEO url={`https://coffeeclass.io${slug}`} {...frontMatter} />
@@ -188,11 +190,6 @@ export default function Layout({ frontMatter, children }) {
                     </Flex>
                 </div>
             </Flex>
-            <style jsx>{`
-                .active {
-                    color: red !important;
-                }
-      `}</style>
         </Container>
     )
 }

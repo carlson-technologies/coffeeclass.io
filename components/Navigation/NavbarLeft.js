@@ -9,7 +9,15 @@ import {
     Tooltip,
     WrapItem,
     Icon,
-    Text
+    Text,
+    Drawer,
+    useDisclosure,
+    DrawerOverlay,
+    DrawerContent,
+    DrawerHeader,
+    DrawerBody,
+    DrawerCloseButton,
+    DrawerFooter
 } from '@chakra-ui/react'
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 import NextLink from 'next/link'
@@ -17,6 +25,7 @@ import { FiInfo, FiEdit2, FiScissors, FiBookOpen, FiHome, FiBookmark, FiSearch }
 import { useRouter } from 'next/router'
 
 const NavBarLeft = () => {
+    const { isOpen, onOpen, onClose } = useDisclosure()
     const [display, changeDisplay] = useState('none')
     const { colorMode } = useColorMode()
     const bgColor = {
@@ -44,14 +53,42 @@ const NavBarLeft = () => {
     const router = useRouter()
     const slug = router.asPath
     return (
+        // <>
+        //     <Button colorScheme="teal" onClick={onOpen}>
+        //         Open
+        //     </Button>
+        //     <Drawer
+        //         isOpen={isOpen}
+        //         placement="left"
+        //         onClose={onClose}
+        //     >
+        //         <DrawerOverlay />
+        //         <DrawerContent>
+        //             <DrawerCloseButton />
+        //             <DrawerHeader>Create your account</DrawerHeader>
+
+        //             <DrawerBody>
+        //                 <Text>hi</Text>
+        //             </DrawerBody>
+
+        //             <DrawerFooter>
+        //                 <Button variant="outline" mr={3} onClick={onClose}>
+        //                     Cancel
+        //                 </Button>
+        //                 <Button colorScheme="blue">Save</Button>
+        //             </DrawerFooter>
+        //         </DrawerContent>
+        //     </Drawer>
+        // </>
         <Box
-            w={150}
+            w={55}
             h="100vh"
             bgColor={bgColor[colorMode]}
             pos="fixed"
             left={0}
             top={0}
             as="nav"
+            overflow="auto"
             aria-label="Nav 2"
             boxShadow={boxShadowColor[colorMode]}
             display={['none', 'none', 'none', 'none', 'flex', 'flex']}
@@ -82,7 +119,7 @@ const NavBarLeft = () => {
                                         align="center"
                                     >
                                         <Icon as={FiHome} fontSize="2xl" color={homeColor[colorMode]} />
-                                        <Text fontSize="xs" mt={2} color={homeColor[colorMode]}>coffeeclass.io</Text>
+                                        {/* <Text fontSize="xs" mt={2} color={homeColor[colorMode]}>coffeeclass.io</Text> */}
                                     </Flex>
                                 </Button>
                             </Box>
@@ -94,7 +131,7 @@ const NavBarLeft = () => {
                     <WrapItem w="100%">
                         <Tooltip
                             hasArrow
-                            label="Learn"
+                            label="coffeeclass.io Learn"
                             placement="right"
                             closeDelay={100}
                         >
@@ -108,7 +145,7 @@ const NavBarLeft = () => {
                                     justifyContent="start"
                                 >
                                     <Icon as={FiEdit2} fontSize="2xl" mr={2} color={slug.includes('learn') ? activeNavColor[colorMode] : null} />
-                                    <Text fontSize="sm">Learn</Text>
+                                    {/* <Text fontSize="sm">Learn</Text> */}
                                 </Button>
                             </Box>
                         </Tooltip>
@@ -133,7 +170,7 @@ const NavBarLeft = () => {
                                     justifyContent="start"
                                 >
                                     <Icon as={FiScissors} fontSize="2xl" mr={2} color={color[colorMode]} />
-                                    <Text fontSize="sm">Snippets</Text>
+                                    {/* <Text fontSize="sm">Snippets</Text> */}
                                 </Button>
                             </Box>
                         </Tooltip>
@@ -158,7 +195,7 @@ const NavBarLeft = () => {
                                     justifyContent="start"
                                 >
                                     <Icon as={FiBookOpen} fontSize="2xl" mr={2} color={color[colorMode]} />
-                                    <Text fontSize="sm">Tutorials</Text>
+                                    {/* <Text fontSize="sm">Tutorials</Text> */}
                                 </Button>
                             </Box>
                         </Tooltip>
@@ -198,7 +235,7 @@ const NavBarLeft = () => {
                                         justifyContent="start"
                                     >
                                         <Icon as={FiBookmark} fontSize="2xl" mr={2} color={color[colorMode]} />
-                                        <Text fontSize="sm">Tags</Text>
+                                        {/* <Text fontSize="sm">Tags</Text> */}
                                     </Button>
                                 </Box>
                             </Tooltip>
@@ -223,7 +260,7 @@ const NavBarLeft = () => {
                                         justifyContent="start"
                                     >
                                         <Icon as={FiInfo} fontSize="2xl" mr={2} color={color[colorMode]} />
-                                        <Text fontSize="sm">About</Text>
+                                        {/* <Text fontSize="sm">About</Text> */}
                                     </Button>
                                 </Box>
                             </Tooltip>
@@ -248,7 +285,7 @@ const NavBarLeft = () => {
                                         justifyContent="start"
                                     >
                                         <Icon as={FiSearch} fontSize="2xl" mr={2} color={color[colorMode]} />
-                                        <Text fontSize="sm">Search</Text>
+                                        {/* <Text fontSize="sm">Search</Text> */}
                                     </Button>
                                 </Box>
                             </Tooltip>

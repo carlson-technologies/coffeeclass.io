@@ -23,8 +23,13 @@ import {
 import Comments from '../../components/Comments'
 import { motion } from 'framer-motion'
 import NextLink from 'next/link'
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en'
 
 export default function PostPage({ source, frontMatter }) {
+    TimeAgo.addDefaultLocale(en)
+    const timeAgo = new TimeAgo('en-US')
+
     const { colorMode } = useColorMode()
     const color = {
         light: 'gray.600',
@@ -43,7 +48,6 @@ export default function PostPage({ source, frontMatter }) {
                     maxW: "800px",
                 }}
             >
-                
                 <Flex
                     flexDir="column"
                     maxW="800px"
@@ -57,7 +61,7 @@ export default function PostPage({ source, frontMatter }) {
                 >
                     <Divider mb={4} />
                     <Flex align="center" mb={8} flexDir={["column", "column", "column", "row", "row", "row"]}>
-                        <Text color={color[colorMode]} fontSize="md">Published on {format(parseISO(frontMatter.publishedAt), 'MMMM dd, yyyy')} in</Text>
+                        <Text color={color[colorMode]} fontSize="md">Published on {format(parseISO(frontMatter.publishedAt), 'MMMM dd, yyyy')} ({timeAgo.format(new Date(frontMatter.publishedAt))}) in</Text>
                         <Flex ml={2}>
                             {frontMatter.tags.map((tag, index) => (
                                 <Flex

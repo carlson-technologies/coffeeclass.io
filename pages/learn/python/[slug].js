@@ -11,10 +11,14 @@ import readingTime from 'reading-time'
 import { motion } from 'framer-motion'
 import Pagination from '../../../components/Pagination'
 import { parseISO, format } from 'date-fns'
+import getHeaders from '../../../lib/get-headers'
 import {
     Heading,
     Text,
-    Box
+    Box,
+    Divider,
+    Flex,
+    useColorModeValue,
 } from '@chakra-ui/react'
 
 export default function PostPage({ source, frontMatter }) {
@@ -24,15 +28,28 @@ export default function PostPage({ source, frontMatter }) {
                 initial={{ y: -20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: .5 }}
+                style={{
+                    flexDir: "column",
+                    w: "100%",
+                    alignSelf: "center",
+                    maxW: '1000px',
+                }}
             >
                 <Box>
-                    <Heading as="h1" size="2xl">
+                    <Heading as="h1" size="xl">
                         {frontMatter.title}
                     </Heading>
-                    <Text fontSize="lg">{frontMatter.description}</Text>
+                    <Text color={useColorModeValue("gray.500", "gray.400")} fontSize="xl" mt={2}>{frontMatter.description}</Text>
+                    <Divider my={2} />
                 </Box>
-                <MDXRemote {...source} components={MDXComponents} />
-                <Box my={4}>
+                <Flex
+                    flexDir="column"
+                    maxW="1000px"
+                    id="main-content"
+                >
+                    <MDXRemote {...source} components={MDXComponents} />
+                </Flex>
+                <Box mb={4} mt={10}>
                     {frontMatter.lastUpdated && <Text color="gray.500" fontSize="sm" textAlign="center">Last updated on {format(parseISO(frontMatter.lastUpdated ? frontMatter.lastUpdated : frontMatter.publishedAt), 'MMMM dd, yyyy')}    </Text>}
                 </Box>
                 <Pagination />
@@ -65,6 +82,7 @@ export const getStaticProps = async ({ params }) => {
             source: mdxSource,
             frontMatter: {
                 readingTime: readingTime(content),
+                headers: await getHeaders(content),
                 ...data
             },
         },

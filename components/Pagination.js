@@ -59,6 +59,7 @@ const Pagination = () => {
 
     return (
         <Flex
+            as="section"
             justify="space-between"
             align="center"
             w="100%"

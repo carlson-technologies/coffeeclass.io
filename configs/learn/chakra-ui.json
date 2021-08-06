@@ -3,11 +3,28 @@
   "routes": [
     {
       "title": "What Is Chakra UI?",
-      "path": "/learn/chakra-ui/what-is-chakra-ui"
+      "path": "/learn/chakra-ui/what-is-chakra-ui",
+      "new": true
     },
     {
       "title": "Getting Started",
-      "path": "/learn/chakra-ui/getting-started-with-chakra-ui"
+      "path": "/learn/chakra-ui/getting-started-with-chakra-ui",
+      "new": true
+    },
+    {
+      "title": "Default Theme",
+      "path": "/learn/chakra-ui/chakra-ui-default-theme",
+      "new": true
+    },
+    {
+      "title": "Custom Theme",
+      "path": "/learn/chakra-ui/chakra-ui-custom-theme",
+      "new": true
+    },
+    {
+      "title": "Dark Mode",
+      "path": "/learn/chakra-ui/chakra-ui-dark-mode",
+      "new": true
     }
   ]
 }

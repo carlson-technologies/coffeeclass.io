@@ -8,7 +8,8 @@
         {
             "title": "Chakra UI",
             "path": "/learn/chakra-ui/what-is-chakra-ui",
-            "image": "language-logo/chakra-ui.png"
+            "image": "language-logo/chakra-ui.png",
+            "new": true
         }
     ]
 }

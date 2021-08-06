@@ -1,0 +1,126 @@
+---
+title: "Dark Mode"
+publishedAt: "2021-08-05"
+description: "Create a dark mode component using Chakra UI!"
+author: "Benjamin Carlson"
+lastUpdated: "2021-08-05"
+type: learn
+language: chakra-ui
+---
+
+Dark mode is a complex feature to add - that is if you are not using Chakra UI. Chakra UI comes with [built-in support](https://chakra-ui.com/docs/features/color-mode) for managing color mode in your apps.
+
+Let's first add the `colorModeConfig` to our app and then we'll create a component to toggle the color mode.
+
+> We will be using Next.js for this demo.
+
+## Adding config
+
+Recall in the last module we added a custom theme. The theme takes in one additional property, `config`.
+
+```javascript:theme.js
+// 1. import `extendTheme` function
+import { extendTheme, ThemeConfig } from "@chakra-ui/react"
+
+// 2. Add your color mode config
+const config = {
+    initialColorMode: "light", // options are light or dark
+    useSystemColorMode: false, // options are true or false
+}
+
+// 3. extend the theme
+const theme = extendTheme({ config })
+
+export default theme
+```
+
+- `initialColorMode` is the initial color mode of the app. It's options are `light` and `dark`.
+
+- `useSystemColorMode` is a boolean that determines whether or not to use the system color mode. The system color mode is referring to your OS's color mode. For example, if you are on a phone and it is nightime, you probably have dark mode on. In this case you system's color mode would be dark. If `useSystemColorMode` is `true`, in this case the color mode would be dark.
+
+> In short, if `useSystemColorMode` is `true`, Chakra UI will use the system color mode. If `useSystemColorMode` is `false`, Chakra UI will use the `initialColorMode`.
+
+## ColorModeScript
+
+To see these changes take effect, we need to add `ColorModeScript` to `_document.js`.
+
+```javascript:_document.js
+import { ColorModeScript } from "@chakra-ui/react"
+import NextDocument, { Html, Head, Main, NextScript } from "next/document"
+import theme from "./theme" // this is the theme.js file we added our custom theme to
+
+export default class Document extends NextDocument {
+  render() {
+    return (
+      <Html lang="en">
+        <Head />
+        <body>
+          <ColorModeScript initialColorMode={theme.config.initialColorMode} /> // <-- add this line!
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    )
+  }
+}
+```
+
+If you run your app you should see the color mode change coming thorugh! Feel free to change the `initialColorMode` and `useSystemColorMode` values and see the changes.
+
+## Creating A Toggle Color Mode Component
+
+This works grest but what if we want the user to be able to toggle the color mode to their preference? We can do this using the `useColorMode` hook.
+
+Let's create a simple button that allows the user to change the color mode.
+
+```javascript:YourCustomComponent.js
+import {
+    useColorMode,
+    // other import statements here
+} from '@chakra-ui/react'
+
+function Example() {
+  const { colorMode, toggleColorMode } = useColorMode()
+  return (
+    <header>
+      <Button onClick={toggleColorMode}>
+        Toggle {colorMode === "light" ? "Dark" : "Light"}
+      </Button>
+    </header>
+  )
+}
+```
+
+Import this component anywhere in your app and use it. When you click the button, the color mode will change. Try it out here:
+
+<ExampleColorModeComponent />
+
+## Styling
+
+To style a component for light/dark mode we can use the `useColorModeValue` hook. Here is is in action:
+
+```javascript
+const value = useColorModeValue(lightModeValue, darkModeValue) // <- signature
+```
+
+```javascript
+function StyleColorMode() {
+  const { toggleColorMode } = useColorMode()
+
+  const bg = useColorModeValue("red.500", "red.200")
+  const color = useColorModeValue("white", "gray.800")
+
+  return (
+    <>
+      <Box mb={4} bg={bg} color={color}>
+        This box's style will change based on the color mode.
+      </Box>
+      <Button size="sm" onClick={toggleColorMode}>
+        Toggle Mode
+      </Button>
+    </>
+  )
+}
+```
+
+These are the basics of color mode in Chakra UI. As you can see, it was super simple to add.

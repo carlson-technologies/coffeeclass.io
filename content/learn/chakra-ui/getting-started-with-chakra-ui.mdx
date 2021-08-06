@@ -1,9 +1,78 @@
 ---
 title: "Getting Started"
-publishedAt: '2021-08-02'
-description: "todo"
+publishedAt: "2021-08-05"
+description: "Add Chakra UI to your website and write some code!"
 author: "Benjamin Carlson"
-lastUpdated: '2021-08-02'
+lastUpdated: "2021-08-05"
 type: learn
 language: chakra-ui
 ---
+
+## Installation
+
+To install Chakra UI on your website, you will need to add the packages either via [yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/). In the root of your application, run the following command:
+
+```bash
+npm i @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^4
+
+or
+
+yarn add @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^4
+```
+
+As you can see, we are also installing `@emotion/react`, `@emotion/styled` and `framer-motion`. This is because Chakra UI depends upon them. No need to worry about these extra dependencies for now.
+
+## Chakra Provider
+
+Now that we have the packages installed, we need to wrap our app with `ChakraProvider`. Please follow along with your framework below as each one is different.
+
+<details><summary>React</summary>
+<p>In the root of your application:</p>
+
+```javascript
+import * as React from "react";
+
+// 1. import `ChakraProvider` component
+import { ChakraProvider } from "@chakra-ui/react";
+
+function App({ Component }) {
+  // 2. Use at the root of your app
+  return (
+    <ChakraProvider>
+      <Component />
+    </ChakraProvider>
+  );
+}
+```
+</details>
+
+<details><summary>Next.js</summary>
+<p>In <code>_app.js</code>:</p>
+
+```javascript:_app.js
+import { ChakraProvider } from "@chakra-ui/react"
+
+function MyApp({ Component, pageProps }) {
+  return (
+    <ChakraProvider>
+      <Component {...pageProps} />
+    </ChakraProvider>
+  )
+}
+export default MyApp
+```
+</details>
+
+<details><summary>Gatsby</summary>
+<p>Add the <code>@chakra-ui/gatsby-plugin</code>:</p>
+
+```bash
+npm i @chakra-ui/gatsby-plugin
+
+...... or ......
+
+yarn add @chakra-ui/gatsby-plugin
+```
+</details>
+
+🎉 Chakra UI is now ready to use! 🎉

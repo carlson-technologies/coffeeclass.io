@@ -9,7 +9,8 @@ import {
     Link,
     useColorMode,
     Divider,
-    Image
+    Image,
+    Badge,
 } from "@chakra-ui/react"
 
 export function getRoutes(slug) {
@@ -42,20 +43,18 @@ const Sidebar = ({ src, alt }) => {
     }
     return (
         <Box
-            aria-label="Side Navigation"
-            pos="fixed"
+            aria-label="Sidebar Navigation"
+            pos="sticky"
             sx={{
                 overscrollBehavior: "contain",
             }}
-            w="270px"
-            top="20px"
-            h="calc(100vh - 20px)"
-            pr="8"
-            pb="4"
-            pl="3"
+            w="300px"
+            top="4em"
+            maxH="calc(100vh - 5em)"
+            h="fit-content"
+            mt="5em"
             overflowY="auto"
             flexShrink={0}
-            display={["none", "none", "none", "none", "none", "block"]}
         >
             <Flex
                 flexDirection="column"
@@ -82,13 +81,17 @@ const Sidebar = ({ src, alt }) => {
                                 textDecoration: 'none',
                                 backgroundColor: r.path.includes(router.query.slug) ? sideBarActiveColor[colorMode] : sideBarHoverColor[colorMode]
                             }}
+                            transition="background-color .15s ease-in-out"
                             w="100%"
                             my={2}
                             borderRadius={5}
                             p={1}
                             backgroundColor={r.path.includes(router.query.slug) ? sideBarActiveColor[colorMode] : null}
                         >
-                            <Text py="1px" pl={1}>{r.title}</Text>
+                            <Flex justify="space-between" align="center">
+                                <Text py="1px" pl={1}>{r.title}</Text>
+                                {r.new && <Badge colorScheme="purple">New!</Badge>}
+                            </Flex>
                         </Box>
                     </Link>
                 )}

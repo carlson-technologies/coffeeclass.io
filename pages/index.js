@@ -69,12 +69,12 @@ export default function Index({ snippets, tutorials }) {
             <Stack
                 spacing={8}
                 px={4}
-                maxW="100em"
+                maxW="110em"
             >
                 <Flex
                     flexDir="column"
                     mx={4}
-                    maxW="100em"
+                    maxW="110em"
                 >
                     <Flex
                         flexDir={['column', 'column', 'column', 'column', 'row', 'row']}

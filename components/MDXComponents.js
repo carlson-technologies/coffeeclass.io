@@ -9,22 +9,32 @@ import {
     Box,
     OrderedList,
     Alert,
-    Image
+    Image,
+    Flex,
+    Table,
+    Thead,
+    Tbody,
+    Tr,
+    Th,
+    Td,
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import SnippetStep from '../components/SnippetStep'
+import ChakraUILearnCards from './ChakraUILearnCards'
+import ExampleColorModeComponent from '../components/ExampleColorModeComponent'
+import KeyboardKey from '../components/KeyboardKey'
 
 const Quote = (props) => {
     const { colorMode } = useColorMode()
     const bgColor = {
-        light: 'brand_one.50',
-        dark: 'brand_one.900'
+        light: '#f5e2b8',
+        dark: '#706855'
     }
 
     return (
         <Alert
             my={2}
-            w="100%"
+            w={["100%", "100%", "100%", "90%", "90%", "80%"]}
             bg={bgColor[colorMode]}
             variant="left-accent"
             status="info"
@@ -67,51 +77,6 @@ const CustomListItem = (props) => {
     )
 }
 
-// const DocsHeading = (props) => (
-//     <Heading
-//         id={props.children}
-//         css={{
-//             scrollMarginTop: '100px',
-//             scrollSnapMargin: '100px', // Safari
-//             '&[id]': {
-//                 pointerEvents: 'none'
-//             },
-//             '&[id]:before': {
-//                 display: 'block',
-//                 height: ' 6rem',
-//                 marginTop: '-6rem',
-//                 visibility: 'hidden',
-//                 content: `""`
-//             },
-//             '&[id]:hover a': { opacity: 1 }
-//         }}
-//         {...props}
-//     >
-//         <Box>
-//             {props.children}
-//             {props.children && (
-//                 <Box
-//                     aria-label="anchor"
-//                     as="a"
-//                     color="brand_one.500"
-//                     fontWeight="normal"
-//                     outline="none"
-//                     _hover={{
-//                         opacity: 1,
-//                         boxShadow: 'outline'
-//                     }}
-//                     opacity="0"
-//                     ml="0.375rem"
-//                     href={`#${props.children}`}
-//                     id={props.children}
-//                 >
-//                     #
-//                 </Box>
-//             )}
-//         </Box>
-//     </Heading>
-// )
-
 const DocsHeading = (props) => (
     <Heading id={props.children} {...props}></Heading>
 )
@@ -127,6 +92,20 @@ const CustomP = (props) => {
     )
 }
 
+const CustomCode = (props) => {
+    return (
+        <Code fontSize="0.84em" {...props} />
+    )
+}
+
+const CustomTable = (props) => {
+    return (
+        <Flex overflow="auto" w="100%">
+            <Table variant="simple" {...props}></Table>
+        </Flex>
+    )
+}
+
 const MDXComponents = {
     h1: (props) => <Heading as="h1" size="2xl" {...props} />,
     h2: (props) => <DocsHeading as="h2" size="xl" mt="1em" {...props} />,
@@ -135,14 +114,23 @@ const MDXComponents = {
     h5: (props) => <DocsHeading as="h5" size="sm" {...props} />,
     h6: (props) => <DocsHeading as="h6" size="xs" {...props} />,
     p: CustomP,
-    inlineCode: (props) => <Code colorScheme="brand_two" fontSize="0.84em" {...props} />,
+    inlineCode: (props) => <CustomCode {...props} />,
     ul: (props) => <UnorderedList my={4} {...props} />,
     ol: (props) => <OrderedList my={4} {...props} />,
     li: CustomListItem,
     a: CustomLink,
     blockquote: Quote,
     img: (props) => <Image {...props} borderRadius={5}></Image>,
-    SnippetStep
+    table: (props) => <CustomTable {...props} />,
+    thead: (props) => <Thead {...props} />,
+    tbody: (props) => <Tbody {...props} />,
+    tr: (props) => <Tr {...props} />,
+    td: (props) => <Td {...props} />,
+    th: (props) => <Th {...props} />,
+    SnippetStep,
+    ChakraUILearnCards,
+    ExampleColorModeComponent,
+    KeyboardKey,
 }
 
 export default MDXComponents

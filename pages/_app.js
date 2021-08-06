@@ -27,6 +27,9 @@ const GlobalStyle = ({ children }) => {
           ::-moz-selection {
             background: ${colorMode === 'light' ? '#EAD9CD' : '#714B2F'};
           }
+          * {
+            transition: background .8s ease, color .1s ease;
+          }
         `}
       />
       {children}

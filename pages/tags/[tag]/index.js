@@ -4,7 +4,8 @@ import {
     Stack,
     Grid,
     Divider,
-    useColorMode
+    useColorMode,
+    useColorModeValue,
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../../../components/Container'
@@ -16,18 +17,27 @@ import { snippetsFilePaths, SNIPPETS_PATH } from '../../../lib/mdxUtils'
 import { tutorialsFilePaths, TUTORIALS_PATH } from '../../../lib/mdxUtils'
 import Snippet from '../../../components/Cards/Snippet'
 import Tutorial from '../../../components/Cards/Tutorial'
+import tags from '../../../configs/tags.json'
 
 export default function Index({ tutorials, snippets }) {
     const router = useRouter()
     const { tag } = router.query
+    var currentTag = [];
+    for (var i = 0; i < tags.tags.length; i++) {
+        if (tags.tags[i].title === tag) {
+            currentTag.push(tags.tags[i])
+        }
+    }
+
     const url = `https://coffeeclass.io/tags/${tag}`
-    const title = 'Tags – Coffeeclass'
-    const description = `Articles relating to ${tag}`
+    const title = `${tag} - Tags – Coffeeclass`
+    const description = `Articles relating to ${tag} on coffeeclass.io. ${currentTag[0]?.description ?? ""}`
     const { colorMode } = useColorMode()
     const headerColor = {
         light: 'brand_one.600',
         dark: 'brand_one.500'
     }
+
     return (
         <Container>
             <NextSeo
@@ -57,6 +67,16 @@ export default function Index({ tutorials, snippets }) {
                     >
                         #{tag}
                     </Heading>
+                    {currentTag[0]?.description &&
+                        <Heading
+                            as="h2"
+                            size="md"
+                            color={useColorModeValue("gray.500", "gray.400")}
+                            my={1}
+                        >
+                            {currentTag[0]?.description}
+                        </Heading>
+                    }
                     <Divider mt={2} />
                     <Heading my={4} as="h2" size="md">Snippets</Heading>
                     <Flex flexDir="column">

@@ -1,0 +1,20 @@
+{
+  "tags": [
+    {
+      "title": "chakra-ui",
+      "description": "Chakra UI is a simple, modular and accessible component library that gives you the building blocks you need to build your React applications."
+    },
+    {
+      "title": "nextjs",
+      "description": "The React Framework for Production. Next.js gives you the best developer experience with all the features you need for production: hybrid static & server rendering, TypeScript support, smart bundling, route pre-fetching, and more. No config needed."
+    },
+    {
+      "title": "google-analytics",
+      "description": "Google Analytics is a web analytics service offered by Google that tracks and reports website traffic, currently as a platform inside the Google Marketing Platform brand."
+    },
+    {
+      "title": "firebase",
+      "description": "Firebase is Google's mobile platform that helps you quickly develop high-quality apps and grow your business."
+    }
+  ]
+}

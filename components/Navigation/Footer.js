@@ -110,7 +110,7 @@ const Footer = () => {
                         <Flex flexDir="column" align={["flex-end", "flex-end", "flex-end", "flex-start", "flex-start", "flex-start"]}>
                             <FooterNavItemExternal text="Code" href="https://github.com/carlson-technologies/coffeeclass.io" />
                             <FooterNavItemExternal text="Roadmap" href="https://benjamincarlson.notion.site/609b8bb171844146a9bcd9fbabd171a8?v=341de17fff6149bea36dbafbe2f2cf88" />
-                            <FooterNavItemExternal text="Developer Blog" href="https://developer.coffeeclass.io" />
+                            <FooterNavItemExternal text="Engineering Blog" href="https://engineering.coffeeclass.io" />
                         </Flex>
                     </Flex>
                 </Flex>

@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import {
     Flex,
-    Stack,
     useColorMode,
     Heading,
     Link,
@@ -99,7 +98,6 @@ export default function LearnLayout({ children, frontMatter, src, alt }) {
                         >
                             <Flex
                                 pos="sticky"
-                                // top="4em"
                                 flexDir="column"
                             >
                                 <Heading

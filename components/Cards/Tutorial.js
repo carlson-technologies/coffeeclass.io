@@ -51,6 +51,7 @@ export default function Tutorial({ src, title, description, tags, href, as, main
                     >
                         <Flex justify="center">
                             <Image
+                                placeholder="blur"
                                 width={550}
                                 height={350}
                                 objectFit="contain"

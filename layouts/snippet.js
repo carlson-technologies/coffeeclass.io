@@ -5,12 +5,12 @@ import {
   Box,
   Heading,
   useColorMode,
-  Image,
   Text,
 } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import SEO from '../components/SEO'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 export default function Layout({ frontMatter, children }) {
   const router = useRouter()
@@ -85,24 +85,38 @@ export default function Layout({ frontMatter, children }) {
                     // so we need to use the correct image.
                     // This is not the best solution, but it works for now.
                     image.includes('light') ?
-                      <Image
-                        key={index}
-                        src={colorMode === "light" ? `/snippet-images/${image}` : `/snippet-images/${image.replace('light', 'dark')}`}
-                        alt={frontMatter.logoImage}
-                        alignSelf="left"
+                      <Box
+                        w="5em"
                         mb={4}
                         mr={2}
-                        w="5em"
-                      /> :
-                      <Image
-                        key={index}
-                        src={`/snippet-images/${image}`}
-                        alt={frontMatter.logoImage}
                         alignSelf="left"
+                      >
+                        <Image
+                          key={index}
+                          src={`/snippet-images/${image}`}
+                          alt={frontMatter.logoImage}
+                          placeholder="blur"
+                          width="200px"
+                          height="200px"
+                          objectFit="contain"
+                        />
+                      </Box> :
+                      <Box
+                        w="5em"
                         mb={4}
                         mr={2}
-                        w="5em"
-                      />
+                        alignSelf="left"
+                      >
+                        <Image
+                          key={index}
+                          src={`/snippet-images/${image}`}
+                          alt={frontMatter.logoImage}
+                          placeholder="blur"
+                          width="200px"
+                          height="200px"
+                          objectFit="cover"
+                        />
+                      </Box>
                   ))
                 }
               </Flex>

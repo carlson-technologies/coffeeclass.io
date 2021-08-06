@@ -252,45 +252,39 @@ const NavBarTop = () => {
                         </Flex>
                         <Heading as="h4" size="sm" textTransform="uppercase" mt={4}>Open Source</Heading>
                         <Flex flexDir="column" fontSize="lg">
-                            <NextLink href="https://github.com/carlson-technologies/coffeeclass.io" passHref>
-                                <Link
-                                    isExternal
-                                    href="https://github.com/carlson-technologies/coffeeclass.io"
-                                    _hover={{ textDecor: 'none' }}
-                                    aria-label="Code"
-                                    color="gray.500"
-                                    transition="margin .3s ease-in-out"
-                                    _hover={{ ml: "2" }}
-                                >
-                                    Code
-                                </Link>
-                            </NextLink>
-                            <NextLink href="https://benjamincarlson.notion.site/609b8bb171844146a9bcd9fbabd171a8?v=341de17fff6149bea36dbafbe2f2cf88" passHref>
-                                <Link
-                                    isExternal
-                                    href="https://benjamincarlson.notion.site/609b8bb171844146a9bcd9fbabd171a8?v=341de17fff6149bea36dbafbe2f2cf88"
-                                    _hover={{ textDecor: 'none' }}
-                                    aria-label="Roadmap"
-                                    color="gray.500"
-                                    transition="margin .3s ease-in-out"
-                                    _hover={{ ml: "2" }}
-                                >
-                                    Roadmap
-                                </Link>
-                            </NextLink>
-                            <NextLink href="https://developer.coffeeclass.io" passHref>
-                                <Link
-                                    isExternal
-                                    href="https://developer.coffeeclass.io"
-                                    _hover={{ textDecor: 'none' }}
-                                    aria-label="Developer Blog"
-                                    color="gray.500"
-                                    transition="margin .3s ease-in-out"
-                                    _hover={{ ml: "2" }}
-                                >
-                                    Developer Blog
-                                </Link>
-                            </NextLink>
+                            <Link
+                                isExternal
+                                href="https://github.com/carlson-technologies/coffeeclass.io"
+                                _hover={{ textDecor: 'none' }}
+                                aria-label="Code"
+                                color="gray.500"
+                                transition="margin .3s ease-in-out"
+                                _hover={{ ml: "2" }}
+                            >
+                                Code
+                            </Link>
+                            <Link
+                                isExternal
+                                href="https://benjamincarlson.notion.site/609b8bb171844146a9bcd9fbabd171a8?v=341de17fff6149bea36dbafbe2f2cf88"
+                                _hover={{ textDecor: 'none' }}
+                                aria-label="Roadmap"
+                                color="gray.500"
+                                transition="margin .3s ease-in-out"
+                                _hover={{ ml: "2" }}
+                            >
+                                Roadmap
+                            </Link>
+                            <Link
+                                isExternal
+                                href="https://engineering.coffeeclass.io"
+                                _hover={{ textDecor: 'none' }}
+                                aria-label="Developer Blog"
+                                color="gray.500"
+                                transition="margin .3s ease-in-out"
+                                _hover={{ ml: "2" }}
+                            >
+                                Engineering Blog
+                            </Link>
                         </Flex>
                     </DrawerBody>
                 </DrawerContent>

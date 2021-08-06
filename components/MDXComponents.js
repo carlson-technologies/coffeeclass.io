@@ -9,7 +9,6 @@ import {
     Box,
     OrderedList,
     Alert,
-    Image,
     Flex,
     Table,
     Thead,
@@ -23,6 +22,7 @@ import SnippetStep from '../components/SnippetStep'
 import ChakraUILearnCards from './ChakraUILearnCards'
 import ExampleColorModeComponent from '../components/ExampleColorModeComponent'
 import KeyboardKey from '../components/KeyboardKey'
+import Image from 'next/image'
 
 const Quote = (props) => {
     const { colorMode } = useColorMode()
@@ -106,6 +106,24 @@ const CustomTable = (props) => {
     )
 }
 
+const CustomImage = (props) => {
+    return (
+        <Box
+            borderRadius={15}
+            w={1000}
+            maxW="100%"
+        >
+            <Image
+                placeholder="blur"
+                objectFit="contain"
+                width={1000}
+                height={500}
+                {...props}
+            />
+        </Box>
+    )
+}
+
 const MDXComponents = {
     h1: (props) => <Heading as="h1" size="2xl" {...props} />,
     h2: (props) => <DocsHeading as="h2" size="xl" mt="1em" {...props} />,
@@ -120,7 +138,7 @@ const MDXComponents = {
     li: CustomListItem,
     a: CustomLink,
     blockquote: Quote,
-    img: (props) => <Image {...props} borderRadius={5}></Image>,
+    img: (props) => <CustomImage {...props} />,
     table: (props) => <CustomTable {...props} />,
     thead: (props) => <Thead {...props} />,
     tbody: (props) => <Tbody {...props} />,

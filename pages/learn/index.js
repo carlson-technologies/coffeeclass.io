@@ -7,12 +7,12 @@ import {
     useColorMode,
     Link,
     Button,
-    Image,
     Badge
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../../components/Container'
 import subjects from "../../configs/learn.json"
+import Image from 'next/image'
 
 const url = 'https://coffeeclass.io/learn'
 const title = 'Learn – Coffeeclass'
@@ -73,8 +73,11 @@ export default function Index() {
                                         >
                                             <Button p={2} size="lg" aria-label={item.title}>
                                                 <Image
-                                                    src={`learn-images/${item.image}`}
-                                                    h='100%'
+                                                    src={`/learn-images/${item.image}`}
+                                                    alt={`logo for ${item.image}`}
+                                                    placeholder="blur"
+                                                    height={35}
+                                                    width={35}
                                                 />
                                                 <Text ml={2}>{item.title}</Text>
                                                 {item.new && <Badge colorScheme="purple" ml={2} fontSize="lg">New!</Badge>}

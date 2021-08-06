@@ -3,11 +3,11 @@ import {
     Flex,
     Text,
     Box,
-    Image,
     useColorMode
 } from '@chakra-ui/react'
 import Link from 'next/link'
 import NextLink from 'next/link'
+import Image from 'next/image'
 
 export default function Snippet({ title, description, tags, href, as, mainTag, image }) {
     const { colorMode } = useColorMode()
@@ -43,24 +43,35 @@ export default function Snippet({ title, description, tags, href, as, mainTag, i
                     so we need to use the correct image.
                     This is not the best solution, but it works for now. */}
                     {image.includes('light') ?
-                        <Image
-                            src={colorMode === "light" ? image : image.replace('light', 'dark')}
-                            alt={image}
+                        <Box
                             alignSelf="left"
                             mb={4}
                             mr={4}
-                            w={75}
-                            h={75}
-                        /> :
-                        <Image
-                            src={image}
-                            alt={image}
+                        >
+                            <Image
+                                src={colorMode === "light" ? image : image.replace('light', 'dark')}
+                                alt={image}
+                                placeholder="blur"
+                                width="75px"
+                                height="75px"
+                                objectFit="contain"
+                            />
+                        </Box> :
+                        <Box
                             alignSelf="left"
                             mb={4}
                             mr={4}
-                            w={75}
-                            h={75}
-                        />}
+                        >
+                            <Image
+                                src={image}
+                                alt={image}
+                                placeholder="blur"
+                                width="75px"
+                                height="75px"
+                                objectFit="contain"
+                            />
+                        </Box>
+                    }
                     <Flex flexDir="column">
                         <Heading><Link href={href} as={as}>{title}</Link></Heading>
                         <Text fontSize="lg"><Link href={href} as={as}>{description}</Link></Text>

@@ -9,9 +9,10 @@ import {
     Link,
     useColorMode,
     Divider,
-    Image,
     Badge,
 } from "@chakra-ui/react"
+import Image from 'next/image'
+import NextLink from 'next/link'
 
 export function getRoutes(slug) {
 
@@ -63,37 +64,40 @@ const Sidebar = ({ src, alt }) => {
                     <Image
                         src={`/learn-images/language-logo/${src}`}
                         alt={alt}
-                        h={35}
-                        w={35}
+                        placeholder="blur"
+                        height={35}
+                        width={35}
                     />
                     <Heading as="h4" size="md" mt={4}>Modules 🔖</Heading>
                 </Flex>
                 <Divider my={4} />
                 {routes.map((r) =>
-                    <Link
-                        key={r.title}
-                        href={r.path}
-                        _hover={{
-                            textDecoration: 'none'
-                        }}>
-                        <Box
+                    <NextLink href={r.path} passHref>
+                        <Link
+                            key={r.title}
+                            href={r.path}
                             _hover={{
-                                textDecoration: 'none',
-                                backgroundColor: r.path.includes(router.query.slug) ? sideBarActiveColor[colorMode] : sideBarHoverColor[colorMode]
-                            }}
-                            transition="background-color .15s ease-in-out"
-                            w="100%"
-                            my={2}
-                            borderRadius={5}
-                            p={1}
-                            backgroundColor={r.path.includes(router.query.slug) ? sideBarActiveColor[colorMode] : null}
-                        >
-                            <Flex justify="space-between" align="center">
-                                <Text py="1px" pl={1}>{r.title}</Text>
-                                {r.new && <Badge colorScheme="purple">New!</Badge>}
-                            </Flex>
-                        </Box>
-                    </Link>
+                                textDecoration: 'none'
+                            }}>
+                            <Box
+                                _hover={{
+                                    textDecoration: 'none',
+                                    backgroundColor: r.path.includes(router.query.slug) ? sideBarActiveColor[colorMode] : sideBarHoverColor[colorMode]
+                                }}
+                                transition="background-color .15s ease-in-out"
+                                w="100%"
+                                my={2}
+                                borderRadius={5}
+                                p={1}
+                                backgroundColor={r.path.includes(router.query.slug) ? sideBarActiveColor[colorMode] : null}
+                            >
+                                <Flex justify="space-between" align="center">
+                                    <Text py="1px" pl={1}>{r.title}</Text>
+                                    {r.new && <Badge colorScheme="purple">New!</Badge>}
+                                </Flex>
+                            </Box>
+                        </Link>
+                    </NextLink>
                 )}
             </Flex>
         </Box>

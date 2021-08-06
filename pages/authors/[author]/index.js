@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import {
     Heading,
     Flex,
@@ -20,6 +19,7 @@ import { snippetsFilePaths, SNIPPETS_PATH } from '../../../lib/mdxUtils'
 import { tutorialsFilePaths, TUTORIALS_PATH } from '../../../lib/mdxUtils'
 import Snippet from '../../../components/Cards/Snippet'
 import Tutorial from '../../../components/Cards/Tutorial'
+import authors from '../../../configs/authors.json'
 
 export default function Index({ tutorials, snippets }) {
     const router = useRouter()
@@ -32,6 +32,21 @@ export default function Index({ tutorials, snippets }) {
         light: 'brand_one.600',
         dark: 'brand_one.500'
     }
+    var currentAuthor = [];
+    for (var i = 0; i < authors.authors.length; i++) {
+        if (authors.authors[i].name === author) {
+            currentAuthor.push(authors.authors[i])
+        }
+    }
+
+    if (currentAuthor.length === 0) {
+        return (
+            <Container>
+                <Heading as="h1" size="2xl" textAlign="center" letterSpacing="tight" color={headerColor[colorMode]}>{author} not found!</Heading>
+            </Container>
+        )
+    }
+
     return (
         <Container>
             <NextSeo
@@ -52,11 +67,41 @@ export default function Index({ tutorials, snippets }) {
                     flexDir="column"
                     mt={50}
                 >
-                    <Avatar alignSelf="center" size="2xl" src="/authors/benjamin-carlson.jpeg" />
+                    <Avatar alignSelf="center" size="2xl" src={currentAuthor[0]?.image} />
                     <Heading as="h1" size="2xl" textAlign="center" letterSpacing="tight" color={headerColor[colorMode]}>{author}</Heading>
-                    <Flex my={2} justifyContent="center" mt={2}>
-                        <Tag mr={2} size="lg"><Link href="https://benjamincarlson.io" isExternal>Website</Link></Tag>
-                        <Tag mr={2} size="lg"><Link href="https://github.com/bjcarlson42" isExternal>GitHub</Link></Tag>
+                    <Flex
+                        my={4}
+                        justifyContent="center"
+                        h={5}
+                    >
+                        <Tag
+                            mr={2}
+                            size="lg"
+                            transition="margin .2s ease-in-out"
+                            _hover={{ mt: "-2" }}
+                        >
+                            <Link
+                                href={currentAuthor[0]?.website}
+                                _hover={{ textDecor: 'none' }}
+                                isExternal
+                            >
+                                Website
+                            </Link>
+                        </Tag>
+                        <Tag
+                            mr={2}
+                            size="lg"
+                            transition="margin .2s ease-in-out"
+                            _hover={{ mt: "-2" }}
+                        >
+                            <Link
+                                href={currentAuthor[0]?.github}
+                                _hover={{ textDecor: 'none' }}
+                                isExternal
+                            >
+                                GitHub
+                            </Link>
+                        </Tag>
                     </Flex>
                     <Divider mt={2} />
                     <Heading my={4} as="h2">Snippets</Heading>

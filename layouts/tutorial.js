@@ -19,10 +19,15 @@ import { YoutubeIcon, GitHubIcon } from '../components/CustomIcons'
 import NextLink from 'next/link'
 import { parseISO, format } from 'date-fns'
 import { ChevronUpIcon, ArrowForwardIcon } from '@chakra-ui/icons'
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en'
 
 export default function Layout({ frontMatter, children }) {
     const router = useRouter()
     const slug = router.asPath
+    TimeAgo.addDefaultLocale(en)
+    const timeAgo = new TimeAgo('en-US')
+    
     const { colorMode } = useColorMode()
     const color = {
         light: 'gray.600',
@@ -122,6 +127,7 @@ export default function Layout({ frontMatter, children }) {
                                 <ListItem color={color[colorMode]} fontSize="sm">
                                     <ListIcon as={ArrowForwardIcon} color="orange.700" />
                                     Posted on {format(parseISO(frontMatter.publishedAt), 'MMMM dd, yyyy')}
+                                    ({timeAgo.format(new Date(frontMatter.publishedAt))})
                                 </ListItem>
                                 <ListItem color={color[colorMode]} fontSize="sm">
                                     <ListIcon as={ArrowForwardIcon} color="orange.700" />

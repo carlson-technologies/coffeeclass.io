@@ -37,16 +37,6 @@
   </url>
 
   <url>
-    <loc>https://coffeeclass.io/tutorials/add-firebase-to-nextjs</loc>
-  </url>
-
-  <url>
-    <loc
-      >https://coffeeclass.io/tutorials/nextjs-crash-course-build-a-developer-portfolio-website</loc
-    >
-  </url>
-
-  <url>
     <loc>https://coffeeclass.io/snippets/add-comments-to-nextjs-website</loc>
   </url>
 
@@ -79,11 +69,25 @@
   </url>
 
   <url>
+    <loc>https://coffeeclass.io/snippets/how-to-create-react-native-app</loc>
+  </url>
+
+  <url>
     <loc>https://coffeeclass.io/snippets/map-function-with-dart-lists</loc>
   </url>
 
   <url>
     <loc>https://coffeeclass.io/snippets/nextjs-mdx-quickstart</loc>
+  </url>
+
+  <url>
+    <loc>https://coffeeclass.io/tutorials/add-firebase-to-nextjs</loc>
+  </url>
+
+  <url>
+    <loc
+      >https://coffeeclass.io/tutorials/nextjs-crash-course-build-a-developer-portfolio-website</loc
+    >
   </url>
 
   <url>

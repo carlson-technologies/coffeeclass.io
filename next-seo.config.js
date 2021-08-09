@@ -1,5 +1,5 @@
-const title = 'Free Programming Tutorials And Advice | Coffeeclass'
-const description = 'Programming advice, tutorials, snippets on python, javascript, algorithms, next.js, react, and more - learn for free on Coffeeclass.'
+const title = 'Free Programming Tutorials And Advice | coffeeclass.io'
+const description = 'Programming advice, tutorials, snippets on python, javascript, algorithms, next.js, react, and more - learn for free on coffeeclass.io.'
 
 const SEO = {
     title,

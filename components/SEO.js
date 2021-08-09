@@ -11,7 +11,7 @@ const SEO = ({ title, seoDescription, publishedAt, url, author }) => {
     return (
         <>
             <NextSeo
-                title={`${title} | Coffeeclass`}
+                title={`${title} | coffeeclass.io`}
                 description={seoDescription}
                 canonical={url}
                 openGraph={{

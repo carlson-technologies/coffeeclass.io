@@ -5,12 +5,11 @@ import {
     Stack,
     Text,
     Box,
-    Divider,
     Grid,
     Image,
     Link,
     Icon,
-    useColorMode
+    useColorMode,
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../components/Container'
@@ -25,8 +24,8 @@ import { tutorialsFilePaths, TUTORIALS_PATH } from '../lib/mdxUtils'
 import { ChevronRightIcon } from '@chakra-ui/icons'
 
 const url = 'https://coffeeclass.io/'
-const title = 'Home – Coffeeclass'
-const description = 'Free programming tutorials, advice, snippets covering beginner Python, intermediate Python, advanced Python, JavaScript, algorithms, Next.js, react, and more all for free on Coffeeclass.'
+const title = 'Home | coffeeclass.io'
+const description = 'Free programming tutorials, advice, snippets covering beginner Python, intermediate Python, advanced Python, JavaScript, algorithms, Next.js, react, and more all for free on coffeeclass.io.'
 
 export default function Index({ snippets, tutorials }) {
     const { colorMode } = useColorMode()
@@ -89,7 +88,7 @@ export default function Index({ snippets, tutorials }) {
                             as="header"
                         >
                             <Heading as="h1" size="4xl" textAlign="center" w={['100%', '100%', '100%', '100%', 700, 900]} mt={20}>Learn to code 👨‍💻 and ship 🚀 your app for free.</Heading>
-                            <Heading as="h2" color={color[colorMode]} textAlign="center" size="md" my={8} w={['100%', '100%', '100%', '100%', 400, 600]}>Coffeeclass ☕ takes complex programming concepts and presents them in an easy to learn manner.
+                            <Heading as="h2" color={color[colorMode]} textAlign="center" size="md" my={8} w={['100%', '100%', '100%', '100%', 400, 600]}>coffeeclass.io ☕ takes complex programming concepts and presents them in an easy to learn manner.
                                 Browse snippets, tutorials, or learn a new skill.</Heading>
                             <Flex
                                 flexDirection={['column', 'column', 'column', 'row', 'row', 'row']}
@@ -97,11 +96,11 @@ export default function Index({ snippets, tutorials }) {
                                 justify="center"
                             >
                                 <NextLink href="#explore" passHref>
-                                    <Button mr={4} w={['100%', '100%', '100%', 200, 200, 200]} colorScheme="brand_one" leftIcon="🔭">Explore Content</Button>
+                                    <Button mr={4} w={['100%', '100%', '100%', 200, 200, 200]} colorScheme="brand_one" leftIcon="🔭" aria-label="Explore Content">Explore Content</Button>
                                 </NextLink>
                                 <Flex mt={[4, 4, 4, 0, 0, 0]}>
                                     <NextLink href="/about" passHref>
-                                        <Button variant="outline" w={['100%', '100%', '100%', 200, 200, 200]} colorScheme="brand_one" to="/about">About</Button>
+                                        <Button variant="outline" w={['100%', '100%', '100%', 200, 200, 200]} colorScheme="brand_one" to="/about" aria-label="About">About</Button>
                                     </NextLink>
                                 </Flex>
                             </Flex>
@@ -187,9 +186,9 @@ export default function Index({ snippets, tutorials }) {
                                 mb={2}
                                 textTransform="uppercase"
                             >
-                                What Is Coffeeclass?
+                                What Is coffeeclass.io?
                             </Heading>
-                            <Text mb={2}>Coffeeclass is a suite of programming tutorial tools including this website and <Link color="brand_one.500" href="https://youtube.com/benjamincarlson" isExternal>this YouTube channel</Link>.</Text>
+                            <Text mb={2}>coffeeclass.io is a suite of programming tutorial tools including this website and <Link color="brand_one.500" href="https://youtube.com/benjamincarlson" isExternal>this YouTube channel</Link>.</Text>
                             <Flex mb={2}>
                                 <NextLink href="/about" passHref>
                                     <Button variant="outline" colorScheme="brand_one" w={['100%', '100%', '100%', 200, 200, 200]} to="/about">Learn More</Button>
@@ -198,7 +197,7 @@ export default function Index({ snippets, tutorials }) {
                         </Flex>
                         <Flex w={['100%', '100%', '100%', '100%', 500, 500]} justify="center">
                             <Box w={200} h={200}>
-                                <Image src="favicons/logo-transparent-bg.png" alt="Coffeeclass Logo" />
+                                <Image src="favicons/logo-transparent-bg.png" alt="coffeeclass.io Logo" />
                             </Box>
                         </Flex>
                     </Flex>

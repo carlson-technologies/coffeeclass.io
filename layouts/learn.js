@@ -15,7 +15,7 @@ export default function LearnLayout({ children, frontMatter, src, alt }) {
     const router = useRouter()
     const slug = router.asPath
     const url = `https://coffeeclass${slug}`
-    const title = `${frontMatter.title} - Coffeeclass`
+    const title = `${frontMatter.title} - coffeeclass.io`
     const description = `${frontMatter.description}`
     const { colorMode } = useColorMode()
     const color = {

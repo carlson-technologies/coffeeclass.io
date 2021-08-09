@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { motion } from "framer-motion"
 import {
     Flex,
     Box,
@@ -7,17 +6,8 @@ import {
     Button,
     useColorMode,
     Tooltip,
-    WrapItem,
     Icon,
-    Text,
-    Drawer,
     useDisclosure,
-    DrawerOverlay,
-    DrawerContent,
-    DrawerHeader,
-    DrawerBody,
-    DrawerCloseButton,
-    DrawerFooter
 } from '@chakra-ui/react'
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 import NextLink from 'next/link'
@@ -53,33 +43,6 @@ const NavBarLeft = () => {
     const router = useRouter()
     const slug = router.asPath
     return (
-        // <>
-        //     <Button colorScheme="teal" onClick={onOpen}>
-        //         Open
-        //     </Button>
-        //     <Drawer
-        //         isOpen={isOpen}
-        //         placement="left"
-        //         onClose={onClose}
-        //     >
-        //         <DrawerOverlay />
-        //         <DrawerContent>
-        //             <DrawerCloseButton />
-        //             <DrawerHeader>Create your account</DrawerHeader>
-
-        //             <DrawerBody>
-        //                 <Text>hi</Text>
-        //             </DrawerBody>
-
-        //             <DrawerFooter>
-        //                 <Button variant="outline" mr={3} onClick={onClose}>
-        //                     Cancel
-        //                 </Button>
-        //                 <Button colorScheme="blue">Save</Button>
-        //             </DrawerFooter>
-        //         </DrawerContent>
-        //     </Drawer>
-        // </>
         <Box
             w={55}
             h="100vh"
@@ -99,113 +62,106 @@ const NavBarLeft = () => {
                 w="100%"
             >
                 <NextLink href="/" passHref>
-                    <WrapItem w="100%">
-                        <Tooltip
-                            hasArrow
-                            label="coffeeclass.io Home"
-                            placement="right"
-                            closeDelay={100}
-                        >
-                            <Box borderRight={`2px solid ${slug == '/' ? activeNavColor[colorMode] : null}`} w="100%">
-                                <Button
-                                    variant="ghost"
-                                    aria-label="Home"
-                                    my={5}
-                                    w="100%"
-                                    _hover={{ background: 'none' }}
+                    <Tooltip
+                        hasArrow
+                        label="coffeeclass.io Home"
+                        placement="right"
+                        closeDelay={100}
+                    >
+                        <Box borderRight={`2px solid ${slug == '/' ? activeNavColor[colorMode] : null}`} w="100%">
+                            <Button
+                                variant="ghost"
+                                aria-label="Home"
+                                my={5}
+                                w="100%"
+                                _hover={{ background: 'none' }}
+                            >
+                                <Flex
+                                    flexDir="column"
+                                    align="center"
                                 >
-                                    <Flex
-                                        flexDir="column"
-                                        align="center"
-                                    >
-                                        <Icon as={FiHome} fontSize="2xl" color={homeColor[colorMode]} />
-                                        {/* <Text fontSize="xs" mt={2} color={homeColor[colorMode]}>coffeeclass.io</Text> */}
-                                    </Flex>
-                                </Button>
-                            </Box>
-                        </Tooltip>
-                    </WrapItem>
+                                    <Icon as={FiHome} fontSize="2xl" color={homeColor[colorMode]} />
+                                    {/* <Text fontSize="xs" mt={2} color={homeColor[colorMode]}>coffeeclass.io</Text> */}
+                                </Flex>
+                            </Button>
+                        </Box>
+                    </Tooltip>
                 </NextLink>
 
                 <NextLink href="/learn" passHref>
-                    <WrapItem w="100%">
-                        <Tooltip
-                            hasArrow
-                            label="coffeeclass.io Learn"
-                            placement="right"
-                            closeDelay={100}
-                        >
-                            <Box borderRight={`2px solid ${slug.includes('learn') ? activeNavColor[colorMode] : null}`} w="100%">
-                                <Button
-                                    variant="ghost"
-                                    aria-label="Learn"
-                                    my={5}
-                                    w="100%"
-                                    _hover={{ background: 'none' }}
-                                    justifyContent="start"
-                                >
-                                    <Icon as={FiEdit2} fontSize="2xl" mr={2} color={slug.includes('learn') ? activeNavColor[colorMode] : null} />
-                                    {/* <Text fontSize="sm">Learn</Text> */}
-                                </Button>
-                            </Box>
-                        </Tooltip>
-                    </WrapItem>
+                    <Tooltip
+                        hasArrow
+                        label="coffeeclass.io Learn"
+                        placement="right"
+                        closeDelay={100}
+                    >
+                        <Box borderRight={`2px solid ${slug.includes('learn') ? activeNavColor[colorMode] : null}`} w="100%">
+                            <Button
+                                variant="ghost"
+                                aria-label="Learn"
+                                my={5}
+                                w="100%"
+                                _hover={{ background: 'none' }}
+                                justifyContent="start"
+                            >
+                                <Icon as={FiEdit2} fontSize="2xl" mr={2} color={slug.includes('learn') ? activeNavColor[colorMode] : null} />
+                                {/* <Text fontSize="sm">Learn</Text> */}
+                            </Button>
+                        </Box>
+                    </Tooltip>
                 </NextLink>
 
                 <NextLink href="/snippets" passHref>
-                    <WrapItem w="100%">
-                        <Tooltip
-                            hasArrow
-                            label="Snippets"
-                            placement="right"
-                            closeDelay={100}
-                        >
-                            <Box borderRight={`2px solid ${slug.includes('snippets') ? activeNavColor[colorMode] : null}`} w="100%">
-                                <Button
-                                    variant="ghost"
-                                    aria-label="Snippets"
-                                    my={5}
-                                    w="100%"
-                                    _hover={{ background: 'none' }}
-                                    justifyContent="start"
-                                >
-                                    <Icon as={FiScissors} fontSize="2xl" mr={2} color={color[colorMode]} />
-                                    {/* <Text fontSize="sm">Snippets</Text> */}
-                                </Button>
-                            </Box>
-                        </Tooltip>
-                    </WrapItem>
+                    <Tooltip
+                        hasArrow
+                        label="coffeeclass.io Snippets"
+                        placement="right"
+                        closeDelay={100}
+                    >
+                        <Box borderRight={`2px solid ${slug.includes('snippets') ? activeNavColor[colorMode] : null}`} w="100%">
+                            <Button
+                                variant="ghost"
+                                aria-label="Snippets"
+                                my={5}
+                                w="100%"
+                                _hover={{ background: 'none' }}
+                                justifyContent="start"
+                            >
+                                <Icon as={FiScissors} fontSize="2xl" mr={2} color={color[colorMode]} />
+                                {/* <Text fontSize="sm">Snippets</Text> */}
+                            </Button>
+                        </Box>
+                    </Tooltip>
                 </NextLink>
 
                 <NextLink href="/tutorials" passHref>
-                    <WrapItem w="100%">
-                        <Tooltip
-                            hasArrow
-                            label="Tutorials"
-                            placement="right"
-                            closeDelay={100}
-                        >
-                            <Box borderRight={`2px solid ${slug.includes('tutorials') ? activeNavColor[colorMode] : null}`} w="100%">
-                                <Button
-                                    variant="ghost"
-                                    aria-label="Tutorials"
-                                    my={5}
-                                    w="100%"
-                                    _hover={{ background: 'none' }}
-                                    justifyContent="start"
-                                >
-                                    <Icon as={FiBookOpen} fontSize="2xl" mr={2} color={color[colorMode]} />
-                                    {/* <Text fontSize="sm">Tutorials</Text> */}
-                                </Button>
-                            </Box>
-                        </Tooltip>
-                    </WrapItem>
+                    <Tooltip
+                        hasArrow
+                        label="coffeeclass.io Tutorials"
+                        placement="right"
+                        closeDelay={100}
+                    >
+                        <Box borderRight={`2px solid ${slug.includes('tutorials') ? activeNavColor[colorMode] : null}`} w="100%">
+                            <Button
+                                variant="ghost"
+                                aria-label="Tutorials"
+                                my={5}
+                                w="100%"
+                                _hover={{ background: 'none' }}
+                                justifyContent="start"
+                            >
+                                <Icon as={FiBookOpen} fontSize="2xl" mr={2} color={color[colorMode]} />
+                                {/* <Text fontSize="sm">Tutorials</Text> */}
+                            </Button>
+                        </Box>
+                    </Tooltip>
                 </NextLink>
 
                 {display == 'none' &&
                     <IconButton
                         onClick={() => changeDisplay('flex')}
                         icon={<ChevronDownIcon />}
+                        aria-label="Show More"
                         background="none"
                         _hover={{ background: 'none' }}
                     />
@@ -218,83 +174,78 @@ const NavBarLeft = () => {
                     w="100%"
                 >
                     <NextLink href="/tags" passHref>
-                        <WrapItem w="100%">
-                            <Tooltip
-                                hasArrow
-                                label="Tags"
-                                placement="right"
-                                closeDelay={100}
-                            >
-                                <Box borderRight={`2px solid ${slug.includes('tags') ? activeNavColor[colorMode] : null}`} w="100%">
-                                    <Button
-                                        variant="ghost"
-                                        aria-label="Tags"
-                                        my={5}
-                                        w="100%"
-                                        _hover={{ background: 'none' }}
-                                        justifyContent="start"
-                                    >
-                                        <Icon as={FiBookmark} fontSize="2xl" mr={2} color={color[colorMode]} />
-                                        {/* <Text fontSize="sm">Tags</Text> */}
-                                    </Button>
-                                </Box>
-                            </Tooltip>
-                        </WrapItem>
+                        <Tooltip
+                            hasArrow
+                            label="Tags"
+                            placement="right"
+                            closeDelay={100}
+                        >
+                            <Box borderRight={`2px solid ${slug.includes('tags') ? activeNavColor[colorMode] : null}`} w="100%">
+                                <Button
+                                    variant="ghost"
+                                    aria-label="Tags"
+                                    my={5}
+                                    w="100%"
+                                    _hover={{ background: 'none' }}
+                                    justifyContent="start"
+                                >
+                                    <Icon as={FiBookmark} fontSize="2xl" mr={2} color={color[colorMode]} />
+                                    {/* <Text fontSize="sm">Tags</Text> */}
+                                </Button>
+                            </Box>
+                        </Tooltip>
                     </NextLink>
 
                     <NextLink href="/about" passHref>
-                        <WrapItem w="100%">
-                            <Tooltip
-                                hasArrow
-                                label="About"
-                                placement="right"
-                                closeDelay={100}
-                            >
-                                <Box borderRight={`2px solid ${slug.includes('about') ? activeNavColor[colorMode] : null}`} w="100%">
-                                    <Button
-                                        variant="ghost"
-                                        aria-label="About"
-                                        my={5}
-                                        w="100%"
-                                        _hover={{ background: 'none' }}
-                                        justifyContent="start"
-                                    >
-                                        <Icon as={FiInfo} fontSize="2xl" mr={2} color={color[colorMode]} />
-                                        {/* <Text fontSize="sm">About</Text> */}
-                                    </Button>
-                                </Box>
-                            </Tooltip>
-                        </WrapItem>
+                        <Tooltip
+                            hasArrow
+                            label="About"
+                            placement="right"
+                            closeDelay={100}
+                        >
+                            <Box borderRight={`2px solid ${slug.includes('about') ? activeNavColor[colorMode] : null}`} w="100%">
+                                <Button
+                                    variant="ghost"
+                                    aria-label="About"
+                                    my={5}
+                                    w="100%"
+                                    _hover={{ background: 'none' }}
+                                    justifyContent="start"
+                                >
+                                    <Icon as={FiInfo} fontSize="2xl" mr={2} color={color[colorMode]} />
+                                    {/* <Text fontSize="sm">About</Text> */}
+                                </Button>
+                            </Box>
+                        </Tooltip>
                     </NextLink>
 
                     <NextLink href="/search" passHref>
-                        <WrapItem w="100%">
-                            <Tooltip
-                                hasArrow
-                                label="Search"
-                                placement="right"
-                                closeDelay={100}
-                            >
-                                <Box borderRight={`2px solid ${slug.includes('search') ? activeNavColor[colorMode] : null}`} w="100%">
-                                    <Button
-                                        variant="ghost"
-                                        aria-label="Search"
-                                        my={5}
-                                        w="100%"
-                                        _hover={{ background: 'none' }}
-                                        justifyContent="start"
-                                    >
-                                        <Icon as={FiSearch} fontSize="2xl" mr={2} color={color[colorMode]} />
-                                        {/* <Text fontSize="sm">Search</Text> */}
-                                    </Button>
-                                </Box>
-                            </Tooltip>
-                        </WrapItem>
+                        <Tooltip
+                            hasArrow
+                            label="Search"
+                            placement="right"
+                            closeDelay={100}
+                        >
+                            <Box borderRight={`2px solid ${slug.includes('search') ? activeNavColor[colorMode] : null}`} w="100%">
+                                <Button
+                                    variant="ghost"
+                                    aria-label="Search"
+                                    my={5}
+                                    w="100%"
+                                    _hover={{ background: 'none' }}
+                                    justifyContent="start"
+                                >
+                                    <Icon as={FiSearch} fontSize="2xl" mr={2} color={color[colorMode]} />
+                                    {/* <Text fontSize="sm">Search</Text> */}
+                                </Button>
+                            </Box>
+                        </Tooltip>
                     </NextLink>
 
                     <IconButton
                         onClick={() => changeDisplay('none')}
                         icon={<ChevronUpIcon />}
+                        aria-label="Show Less"
                         background="none"
                         _hover={{ background: 'none' }}
                     />

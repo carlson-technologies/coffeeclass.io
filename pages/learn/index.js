@@ -15,7 +15,7 @@ import subjects from "../../configs/learn.json"
 import Image from 'next/image'
 
 const url = 'https://coffeeclass.io/learn'
-const title = 'Learn – Coffeeclass'
+const title = 'Learn | coffeeclass.io'
 const description = 'Learn programming languages quickly and easily.'
 
 export default function Index() {
@@ -56,9 +56,9 @@ export default function Index() {
                         textTransform="uppercase"
                         color={headerColor[colorMode]}
                     >
-                        Coffeeclass Learn 🎒
+                        coffeeclass.io Learn 🎒
                     </Heading>
-                    <Heading as="h2" size="md" fontWeight="normal" mt={2}>Learn a new language or skill, bookmark a module page for future reference, how you use Coffeeclass Learn is up to you.</Heading>
+                    <Heading as="h2" size="md" fontWeight="normal" mt={2}>Learn a new language or skill, bookmark a module page for future reference, how you use coffeeclass.io Learn is up to you.</Heading>
                     <Divider mt={2} />
                     <Flex wrap="wrap">
                         {

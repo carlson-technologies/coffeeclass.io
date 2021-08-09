@@ -25,8 +25,8 @@ export default function Index({ tutorials, snippets }) {
     const router = useRouter()
     const { author } = router.query
     const url = `https://coffeeclass.io/authors/${author}`
-    const title = `${author} – Coffeeclass`
-    const description = `Coffeeclass articles written by ${author}`
+    const title = `${author} | coffeeclass.io`
+    const description = `coffeeclass.io tutorials and snippets written by ${author}`
     const { colorMode } = useColorMode()
     const headerColor = {
         light: 'brand_one.600',

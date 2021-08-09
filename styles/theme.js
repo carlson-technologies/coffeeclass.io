@@ -20,7 +20,7 @@ const breakpoints = createBreakpoints({
 const config = {
     initialColorMode: "light",
     useSystemColorMode: false,
-    cssVarPrefix: "coffeeclassio",
+    cssVarPrefix: "coffeeclass-io",
 }
 
 const colors = {

@@ -32,8 +32,8 @@ import get_type from '../lib/get_type'
 import { parseISO, format } from 'date-fns'
 
 const url = 'https://coffeeclass.io/search'
-const title = 'Search – Coffeeclass'
-const description = 'Search free programming tutorials on beginner Python, intermediate Python, advanced Python, JavaScript, algorithms, Next.js, react, and more all for free on Coffeeclass.'
+const title = 'Search | coffeeclass.io'
+const description = 'Search free programming tutorials on beginner Python, intermediate Python, advanced Python, JavaScript, algorithms, Next.js, react, and more all for free on coffeeclass.io.'
 
 export default function Search({ snippets, tutorials, learn_python, learn_chakraui }) {
     const [searchValue, setSearchValue] = useState('')

@@ -30,7 +30,7 @@ export default function Index({ tutorials, snippets }) {
     }
 
     const url = `https://coffeeclass.io/tags/${tag}`
-    const title = `${tag} - Tags – Coffeeclass`
+    const title = `${tag} | Tags | coffeeclass.io`
     const description = `Articles relating to ${tag} on coffeeclass.io. ${currentTag[0]?.description ?? ""}`
     const { colorMode } = useColorMode()
     const headerColor = {

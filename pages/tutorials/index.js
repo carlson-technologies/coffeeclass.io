@@ -14,9 +14,9 @@ import path from 'path'
 import { tutorialsFilePaths, TUTORIALS_PATH } from '../../lib/mdxUtils'
 import Tutorial from '../../components/Cards/Tutorial'
 
-const url = 'https://coffeeclass.io/tutorials'
-const title = 'Tutorials – Coffeeclass'
-const description = 'Tutorials are involved and usually correspond to a YouTube video. They typically take 15 minutes at a minimum to complete.'
+const url = 'https://coffeeclass.io/tutorials/'
+const title = 'Tutorials | coffeeclass.io'
+const description = 'coffeeclass.io tutorials are involved and usually correspond to a YouTube video. They typically take 15 minutes at a minimum to complete.'
 
 export default function Index({ posts }) {
     const { colorMode } = useColorMode()
@@ -57,7 +57,7 @@ export default function Index({ posts }) {
                         textTransform="uppercase"
                         color={headerColor[colorMode]}
                     >
-                        Coffeeclass Tutorials 📚
+                        coffeeclass.io Tutorials 📚
                     </Heading>
                     <Text color={color[colorMode]} mt={2} mb={8} fontSize="lg">Tutorials are involved and usually correspond to a YouTube video. They typically take 15 minutes at a minimum to complete.</Text>
                     <Flex wrap="wrap">

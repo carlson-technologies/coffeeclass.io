@@ -15,8 +15,8 @@ import { snippetsFilePaths, SNIPPETS_PATH } from '../../lib/mdxUtils'
 import Snippet from '../../components/Cards/Snippet'
 
 const url = 'https://coffeeclass.io/snippets'
-const title = 'Snippets – Coffeeclass'
-const description = 'Snippets are code bits that you can easily copy and paste into your project.'
+const title = 'Snippets | coffeeclass.io'
+const description = 'coffeeclass.io snippets are code bits that you can easily copy and paste into your project.'
 
 export default function Index({ posts }) {
     const { colorMode } = useColorMode()
@@ -58,7 +58,7 @@ export default function Index({ posts }) {
                         color={headerColor[colorMode]}
                         textAlign="center"
                     >
-                        Coffeeclass Snippets ✂️
+                        coffeeclass.io Snippets ✂️
                     </Heading>
                     <Text color={color[colorMode]} mt={2} mb={8} fontSize="lg" textAlign="center">Snippets are code bits that you can easily copy and paste into your project.</Text>
                     <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>

@@ -9,9 +9,9 @@ import {
 import { NextSeo } from 'next-seo'
 import Container from '../../components/Container'
 
-const url = 'https://coffeeclass.io/privacy'
-const title = 'Privacy Policy – Coffeeclass'
-const description = 'Our privacy policy.'
+const url = 'https://coffeeclass.io/legal/privacy/'
+const title = 'Privacy Policy | coffeeclass.io'
+const description = 'The coffeeclass.io privacy policy.'
 
 export default function Privacy() {
     return (

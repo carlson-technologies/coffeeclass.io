@@ -16,9 +16,9 @@ import { snippetsFilePaths, SNIPPETS_PATH } from '../../lib/mdxUtils'
 import { tutorialsFilePaths, TUTORIALS_PATH } from '../../lib/mdxUtils'
 import NextLink from 'next/link'
 
-const url = `https://coffeeclass.io/tags`
-const title = 'Tags – Coffeeclass'
-const description = `Tags for Coffeeclass`
+const url = `https://coffeeclass.io/tags/`
+const title = 'Tags | coffeeclass.io'
+const description = `All tags on coffeeclass.io.`
 
 export default function Index({ tutorials, snippets }) {
     const { colorMode } = useColorMode()

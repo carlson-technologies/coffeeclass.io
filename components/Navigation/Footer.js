@@ -40,7 +40,7 @@ const FooterHeading = ({ title }) => {
     }
     return (
         <Heading
-            as="h5"
+            as="h3"
             size="xs"
             textTransform="uppercase"
             marginBottom={2}

@@ -11,6 +11,7 @@ import { useRouter } from 'next/router'
 import SEO from '../components/SEO'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import Ad from "../components/Ad"
 
 export default function Layout({ frontMatter, children }) {
   const router = useRouter()
@@ -146,6 +147,7 @@ export default function Layout({ frontMatter, children }) {
           flexDir="column"
           w="100%"
         >
+          {/* <Ad /> */}
           {children}
         </Box>
       </Box>

@@ -44,6 +44,7 @@ const Sidebar = ({ src, alt }) => {
     }
     return (
         <Box
+            as="nav"
             aria-label="Sidebar Navigation"
             pos="sticky"
             sx={{

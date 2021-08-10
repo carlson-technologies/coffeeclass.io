@@ -1,6 +1,6 @@
 import { NextSeo, ArticleJsonLd } from 'next-seo'
 
-const SEO = ({ title, seoDescription, publishedAt, url, author }) => {
+const SEO = ({ title, seoDescription, publishedAt, lastUpdated, url, author }) => {
     const date = new Date(publishedAt).toISOString()
     // const dataModified = dataModified ? new Date(modifiedAt).toISOString() : date
     const featuredImage = {
@@ -27,13 +27,13 @@ const SEO = ({ title, seoDescription, publishedAt, url, author }) => {
             />
             <ArticleJsonLd
                 authorName={author}
-                dateModified={date}
+                dateModified={lastUpdated ? lastUpdated : date}
                 datePublished={date}
                 description={seoDescription}
                 images={[featuredImage]}
                 publisherLogo="/favicons/logo-white-bg.png"
                 publisherName="coffeeclass.io"
-                title={title}
+                title={`${title} | coffeeclass.io`}
                 url={url}
             />
         </>

@@ -4,19 +4,16 @@ import {
     useColorMode,
     Heading,
     Link,
-    Box
+    Box,
 } from '@chakra-ui/react'
 import Sidebar from '../components/Sidebar'
-import { NextSeo } from 'next-seo'
+import SEO from '../components/SEO'
 import Container from '../components/Container'
 import { useRouter } from 'next/router'
 
 export default function LearnLayout({ children, frontMatter, src, alt }) {
     const router = useRouter()
     const slug = router.asPath
-    const url = `https://coffeeclass${slug}`
-    const title = `${frontMatter.title} - coffeeclass.io`
-    const description = `${frontMatter.description}`
     const { colorMode } = useColorMode()
     const color = {
         light: 'gray.600',
@@ -53,16 +50,7 @@ export default function LearnLayout({ children, frontMatter, src, alt }) {
 
     return (
         <Container>
-            <NextSeo
-                title={title}
-                description={description}
-                canonical={url}
-                openGraph={{
-                    url,
-                    title,
-                    description
-                }}
-            />
+            <SEO url={`https://coffeeclass.io${slug}`} {...frontMatter} />
 
             <Flex justifyContent="center" maxW="2000px">
                 <Flex display={['none', 'none', 'none', 'none', 'none', 'none', 'flex']} px={2}>
@@ -87,6 +75,7 @@ export default function LearnLayout({ children, frontMatter, src, alt }) {
                 >
                     {frontMatter.headers.length > 0 &&
                         <Flex
+                            as="aside"
                             pos="sticky"
                             top="4em"
                             mt="5em"

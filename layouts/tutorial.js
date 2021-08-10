@@ -27,7 +27,7 @@ export default function Layout({ frontMatter, children }) {
     const slug = router.asPath
     TimeAgo.addDefaultLocale(en)
     const timeAgo = new TimeAgo('en-US')
-    
+
     const { colorMode } = useColorMode()
     const color = {
         light: 'gray.600',
@@ -39,7 +39,7 @@ export default function Layout({ frontMatter, children }) {
     }
     const [activeHeader, setActiveHeader] = useState(frontMatter?.headers[0]?.text) // set to the first header to avoid a small window when the page loads where there is no active header
     const [width, setWidth] = useState(0)
-    
+
     const handleScroll = () => {
         let scrollTop = window.scrollY
         let docHeight = document.body.offsetHeight
@@ -93,7 +93,7 @@ export default function Layout({ frontMatter, children }) {
                 >
                     {children}
                 </Flex>
-                <div>
+                <aside>
                     <Flex
                         pos="sticky"
                         top={10}
@@ -153,7 +153,13 @@ export default function Layout({ frontMatter, children }) {
                             })}
                         </Flex>
                         {frontMatter?.headers &&
-                            <Flex bgColor={bgColor[colorMode]} flexDir="column" p={3} borderRadius={10} mb={2} as="nav" aria-label="Side header navigation">
+                            <Flex
+                                bgColor={bgColor[colorMode]}
+                                flexDir="column"
+                                p={3}
+                                borderRadius={10}
+                                mb={2}
+                            >
                                 <Heading
                                     color={color[colorMode]}
                                     fontSize="sm"
@@ -192,7 +198,7 @@ export default function Layout({ frontMatter, children }) {
                             </Button>
                         </Link>
                     </Flex>
-                </div>
+                </aside>
             </Flex>
         </Container>
     )

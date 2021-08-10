@@ -16,8 +16,8 @@ export default function Snippet({ title, description, tags, href, as, mainTag, i
         dark: 'gray.700'
     }
     const boxShadowColor = {
-        light: '0px 8px 26px rgba(0, 0, 0, 0.1)',
-        dark: '0px 8px 26px rgba(0, 0, 0, 0.9)'
+        light: '0px 8px 26px rgba(0, 0, 0, 0.25)',
+        dark: '0px 8px 26px rgba(255, 255, 255, 0.25)'
     }
     const tagColor = {
         light: 'gray.600',
@@ -28,6 +28,8 @@ export default function Snippet({ title, description, tags, href, as, mainTag, i
             w="100%"
             justify="center"
             key={title}
+            borderRadius={5}
+            transition='box-shadow 0.3s ease-in-out'
             _hover={{
                 boxShadow: boxShadowColor[colorMode],
             }}

@@ -19,8 +19,8 @@ export default function Tutorial({ src, title, description, tags, href, as, main
         dark: 'gray.700'
     }
     const boxShadowColor = {
-        light: '0 4px 12px 0 rgba(0, 0, 0, 0.3)',
-        dark: '0 4px 12px 0 rgba(0, 0, 0, 1)'
+        light: '0px 8px 26px rgba(0, 0, 0, 0.25)',
+        dark: '0px 8px 26px rgba(255, 255, 255, 0.25)'
     }
     const tagColor = {
         light: 'gray.600',
@@ -32,13 +32,17 @@ export default function Tutorial({ src, title, description, tags, href, as, main
             my={2}
             mt={[10, 10, 0]}
             key={title}
+            borderRadius={5}
+            transition='box-shadow 0.3s ease-in-out'
+            _hover={{
+                boxShadow: boxShadowColor[colorMode],
+            }}
         >
             <Box
                 bgColor={bgColor[colorMode]}
                 p={5}
                 borderRadius={5}
                 overflow="hidden"
-                boxShadow={boxShadowColor[colorMode]}
             >
                 <MotionBox
                     initial={{ opacity: 0 }}

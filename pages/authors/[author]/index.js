@@ -7,7 +7,7 @@ import {
     useColorMode,
     Tag,
     Link,
-    Avatar
+    Avatar,
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../../../components/Container'
@@ -106,7 +106,7 @@ export default function Index({ tutorials, snippets }) {
                     <Divider mt={2} />
                     <Heading my={4} as="h2">Snippets</Heading>
                     <Flex flexDir="column">
-                        <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
+                        <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
                             {
                                 snippets.map(s => {
                                     return (
@@ -126,7 +126,7 @@ export default function Index({ tutorials, snippets }) {
                             }
                         </Grid>
                         <Heading my={4} as="h3">Tutorials</Heading>
-                        <Flex wrap="wrap">
+                        <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
                             {
                                 tutorials.map(t => {
                                     return (
@@ -145,7 +145,7 @@ export default function Index({ tutorials, snippets }) {
                                     )
                                 })
                             }
-                        </Flex>
+                        </Grid>
                     </Flex>
                 </Flex>
             </Stack>

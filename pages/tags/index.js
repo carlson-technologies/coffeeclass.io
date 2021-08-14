@@ -15,52 +15,21 @@ import path from 'path'
 import { snippetsFilePaths, SNIPPETS_PATH } from '../../lib/mdxUtils'
 import { tutorialsFilePaths, TUTORIALS_PATH } from '../../lib/mdxUtils'
 import NextLink from 'next/link'
+import removeDuplicatesAndCount from '../../lib/get-tags'
 
 const url = `https://coffeeclass.io/tags/`
 const title = 'Tags | coffeeclass.io'
 const description = `All tags on coffeeclass.io.`
 
-export default function Index({ tutorials, snippets }) {
+export default function Index({ tagArray }) {
     const { colorMode } = useColorMode()
     const headerColor = {
         light: 'brand_one.600',
         dark: 'brand_one.500'
     }
-    var tagArray = []
-    tutorials.map(tut => tut.data.tags.map(tag => {
-        tagArray.push(tag)
-    }))
-    snippets.map(snip => snip.data.tags.map(tag => {
-        tagArray.push(tag)
-    }))
+    
+    var tagArray = removeDuplicatesAndCount(tagArray)
 
-    // Removes duplicates from an array and returns an object
-    // with a count of the members
-    function removeDupes(arr) {
-        var result = {};
-        var i = arr.length;
-
-        while (i--) {
-
-            // If member is a duplicate, increment count and delete it      
-            if (result.hasOwnProperty(arr[i])) {
-                result[arr[i]]++;
-                arr.splice(i, 1);
-
-                // Otherwise, just add it to the results 
-            } else {
-                result[arr[i]] = 1;
-            }
-        }
-
-        // convert results to the desired object format
-        return Object.keys(result).map(function (p) { return { tag: p, count: result[p] }; });
-    }
-
-    var tagArray = removeDupes(tagArray)
-
-    // var tagArray = [...new Set(tagArray)]
-    console.log(tagArray)
     return (
         <Container>
             <NextSeo
@@ -144,5 +113,13 @@ export function getStaticProps() {
         }
     })
 
-    return { props: { tutorials, snippets } }
+    var tagArray = []
+    tutorials.map(tut => tut.data.tags.map(tag => {
+        tagArray.push(tag)
+    }))
+    snippets.map(snip => snip.data.tags.map(tag => {
+        tagArray.push(tag)
+    }))
+
+    return { props: { tagArray } }
 }

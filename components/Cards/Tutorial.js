@@ -3,7 +3,7 @@ import {
     Flex,
     Text,
     Box,
-    useColorMode
+    useColorMode,
 } from '@chakra-ui/react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -28,7 +28,7 @@ export default function Tutorial({ src, title, description, tags, href, as, main
     }
     return (
         <Flex
-            w={['100%', '100%', '100%', '100%', 500, 500]}
+            w="100%"
             my={2}
             mt={[10, 10, 0]}
             key={title}
@@ -43,6 +43,7 @@ export default function Tutorial({ src, title, description, tags, href, as, main
                 p={5}
                 borderRadius={5}
                 overflow="hidden"
+                w="100%"
             >
                 <MotionBox
                     initial={{ opacity: 0 }}
@@ -65,7 +66,7 @@ export default function Tutorial({ src, title, description, tags, href, as, main
                         </Flex>
                     </MotionBox>
                 </MotionBox>
-                <Flex>
+                <Flex wrap="wrap">
                     {tags?.map((tag) => {
                         return (
                             <Flex

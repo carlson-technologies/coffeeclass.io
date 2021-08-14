@@ -77,7 +77,7 @@ export default function Snippet({ title, description, tags, href, as, mainTag, i
                     <Flex flexDir="column">
                         <Heading><Link href={href} as={as}>{title}</Link></Heading>
                         <Text fontSize="lg"><Link href={href} as={as}>{description}</Link></Text>
-                        <Flex mt={2}>
+                        <Flex mt={2} wrap="wrap">
                             {tags?.map((tag) => {
                                 return (
                                     <Flex
@@ -90,8 +90,7 @@ export default function Snippet({ title, description, tags, href, as, mainTag, i
                                         cursor="pointer"
                                     >
                                         <NextLink href={`/tags/${tag}`} passHref>
-                                            <Link href={`/${tag}`}
-                                            >
+                                            <Link href={`/${tag}`}>
                                                 <Text fontSize="lg" fontWeight={mainTag == tag ? "bold" : "normal"} color={tagColor[colorMode]}>#{tag}</Text>
                                             </Link>
                                         </NextLink>

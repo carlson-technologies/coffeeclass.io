@@ -10,6 +10,8 @@ import {
     Link,
     Icon,
     useColorMode,
+    Tag,
+    useColorModeValue,
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../components/Container'
@@ -22,10 +24,13 @@ import path from 'path'
 import { snippetsFilePaths, SNIPPETS_PATH } from '../lib/mdxUtils'
 import { tutorialsFilePaths, TUTORIALS_PATH } from '../lib/mdxUtils'
 import { ChevronRightIcon } from '@chakra-ui/icons'
+import TagSlider from '../components/PageComponents/Index/TagSlider'
+import FeaturedTutorial from '../components/PageComponents/Index/FeaturedTutorial'
+import removeDuplicatesAndCount from '../lib/get-tags'
 
 const url = 'https://coffeeclass.io/'
 const title = 'Home | coffeeclass.io'
-const description = 'Free programming tutorials, advice, snippets covering beginner Python, intermediate Python, advanced Python, JavaScript, algorithms, Next.js, react, and more all for free on coffeeclass.io.'
+const description = 'Explore the latest programming and computer science tutorials, snippets, and learn sections on coffeeclass.io.'
 
 export default function Index({ snippets, tutorials }) {
     const { colorMode } = useColorMode()
@@ -33,14 +38,25 @@ export default function Index({ snippets, tutorials }) {
         light: 'black',
         dark: 'white'
     }
-    const color = {
-        light: 'gray.500',
-        dark: 'gray.400'
-    }
     const headerColor = {
         light: 'brand_one.600',
         dark: 'brand_one.500'
     }
+    const bgImage = {
+        light: 'linear-gradient(to bottom,rgba(255,255,255, 0),rgba(255,255,255, 1) 90%)',
+        dark: 'linear-gradient(to bottom,rgba(0,0,0, 0),rgba(0,0,0, 1) 90%)'
+    }
+
+    var tagArray = []
+    tutorials.map(tut => tut.data.tags.map(tag => {
+        tagArray.push(tag)
+    }))
+    snippets.map(snip => snip.data.tags.map(tag => {
+        tagArray.push(tag)
+    }))
+
+    var tagArray = removeDuplicatesAndCount(tagArray)
+
     const snippetsOrderedByPublishedDate = snippets
         .sort(
             (a, b) =>
@@ -65,75 +81,59 @@ export default function Index({ snippets, tutorials }) {
                     description
                 }}
             />
-            <Stack
-                spacing={8}
-                px={4}
+            <Flex
+                flexDir="column"
                 maxW="110em"
             >
                 <Flex
                     flexDir="column"
-                    mx={4}
-                    maxW="110em"
+                    as="section"
+                    bgGradient={`linear(to-r,${useColorModeValue("gray.100", "gray.700")},${useColorModeValue("gray.200", "gray.800")},${useColorModeValue("gray.300", "gray.900")})`}
                 >
-                    <Flex
-                        flexDir={['column', 'column', 'column', 'column', 'row', 'row']}
-                        justify="center"
-                        align="center"
-                        minH="100vh"
-                        as="section"
+                    <FeaturedTutorial tut={tutorials[0]} />
+                    <TagSlider tags={tagArray} />
+                </Flex>
+                <Box backgroundImage={bgImage[colorMode]} w="100%" h="2em" mt="-2em" />
+
+                <Flex
+                    as="section"
+                    flexDir="column"
+                    mx={4}
+                    px={4}
+                >
+                    <Heading
+                        as="h2"
+                        size="lg"
+                        my={4}
+                        letterSpacing="tight"
+                        color={headerColor[colorMode]}
+                        id="explore"
                     >
-                        <Flex
-                            flexDir="column"
-                            align="center"
-                            as="header"
-                        >
-                            <Heading as="h1" size="4xl" textAlign="center" w={['100%', '100%', '100%', '100%', 700, 900]} mt={20}>Learn to code 👨‍💻 and ship 🚀 your app for free.</Heading>
-                            <Heading as="h2" color={color[colorMode]} textAlign="center" size="md" my={8} w={['100%', '100%', '100%', '100%', 400, 600]}>coffeeclass.io ☕ takes complex programming concepts and presents them in an easy to learn manner.
-                                Browse snippets, tutorials, or learn a new skill.</Heading>
-                            <Flex
-                                flexDirection={['column', 'column', 'column', 'row', 'row', 'row']}
-                                w="100%"
-                                justify="center"
-                            >
-                                <NextLink href="#explore" passHref>
-                                    <Button mr={4} w={['100%', '100%', '100%', 200, 200, 200]} colorScheme="brand_one" leftIcon="🔭" aria-label="Explore Content">Explore Content</Button>
-                                </NextLink>
-                                <Flex mt={[4, 4, 4, 0, 0, 0]}>
-                                    <NextLink href="/about" passHref>
-                                        <Button variant="outline" w={['100%', '100%', '100%', 200, 200, 200]} colorScheme="brand_one" to="/about" aria-label="About">About</Button>
-                                    </NextLink>
-                                </Flex>
-                            </Flex>
-                        </Flex>
-                    </Flex>
+                        Latest Tutorials
+                    </Heading>
+                    <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
+                        {tutorialsOrderedByPublishedDate.map((post) => (
+                            <Tutorial
+                                key={post.data.title}
+                                src={`/content/tutorials/${post.filePath.replace(/\.mdx?$/, '')}/${post.data.featureImg}`}
+                                title={post.data.title}
+                                description={post.data.description}
+                                tags={post.data.tags}
+                                as={`/tutorials/${post.filePath.replace(/\.mdx?$/, '')}`}
+                                href={`/tutorials/[slug]`}
+                            />
+                        ))}
+                    </Grid>
+                </Flex>
 
-                    <Flex as="section" flexDir="column">
-                        <Heading
-                            as="h2"
-                            size="lg"
-                            my={4}
-                            letterSpacing="tight"
-                            color={headerColor[colorMode]}
-                            id="explore"
-                        >
-                            Browse The Latest Tutorials
-                        </Heading>
-                        <Flex wrap="wrap" justify="space-between">
-                            {tutorialsOrderedByPublishedDate.map((post) => (
-                                <Tutorial
-                                    key={post.data.title}
-                                    src={`/content/tutorials/${post.filePath.replace(/\.mdx?$/, '')}/${post.data.featureImg}`}
-                                    title={post.data.title}
-                                    description={post.data.description}
-                                    tags={post.data.tags}
-                                    as={`/tutorials/${post.filePath.replace(/\.mdx?$/, '')}`}
-                                    href={`/tutorials/[slug]`}
-                                />
-                            ))}
-                        </Flex>
-                    </Flex>
-
-                    <Flex as="section" flexDir="column" mt={16}>
+                <Box bgColor={useColorModeValue("gray.100", "gray.800")} mt={8}>
+                    <Flex
+                        as="section"
+                        flexDir="column"
+                        my={8}
+                        mx={4}
+                        px={4}
+                    >
                         <Heading
                             as="h2"
                             size="lg"
@@ -141,7 +141,7 @@ export default function Index({ snippets, tutorials }) {
                             letterSpacing="tight"
                             color={headerColor[colorMode]}
                         >
-                            Only Have 5 Minutes? Check Out Some Snippets!
+                            Latest Snippets
                         </Heading>
                         <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
                             {snippetsOrderedByPublishedDate.map((post) => (
@@ -170,39 +170,41 @@ export default function Index({ snippets, tutorials }) {
                             </Flex>
                         </Flex>
                     </Flex>
+                </Box>
 
-                    <Flex
-                        as="section"
-                        flexDir={["column", "column", "column", "column", "row", "row"]}
-                        align="center"
-                        justify="space-around"
-                        mt={20}
-                    >
-                        <Flex flexDir="column" w={['100%', '100%', '100%', '100%', 500, 500]}>
-                            <Heading
-                                as="h2"
-                                size="lg"
-                                letterSpacing="tight"
-                                mb={2}
-                                textTransform="uppercase"
-                            >
-                                What Is coffeeclass.io?
-                            </Heading>
-                            <Text mb={2}>coffeeclass.io is a suite of programming tutorial tools including this website and <Link color="brand_one.500" href="https://youtube.com/benjamincarlson" isExternal>this YouTube channel</Link>.</Text>
-                            <Flex mb={2}>
-                                <NextLink href="/about" passHref>
-                                    <Button variant="outline" colorScheme="brand_one" w={['100%', '100%', '100%', 200, 200, 200]} to="/about">Learn More</Button>
-                                </NextLink>
-                            </Flex>
-                        </Flex>
-                        <Flex w={['100%', '100%', '100%', '100%', 500, 500]} justify="center">
-                            <Box w={200} h={200}>
-                                <Image src="favicons/logo-transparent-bg.png" alt="coffeeclass.io Logo" />
-                            </Box>
+                <Flex
+                    as="section"
+                    flexDir={["column", "column", "column", "column", "row", "row"]}
+                    align="center"
+                    justify="space-around"
+                    mt={20}
+                    mx={4}
+                    px={4}
+                >
+                    <Flex flexDir="column" w={['100%', '100%', '100%', '100%', 500, 500]}>
+                        <Heading
+                            as="h2"
+                            size="lg"
+                            letterSpacing="tight"
+                            mb={2}
+                            textTransform="uppercase"
+                        >
+                            What Is coffeeclass.io?
+                        </Heading>
+                        <Text mb={2}>coffeeclass.io is a suite of programming tutorial tools including this website and <Link color="brand_one.500" href="https://youtube.com/benjamincarlson" isExternal>this YouTube channel</Link>.</Text>
+                        <Flex mb={2}>
+                            <NextLink href="/about" passHref>
+                                <Button variant="outline" colorScheme="brand_one" w={['100%', '100%', '100%', 200, 200, 200]} to="/about">Learn More</Button>
+                            </NextLink>
                         </Flex>
                     </Flex>
+                    <Flex w={['100%', '100%', '100%', '100%', 500, 500]} justify="center">
+                        <Box w={200} h={200}>
+                            <Image src="favicons/logo-transparent-bg.png" alt="coffeeclass.io Logo" />
+                        </Box>
+                    </Flex>
                 </Flex>
-            </Stack>
+            </Flex>
         </Container>
     )
 }

@@ -60,12 +60,12 @@ export default function PostPage({ source, frontMatter }) {
                     mt={4}
                 >
                     <Divider mb={4} />
-                    <Flex align="center" mb={8} flexDir={["column", "column", "column", "row", "row", "row"]}>
+                    <Flex align="center" mb={8} flexDir={["column", "column", "column", "column", "column", "row"]}>
                         <Text color={color[colorMode]} fontSize="md">Published on {format(parseISO(frontMatter.publishedAt), 'MMMM dd, yyyy')} ({timeAgo.format(new Date(frontMatter.publishedAt))}) in</Text>
-                        <Flex ml={2}>
+                        <Flex wrap="wrap">
                             {frontMatter.tags.map((tag, index) => (
                                 <Flex
-                                    mr={2}
+                                    m={1}
                                     key={index}
                                     _hover={{
                                         textDecor: 'none',

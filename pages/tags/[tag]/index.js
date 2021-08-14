@@ -101,7 +101,7 @@ export default function Index({ tutorials, snippets }) {
                             }
                         </Grid>
                         <Heading my={4} as="h3" size="md">Tutorials</Heading>
-                        <Flex wrap="wrap">
+                        <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
                             {
                                 tutorials.map(post => post.data.tags.map(t => {
                                     return (
@@ -120,7 +120,7 @@ export default function Index({ tutorials, snippets }) {
                                     )
                                 }))
                             }
-                        </Flex>
+                        </Grid>
                     </Flex>
                 </Flex>
             </Stack>

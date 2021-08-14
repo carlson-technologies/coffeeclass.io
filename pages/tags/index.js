@@ -21,13 +21,21 @@ const url = `https://coffeeclass.io/tags/`
 const title = 'Tags | coffeeclass.io'
 const description = `All tags on coffeeclass.io.`
 
-export default function Index({ tagArray }) {
+export default function Index({ tutorials, snippets }) {
     const { colorMode } = useColorMode()
     const headerColor = {
         light: 'brand_one.600',
         dark: 'brand_one.500'
     }
-    
+
+    var tagArray = []
+    tutorials.map(tut => tut.data.tags.map(tag => {
+        tagArray.push(tag)
+    }))
+    snippets.map(snip => snip.data.tags.map(tag => {
+        tagArray.push(tag)
+    }))
+
     var tagArray = removeDuplicatesAndCount(tagArray)
 
     return (
@@ -113,13 +121,5 @@ export function getStaticProps() {
         }
     })
 
-    var tagArray = []
-    tutorials.map(tut => tut.data.tags.map(tag => {
-        tagArray.push(tag)
-    }))
-    snippets.map(snip => snip.data.tags.map(tag => {
-        tagArray.push(tag)
-    }))
-
-    return { props: { tagArray } }
+    return { props: { tutorials, snippets } }
 }

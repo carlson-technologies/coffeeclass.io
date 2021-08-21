@@ -25,6 +25,7 @@ import { motion } from 'framer-motion'
 import NextLink from 'next/link'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
+import authors from "../../configs/authors.json"
 
 export default function PostPage({ source, frontMatter }) {
     TimeAgo.addDefaultLocale(en)
@@ -34,6 +35,14 @@ export default function PostPage({ source, frontMatter }) {
     const color = {
         light: 'gray.600',
         dark: 'gray.500'
+    }
+
+    var author = frontMatter.author
+    var currentAuthor = []
+    for (var i = 0; i < authors.authors.length; i++) {
+        if (authors.authors[i].name === author) {
+            currentAuthor.push(authors.authors[i])
+        }
     }
     return (
         <Layout frontMatter={frontMatter}>
@@ -108,7 +117,7 @@ export default function PostPage({ source, frontMatter }) {
                     <Flex flexDir="column" align="center">
                         <Text>Written By {frontMatter.author}</Text>
                         <Text color={color[colorMode]}>{frontMatter.authorPosition}</Text>
-                        <Text mt={4}><Link href={`/authors/${frontMatter.author}`} fontWeight="bold">More Articles By {frontMatter.author}</Link></Text>
+                        <Text mt={4}><Link href={`/authors/${currentAuthor[0]?.slug}`} fontWeight="bold">More Articles By {frontMatter.author}</Link></Text>
                     </Flex>
                 </Flex>
                 <Comments />

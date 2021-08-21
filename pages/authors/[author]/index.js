@@ -8,6 +8,8 @@ import {
     Tag,
     Link,
     Avatar,
+    Text,
+    useColorModeValue,
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../../../components/Container'
@@ -24,19 +26,21 @@ import authors from '../../../configs/authors.json'
 export default function Index({ tutorials, snippets }) {
     const router = useRouter()
     const { author } = router.query
+
+    var currentAuthor = []
+    for (var i = 0; i < authors.authors.length; i++) {
+        if (authors.authors[i].slug === author) {
+            currentAuthor.push(authors.authors[i])
+        }
+    }
+
     const url = `https://coffeeclass.io/authors/${author}`
-    const title = `${author} | coffeeclass.io`
-    const description = `coffeeclass.io tutorials and snippets written by ${author}`
+    const title = `${currentAuthor[0].name} | coffeeclass.io`
+    const description = `coffeeclass.io tutorials and snippets written by ${currentAuthor[0].name}`
     const { colorMode } = useColorMode()
     const headerColor = {
         light: 'brand_one.600',
         dark: 'brand_one.500'
-    }
-    var currentAuthor = [];
-    for (var i = 0; i < authors.authors.length; i++) {
-        if (authors.authors[i].name === author) {
-            currentAuthor.push(authors.authors[i])
-        }
     }
 
     if (currentAuthor.length === 0) {
@@ -68,40 +72,100 @@ export default function Index({ tutorials, snippets }) {
                     mt={50}
                 >
                     <Avatar alignSelf="center" size="2xl" src={currentAuthor[0]?.image} />
-                    <Heading as="h1" size="2xl" textAlign="center" letterSpacing="tight" color={headerColor[colorMode]}>{author}</Heading>
+                    <Heading as="h1" size="2xl" textAlign="center" letterSpacing="tight" color={headerColor[colorMode]}>{currentAuthor[0].name}</Heading>
+                    {currentAuthor[0].description &&
+                        <Text textAlign="center" color={useColorModeValue("gray.500", "gray.400")} fontSize="lg">{currentAuthor[0].description}</Text>
+                    }
                     <Flex
                         my={4}
                         justifyContent="center"
                         h={5}
                     >
-                        <Tag
-                            mr={2}
-                            size="lg"
-                            transition="margin .2s ease-in-out"
-                            _hover={{ mt: "-2" }}
-                        >
-                            <Link
-                                href={currentAuthor[0]?.website}
-                                _hover={{ textDecor: 'none' }}
-                                isExternal
+                        {currentAuthor[0]?.website &&
+                            <Tag
+                                mr={2}
+                                size="lg"
+                                transition="margin .2s ease-in-out"
+                                _hover={{ mt: "-2" }}
                             >
-                                Website
-                            </Link>
-                        </Tag>
-                        <Tag
-                            mr={2}
-                            size="lg"
-                            transition="margin .2s ease-in-out"
-                            _hover={{ mt: "-2" }}
-                        >
-                            <Link
-                                href={currentAuthor[0]?.github}
-                                _hover={{ textDecor: 'none' }}
-                                isExternal
+                                <Link
+                                    href={currentAuthor[0]?.website}
+                                    _hover={{ textDecor: 'none' }}
+                                    isExternal
+                                >
+                                    Website
+                                </Link>
+                            </Tag>
+                        }
+
+                        {currentAuthor[0]?.github &&
+                            <Tag
+                                mr={2}
+                                size="lg"
+                                transition="margin .2s ease-in-out"
+                                _hover={{ mt: "-2" }}
                             >
-                                GitHub
-                            </Link>
-                        </Tag>
+                                <Link
+                                    href={currentAuthor[0]?.github}
+                                    _hover={{ textDecor: 'none' }}
+                                    isExternal
+                                >
+                                    GitHub
+                                </Link>
+                            </Tag>
+                        }
+
+                        {currentAuthor[0]?.twitter &&
+                            <Tag
+                                mr={2}
+                                size="lg"
+                                transition="margin .2s ease-in-out"
+                                _hover={{ mt: "-2" }}
+                            >
+                                <Link
+                                    href={currentAuthor[0]?.twitter}
+                                    _hover={{ textDecor: 'none' }}
+                                    isExternal
+                                >
+                                    Twitter
+                                </Link>
+                            </Tag>
+                        }
+
+                        {currentAuthor[0]?.facebook &&
+                            <Tag
+                                mr={2}
+                                size="lg"
+                                transition="margin .2s ease-in-out"
+                                _hover={{ mt: "-2" }}
+                            >
+                                <Link
+                                    href={currentAuthor[0]?.facebook}
+                                    _hover={{ textDecor: 'none' }}
+                                    isExternal
+                                >
+                                    Facebook
+                                </Link>
+                            </Tag>
+                        }
+
+                        {currentAuthor[0]?.linkedin &&
+                            <Tag
+                                mr={2}
+                                size="lg"
+                                transition="margin .2s ease-in-out"
+                                _hover={{ mt: "-2" }}
+                            >
+                                <Link
+                                    href={currentAuthor[0]?.linkedin}
+                                    _hover={{ textDecor: 'none' }}
+                                    isExternal
+                                >
+                                    LinkedIn
+                                </Link>
+                            </Tag>
+                        }
+
                     </Flex>
                     <Divider mt={2} />
                     <Heading my={4} as="h2">Snippets</Heading>
@@ -110,7 +174,7 @@ export default function Index({ tutorials, snippets }) {
                             {
                                 snippets.map(s => {
                                     return (
-                                        s.data.author == author ?
+                                        s.data.author == currentAuthor[0].name ?
                                             <Snippet
                                                 key={s.data.title}
                                                 src={`/content/snippets/${s.filePath.replace(/\.mdx?$/, '')}/${s.data.featureImg}`}
@@ -130,7 +194,7 @@ export default function Index({ tutorials, snippets }) {
                             {
                                 tutorials.map(t => {
                                     return (
-                                        t.data.author == author ?
+                                        t.data.author == currentAuthor[0].name ?
                                             <Flex m={1, 1, 1, 2, 2, 2}>
                                                 <Tutorial
                                                     key={t.data.title}
@@ -176,7 +240,7 @@ export function getStaticProps() {
         }
     })
 
-    return { props: { tutorials, snippets } }
+    return { props: { tutorials, snippets, authors } }
 }
 
 export const getStaticPaths = async () => {

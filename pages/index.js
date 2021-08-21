@@ -10,7 +10,6 @@ import {
     Link,
     Icon,
     useColorMode,
-    Tag,
     useColorModeValue,
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
@@ -27,6 +26,8 @@ import { ChevronRightIcon } from '@chakra-ui/icons'
 import TagSlider from '../components/PageComponents/Index/TagSlider'
 import FeaturedTutorial from '../components/PageComponents/Index/FeaturedTutorial'
 import removeDuplicatesAndCount from '../lib/get-tags'
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en'
 
 const url = 'https://coffeeclass.io/'
 const title = 'Home | coffeeclass.io'
@@ -54,6 +55,9 @@ export default function Index({ snippets, tutorials }) {
     snippets.map(snip => snip.data.tags.map(tag => {
         tagArray.push(tag)
     }))
+
+    TimeAgo.addDefaultLocale(en)
+    const timeAgo = new TimeAgo('en-US')
 
     var tagArray = removeDuplicatesAndCount(tagArray)
 
@@ -154,6 +158,8 @@ export default function Index({ snippets, tutorials }) {
                                     as={`/snippets/${post.filePath.replace(/\.mdx?$/, '')}`}
                                     href={`/snippets/[slug]`}
                                     image={`/snippet-images/${post.data.logoImage[0]}`}
+                                    timeAge={timeAgo.format(new Date(post.data.publishedAt))}
+                                    authorName={post.data.author}
                                 />
                             ))}
                         </Grid>

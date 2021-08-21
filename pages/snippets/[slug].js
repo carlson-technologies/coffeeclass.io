@@ -16,7 +16,6 @@ import {
     useColorMode,
     Avatar,
     Button,
-    Image,
     Badge,
     Divider
 } from '@chakra-ui/react'

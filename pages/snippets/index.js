@@ -13,6 +13,8 @@ import matter from 'gray-matter'
 import path from 'path'
 import { snippetsFilePaths, SNIPPETS_PATH } from '../../lib/mdxUtils'
 import Snippet from '../../components/Cards/Snippet'
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en'
 
 const url = 'https://coffeeclass.io/snippets'
 const title = 'Snippets | coffeeclass.io'
@@ -28,6 +30,10 @@ export default function Index({ posts }) {
         light: 'brand_one.600',
         dark: 'brand_one.500'
     }
+
+    TimeAgo.addDefaultLocale(en)
+    const timeAgo = new TimeAgo('en-US')
+    
     const snippetsOrderedByPublishedDate = posts
         .sort(
             (a, b) =>
@@ -72,6 +78,8 @@ export default function Index({ posts }) {
                                 as={`/snippets/${post.filePath.replace(/\.mdx?$/, '')}`}
                                 href={`/snippets/[slug]`}
                                 image={`/snippet-images/${post.data.logoImage[0]}`}
+                                timeAge={timeAgo.format(new Date(post.data.publishedAt))}
+                                authorName={post.data.author}
                             />
                         ))}
                     </Grid>

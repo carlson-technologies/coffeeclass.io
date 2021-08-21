@@ -22,10 +22,15 @@ import { tutorialsFilePaths, TUTORIALS_PATH } from '../../../lib/mdxUtils'
 import Snippet from '../../../components/Cards/Snippet'
 import Tutorial from '../../../components/Cards/Tutorial'
 import authors from '../../../configs/authors.json'
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en'
 
 export default function Index({ tutorials, snippets }) {
     const router = useRouter()
     const { author } = router.query
+
+    TimeAgo.addDefaultLocale(en)
+    const timeAgo = new TimeAgo('en-US')
 
     var currentAuthor = []
     for (var i = 0; i < authors.authors.length; i++) {
@@ -42,6 +47,12 @@ export default function Index({ tutorials, snippets }) {
         light: 'brand_one.600',
         dark: 'brand_one.500'
     }
+
+    const snippetsOrderedByPublishedDate = snippets
+        .sort(
+            (a, b) =>
+                Number(new Date(b.data.publishedAt)) - Number(new Date(a.data.publishedAt))
+        )
 
     if (currentAuthor.length === 0) {
         return (
@@ -172,7 +183,7 @@ export default function Index({ tutorials, snippets }) {
                     <Flex flexDir="column">
                         <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
                             {
-                                snippets.map(s => {
+                                snippetsOrderedByPublishedDate.map(s => {
                                     return (
                                         s.data.author == currentAuthor[0].name ?
                                             <Snippet
@@ -184,6 +195,8 @@ export default function Index({ tutorials, snippets }) {
                                                 as={`/snippets/${s.filePath.replace(/\.mdx?$/, '')}`}
                                                 href={`/snippets/[slug]`}
                                                 image={`/snippet-images/${s.data.logoImage[0]}`}
+                                                timeAge={timeAgo.format(new Date(s.data.publishedAt))}
+                                                authorName={s.data.author}
                                             /> : null
                                     )
                                 })

@@ -8,8 +8,9 @@ import {
 import Link from 'next/link'
 import NextLink from 'next/link'
 import Image from 'next/image'
+import getAuthorSlug from '../../lib/get-author-slug'
 
-export default function Snippet({ title, description, tags, href, as, mainTag, image }) {
+export default function Snippet({ title, description, tags, href, as, mainTag, image, timeAge, authorName }) {
     const { colorMode } = useColorMode()
     const bgColor = {
         light: 'gray.200',
@@ -23,6 +24,7 @@ export default function Snippet({ title, description, tags, href, as, mainTag, i
         light: 'gray.600',
         dark: 'gray.300'
     }
+
     return (
         <Flex
             w="100%"
@@ -74,29 +76,37 @@ export default function Snippet({ title, description, tags, href, as, mainTag, i
                             />
                         </Box>
                     }
-                    <Flex flexDir="column">
-                        <Heading><Link href={href} as={as}>{title}</Link></Heading>
-                        <Text fontSize="lg"><Link href={href} as={as}>{description}</Link></Text>
-                        <Flex mt={2} wrap="wrap">
-                            {tags?.map((tag) => {
-                                return (
-                                    <Flex
-                                        mr={2}
-                                        key={tag}
-                                        _hover={{
-                                            textDecor: 'none',
-                                            opacity: '.5'
-                                        }}
-                                        cursor="pointer"
-                                    >
-                                        <NextLink href={`/tags/${tag}`} passHref>
-                                            <Link href={`/${tag}`}>
-                                                <Text fontSize="lg" fontWeight={mainTag == tag ? "bold" : "normal"} color={tagColor[colorMode]}>#{tag}</Text>
-                                            </Link>
-                                        </NextLink>
-                                    </Flex>
-                                )
-                            })}
+                    <Flex flexDir="column" justify="space-between">
+                        <Flex flexDir="column">
+                            <Heading><Link href={href} as={as}>{title}</Link></Heading>
+                            <Text fontSize="lg"><Link href={href} as={as}>{description}</Link></Text>
+                        </Flex>
+                        <Flex flexDir="row" align="center" mt={2}>
+                            <Text fontWeight="semibold" fontStyle="italic">{timeAge}</Text>
+                            <Text mx={1}>by</Text>
+                            <Text textDecor="underline"><Link href={`/authors/${getAuthorSlug(authorName)}`} passHref>{authorName}</Link></Text>
+                            <Text mx={1}>in</Text>
+                            <Flex wrap="wrap">
+                                {tags?.map((tag) => {
+                                    return (
+                                        <Flex
+                                            mr={2}
+                                            key={tag}
+                                            _hover={{
+                                                textDecor: 'none',
+                                                opacity: '.5'
+                                            }}
+                                            cursor="pointer"
+                                        >
+                                            <NextLink href={`/tags/${tag}`} passHref>
+                                                <Link href={`/${tag}`}>
+                                                    <Text fontSize="lg" fontWeight={mainTag == tag ? "bold" : "normal"} color={tagColor[colorMode]}>#{tag}</Text>
+                                                </Link>
+                                            </NextLink>
+                                        </Flex>
+                                    )
+                                })}
+                            </Flex>
                         </Flex>
                     </Flex>
                 </Flex>

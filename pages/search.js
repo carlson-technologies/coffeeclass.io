@@ -15,7 +15,7 @@ import {
     InputRightElement,
     Tag,
     useColorMode,
-    Text
+    Text,
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../components/Container'
@@ -30,6 +30,7 @@ import { learnChakraUIFilePaths, LEARN_CHAKRAUI_PATH } from '../lib/mdxUtils'
 import { SearchIcon } from '@chakra-ui/icons'
 import get_type from '../lib/get_type'
 import { parseISO, format } from 'date-fns'
+import getAuthorSlug from '../lib/get-author-slug'
 
 const url = 'https://coffeeclass.io/search'
 const title = 'Search | coffeeclass.io'
@@ -167,7 +168,7 @@ export default function Search({ snippets, tutorials, learn_python, learn_chakra
                                                     </NextLink>
                                                 )
                                             })}</Td>
-                                            <Td>{p.data?.author}</Td>
+                                            <Td><Link href={`/authors/${getAuthorSlug(p.data?.author)}`} passHref>{p.data?.author}</Link></Td>
                                             <Td minW="150px" borderTopEndRadius={10} borderBottomEndRadius={10}>{format(parseISO(p.data?.publishedAt), 'MMMM dd, yyyy')}</Td>
                                         </Tr>
                                     )

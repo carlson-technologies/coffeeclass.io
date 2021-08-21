@@ -11,11 +11,11 @@ import {
 import NextLink from 'next/link'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
+import getAuthorSlug from '../../../lib/get-author-slug'
 
 export default function FeaturedTutorial({ tut }) {
     TimeAgo.addDefaultLocale(en)
     const timeAgo = new TimeAgo('en-US')
-
     const { colorMode } = useColorMode()
     const tagColor = {
         light: 'gray.600',
@@ -30,7 +30,7 @@ export default function FeaturedTutorial({ tut }) {
                 flexDir={['column', 'column', 'column', 'column', 'column', 'row']}
             >
                 <Flex
-                    boxShadow={`16px 0 15px -4px ${useColorModeValue("#CBD5E0", "#171923")}, -16px 0 8px -4px ${useColorModeValue("#EDF2F7","#2D3748")}`}
+                    boxShadow={`16px 0 15px -4px ${useColorModeValue("#CBD5E0", "#171923")}, -16px 0 8px -4px ${useColorModeValue("#EDF2F7", "#2D3748")}`}
                     borderRadius={15}
                 >
                     <Image borderRadius={15} w={600} src={`/content/tutorials/${tut.filePath.replace(/\.mdx?$/, '')}/${tut.data.featureImg}`} />
@@ -67,9 +67,9 @@ export default function FeaturedTutorial({ tut }) {
                     <Text fontSize="xl" my={6} color={useColorModeValue("gray.500", "gray.400")}>{tut.data.description}</Text>
                     <Flex align="center">
                         <Avatar mr={2} size="sm" src={`/authors/${tut.data.authorImage}`} />
-                        <Text mr={1}>By</Text>
-                        <Text fontWeight="semibold"><NextLink href={`/authors/${tut.data.author}`}><Link href={`/authors/${tut.data.author}`}>{tut.data.author}</Link></NextLink></Text>
-                        <Text ml={1}>{timeAgo.format(new Date(tut.data.publishedAt))}</Text>
+                        <Text fontWeight="semibold" fontStyle="italic">{timeAgo.format(new Date(tut.data.publishedAt))}</Text>
+                        <Text mx={1}>by</Text>
+                        <Text textDecor="underline"><Link href={`/authors/${getAuthorSlug(tut.data.author)}`} passHref>{tut.data.author}</Link></Text>
                     </Flex>
                 </Flex>
             </Flex>

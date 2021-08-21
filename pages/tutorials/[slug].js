@@ -22,6 +22,7 @@ import {
 import Comments from '../../components/Comments'
 import getHeaders from '../../lib/get-headers'
 import { useRouter } from 'next/router'
+import getAuthorSlug from '../../lib/get-author-slug'
 
 export default function PostPage({ source, frontMatter }) {
     const { colorMode } = useColorMode()
@@ -102,7 +103,7 @@ export default function PostPage({ source, frontMatter }) {
                 <Flex flexDir="column" align="center">
                     <Text>Written By {frontMatter.author}</Text>
                     <Text color={color[colorMode]}>{frontMatter.authorPosition}</Text>
-                    <Text mt={4}><Link href={`/authors/${frontMatter.author}`} fontWeight="bold">More Articles By {frontMatter.author}</Link></Text>
+                    <Text mt={4}><Link href={`/authors/${getAuthorSlug(frontMatter.author)}`} fontWeight="bold">More Articles By {frontMatter.author}</Link></Text>
                 </Flex>
             </Flex>
             <Divider my={12} w="30%" alignSelf="center" />

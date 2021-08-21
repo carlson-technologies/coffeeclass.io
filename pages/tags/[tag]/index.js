@@ -18,6 +18,8 @@ import { tutorialsFilePaths, TUTORIALS_PATH } from '../../../lib/mdxUtils'
 import Snippet from '../../../components/Cards/Snippet'
 import Tutorial from '../../../components/Cards/Tutorial'
 import tags from '../../../configs/tags.json'
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en'
 
 export default function Index({ tutorials, snippets }) {
     const router = useRouter()
@@ -28,6 +30,9 @@ export default function Index({ tutorials, snippets }) {
             currentTag.push(tags.tags[i])
         }
     }
+
+    TimeAgo.addDefaultLocale(en)
+    const timeAgo = new TimeAgo('en-US')
 
     const url = `https://coffeeclass.io/tags/${tag}`
     const title = `${tag} | Tags | coffeeclass.io`
@@ -95,6 +100,8 @@ export default function Index({ tutorials, snippets }) {
                                                 href={`/snippets/[slug]`}
                                                 mainTag={tag}
                                                 image={`/snippet-images/${post.data.logoImage[0]}`}
+                                                timeAge={timeAgo.format(new Date(post.data.publishedAt))}
+                                                authorName={post.data.author}
                                             /> : null
                                     )
                                 }))

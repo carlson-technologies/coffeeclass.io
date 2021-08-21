@@ -27,7 +27,6 @@ export default function Index({ tutorials, snippets }) {
         light: 'brand_one.600',
         dark: 'brand_one.500'
     }
-
     var tagArray = []
     tutorials.map(tut => tut.data.tags.map(tag => {
         tagArray.push(tag)

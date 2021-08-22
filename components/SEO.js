@@ -1,11 +1,10 @@
 import { NextSeo, ArticleJsonLd } from 'next-seo'
 
-const SEO = ({ title, seoDescription, publishedAt, lastUpdated, url, author }) => {
+const SEO = ({ title, seoDescription, publishedAt, lastUpdated, url, author, featureImg, slug }) => {
     const date = new Date(publishedAt).toISOString()
-    // const dataModified = dataModified ? new Date(modifiedAt).toISOString() : date
     const featuredImage = {
-        url: `https://coffeeclass.io/favicons/logo-white-bg.png`,
-        alt: title
+        url: featureImg ? `https://coffeeclass.io/content${slug}/${featureImg}` : `https://coffeeclass.io/favicons/logo-white-bg.png`,
+        alt: title,
     }
 
     return (

@@ -41,6 +41,7 @@ export default function PostPage({ source, frontMatter }) {
                 as="heading"
             >
                 <Heading
+                    mt={[10, 10, 10, 10, 0, 0]}
                     as="h1"
                     size="xl"
                     textAlign={["left", "left", "left", "center", "center", "center"]}

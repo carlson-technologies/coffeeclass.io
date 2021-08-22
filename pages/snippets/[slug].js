@@ -27,7 +27,7 @@ import en from 'javascript-time-ago/locale/en'
 import authors from "../../configs/authors.json"
 
 export default function PostPage({ source, frontMatter }) {
-    TimeAgo.addDefaultLocale(en)
+    TimeAgo.addLocale(en)
     const timeAgo = new TimeAgo('en-US')
 
     const { colorMode } = useColorMode()

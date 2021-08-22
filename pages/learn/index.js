@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
     Heading,
     Flex,
@@ -7,7 +8,8 @@ import {
     useColorMode,
     Link,
     Button,
-    Badge
+    Badge,
+    Skeleton,
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../../components/Container'
@@ -21,14 +23,12 @@ const description = 'Learn programming languages quickly and easily.'
 export default function Index() {
     const data = subjects.routes
     const { colorMode } = useColorMode()
-    const color = {
-        light: 'gray.700',
-        dark: 'gray.300'
-    }
     const headerColor = {
         light: 'brand_one.600',
         dark: 'brand_one.500'
     }
+
+    const [loaded, setLoaded] = useState(false)
     return (
         <Container>
             <NextSeo
@@ -72,13 +72,16 @@ export default function Index() {
                                             _hover={{ textDecor: 'none' }}
                                         >
                                             <Button p={2} size="lg" aria-label={item.title}>
-                                                <Image
-                                                    src={`/learn-images/${item.image}`}
-                                                    alt={`logo for ${item.image}`}
-                                                    placeholder="blur"
-                                                    height={35}
-                                                    width={35}
-                                                />
+                                                <Skeleton isLoaded={loaded}>
+                                                    <Image
+                                                        src={`/learn-images/${item.image}`}
+                                                        alt={`logo for ${item.image}`}
+                                                        placeholder="blur"
+                                                        height={35}
+                                                        width={35}
+                                                        onLoad={() => setLoaded(true)}
+                                                    />
+                                                </Skeleton>
                                                 <Text ml={2}>{item.title}</Text>
                                                 {item.new && <Badge colorScheme="purple" ml={2} fontSize="lg">New!</Badge>}
                                             </Button>

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
     Text,
     Flex,
@@ -5,35 +6,48 @@ import {
     useColorModeValue,
     Heading,
     Avatar,
-    Image,
     useColorMode,
+    Skeleton,
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
 import getAuthorSlug from '../../../lib/get-author-slug'
+import NextImage from 'next/image'
 
 export default function FeaturedTutorial({ tut }) {
-    TimeAgo.addDefaultLocale(en)
+    TimeAgo.addLocale(en)
     const timeAgo = new TimeAgo('en-US')
     const { colorMode } = useColorMode()
     const tagColor = {
         light: 'gray.600',
         dark: 'gray.300'
     }
+    const [loaded, setLoaded] = useState(false)
     return (
         <Flex justify="center" my={10}>
             <Flex
                 align="center"
                 justify="center"
                 mx={4}
+                p={4}
+                borderRadius={15}
                 flexDir={['column', 'column', 'column', 'column', 'column', 'row']}
+                bgColor={useColorModeValue("gray.400", "gray.600")}
+                w="100%"
             >
-                <Flex
-                    boxShadow={`16px 0 15px -4px ${useColorModeValue("#CBD5E0", "#171923")}, -16px 0 8px -4px ${useColorModeValue("#EDF2F7", "#2D3748")}`}
-                    borderRadius={15}
-                >
-                    <Image borderRadius={15} w={600} src={`/content/tutorials/${tut.filePath.replace(/\.mdx?$/, '')}/${tut.data.featureImg}`} />
+                <Flex justify="center">
+                    <Skeleton isLoaded={loaded}>
+                        <NextImage
+                            placeholder="blur"
+                            width={550}
+                            height={350}
+                            objectFit="contain"
+                            src={`/content/tutorials/${tut.filePath.replace(/\.mdx?$/, '')}/${tut.data.featureImg}`}
+                            alt={tut.data.title}
+                            onLoad={() => { setLoaded(true) }}
+                        />
+                    </Skeleton>
                 </Flex>
                 <Flex flexDir="column" ml={6} align="start" w={['100%', '100%', '100%', '100%', '100%', 'auto']}>
                     <Flex wrap="wrap" mt={[4, 4, 4, 4, 4, 0]}>
@@ -64,8 +78,8 @@ export default function FeaturedTutorial({ tut }) {
                             {tut.data.title}
                         </Link>
                     </Heading>
-                    <Text fontSize="xl" my={6} color={useColorModeValue("gray.500", "gray.400")}>{tut.data.description}</Text>
-                    <Flex align="center">
+                    <Text fontSize="xl" my={6} color={useColorModeValue("blackAlpha.700", "gray.400")}>{tut.data.description}</Text>
+                    <Flex align="center" wrap="wrap">
                         <Avatar mr={2} size="sm" src={`/authors/${tut.data.authorImage}`} />
                         <Text fontWeight="semibold" fontStyle="italic">{timeAgo.format(new Date(tut.data.publishedAt))}</Text>
                         <Text mx={1}>by</Text>

@@ -25,7 +25,7 @@ import en from 'javascript-time-ago/locale/en'
 export default function Layout({ frontMatter, children }) {
     const router = useRouter()
     const slug = router.asPath
-    TimeAgo.addDefaultLocale(en)
+    TimeAgo.addLocale(en)
     const timeAgo = new TimeAgo('en-US')
 
     const { colorMode } = useColorMode()

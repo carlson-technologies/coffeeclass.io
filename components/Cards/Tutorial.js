@@ -1,9 +1,11 @@
+import { useState } from 'react'
 import {
     Heading,
     Flex,
     Text,
     Box,
     useColorMode,
+    Skeleton,
 } from '@chakra-ui/react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -26,6 +28,8 @@ export default function Tutorial({ src, title, description, tags, href, as, main
         light: 'gray.600',
         dark: 'gray.300'
     }
+
+    const [loaded, setLoaded] = useState(false)
     return (
         <Flex
             w="100%"
@@ -55,18 +59,21 @@ export default function Tutorial({ src, title, description, tags, href, as, main
                         transition={{ duration: 0.5 }}
                     >
                         <Flex justify="center">
-                            <Image
-                                placeholder="blur"
-                                width={550}
-                                height={350}
-                                objectFit="contain"
-                                src={src}
-                                alt={title}
-                            />
+                            <Skeleton isLoaded={loaded}>
+                                <Image
+                                    placeholder="blur"
+                                    width={550}
+                                    height={350}
+                                    objectFit="contain"
+                                    src={src}
+                                    alt={title}
+                                    onLoad={() => setLoaded(true)}
+                                />
+                            </Skeleton>
                         </Flex>
                     </MotionBox>
                 </MotionBox>
-                <Flex wrap="wrap">
+                <Flex wrap="wrap" mt={4}>
                     {tags?.map((tag) => {
                         return (
                             <Flex

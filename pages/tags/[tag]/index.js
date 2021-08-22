@@ -31,7 +31,7 @@ export default function Index({ tutorials, snippets }) {
         }
     }
 
-    TimeAgo.addDefaultLocale(en)
+    TimeAgo.addLocale(en)
     const timeAgo = new TimeAgo('en-US')
 
     const url = `https://coffeeclass.io/tags/${tag}`

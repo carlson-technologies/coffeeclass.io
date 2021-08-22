@@ -31,7 +31,7 @@ export default function Index({ posts }) {
         dark: 'brand_one.500'
     }
 
-    TimeAgo.addDefaultLocale(en)
+    TimeAgo.addLocale(en)
     const timeAgo = new TimeAgo('en-US')
     
     const snippetsOrderedByPublishedDate = posts

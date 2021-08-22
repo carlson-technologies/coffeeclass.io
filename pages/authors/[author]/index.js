@@ -29,7 +29,7 @@ export default function Index({ tutorials, snippets }) {
     const router = useRouter()
     const { author } = router.query
 
-    TimeAgo.addDefaultLocale(en)
+    TimeAgo.addLocale(en)
     const timeAgo = new TimeAgo('en-US')
 
     var currentAuthor = []

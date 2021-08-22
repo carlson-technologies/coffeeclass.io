@@ -56,7 +56,7 @@ export default function Index({ snippets, tutorials }) {
         tagArray.push(tag)
     }))
 
-    TimeAgo.addDefaultLocale(en)
+    TimeAgo.addLocale(en)
     const timeAgo = new TimeAgo('en-US')
 
     var tagArray = removeDuplicatesAndCount(tagArray)

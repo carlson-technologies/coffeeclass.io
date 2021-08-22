@@ -40,8 +40,8 @@ export default function Index({ tutorials, snippets }) {
     }
 
     const url = `https://coffeeclass.io/authors/${author}`
-    const title = `${currentAuthor[0].name} | coffeeclass.io`
-    const description = `coffeeclass.io tutorials and snippets written by ${currentAuthor[0].name}`
+    const title = `${currentAuthor[0]?.name} | coffeeclass.io`
+    const description = `coffeeclass.io tutorials and snippets written by ${currentAuthor[0]?.name}`
     const { colorMode } = useColorMode()
     const headerColor = {
         light: 'brand_one.600',

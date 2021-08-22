@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import fs from 'fs'
 import matter from 'gray-matter'
 import { serialize } from 'next-mdx-remote/serialize'
@@ -17,12 +18,13 @@ import {
     useColorMode,
     Avatar,
     Button,
-    Image
+    Skeleton,
 } from '@chakra-ui/react'
 import Comments from '../../components/Comments'
 import getHeaders from '../../lib/get-headers'
 import { useRouter } from 'next/router'
 import getAuthorSlug from '../../lib/get-author-slug'
+import NextImage from 'next/image'
 
 export default function PostPage({ source, frontMatter }) {
     const { colorMode } = useColorMode()
@@ -30,6 +32,7 @@ export default function PostPage({ source, frontMatter }) {
         light: 'gray.600',
         dark: 'gray.500'
     }
+    const [loaded, setLoaded] = useState(false)
     const router = useRouter()
     const slug = router.query.slug
     return (
@@ -57,14 +60,18 @@ export default function PostPage({ source, frontMatter }) {
                 >
                     {frontMatter.description}
                 </Text>
-                <Image
-                    src={`/content/tutorials/${slug}/${frontMatter.featureImg}`}
-                    alt={frontMatter.title}
-                    maxW={800}
-                    w="100%"
-                    borderRadius={15}
-                    alignSelf={[null, null, null, null, null, "center"]}
-                />
+                <Flex justify="center">
+                    <Skeleton isLoaded={loaded}>
+                        <NextImage
+                            width={550}
+                            height={350}
+                            objectFit="contain"
+                            src={`/content/tutorials/${slug}/${frontMatter.featureImg}`}
+                            alt={frontMatter.title}
+                            onLoad={() => { setLoaded(true) }}
+                        />
+                    </Skeleton>
+                </Flex>
             </Flex>
             <Flex
                 flexDir="column"

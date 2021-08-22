@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useRouter } from "next/router"
 import pythonSidebar from "../configs/learn/python.json"
 import chakraUISidebar from "../configs/learn/chakra-ui.json"
@@ -10,12 +11,12 @@ import {
     useColorMode,
     Divider,
     Badge,
+    SkeletonCircle,
 } from "@chakra-ui/react"
 import Image from 'next/image'
 import NextLink from 'next/link'
 
 export function getRoutes(slug) {
-
     const configMap = {
         "/learn/python": pythonSidebar,
         "/learn/chakra-ui": chakraUISidebar
@@ -33,6 +34,7 @@ const Sidebar = ({ src, alt }) => {
     const { pathname } = useRouter()
     const routes = getRoutes(pathname)
     const router = useRouter()
+    const [loaded, setLoaded] = useState(false)
     const { colorMode } = useColorMode()
     const sideBarActiveColor = {
         light: 'brand_one.200',
@@ -62,13 +64,15 @@ const Sidebar = ({ src, alt }) => {
                 flexDirection="column"
             >
                 <Flex flexDirection="column" alignItems="center">
-                    <Image
-                        src={`/learn-images/language-logo/${src}`}
-                        alt={alt}
-                        placeholder="blur"
-                        height={35}
-                        width={35}
-                    />
+                    <SkeletonCircle isLoaded={loaded}>
+                        <Image
+                            src={`/learn-images/language-logo/${src}`}
+                            alt={alt}
+                            height={35}
+                            width={35}
+                            onLoad={() => setLoaded(true)}
+                        />
+                    </SkeletonCircle>
                     <Heading as="h4" size="md" mt={4}>Modules 🔖</Heading>
                 </Flex>
                 <Divider my={4} />

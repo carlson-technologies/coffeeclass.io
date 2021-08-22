@@ -6,16 +6,18 @@ import {
   Heading,
   useColorMode,
   Text,
+  Skeleton,
 } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import SEO from '../components/SEO'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import authors from "../configs/authors.json"
 
 export default function Layout({ frontMatter, children }) {
   const router = useRouter()
   const slug = router.asPath
+
+  const [loaded, setLoaded] = useState(false)
 
   const { colorMode } = useColorMode()
   const color = {
@@ -92,15 +94,17 @@ export default function Layout({ frontMatter, children }) {
                         mr={2}
                         alignSelf="left"
                       >
-                        <Image
-                          key={index}
-                          src={`/snippet-images/${image}`}
-                          alt={frontMatter.logoImage}
-                          placeholder="blur"
-                          width="200px"
-                          height="200px"
-                          objectFit="contain"
-                        />
+                        <Skeleton isLoaded={loaded}>
+                          <Image
+                            key={index}
+                            src={`/snippet-images/${image}`}
+                            alt={frontMatter.logoImage}
+                            width="200px"
+                            height="200px"
+                            objectFit="contain"
+                            onLoad={() => setLoaded(true)}
+                          />
+                        </Skeleton>
                       </Box> :
                       <Box
                         w="5em"
@@ -108,15 +112,17 @@ export default function Layout({ frontMatter, children }) {
                         mr={2}
                         alignSelf="left"
                       >
-                        <Image
-                          key={index}
-                          src={`/snippet-images/${image}`}
-                          alt={frontMatter.logoImage}
-                          placeholder="blur"
-                          width="200px"
-                          height="200px"
-                          objectFit="cover"
-                        />
+                        <Skeleton isLoaded={loaded}>
+                          <Image
+                            key={index}
+                            src={`/snippet-images/${image}`}
+                            alt={frontMatter.logoImage}
+                            width="200px"
+                            height="200px"
+                            objectFit="cover"
+                            onLoad={() => setLoaded(true)}
+                          />
+                        </Skeleton>
                       </Box>
                   ))
                 }

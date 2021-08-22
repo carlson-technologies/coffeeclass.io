@@ -9,7 +9,7 @@ import {
     Link,
     Button,
     Badge,
-    Skeleton,
+    SkeletonCircle,
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../../components/Container'
@@ -72,16 +72,15 @@ export default function Index() {
                                             _hover={{ textDecor: 'none' }}
                                         >
                                             <Button p={2} size="lg" aria-label={item.title}>
-                                                <Skeleton isLoaded={loaded}>
+                                                <SkeletonCircle isLoaded={loaded}>
                                                     <Image
                                                         src={`/learn-images/${item.image}`}
                                                         alt={`logo for ${item.image}`}
-                                                        placeholder="blur"
                                                         height={35}
                                                         width={35}
                                                         onLoad={() => setLoaded(true)}
                                                     />
-                                                </Skeleton>
+                                                </SkeletonCircle>
                                                 <Text ml={2}>{item.title}</Text>
                                                 {item.new && <Badge colorScheme="purple" ml={2} fontSize="lg">New!</Badge>}
                                             </Button>

@@ -58,7 +58,6 @@ export default function Snippet({ title, description, tags, href, as, mainTag, i
                                 <Image
                                     src={colorMode === "light" ? image : image.replace('light', 'dark')}
                                     alt={image}
-                                    placeholder="blur"
                                     width="75px"
                                     height="75px"
                                     objectFit="contain"
@@ -75,7 +74,6 @@ export default function Snippet({ title, description, tags, href, as, mainTag, i
                                 <Image
                                     src={image}
                                     alt={image}
-                                    placeholder="blur"
                                     width="75px"
                                     height="75px"
                                     objectFit="contain"

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
     Heading,
     Text,
@@ -16,6 +17,7 @@ import {
     Tr,
     Th,
     Td,
+    Skeleton,
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import SnippetStep from '../components/SnippetStep'
@@ -107,19 +109,22 @@ const CustomTable = (props) => {
 }
 
 const CustomImage = (props) => {
+    const [loaded, setLoaded] = useState(false)
     return (
         <Box
             borderRadius={15}
             w={1000}
             maxW="100%"
         >
-            <Image
-                placeholder="blur"
-                objectFit="contain"
-                width={1000}
-                height={500}
-                {...props}
-            />
+            <Skeleton isLoaded={loaded}>
+                <Image
+                    objectFit="contain"
+                    width={1000}
+                    height={500}
+                    onLoad={() => setLoaded(true)}
+                    {...props}
+                />
+            </Skeleton>
         </Box>
     )
 }

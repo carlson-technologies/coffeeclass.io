@@ -39,7 +39,6 @@ export default function FeaturedTutorial({ tut }) {
                 <Flex justify="center">
                     <Skeleton isLoaded={loaded}>
                         <NextImage
-                            placeholder="blur"
                             width={550}
                             height={350}
                             objectFit="contain"

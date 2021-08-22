@@ -25,7 +25,7 @@ export default function FeaturedTutorial({ tut }) {
     }
     const [loaded, setLoaded] = useState(false)
     return (
-        <Flex justify="center" my={10}>
+        <Flex justify="center" my={20}>
             <Flex
                 align="center"
                 justify="center"

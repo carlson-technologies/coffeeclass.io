@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import {
     Flex,
     Box,
@@ -16,6 +17,7 @@ import {
     InputGroup,
     Input,
     InputRightElement,
+    useColorModeValue,
 } from '@chakra-ui/react'
 import { HamburgerIcon, CloseIcon, Search2Icon } from '@chakra-ui/icons'
 import DarkModeSwitch from './DarkModeSwitch'
@@ -48,24 +50,53 @@ const NavBarTop = () => {
         light: 'brand_one.600',
         dark: 'brand_one.500'
     }
+    const [scrolled, setScrolled] = useState(false)
+    const scrollValue = 10
+
+    const handleState = () => {
+        var scrollTop = 0
+        scrollTop = scrollY
+        if (scrollTop > scrollValue) {
+            setScrolled(true)
+        } else if (scrollTop < scrollValue) {
+            setScrolled(false)
+        }
+    }
+    const handleScroll = () => {
+        var scrollTop = 0
+        scrollTop = scrollY
+        if (scrollTop > scrollValue) {
+            setScrolled(true)
+        } else if (scrollTop < scrollValue) {
+            setScrolled(false)
+        }
+    }
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll)
+        window.addEventListener('load', handleState)
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+            window.removeEventListener('load', handleState)
+        }
+    })
     return (
         <>
             <Box
-                bgColor={bgColor[colorMode]}
                 pos="fixed"
                 right={0}
                 top={0}
-                borderRadius={5}
                 mt={3}
                 mr={3}
-                boxShadow={boxShadowColor[colorMode]}
+                boxShadow={scrolled ? boxShadowColor[colorMode] : null}
                 as="nav"
                 aria-label="Nav 1"
                 zIndex="10"
+                transition="box-shadow .5s ease-in-out"
             >
-                <DarkModeSwitch />
+                <DarkModeSwitch color={scrolled ? bgColor[colorMode] : 'transparent'} />
                 <IconButton
-                    bgColor={bgColor[colorMode]}
+                    transition="background-color .5s ease-in-out"
+                    bgColor={scrolled ? bgColor[colorMode] : 'transparent'}
                     aria-label="Open Menu"
                     size="lg"
                     _hover={{
@@ -78,7 +109,8 @@ const NavBarTop = () => {
                     onClick={() => router.push('/search')}
                 />
                 <IconButton
-                    bgColor={bgColor[colorMode]}
+                    transition="background-color .5s ease-in-out"
+                    bgColor={scrolled ? bgColor[colorMode] : 'transparent'}
                     aria-label="Open Menu"
                     size="lg"
                     _hover={{

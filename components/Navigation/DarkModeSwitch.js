@@ -1,7 +1,7 @@
-import { useColorMode, IconButton } from '@chakra-ui/react'
+import { useColorMode, IconButton, } from '@chakra-ui/react'
 import { SunIcon, MoonIcon } from '@chakra-ui/icons'
 
-const DarkModeSwitch = () => {
+const DarkModeSwitch = ({ color }) => {
     const { colorMode, toggleColorMode } = useColorMode()
     const iconColor = {
         light: 'black',
@@ -17,7 +17,8 @@ const DarkModeSwitch = () => {
     }
     return (
         <IconButton
-            bgColor={bgColor[colorMode]}
+            transition="background-color .5s ease-in-out"
+            bgColor={color}
             size="lg"
             _hover={{
                 textDecoration: 'none',

@@ -24,6 +24,9 @@ import SnippetStep from '../components/SnippetStep'
 import ChakraUILearnCards from './ChakraUILearnCards'
 import ExampleColorModeComponent from '../components/ExampleColorModeComponent'
 import KeyboardKey from '../components/KeyboardKey'
+import FloatUpDivAnimation from '../components/FloatUpDivAnimation'
+import FloatUpDivAnimationNoHeight from './FloatUpDivAnimationNoHeight'
+
 import Image from 'next/image'
 
 const Quote = (props) => {
@@ -133,9 +136,9 @@ const MDXComponents = {
     h1: (props) => <Heading as="h1" size="2xl" {...props} />,
     h2: (props) => <DocsHeading as="h2" size="xl" mt="1em" {...props} />,
     h3: (props) => <DocsHeading as="h3" size="lg" mt=".5em" {...props} />,
-    h4: (props) => <DocsHeading as="h4" size="md" {...props} />,
-    h5: (props) => <DocsHeading as="h5" size="sm" {...props} />,
-    h6: (props) => <DocsHeading as="h6" size="xs" {...props} />,
+    h4: (props) => <DocsHeading as="h4" size="md" mt=".5em" {...props} />,
+    h5: (props) => <DocsHeading as="h5" size="sm" mt=".5em" {...props} />,
+    h6: (props) => <DocsHeading as="h6" size="xs" mt=".5em" {...props} />,
     p: CustomP,
     inlineCode: (props) => <CustomCode {...props} />,
     ul: (props) => <UnorderedList my={4} {...props} />,
@@ -154,6 +157,8 @@ const MDXComponents = {
     ChakraUILearnCards,
     ExampleColorModeComponent,
     KeyboardKey,
+    FloatUpDivAnimation,
+    FloatUpDivAnimationNoHeight,
 }
 
 export default MDXComponents

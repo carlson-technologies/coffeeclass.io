@@ -1,15 +1,15 @@
+import { useState } from 'react'
 import {
     Heading,
     Flex,
-    Stack,
     Grid,
-    Divider,
     useColorMode,
     Tag,
     Link,
-    Avatar,
     Text,
     useColorModeValue,
+    Box,
+    SkeletonCircle,
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../../../components/Container'
@@ -24,6 +24,7 @@ import Tutorial from '../../../components/Cards/Tutorial'
 import authors from '../../../configs/authors.json'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
+import NextImage from 'next/image'
 
 export default function Index({ tutorials, snippets }) {
     const router = useRouter()
@@ -41,18 +42,41 @@ export default function Index({ tutorials, snippets }) {
 
     const url = `https://coffeeclass.io/authors/${author}`
     const title = `${currentAuthor[0]?.name} | coffeeclass.io`
-    const description = `coffeeclass.io tutorials and snippets written by ${currentAuthor[0]?.name}`
+    const description = `coffeeclass.io articles written by ${currentAuthor[0]?.name}. ${currentAuthor[0].description && currentAuthor[0].description}`
     const { colorMode } = useColorMode()
     const headerColor = {
         light: 'brand_one.600',
         dark: 'brand_one.500'
     }
 
+    const [loaded, setLoaded] = useState(false)
+
     const snippetsOrderedByPublishedDate = snippets
         .sort(
             (a, b) =>
                 Number(new Date(b.data.publishedAt)) - Number(new Date(a.data.publishedAt))
         )
+
+    const tutorialsOrderedByPublishedDate = tutorials
+        .sort(
+            (a, b) =>
+                Number(new Date(b.data.publishedAt)) - Number(new Date(a.data.publishedAt))
+        )
+
+    var snippetCount = 0
+    var tutorialCount = 0
+
+    for (var i = 0; i < snippetsOrderedByPublishedDate.length; i++) {
+        if (snippetsOrderedByPublishedDate[i].data.author == currentAuthor[0].name) {
+            snippetCount++
+        }
+    }
+
+    for (var i = 0; i < tutorialsOrderedByPublishedDate.length; i++) {
+        if (tutorialsOrderedByPublishedDate[i].data.author == currentAuthor[0].name) {
+            tutorialCount++
+        }
+    }
 
     if (currentAuthor.length === 0) {
         return (
@@ -74,113 +98,132 @@ export default function Index({ tutorials, snippets }) {
                     description
                 }}
             />
-            <Stack
-                spacing={8}
-                px={4}
+            <Flex
+                flexDir="column"
             >
-                <Flex
-                    flexDir="column"
-                    mt={50}
-                >
-                    <Avatar alignSelf="center" size="2xl" src={currentAuthor[0]?.image} />
-                    <Heading as="h1" size="2xl" textAlign="center" letterSpacing="tight" color={headerColor[colorMode]}>{currentAuthor[0].name}</Heading>
-                    {currentAuthor[0].description &&
-                        <Text textAlign="center" color={useColorModeValue("gray.500", "gray.400")} fontSize="lg">{currentAuthor[0].description}</Text>
-                    }
+                <Box as="header">
                     <Flex
-                        my={4}
-                        justifyContent="center"
-                        h={5}
+                        flexDir="column"
+                        bgGradient={`linear(to-r,${useColorModeValue("gray.50", "gray.600")},${useColorModeValue("gray.200", "gray.800")},${useColorModeValue("gray.300", "gray.900")})`}
+                        pb={10}
                     >
-                        {currentAuthor[0]?.website &&
-                            <Tag
-                                mr={2}
-                                size="lg"
-                                transition="margin .2s ease-in-out"
-                                _hover={{ mt: "-2" }}
-                            >
+                        <Flex justifyContent="center" mt={50} mb={2}>
+                            <SkeletonCircle w="150px" h="150px" isLoaded={loaded}>
+                                <div>
+                                    <NextImage
+                                        alt={`${currentAuthor[0].name}'s avatar`}
+                                        src={`/authors/${currentAuthor[0]?.image}`}
+                                        width="150px"
+                                        height="150px"
+                                        objectFit="cover"
+                                        onLoad={() => setLoaded(true)}
+                                        className="avatar"
+                                    />
+                                </div>
+                            </SkeletonCircle>
+                        </Flex>
+                        <Heading as="h1" size="2xl" textAlign="center" letterSpacing="tight" color={headerColor[colorMode]}>{currentAuthor[0].name}</Heading>
+                        {currentAuthor[0].description &&
+                            <Text textAlign="center" color={useColorModeValue("gray.500", "gray.400")} fontSize="xl">{currentAuthor[0].description}</Text>
+                        }
+                        <Flex
+                            my={4}
+                            justifyContent="center"
+                            h={5}
+                        >
+                            {currentAuthor[0]?.website &&
                                 <Link
                                     href={currentAuthor[0]?.website}
                                     _hover={{ textDecor: 'none' }}
                                     isExternal
                                 >
-                                    Website
+                                    <Tag
+                                        mr={2}
+                                        size="lg"
+                                        transition="margin .2s ease-in-out"
+                                        _hover={{ mt: "-2" }}
+                                    >
+                                        Website
+                                    </Tag>
                                 </Link>
-                            </Tag>
-                        }
+                            }
 
-                        {currentAuthor[0]?.github &&
-                            <Tag
-                                mr={2}
-                                size="lg"
-                                transition="margin .2s ease-in-out"
-                                _hover={{ mt: "-2" }}
-                            >
+                            {currentAuthor[0]?.github &&
                                 <Link
                                     href={currentAuthor[0]?.github}
                                     _hover={{ textDecor: 'none' }}
                                     isExternal
                                 >
-                                    GitHub
+                                    <Tag
+                                        mr={2}
+                                        size="lg"
+                                        transition="margin .2s ease-in-out"
+                                        _hover={{ mt: "-2" }}
+                                    >
+                                        GitHub
+                                    </Tag>
                                 </Link>
-                            </Tag>
-                        }
+                            }
 
-                        {currentAuthor[0]?.twitter &&
-                            <Tag
-                                mr={2}
-                                size="lg"
-                                transition="margin .2s ease-in-out"
-                                _hover={{ mt: "-2" }}
-                            >
+                            {currentAuthor[0]?.twitter &&
                                 <Link
                                     href={currentAuthor[0]?.twitter}
                                     _hover={{ textDecor: 'none' }}
                                     isExternal
                                 >
-                                    Twitter
+                                    <Tag
+                                        mr={2}
+                                        size="lg"
+                                        transition="margin .2s ease-in-out"
+                                        _hover={{ mt: "-2" }}
+                                    >
+                                        Twitter
+                                    </Tag>
                                 </Link>
-                            </Tag>
-                        }
+                            }
 
-                        {currentAuthor[0]?.facebook &&
-                            <Tag
-                                mr={2}
-                                size="lg"
-                                transition="margin .2s ease-in-out"
-                                _hover={{ mt: "-2" }}
-                            >
+                            {currentAuthor[0]?.facebook &&
                                 <Link
                                     href={currentAuthor[0]?.facebook}
                                     _hover={{ textDecor: 'none' }}
                                     isExternal
                                 >
-                                    Facebook
+                                    <Tag
+                                        mr={2}
+                                        size="lg"
+                                        transition="margin .2s ease-in-out"
+                                        _hover={{ mt: "-2" }}
+                                    >
+                                        Facebook
+                                    </Tag>
                                 </Link>
-                            </Tag>
-                        }
+                            }
 
-                        {currentAuthor[0]?.linkedin &&
-                            <Tag
-                                mr={2}
-                                size="lg"
-                                transition="margin .2s ease-in-out"
-                                _hover={{ mt: "-2" }}
-                            >
+                            {currentAuthor[0]?.linkedin &&
                                 <Link
                                     href={currentAuthor[0]?.linkedin}
                                     _hover={{ textDecor: 'none' }}
                                     isExternal
                                 >
-                                    LinkedIn
+                                    <Tag
+                                        mr={2}
+                                        size="lg"
+                                        transition="margin .2s ease-in-out"
+                                        _hover={{ mt: "-2" }}
+                                    >
+                                        LinkedIn
+                                    </Tag>
                                 </Link>
-                            </Tag>
-                        }
-
+                            }
+                        </Flex>
                     </Flex>
-                    <Divider mt={2} />
-                    <Heading my={4} as="h2">Snippets</Heading>
-                    <Flex flexDir="column">
+                    <Box bgGradient={`linear(to-r,${useColorModeValue("gray.50", "gray.600")},${useColorModeValue("gray.200", "gray.800")},${useColorModeValue("gray.300", "gray.900")})`}>
+                        <Text ml={4} fontSize="lg"><Link _hover={{ textDecor: 'none', opacity: .5 }} href="#snippets" passHref><span style={{ fontWeight: 'bold' }}>{snippetCount}</span> snippet{snippetCount == 1 ? null : 's'}</Link> / <Link _hover={{ textDecor: 'none', opacity: .5 }} href="#tutorials"><span style={{ fontWeight: 'bold' }}>{tutorialCount}</span> tutorial{tutorialCount == 1 ? null : 's'}</Link></Text>
+                    </Box>
+                </Box>
+                <Flex flexDir="column" px={4}>
+                    <Box as="section" id="snippets">
+                        <Heading my={4} as="h2">Snippets</Heading>
                         <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
                             {
                                 snippetsOrderedByPublishedDate.map(s => {
@@ -202,10 +245,12 @@ export default function Index({ tutorials, snippets }) {
                                 })
                             }
                         </Grid>
-                        <Heading my={4} as="h3">Tutorials</Heading>
+                    </Box>
+                    <Box as="section" id="tutorials">
+                        <Heading my={4} as="h2">Tutorials</Heading>
                         <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
                             {
-                                tutorials.map(t => {
+                                tutorialsOrderedByPublishedDate.map(t => {
                                     return (
                                         t.data.author == currentAuthor[0].name ?
                                             <Flex m={1, 1, 1, 2, 2, 2}>
@@ -223,10 +268,10 @@ export default function Index({ tutorials, snippets }) {
                                 })
                             }
                         </Grid>
-                    </Flex>
+                    </Box>
                 </Flex>
-            </Stack>
-        </Container>
+            </Flex>
+        </Container >
     )
 }
 

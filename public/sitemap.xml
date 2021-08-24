@@ -114,6 +114,16 @@
 
   <url>
     <loc
+      >https://www.coffeeclass.io/learn/python/installing-and-using-an-ide</loc
+    >
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/learn/python/introduction-to-python</loc>
+  </url>
+
+  <url>
+    <loc
       >https://www.coffeeclass.io/learn/chakra-ui/chakra-ui-basic-components</loc
     >
   </url>
@@ -146,15 +156,5 @@
 
   <url>
     <loc>https://www.coffeeclass.io/learn/chakra-ui/what-is-chakra-ui</loc>
-  </url>
-
-  <url>
-    <loc
-      >https://www.coffeeclass.io/learn/python/installing-and-using-an-ide</loc
-    >
-  </url>
-
-  <url>
-    <loc>https://www.coffeeclass.io/learn/python/introduction-to-python</loc>
   </url>
 </urlset>

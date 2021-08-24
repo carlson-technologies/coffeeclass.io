@@ -1,11 +1,10 @@
 import {
     Heading,
     Flex,
-    Stack,
     Grid,
-    Divider,
     useColorMode,
     useColorModeValue,
+    Box,
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../../../components/Container'
@@ -55,14 +54,11 @@ export default function Index({ tutorials, snippets }) {
                     description
                 }}
             />
-            <Stack
-                spacing={8}
-                px={4}
+            <Flex
+                bgGradient={`linear(to-r,${useColorModeValue("gray.50", "gray.600")},${useColorModeValue("gray.200", "gray.800")},${useColorModeValue("gray.300", "gray.900")})`}
+                flexDir="column"
             >
-                <Flex
-                    flexDir="column"
-                    mt={50}
-                >
+                <Box my={10} as="header" px={4}>
                     <Heading
                         as="h1"
                         size="xl"
@@ -82,9 +78,16 @@ export default function Index({ tutorials, snippets }) {
                             {currentTag[0]?.description}
                         </Heading>
                     }
-                    <Divider mt={2} />
-                    <Heading my={4} as="h2" size="md">Snippets</Heading>
-                    <Flex flexDir="column">
+                </Box>
+            </Flex>
+
+            <Flex
+                flexDir="column"
+                px={4}
+            >
+                <Flex flexDir="column">
+                    <Box as="section">
+                        <Heading my={4} as="h2">Snippets</Heading>
                         <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
                             {
                                 snippets.map(post => post.data.tags.map(t => {
@@ -107,7 +110,9 @@ export default function Index({ tutorials, snippets }) {
                                 }))
                             }
                         </Grid>
-                        <Heading my={4} as="h3" size="md">Tutorials</Heading>
+                    </Box>
+                    <Box as="section">
+                        <Heading my={4} as="h2">Tutorials</Heading>
                         <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
                             {
                                 tutorials.map(post => post.data.tags.map(t => {
@@ -128,9 +133,9 @@ export default function Index({ tutorials, snippets }) {
                                 }))
                             }
                         </Grid>
-                    </Flex>
+                    </Box>
                 </Flex>
-            </Stack>
+            </Flex>
         </Container>
     )
 }

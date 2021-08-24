@@ -106,7 +106,7 @@ export default function Snippet({ title, description, tags, href, as, mainTag, i
                                             }}
                                             mr={1}
                                         >
-                                            <Link href={`/${tag}`} passHref>
+                                            <Link href={`/tags/${tag}`} passHref>
                                                 {`#${tag}`}
                                             </Link>
                                         </Text>

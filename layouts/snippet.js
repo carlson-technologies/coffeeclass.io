@@ -102,6 +102,7 @@ export default function Layout({ frontMatter, children }) {
                             width="200px"
                             height="200px"
                             objectFit="contain"
+                            priority={true}
                             onLoad={() => setLoaded(true)}
                           />
                         </Skeleton>
@@ -120,6 +121,7 @@ export default function Layout({ frontMatter, children }) {
                             width="200px"
                             height="200px"
                             objectFit="cover"
+                            priority={true}
                             onLoad={() => setLoaded(true)}
                           />
                         </Skeleton>

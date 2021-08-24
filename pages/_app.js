@@ -6,6 +6,7 @@ import { Global, css } from '@emotion/react'
 import { DefaultSeo } from 'next-seo'
 import SEO from '../next-seo.config'
 import customTheme from '../styles/theme'
+import { lightAvatarTheme, darkAvatarTheme } from "../styles/avatar.js"
 
 const GlobalStyle = ({ children }) => {
   const { colorMode } = useColorMode()
@@ -14,6 +15,7 @@ const GlobalStyle = ({ children }) => {
       <Global
         styles={css`
           ${colorMode === 'light' ? prismLightTheme : prismDarkTheme};
+          ${colorMode === 'light' ? lightAvatarTheme : darkAvatarTheme};
           #__next {
             background-color: ${colorMode === 'light' ? '#fff' : '#15161a'};
             color: ${colorMode === 'light' ? 'black' : 'white'};

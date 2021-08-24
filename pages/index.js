@@ -91,7 +91,7 @@ export default function Index({ snippets, tutorials }) {
                 <Flex
                     flexDir="column"
                     as="section"
-                    bgGradient={`linear(to-r,${useColorModeValue("gray.100", "gray.700")},${useColorModeValue("gray.200", "gray.800")},${useColorModeValue("gray.300", "gray.900")})`}
+                    bgGradient={`linear(to-r,${useColorModeValue("gray.50", "gray.600")},${useColorModeValue("gray.200", "gray.800")},${useColorModeValue("gray.300", "gray.900")})`}
                 >
                     <FeaturedTutorial tut={tutorials[0]} />
                     <TagSlider tags={tagArray} />

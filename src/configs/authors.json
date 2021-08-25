@@ -1,0 +1,24 @@
+{
+  "authors": [
+    {
+      "id": 1,
+      "name": "Benjamin Carlson",
+      "slug": "benjamin-carlson",
+      "description": "Computer science student, content creator, creator of coffeeclass.io.",
+      "image": "benjamin-carlson.jpeg",
+      "website": "https://benjamincarlson.io",
+      "github": "https://github.com/bjcarlson42",
+      "twitter": "https://twitter.com/bjmncrlsn",
+      "youtube": "https://youtube.com/benjamincarlson"
+    },
+    {
+      "id": 2,
+      "name": "Sumit Kumar",
+      "slug": "sumit-kumar",
+      "description": "A full-time software engineer by profession and a writer by heart. I love to share whatever information I have consumed over the years, though with some tweaks.",
+      "image": "sumit-kumar.png",
+      "facebook": "https://www.facebook.com/sumitkumar0608",
+      "linkedin":"https://www.linkedin.com/in/sumitkumar0608/"
+    }
+  ]
+}

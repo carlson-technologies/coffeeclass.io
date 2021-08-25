@@ -64,13 +64,13 @@ export default function Index({ snippets, tutorials }) {
         .sort(
             (a, b) =>
                 Number(new Date(b.data.publishedAt)) - Number(new Date(a.data.publishedAt))
-        ).slice(0, 4)
+        ).slice(0, 4) // we want the newest 4 snippets
 
     const tutorialsOrderedByPublishedDate = tutorials
         .sort(
             (a, b) =>
                 Number(new Date(b.data.publishedAt)) - Number(new Date(a.data.publishedAt))
-        ).slice(0, 4)
+        ).slice(1, 5) // we want the newest 4 tutorials minus the first one
 
     return (
         <Container>

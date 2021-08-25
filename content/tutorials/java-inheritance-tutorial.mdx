@@ -1,0 +1,216 @@
+---
+title: "Java Inheritance - A Quickstart"
+description: "Learn Java Inheritance through an example."
+seoDescription: "Learn Java Inheritance definition with a vehice inheritance example and code snippets."
+author: "Muhammad Nadeem"
+authorImage: "muhammad-nadeem.jpeg"
+authorPosition: "Software Engineer"
+publishedAt: "2021-08-25T19:50"
+featureImg: "car-feature.jpg"
+tags: ["java", "inheritance"]
+type: "tutorial"
+---
+
+## Introduction
+
+Inheritance is an important concept in Object Oriented Programming (OOP). It is a mechanism through
+which an object acquires properties and behavior of another object. An object which is inheriting is
+called Child and other one is called Parent object. Objects belong to classes, so class having basic
+attributes and behavior is called Super Class (Parent class), and Class which is inheriting called
+Subclass (child class).
+
+Reuseability is a very powerful feature of OOP, which is ensured through inheritance. Without inheritance a lot code is written again and again. Lets understand it by an example of vehicle.
+
+## Inheritance Example
+
+Every vehicle has some common attributes, like name, model,company, seating capacity, production
+year and horse power. There are some specialized type of vehicles which have some extra attributes and
+behaviors than basic vehicles, like Electric vehicle has battery capacity, average per kw. Similarly
+Gasoline and Hybrid vehicles have specialized attributes and behaviors. Following diagram gives us a
+good overview.
+
+![A diagram of Java Inheritance](/content/tutorials/java-inheritance-tutorial/diagram.png)
+
+All three type of vehicles have extra features, including basic feature of vehicle. If there is no
+inheritance, then we need to include all attributes and behavior of basic vehicle in all type of
+specialized vehicles.
+
+## Java Syntax
+
+Java uses keyword `extends` to inherent a class from its superclass. Using the keyword `extends`, all
+public attributes and behaviors are automatically included in child class, there is no need to rewrite all
+the code.
+
+### Source Code
+
+Here is the source code in java for above classes.
+
+```java:Vehicle.java
+public class Vehicle {
+    String vehicle_name;
+    String model;
+    int seating_capacity;
+    int production_year;
+    float engine_horse_power;
+
+    public String getVehicle_name() {
+        return vehicle_name;
+    }
+    
+    public void setVehicle_name(String vehicle_name) {
+        this.vehicle_name = vehicle_name;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public int getSeating_capacity() {
+        return seating_capacity;
+    }
+
+    public void setSeating_capacity(int seating_capacity) {
+        this.seating_capacity = seating_capacity;
+    }
+
+    public int getProduction_year() {
+        return production_year;
+    }
+
+    public void setProduction_year(int production_year) {
+        this.production_year = production_year;
+    }
+
+    public float getEngine_horse_power() {
+        return engine_horse_power;
+    }
+
+    public void setEngine_horse_power(float engine_horse_power) {
+        this.engine_horse_power = engine_horse_power;
+    }
+}
+```
+
+```java:Electric_vehicle.java
+public class Electric_vehicle extends vehicle {
+    float battery_capacity;
+    int num_of_batteries;
+    float fuel_average_per_kw;
+
+    public float getBattery_capacity() {
+        return battery_capacity;
+    }
+
+    public void setBattery_capacity(float battery_capacity) {
+        this.battery_capacity = battery_capacity;
+    }
+
+    public int getNum_of_batteries() {
+        return num_of_batteries;
+    }
+    
+    public void setNum_of_batteries(int num_of_batteries) {
+        this.num_of_batteries = num_of_batteries;
+    }
+
+    public float getFuel_average_per_kw() {
+        return fuel_average_per_kw;
+    }
+
+    public void setFuel_average_per_kw(float fuel_average_per_kw) {
+        this.fuel_average_per_kw = fuel_average_per_kw;
+    }
+}
+```
+
+```java:Gasoline_vehicle.java
+public class Gasoline_vehicle extends vehicle {
+    int fuel_tank_capacity;
+    int slyinder_engine;
+    float fuel_avg_ltr;
+
+    public int getFuel_tank_capacity() {
+        return fuel_tank_capacity;
+    }
+
+    public void setFuel_tank_capacity(int fuel_tank_capacity) {
+        this.fuel_tank_capacity = fuel_tank_capacity;
+    }
+
+    public int getSlyinder_engine() {
+        return slyinder_engine;
+    }
+
+    public void setSlyinder_engine(int slyinder_engine) {
+        this.slyinder_engine = slyinder_engine;
+    }
+
+    public float getFuel_avg_ltr() {
+        return fuel_avg_ltr;
+    }
+
+    public void setFuel_avg_ltr(float fuel_avg_ltr) {
+        this.fuel_avg_ltr = fuel_avg_ltr;
+    }
+}
+```
+
+```java:Hybrid_vehicle.java
+public class Hybrid_vehicle extends vehicle {
+    int fuel_tank_capacity;
+    int engine_cylinder;
+    int battery_capacity;
+    float fuel_avg_per_ltr;
+
+    public int getFuel_tank_capacity() {
+        return fuel_tank_capacity;
+    }
+
+    public void setFuel_tank_capacity(int fuel_tank_capacity) {
+        this.fuel_tank_capacity = fuel_tank_capacity;
+    }
+
+    public int getEngine_cylinder() {
+        return engine_cylinder;
+    }
+
+    public void setEngine_cylinder(int engine_cylinder) {
+        this.engine_cylinder = engine_cylinder;
+    }
+
+    public int getBattery_capacity() {
+        return battery_capacity;
+    }
+
+    public void setBattery_capacity(int battery_capacity) {
+        this.battery_capacity = battery_capacity;
+    }
+
+    public float getFuel_avg_per_ltr() {
+        return fuel_avg_per_ltr;
+    }
+
+    public void setFuel_avg_per_ltr(float fuel_avg_per_ltr) {
+        this.fuel_avg_per_ltr = fuel_avg_per_ltr;
+    }
+}
+```
+
+## Multilevel and Multiple Inheritance
+
+Multilevel inheritance means inheritance is at multiple level in classes. There is a parent class A, a child
+class B extends A and class C extends B. As C extends B, all properties and behavior of B including its
+parent class will also be available in class C.
+
+```java
+public class A {………
+public class B extends A{…….
+public class C extends B{…….
+```
+
+In multiple inheritance one class inherents more than one class at the same time. In C++ it is allowed,
+but in Java it is not allowed. As multiple inheritance leads to ambiguity.

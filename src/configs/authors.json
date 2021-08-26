@@ -18,7 +18,15 @@
       "description": "A full-time software engineer by profession and a writer by heart. I love to share whatever information I have consumed over the years, though with some tweaks.",
       "image": "sumit-kumar.png",
       "facebook": "https://www.facebook.com/sumitkumar0608",
-      "linkedin":"https://www.linkedin.com/in/sumitkumar0608/"
+      "linkedin": "https://www.linkedin.com/in/sumitkumar0608/"
+    },
+    {
+      "id": 3,
+      "name": "Muhammad Nadeem",
+      "slug": "muhammad-nadeem",
+      "description": "Software Engineer",
+      "image": "muhammad-nadeem.jpeg",
+      "youtube": "https://www.youtube.com/channel/UC1istC2xK8-tFUkT6iKp6hg"
     }
   ]
 }

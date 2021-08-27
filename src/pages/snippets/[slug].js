@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import fs from 'fs'
 import matter from 'gray-matter'
 import { serialize } from 'next-mdx-remote/serialize'
@@ -17,7 +18,8 @@ import {
     Avatar,
     Button,
     Badge,
-    Divider
+    Divider,
+    useToast,
 } from '@chakra-ui/react'
 import Comments from '../../components/Comments'
 import { motion } from 'framer-motion'
@@ -25,6 +27,7 @@ import NextLink from 'next/link'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
 import authors from "../../configs/authors.json"
+import { useRouter } from 'next/router'
 
 export default function PostPage({ source, frontMatter }) {
     TimeAgo.addLocale(en)
@@ -35,6 +38,13 @@ export default function PostPage({ source, frontMatter }) {
         light: 'gray.600',
         dark: 'gray.500'
     }
+
+    const [display, setDisplay] = useState("flex")
+
+    const toast = useToast()
+
+    const router = useRouter()
+    const slug = router.query.slug
 
     var author = frontMatter.author
     var currentAuthor = []
@@ -91,6 +101,50 @@ export default function PostPage({ source, frontMatter }) {
                             ))}
                         </Flex>
                     </Flex>
+                    <Divider />
+                    <Flex flexDir="column" align="center" my={8} display={display}>
+                        <Text>Was this snippet helpful?</Text>
+                        <Flex mt={4}>
+                            <Button
+                                mr={2}
+                                w={100}
+                                data-splitbee-event="Snippet Helpful"
+                                data-splitbee-event-type={`yes - ${slug}`}
+                                onClick={() => {
+                                    toast({
+                                        title: "Awesome!",
+                                        description: "Your feedback is helpful for the future of coffeeclass.io!",
+                                        status: "success",
+                                        duration: 4000,
+                                        isClosable: true,
+                                    }),
+                                    setDisplay("none")
+                                }
+                                }
+                            >
+                                Yes
+                            </Button>
+                            <Button
+                                w={100}
+                                data-splitbee-event="Snippet Helpful"
+                                data-splitbee-event-type={`no  - ${slug}`}
+                                onClick={() => {
+                                    toast({
+                                        title: "Sorry to hear that :(",
+                                        description: "Your feedback is helpful for the future of coffeeclass.io!",
+                                        status: "success",
+                                        duration: 4000,
+                                        isClosable: true,
+                                    }),
+                                        setDisplay("none")
+                                }
+                                }
+                            >
+                                No
+                            </Button>
+                        </Flex>
+                    </Flex>
+                    <Divider mb={8} />
                     <Button
                         variant="outline"
                         w={['100%', '100%', '100%', 200, 250, 300]}

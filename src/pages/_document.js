@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import NextDocument, { Html, Head, Main, NextScript } from 'next/document'
 import { ColorModeScript } from "@chakra-ui/react"
 import theme from '../styles/theme'
@@ -6,6 +7,17 @@ import { GA_TRACKING_ID } from '../scripts/gtag'
 
 export default class MyDocument extends NextDocument {
     render() {
+        // Add splitbee event tracking
+        function handleState() {
+            window.splitbee.track("Snippet Helpful")
+        }
+
+        useEffect(() => {
+            window.addEventListener('load', handleState)
+            return () => {
+                window.removeEventListener('load', handleState)
+            }
+        })
         return (
             <Html lang="en">
                 <GoogleFonts href="https://fonts.googleapis.com/css?family=Inter&display=swap" />

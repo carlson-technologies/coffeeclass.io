@@ -41,6 +41,20 @@
   </url>
 
   <url>
+    <loc>https://www.coffeeclass.io/tutorials/add-firebase-to-nextjs</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/tutorials/java-inheritance-tutorial</loc>
+  </url>
+
+  <url>
+    <loc
+      >https://www.coffeeclass.io/tutorials/nextjs-crash-course-build-a-developer-portfolio-website</loc
+    >
+  </url>
+
+  <url>
     <loc
       >https://www.coffeeclass.io/snippets/add-comments-to-nextjs-website</loc
     >
@@ -61,6 +75,12 @@
   <url>
     <loc
       >https://www.coffeeclass.io/snippets/add-splitbee-analytics-to-nextjs</loc
+    >
+  </url>
+
+  <url>
+    <loc
+      >https://www.coffeeclass.io/snippets/advanced-chakra-ui-do-you-know-all-5</loc
     >
   </url>
 
@@ -107,17 +127,13 @@
   </url>
 
   <url>
-    <loc>https://www.coffeeclass.io/tutorials/add-firebase-to-nextjs</loc>
-  </url>
-
-  <url>
-    <loc>https://www.coffeeclass.io/tutorials/java-inheritance-tutorial</loc>
-  </url>
-
-  <url>
     <loc
-      >https://www.coffeeclass.io/tutorials/nextjs-crash-course-build-a-developer-portfolio-website</loc
+      >https://www.coffeeclass.io/learn/python/installing-and-using-an-ide</loc
     >
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/learn/python/introduction-to-python</loc>
   </url>
 
   <url>
@@ -154,15 +170,5 @@
 
   <url>
     <loc>https://www.coffeeclass.io/learn/chakra-ui/what-is-chakra-ui</loc>
-  </url>
-
-  <url>
-    <loc
-      >https://www.coffeeclass.io/learn/python/installing-and-using-an-ide</loc
-    >
-  </url>
-
-  <url>
-    <loc>https://www.coffeeclass.io/learn/python/introduction-to-python</loc>
   </url>
 </urlset>

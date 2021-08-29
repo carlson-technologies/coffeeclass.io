@@ -26,8 +26,8 @@ import { motion } from 'framer-motion'
 import NextLink from 'next/link'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
-import authors from "../../configs/authors.json"
 import { useRouter } from 'next/router'
+import getAuthorSlug from '../../scripts/get-author-slug'
 
 export default function PostPage({ source, frontMatter }) {
     TimeAgo.addLocale(en)
@@ -47,12 +47,6 @@ export default function PostPage({ source, frontMatter }) {
     const slug = router.query.slug
 
     var author = frontMatter.author
-    var currentAuthor = []
-    for (var i = 0; i < authors.authors.length; i++) {
-        if (authors.authors[i].name === author) {
-            currentAuthor.push(authors.authors[i])
-        }
-    }
     return (
         <Layout frontMatter={frontMatter}>
             <motion.div
@@ -170,7 +164,7 @@ export default function PostPage({ source, frontMatter }) {
                     <Flex flexDir="column" align="center">
                         <Text>Written By {frontMatter.author}</Text>
                         <Text color={color[colorMode]}>{frontMatter.authorPosition}</Text>
-                        <Text mt={4}><Link href={`/authors/${currentAuthor[0]?.slug}`} fontWeight="bold">More Articles By {frontMatter.author}</Link></Text>
+                        <Text mt={4}><Link href={`/authors/${getAuthorSlug(author)}`} fontWeight="bold">More Articles By {frontMatter.author}</Link></Text>
                     </Flex>
                 </Flex>
                 <Comments />

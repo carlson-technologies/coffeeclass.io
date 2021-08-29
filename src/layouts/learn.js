@@ -5,6 +5,7 @@ import {
     Heading,
     Link,
     Box,
+    useMediaQuery,
 } from '@chakra-ui/react'
 import Sidebar from '../components/Sidebar'
 import SEO from '../components/SEO'
@@ -19,6 +20,7 @@ export default function LearnLayout({ children, frontMatter, src, alt }) {
         light: 'gray.600',
         dark: 'gray.400'
     }
+    const [isLargerThan1000] = useMediaQuery("(min-width: 1000px)")
     const [activeHeader, setActiveHeader] = useState(frontMatter?.headers[0]?.text) // set to the first header to avoid a small window when the page loads where there is no active header
 
     const handleIntersectionObserver = () => {
@@ -70,7 +72,7 @@ export default function LearnLayout({ children, frontMatter, src, alt }) {
                     {children}
                 </Box>
                 <Flex
-                    display={['none', 'none', 'none', 'none', 'none', 'none', 'flex']}
+                    display={isLargerThan1000 ? "flex" : "none"}
                     px={2}
                 >
                     {frontMatter.headers.length > 0 &&

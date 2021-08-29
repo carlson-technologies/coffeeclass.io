@@ -28,8 +28,9 @@ import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
 import { useRouter } from 'next/router'
 import getAuthorSlug from '../../scripts/get-author-slug'
+import RelatedPosts from '../../components/RelatedPosts'
 
-export default function PostPage({ source, frontMatter }) {
+export default function PostPage({ source, frontMatter, posts }) {
     TimeAgo.addLocale(en)
     const timeAgo = new TimeAgo('en-US')
 
@@ -72,7 +73,7 @@ export default function PostPage({ source, frontMatter }) {
                     mt={4}
                 >
                     <Divider mb={4} />
-                    <Flex align="center" mb={8} flexDir={["column", "column", "column", "column", "column", "row"]}>
+                    <Flex align="center" flexDir={["column", "column", "column", "column", "column", "row"]}>
                         <Text color={color[colorMode]} fontSize="md">Published on {format(parseISO(frontMatter.publishedAt), 'MMMM dd, yyyy')} ({timeAgo.format(new Date(frontMatter.publishedAt))}) in</Text>
                         <Flex wrap="wrap">
                             {frontMatter.tags.map((tag, index) => (
@@ -95,9 +96,10 @@ export default function PostPage({ source, frontMatter }) {
                             ))}
                         </Flex>
                     </Flex>
-                    <Divider />
-                    <Flex flexDir="column" align="center" my={8} display={display}>
-                        <Text>Was this snippet helpful?</Text>
+                    <Divider my={4} />
+                    <RelatedPosts tags={frontMatter.tags} posts={posts} currPostTitle={frontMatter.title} />
+                    <Flex flexDir="column" align="center" mb={4} display={display}>
+                        <Text mt={4}>Was this snippet helpful?</Text>
                         <Flex mt={4}>
                             <Button
                                 mr={2}
@@ -138,7 +140,7 @@ export default function PostPage({ source, frontMatter }) {
                             </Button>
                         </Flex>
                     </Flex>
-                    <Divider mb={8} />
+                    <Divider mb={4} />
                     <Button
                         variant="outline"
                         w={['100%', '100%', '100%', 200, 250, 300]}
@@ -191,8 +193,21 @@ export const getStaticProps = async ({ params }) => {
         scope: data,
     })
 
+    // all snippets
+    const posts = snippetsFilePaths.map((filePath) => {
+        const source = fs.readFileSync(path.join(SNIPPETS_PATH, filePath))
+        const { content, data } = matter(source)
+
+        return {
+            content,
+            data,
+            filePath,
+        }
+    })
+
     return {
         props: {
+            posts,
             source: mdxSource,
             frontMatter: {
                 readingTime: readingTime(content),

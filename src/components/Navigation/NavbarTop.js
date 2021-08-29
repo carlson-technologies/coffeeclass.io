@@ -229,6 +229,19 @@ const NavBarTop = () => {
                                     Tags
                                 </Link>
                             </NextLink>
+
+                            <NextLink href="/authors" passHref>
+                                <Link
+                                    href="/authors"
+                                    _hover={{ textDecor: 'none' }}
+                                    aria-label="Authors"
+                                    color="gray.500"
+                                    transition="margin .3s ease-in-out"
+                                    _hover={{ ml: "2" }}
+                                >
+                                    Authors
+                                </Link>
+                            </NextLink>
                         </Flex>
 
                         <Heading as="h4" size="sm" textTransform="uppercase" mt={4}>Company</Heading>

@@ -36,7 +36,11 @@ const prettier = require('prettier');
 
             <url>
                 <loc>https://www.coffeeclass.io/tutorials</loc>
-            </url>     
+            </url>
+            
+            <url>
+                <loc>https://www.coffeeclass.io/authors</loc>
+            </url>
                    
             ${pages
             .map((page) => {

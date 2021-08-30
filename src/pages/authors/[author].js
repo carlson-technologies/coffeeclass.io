@@ -71,7 +71,18 @@ export default function Index({ tutorials, snippets, source, frontMatter }) {
                 openGraph={{
                     url,
                     title,
-                    description
+                    description,
+                    type: 'profile',
+                    profile: {
+                        firstName: `${frontMatter.name.split(" ")[0]}`,
+                        lastName: `${frontMatter.name.split(" ")[1]}`,
+                    },
+                    images: [
+                        {
+                            url: `https://coffeeclass.io/authors/${frontMatter?.image}`,
+                            alt: `${frontMatter.name}'s avatar`,
+                        },
+                    ],
                 }}
             />
             <Flex

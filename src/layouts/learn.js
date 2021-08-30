@@ -52,7 +52,7 @@ export default function LearnLayout({ children, frontMatter, src, alt }) {
 
     return (
         <Container>
-            <SEO url={`https://coffeeclass.io${slug}`} {...frontMatter} />
+            <SEO url={`https://www.coffeeclass.io${slug}`} {...frontMatter} />
 
             <Flex justifyContent="center" maxW="2000px">
                 <Flex display={['none', 'none', 'none', 'none', 'none', 'none', 'flex']} px={2}>

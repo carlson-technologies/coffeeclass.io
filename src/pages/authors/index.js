@@ -15,7 +15,7 @@ import matter from 'gray-matter'
 import path from 'path'
 import { authorsFilePaths, AUTHORS_PATH } from '../../scripts/mdx-utils'
 
-const url = 'https://coffeeclass.io/authors'
+const url = 'https://www.coffeeclass.io/authors'
 const title = 'Authors | coffeeclass.io'
 const description = 'All authors on coffeeclass.io.'
 

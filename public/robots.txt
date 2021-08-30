@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://coffeeclass.io/sitemap.xml
+Sitemap: https://www.coffeeclass.io/sitemap.xml

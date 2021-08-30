@@ -28,7 +28,7 @@ import removeDuplicatesAndCount from '../scripts/remove-duplicates-and-count'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
 
-const url = 'https://coffeeclass.io/'
+const url = 'https://www.coffeeclass.io/'
 const title = 'Home | coffeeclass.io'
 const description = 'Explore the latest programming and computer science tutorials, snippets, and learn sections on coffeeclass.io.'
 

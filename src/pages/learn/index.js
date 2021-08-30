@@ -16,7 +16,7 @@ import Container from '../../components/Container'
 import subjects from "../../configs/learn.json"
 import Image from 'next/image'
 
-const url = 'https://coffeeclass.io/learn'
+const url = 'https://www.coffeeclass.io/learn'
 const title = 'Learn | coffeeclass.io'
 const description = 'Learn programming languages quickly and easily.'
 

@@ -10,7 +10,7 @@ import {
 import { NextSeo } from 'next-seo'
 import Container from '../components/Container'
 
-const url = 'https://coffeeclass.io/about'
+const url = 'https://www.coffeeclass.io/about'
 const title = 'About | coffeeclass.io'
 const description = 'coffeeclass.io offers programming tutorials through this website and their YouTube channel.'
 

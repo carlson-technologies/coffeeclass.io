@@ -48,7 +48,7 @@ export default function Layout({ frontMatter, children }) {
 
   return (
     <Container>
-      <SEO url={`https://coffeeclass.io${slug}`} {...frontMatter} />
+      <SEO url={`https://www.coffeeclass.io${slug}`} {...frontMatter} />
       <Box h={1} as="div" bgGradient="linear(to-r, #EAD9CD, #714B2F)" position="fixed" top={0} left={0} zIndex={15} w={`${width}%`}></Box>
       <Box
         w="100%"

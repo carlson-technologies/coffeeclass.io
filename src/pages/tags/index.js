@@ -17,7 +17,7 @@ import { tutorialsFilePaths, TUTORIALS_PATH } from '../../scripts/mdx-utils'
 import NextLink from 'next/link'
 import removeDuplicatesAndCount from '../../scripts/remove-duplicates-and-count'
 
-const url = `https://coffeeclass.io/tags/`
+const url = `https://www.coffeeclass.io/tags/`
 const title = 'Tags | coffeeclass.io'
 const description = `All tags on coffeeclass.io.`
 

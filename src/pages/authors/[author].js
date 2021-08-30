@@ -29,7 +29,7 @@ export default function Index({ tutorials, snippets, source, frontMatter }) {
     TimeAgo.addLocale(en)
     const timeAgo = new TimeAgo('en-US')
 
-    const url = `https://coffeeclass.io/authors/${frontMatter.slug}`
+    const url = `https://www.coffeeclass.io/authors/${frontMatter.slug}`
     const title = `${frontMatter.name} | coffeeclass.io`
     const description = `coffeeclass.io articles written by ${frontMatter.name}. ${frontMatter.description}`
 
@@ -79,7 +79,7 @@ export default function Index({ tutorials, snippets, source, frontMatter }) {
                     },
                     images: [
                         {
-                            url: `https://coffeeclass.io/authors/${frontMatter?.image}`,
+                            url: `https://www.coffeeclass.io/authors/${frontMatter?.image}`,
                             alt: `${frontMatter.name}'s avatar`,
                         },
                     ],

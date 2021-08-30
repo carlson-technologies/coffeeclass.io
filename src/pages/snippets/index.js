@@ -16,7 +16,7 @@ import Snippet from '../../components/Cards/Snippet'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
 
-const url = 'https://coffeeclass.io/snippets'
+const url = 'https://www.coffeeclass.io/snippets'
 const title = 'Snippets | coffeeclass.io'
 const description = 'coffeeclass.io snippets are code bits that you can easily copy and paste into your project.'
 

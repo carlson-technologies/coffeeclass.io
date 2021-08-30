@@ -4,16 +4,16 @@ const description = 'Programming advice, tutorials, snippets on python, javascri
 const SEO = {
     title,
     description,
-    canonical: 'https://coffeeclass.io',
+    canonical: 'https://www.coffeeclass.io',
     openGraph: {
         type: 'website',
         locale: 'en_IE',
-        url: 'https://coffeeclass.io',
+        url: 'https://www.coffeeclass.io',
         title,
         description,
         images: [
             {
-                url: 'https://coffeeclass.io/favicons/logo-white-bg.png',
+                url: 'https://www.coffeeclass.io/favicons/logo-white-bg.png',
                 alt: title
             }
         ]

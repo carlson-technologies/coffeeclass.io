@@ -12,7 +12,7 @@ import path from 'path'
 import { tutorialsFilePaths, TUTORIALS_PATH } from '../../scripts/mdx-utils'
 import Tutorial from '../../components/Cards/Tutorial'
 
-const url = 'https://coffeeclass.io/tutorials/'
+const url = 'https://www.coffeeclass.io/tutorials/'
 const title = 'Tutorials | coffeeclass.io'
 const description = 'Learn a new skill with coffeeclass.io Tutorials.'
 

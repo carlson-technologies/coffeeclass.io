@@ -12,7 +12,7 @@ import { NextSeo } from 'next-seo'
 import lessons from "../../../configs/learn/chakra-ui.json"
 import Container from "../../../components/Container"
 
-const url = 'https://coffeeclass.io/chakra-ui'
+const url = 'https://www.coffeeclass.io/chakra-ui'
 const title = 'Learn Chakra UI | coffeeclass.io'
 const description = 'Learn the css framework Chakra UI.'
 

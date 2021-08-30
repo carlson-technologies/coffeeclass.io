@@ -13,7 +13,7 @@ import { NextSeo } from 'next-seo'
 import lessons from "../../../configs/learn/python.json"
 import Container from "../../../components/Container"
 
-const url = 'https://coffeeclass.io/python'
+const url = 'https://www.coffeeclass.io/python'
 const title = 'Learn Python | coffeeclass.io'
 const description = 'Learn the python programming language.'
 

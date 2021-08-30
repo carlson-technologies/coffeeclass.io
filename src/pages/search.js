@@ -32,7 +32,7 @@ import getType from '../scripts/get-type'
 import { parseISO, format } from 'date-fns'
 import getAuthorSlug from '../scripts/get-author-slug'
 
-const url = 'https://coffeeclass.io/search'
+const url = 'https://www.coffeeclass.io/search'
 const title = 'Search | coffeeclass.io'
 const description = 'Search free programming tutorials on beginner Python, intermediate Python, advanced Python, JavaScript, algorithms, Next.js, react, and more all for free on coffeeclass.io.'
 

@@ -82,7 +82,7 @@ export default function Layout({ frontMatter, children }) {
 
     return (
         <Container>
-            <SEO url={`https://coffeeclass.io${slug}`} slug={slug} {...frontMatter} />
+            <SEO url={`https://www.coffeeclass.io${slug}`} slug={slug} {...frontMatter} />
             <Box h={1} as="div" bgGradient="linear(to-r, #EAD9CD, #714B2F)" pos="fixed" top={0} left={0} zIndex={15} w={`${width}%`}></Box>
             <Flex mt={10} maxW={2560} minH="100vh">
                 <Flex

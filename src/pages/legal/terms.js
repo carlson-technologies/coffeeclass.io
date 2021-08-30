@@ -9,7 +9,7 @@ import {
 import { NextSeo } from 'next-seo'
 import Container from '../../components/Container'
 
-const url = 'https://coffeeclass.io/legal/terms/'
+const url = 'https://www.coffeeclass.io/legal/terms/'
 const title = 'Terms And Conditions | coffeeclass.io'
 const description = 'The coffeeclass.io terms and conditions.'
 

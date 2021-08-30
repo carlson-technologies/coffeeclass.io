@@ -25,6 +25,7 @@ import getHeaders from '../../scripts/get-headings'
 import { useRouter } from 'next/router'
 import getAuthorSlug from '../../scripts/get-author-slug'
 import NextImage from 'next/image'
+import Ad from '../../components/Ad'
 
 export default function PostPage({ source, frontMatter }) {
     const { colorMode } = useColorMode()
@@ -80,6 +81,7 @@ export default function PostPage({ source, frontMatter }) {
                 maxW="800px"
                 id="tutorial-content"
             >
+                <Ad />
                 <MDXRemote {...source} components={MDXComponents} />
             </Flex>
             <Flex

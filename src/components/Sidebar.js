@@ -15,6 +15,7 @@ import {
 } from "@chakra-ui/react"
 import Image from 'next/image'
 import NextLink from 'next/link'
+import Ad from '../components/Ad'
 
 export function getRoutes(slug) {
     const configMap = {
@@ -105,6 +106,7 @@ const Sidebar = ({ src, alt }) => {
                     </NextLink>
                 )}
             </Flex>
+            <Ad />
         </Box>
     )
 }

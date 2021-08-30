@@ -29,6 +29,7 @@ import en from 'javascript-time-ago/locale/en'
 import { useRouter } from 'next/router'
 import getAuthorSlug from '../../scripts/get-author-slug'
 import RelatedPosts from '../../components/RelatedPosts'
+import Ad from '../../components/Ad'
 
 export default function PostPage({ source, frontMatter, posts }) {
     TimeAgo.addLocale(en)
@@ -65,6 +66,7 @@ export default function PostPage({ source, frontMatter, posts }) {
                     flexDir="column"
                     maxW="800px"
                 >
+                    <Ad />
                     <MDXRemote {...source} components={MDXComponents} />
                 </Flex>
                 <Flex

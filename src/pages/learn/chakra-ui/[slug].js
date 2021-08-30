@@ -20,6 +20,7 @@ import {
     Flex,
     useColorModeValue,
 } from '@chakra-ui/react'
+import Ad from '../../../components/Ad'
 
 export default function PostPage({ source, frontMatter }) {
     return (
@@ -47,6 +48,7 @@ export default function PostPage({ source, frontMatter }) {
                     maxW="1000px"
                     id="main-content"
                 >
+                    <Ad />
                     <MDXRemote {...source} components={MDXComponents} />
                 </Flex>
                 <Box mb={4} mt={10}>

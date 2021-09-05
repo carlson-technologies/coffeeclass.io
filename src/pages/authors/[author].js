@@ -118,12 +118,14 @@ export default function Index({ tutorials, snippets, source, frontMatter }) {
                                 my={4}
                                 justifyContent="center"
                                 h={5}
+                                wrap="wrap"
                             >
                                 {frontMatter?.links?.website &&
                                     <Link
                                         href={frontMatter?.links?.website}
                                         _hover={{ textDecor: 'none' }}
                                         mr={2}
+                                        mb={2}
                                         isExternal
                                     >
                                         <Tag
@@ -141,6 +143,7 @@ export default function Index({ tutorials, snippets, source, frontMatter }) {
                                         href={frontMatter?.links?.github}
                                         _hover={{ textDecor: 'none' }}
                                         mr={2}
+                                        mb={2}
                                         isExternal
                                     >
                                         <Tag
@@ -158,6 +161,7 @@ export default function Index({ tutorials, snippets, source, frontMatter }) {
                                         href={frontMatter?.links?.twitter}
                                         _hover={{ textDecor: 'none' }}
                                         mr={2}
+                                        mb={2}
                                         isExternal
                                     >
                                         <Tag
@@ -175,6 +179,7 @@ export default function Index({ tutorials, snippets, source, frontMatter }) {
                                         href={frontMatter?.links?.facebook}
                                         _hover={{ textDecor: 'none' }}
                                         mr={2}
+                                        mb={2}
                                         isExternal
                                     >
                                         <Tag
@@ -192,6 +197,7 @@ export default function Index({ tutorials, snippets, source, frontMatter }) {
                                         href={frontMatter?.links?.linkedin}
                                         _hover={{ textDecor: 'none' }}
                                         mr={2}
+                                        mb={2}
                                         isExternal
                                     >
                                         <Tag
@@ -209,12 +215,15 @@ export default function Index({ tutorials, snippets, source, frontMatter }) {
                                         href={frontMatter?.links?.youtube}
                                         _hover={{ textDecor: 'none' }}
                                         mr={2}
+                                        mb={2}
                                         isExternal
                                     >
                                         <Tag
                                             size="lg"
                                             transition="margin .2s ease-in-out"
                                             _hover={{ mt: "-2" }}
+                                            mr={2}
+                                            mb={2}
                                         >
                                             YouTube
                                         </Tag>

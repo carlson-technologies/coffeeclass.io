@@ -1,11 +1,11 @@
-import { Text, Flex, Tag, Link, Box, useColorModeValue, } from '@chakra-ui/react'
+import { Text, Flex, Tag, Link, Heading, useColorModeValue, } from '@chakra-ui/react'
 import NextLink from 'next/link'
 
 export default function TagSlider({ tags }) {
     return (
-        <Flex align="center" mt={4} mb={12}>
+        <Flex align="center" mt={4} mb={12} px={4}>
             <Flex flex="0 0 auto">
-                <Text color={useColorModeValue("gray.500", "gray.400")} ml={2}>Explore Tags</Text>
+                <Heading color={useColorModeValue("gray.600", "gray.400")} size="sm" textTransform="uppercase" textAlign="center">Explore <br /> Tags</Heading>
             </Flex>
             <Flex wrap="nowrap" overflow="auto" m={2}>
                 {tags.map((tag, index) => (

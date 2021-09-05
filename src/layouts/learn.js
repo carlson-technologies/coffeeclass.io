@@ -71,7 +71,7 @@ export default function LearnLayout({ children, frontMatter, src, alt }) {
                 >
                     {children}
                 </Box>
-                <Flex
+                {/* <Flex
                     display={isLargerThan1000 ? "flex" : "none"}
                     px={2}
                 >
@@ -118,7 +118,7 @@ export default function LearnLayout({ children, frontMatter, src, alt }) {
                             </Flex>
                         </Flex>
                     }
-                </Flex>
+                </Flex> */}
             </Flex>
         </Container>
     )

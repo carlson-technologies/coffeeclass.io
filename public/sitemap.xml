@@ -29,18 +29,6 @@
   </url>
 
   <url>
-    <loc>https://www.coffeeclass.io/authors/benjamin-carlson</loc>
-  </url>
-
-  <url>
-    <loc>https://www.coffeeclass.io/authors/muhammad-nadeem</loc>
-  </url>
-
-  <url>
-    <loc>https://www.coffeeclass.io/authors/sumit-kumar</loc>
-  </url>
-
-  <url>
     <loc>https://www.coffeeclass.io/tutorials/add-firebase-to-nextjs</loc>
   </url>
 
@@ -124,6 +112,18 @@
 
   <url>
     <loc>https://www.coffeeclass.io/snippets/using-react-useeffect</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/authors/benjamin-carlson</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/authors/muhammad-nadeem</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/authors/sumit-kumar</loc>
   </url>
 
   <url>

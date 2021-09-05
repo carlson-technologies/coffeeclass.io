@@ -30,7 +30,7 @@ const GlobalStyle = ({ children }) => {
             background: ${colorMode === 'light' ? '#EAD9CD' : '#714B2F'};
           }
           * {
-            transition: background .8s ease, color .1s ease;
+            transition: background .8s ease, color .1s ease, width 1s ease;
           }
         `}
       />

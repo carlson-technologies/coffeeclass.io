@@ -25,12 +25,12 @@ const NavBarLeft = () => {
         dark: '0 4px 12px 0 rgba(0, 0, 0, 1)'
     }
     const activeNavColor = {
-        light: 'black',
-        dark: 'white'
+        light: '#bb8b62',
+        dark: '#bb8b62'
     }
     const color = {
-        light: 'black',
-        dark: 'white'
+        light: '#bb8b62',
+        dark: '#bb8b62'
     }
     const router = useRouter()
     const slug = router.asPath
@@ -73,7 +73,7 @@ const NavBarLeft = () => {
                                         flexDir="column"
                                         align="center"
                                     >
-                                        <Icon as={FiHome} fontSize="2xl" color={color[colorMode]} />
+                                        <Icon as={FiHome} fontSize="2xl" color={slug == '/' ? color[colorMode] : null} />
                                     </Flex>
                                 </Button>
                             </Box>
@@ -98,7 +98,7 @@ const NavBarLeft = () => {
                                     _hover={{ background: 'none' }}
                                     justifyContent="start"
                                 >
-                                    <Icon as={FiEdit2} fontSize="2xl" mr={2} color={slug.includes('learn') ? activeNavColor[colorMode] : null} />
+                                    <Icon as={FiEdit2} fontSize="2xl" mr={2} color={slug.includes('/learn') ? color[colorMode] : null} />
                                 </Button>
                             </Box>
                         </Tooltip>
@@ -122,7 +122,7 @@ const NavBarLeft = () => {
                                     _hover={{ background: 'none' }}
                                     justifyContent="start"
                                 >
-                                    <Icon as={FiScissors} fontSize="2xl" mr={2} color={color[colorMode]} />
+                                    <Icon as={FiScissors} fontSize="2xl" mr={2} color={slug.includes('/snippets') ? color[colorMode] : null} />
                                 </Button>
                             </Box>
                         </Tooltip>
@@ -146,7 +146,7 @@ const NavBarLeft = () => {
                                     _hover={{ background: 'none' }}
                                     justifyContent="start"
                                 >
-                                    <Icon as={FiBookOpen} fontSize="2xl" mr={2} color={color[colorMode]} />
+                                    <Icon as={FiBookOpen} fontSize="2xl" mr={2} color={slug.includes('/tutorials') ? color[colorMode] : null} />
                                 </Button>
                             </Box>
                         </Tooltip>
@@ -186,7 +186,7 @@ const NavBarLeft = () => {
                                         _hover={{ background: 'none' }}
                                         justifyContent="start"
                                     >
-                                        <Icon as={FiBookmark} fontSize="2xl" mr={2} color={color[colorMode]} />
+                                        <Icon as={FiBookmark} fontSize="2xl" mr={2} color={slug.includes('/tags') ? color[colorMode] : null} />
                                     </Button>
                                 </Box>
                             </Tooltip>
@@ -210,7 +210,7 @@ const NavBarLeft = () => {
                                         _hover={{ background: 'none' }}
                                         justifyContent="start"
                                     >
-                                        <Icon as={FiInfo} fontSize="2xl" mr={2} color={color[colorMode]} />
+                                        <Icon as={FiInfo} fontSize="2xl" mr={2} color={slug.includes('/about') ? color[colorMode] : null} />
                                     </Button>
                                 </Box>
                             </Tooltip>
@@ -235,7 +235,7 @@ const NavBarLeft = () => {
                                         _hover={{ background: 'none' }}
                                         justifyContent="start"
                                     >
-                                        <Icon as={FiSearch} fontSize="2xl" mr={2} color={color[colorMode]} />
+                                        <Icon as={FiSearch} fontSize="2xl" mr={2} color={slug.includes('/search') ? color[colorMode] : null} />
                                     </Button>
                                 </Box>
                             </Tooltip>

@@ -94,9 +94,13 @@ export default function Index({ snippets, tutorials }) {
                     bgGradient={`linear(to-r,${useColorModeValue("gray.50", "gray.600")},${useColorModeValue("gray.200", "gray.800")},${useColorModeValue("gray.300", "gray.900")})`}
                 >
                     <FeaturedTutorial tut={tutorials[0]} />
-                    <TagSlider tags={tagArray} />
                 </Flex>
+
                 <Box backgroundImage={bgImage[colorMode]} w="100%" h="2em" mt="-2em" />
+
+                <Box as="section">
+                    <TagSlider tags={tagArray} />
+                </Box>
 
                 <Flex
                     as="section"
@@ -107,7 +111,7 @@ export default function Index({ snippets, tutorials }) {
                     <Heading
                         as="h2"
                         size="lg"
-                        my={4}
+                        mb={4}
                         letterSpacing="tight"
                         color={headerColor[colorMode]}
                         id="explore"

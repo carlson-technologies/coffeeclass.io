@@ -64,9 +64,9 @@ export default function PostPage({ source, frontMatter }) {
                 <Flex justify="center">
                     <Skeleton isLoaded={loaded}>
                         <NextImage
-                            width={550}
+                            width={650}
                             height={350}
-                            objectFit="contain"
+                            objectFit="cover"
                             src={`/content/tutorials/${slug}/${frontMatter.featureImg}`}
                             alt={frontMatter.title}
                             onLoad={() => { setLoaded(true) }}

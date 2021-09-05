@@ -1,15 +1,41 @@
 {
-    "routes": [
+  "routes": [
+    {
+      "title": "Python",
+      "path": "/learn/python/introduction-to-python",
+      "image": "language-logo/python.png",
+      "description": "Python is an interpreted high-level general-purpose programming language. It can be used to build websites, mobile apps, automate tasks and more! Python is a great first language to learn.",
+      "first-5-lessons": [
         {
-            "title": "Python",
-            "path": "/learn/python/introduction-to-python",
-            "image": "language-logo/python.png"
+          "title": "What Is Python?"
         },
         {
-            "title": "Chakra UI",
-            "path": "/learn/chakra-ui/what-is-chakra-ui",
-            "image": "language-logo/chakra-ui.png",
-            "new": true
+          "title": "Installing Python"
         }
-    ]
+      ]
+    },
+    {
+      "title": "Chakra UI",
+      "path": "/learn/chakra-ui/what-is-chakra-ui",
+      "image": "language-logo/chakra-ui.png",
+      "description": "Chakra UI is a simple, modular and accessible component library that gives you the building blocks you need to build your React applications.",
+      "first-5-lessons": [
+        {
+          "title": "What Is Chakra UI?"
+        },
+        {
+          "title": "Getting Started"
+        },
+        {
+          "title": "Default Theme"
+        },
+        {
+          "title": "Custom Theme"
+        },
+        {
+          "title": "Dark Mode"
+        }
+      ]
+    }
+  ]
 }

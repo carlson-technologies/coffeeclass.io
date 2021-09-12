@@ -25,10 +25,6 @@ export default function FeaturedTutorial({ tut }) {
         light: 'gray.600',
         dark: 'gray.300'
     }
-    const bgImage = {
-        light: 'linear-gradient(to bottom,rgba(255,255,255, 0),rgba(255,255,255, 1) 90%)',
-        dark: 'linear-gradient(to bottom,rgba(0,0,0, 0),rgba(0,0,0, 1) 90%)'
-    }
     const [loaded, setLoaded] = useState(false)
     return (
         <>
@@ -43,6 +39,7 @@ export default function FeaturedTutorial({ tut }) {
                         transition="width 0.3s"
                         href="/learn"
                         as="a"
+                        variant="outline"
                     >
                         Learn Now!
                     </Button>
@@ -54,7 +51,7 @@ export default function FeaturedTutorial({ tut }) {
                     w="100%"
                     maxW={500}
                 >
-                    <Flex justify="center">
+                    <Flex justify="center" overflow="hidden">
                         <Skeleton isLoaded={loaded}>
                             <Link href={`/tutorials/${tut.filePath.replace(/\.mdx?$/, '')}`}>
                                 <div className="featured-tutorial-img">
@@ -73,7 +70,6 @@ export default function FeaturedTutorial({ tut }) {
                     <Flex
                         flexDir="column"
                         align="start"
-                        mt="-20"
                         mx={[4, 4, 4, 2, 0, 0]}
                         zIndex={1}
                     >
@@ -121,10 +117,11 @@ export default function FeaturedTutorial({ tut }) {
             <style jsx>{`
             .featured-tutorial-img {
                 opacity: 0.85;
-                transition: opacity .2s ease-in-out;
+                transition: opacity .5s ease-in-out, transform .5s ease-in-out;
             }
             .featured-tutorial-img:hover {
                 opacity: 1;
+                transform: scale(1.1);
             }
             `}</style>
         </>

@@ -12,6 +12,7 @@ import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 import NextLink from 'next/link'
 import { FiInfo, FiEdit2, FiScissors, FiBookOpen, FiHome, FiBookmark, FiSearch } from "react-icons/fi"
 import { useRouter } from 'next/router'
+import NavBarTop from './NavbarTop'
 
 const NavBarLeft = () => {
     const [display, changeDisplay] = useState('none')
@@ -53,6 +54,8 @@ const NavBarLeft = () => {
                 align="center"
                 w="100%"
             >
+                <NavBarTop pos="relative" noScroll={true} placement="left" />
+
                 <NextLink href="/" passHref>
                     <Box w="100%">
                         <Tooltip
@@ -68,13 +71,9 @@ const NavBarLeft = () => {
                                     my={5}
                                     w="100%"
                                     _hover={{ background: 'none' }}
+                                    justifyContent="start"
                                 >
-                                    <Flex
-                                        flexDir="column"
-                                        align="center"
-                                    >
-                                        <Icon as={FiHome} fontSize="2xl" color={slug == '/' ? color[colorMode] : null} />
-                                    </Flex>
+                                    <Icon as={FiHome} fontSize="2xl" mr={2} color={slug == '/' ? color[colorMode] : null} />
                                 </Button>
                             </Box>
                         </Tooltip>

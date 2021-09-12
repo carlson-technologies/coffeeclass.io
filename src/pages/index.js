@@ -198,9 +198,9 @@ export default function Index({ snippets, tutorials }) {
                             mb={2}
                             textTransform="uppercase"
                         >
-                            What Is coffeeclass.io?
+                            What Is coffeeclass.io
                         </Heading>
-                        <Text mb={2}>coffeeclass.io is a suite of programming tutorial tools including this website and <Link color="brand_one.500" href="https://youtube.com/benjamincarlson" isExternal>this YouTube channel</Link>.</Text>
+                        <Text mb={2}>coffeeclass.io is a suite of programming tutorial tools who's goal is to help you learn programming and land a job.</Text>
                         <Flex mb={2}>
                             <NextLink href="/about" passHref>
                                 <Button variant="outline" colorScheme="brand_one" w={['100%', '100%', '100%', 200, 200, 200]} to="/about">Learn More</Button>

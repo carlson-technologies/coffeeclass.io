@@ -3,9 +3,11 @@ import {
     Text,
     Divider,
     useColorMode,
+    useColorModeValue,
     Link,
     Image,
-    Heading
+    SimpleGrid,
+    Box,
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import { year } from '../../scripts/time'
@@ -14,7 +16,7 @@ const FooterNavItem = ({ text, href }) => {
     return (
         <Text textAlign="left">
             <NextLink href={href} passHref>
-                <Link href={href} textDecor="underline">
+                <Link href={href} _hover={{ textDecor: 'underline' }}>
                     {text}
                 </Link>
             </NextLink>
@@ -25,7 +27,7 @@ const FooterNavItem = ({ text, href }) => {
 const FooterNavItemExternal = ({ text, href }) => {
     return (
         <Text textAlign="left">
-            <Link href={href} textDecor="underline" isExternal>
+            <Link href={href} _hover={{ textDecor: 'underline' }} isExternal>
                 {text}
             </Link>
         </Text>
@@ -33,24 +35,20 @@ const FooterNavItemExternal = ({ text, href }) => {
 }
 
 const FooterHeading = ({ title }) => {
-    const { colorMode } = useColorMode()
-    const headerColor = {
-        light: 'gray.500',
-        dark: 'gray.300'
-    }
     return (
-        <Heading
+        <Text
             as="h3"
-            size="xs"
             textTransform="uppercase"
-            marginBottom={2}
-            marginTop={6}
-            color={headerColor[colorMode]}
-            alignSelf="flex-start"
+            marginBottom={6}
+            marginTop={8}
+            color={useColorModeValue('gray.600', 'gray.400')}
+            fontSize="sm"
+            fontWeight="semibold"
+            letterSpacing="wider"
             textAlign="left"
         >
             {title}
-        </Heading>
+        </Text>
     )
 }
 
@@ -68,55 +66,49 @@ const Footer = () => {
             my={4}
             px={4}
             as="footer"
-            textAlign="center"
         >
             <Divider my={4} />
-            <Flex
-                justify="space-around"
+            <SimpleGrid
+                columns={[1, 2, 2, 2, 4, 4]}
                 w="100%"
                 maxW={[320, 320, 320, 1000, 1000, 1000]}
                 my={4}
-                flexDir={["column", "column", "column", "row", "row", "row"]}
             >
-                <Flex justify={["space-between", "space-between", "space-between", "space-around", "space-around", "space-around"]} w="100%">
-                    <Flex flexDir="column">
-                        <FooterHeading title="Legal" />
-                        <Flex flexDir="column" align="flex-start">
-                            <FooterNavItem text="Terms" href="/legal/terms" />
-                            <FooterNavItem text="Disclaimer" href="/legal/disclaimer" />
-                            <FooterNavItem text="Privacy Policy" href="/legal/privacy" />
-                        </Flex>
-                    </Flex>
-                    <Flex flexDir="column">
-                        <FooterHeading title="Content" />
-                        <Flex flexDir="column" align={["flex-end", "flex-end", "flex-end", "flex-start", "flex-start", "flex-start"]}>
-                            <FooterNavItem text="Tutorials" href="/tutorials" />
-                            <FooterNavItem text="Snippets" href="/snippets" />
-                            <FooterNavItem text="Learn" href="/learn" />
-                        </Flex>
-                    </Flex>
-                </Flex>
+                <Box>
+                    <FooterHeading title="Legal" />
+                    <Box>
+                        <FooterNavItem text="Terms" href="/legal/terms" />
+                        <FooterNavItem text="Disclaimer" href="/legal/disclaimer" />
+                        <FooterNavItem text="Privacy Policy" href="/legal/privacy" />
+                    </Box>
+                </Box>
 
-                <Flex justify={["space-between", "space-between", "space-between", "space-around", "space-around", "space-around"]} w="100%">
-                    <Flex flexDir="column">
-                        <FooterHeading title="Company" />
-                        <Flex flexDir="column" align="flex-start">
-                            <FooterNavItem text="About" href="/about" />
-                            <FooterNavItemExternal text="Carlson Technologies" href="https://carlsontechnologies.dev/" />
-                        </Flex>
-                    </Flex>
-                    <Flex flexDir="column">
-                        <FooterHeading title="Open Source" />
-                        <Flex flexDir="column" align={["flex-end", "flex-end", "flex-end", "flex-start", "flex-start", "flex-start"]}>
-                            <FooterNavItemExternal text="Code" href="https://github.com/carlson-technologies/coffeeclass.io" />
-                            <FooterNavItemExternal text="Roadmap" href="https://benjamincarlson.notion.site/609b8bb171844146a9bcd9fbabd171a8?v=341de17fff6149bea36dbafbe2f2cf88" />
-                            <FooterNavItemExternal text="Engineering Blog" href="https://engineering.coffeeclass.io" />
-                        </Flex>
-                    </Flex>
-                </Flex>
-            </Flex>
+                <Box>
+                    <FooterHeading title="Content" />
+                    <Box>
+                        <FooterNavItem text="Tutorials" href="/tutorials" />
+                        <FooterNavItem text="Snippets" href="/snippets" />
+                        <FooterNavItem text="Learn" href="/learn" />
+                    </Box>
+                </Box>
 
+                <Box>
+                    <FooterHeading title="Company" />
+                    <FooterNavItem text="About" href="/about" />
+                    <FooterNavItemExternal text="Carlson Technologies" href="https://carlsontechnologies.dev/" />
+                </Box>
+
+                <Box>
+                    <FooterHeading title="Open Source" />
+                    <FooterNavItemExternal text="Code" href="https://github.com/carlson-technologies/coffeeclass.io" />
+                    <FooterNavItemExternal text="Roadmap" href="https://benjamincarlson.notion.site/609b8bb171844146a9bcd9fbabd171a8?v=341de17fff6149bea36dbafbe2f2cf88" />
+                    <FooterNavItemExternal text="Engineering Blog" href="https://engineering.coffeeclass.io" />
+                </Box>
+            </SimpleGrid>
+
+            <Image src="/carlson-technologies-logo.png" alt="Carlson Technologies Logo" w={75} />
             <Text as="small">&copy; Copyright {year}, Carlson Technologies LLC. All Rights Reserved.</Text>
+
             <Flex my={2}>
                 <Link
                     href="https://vercel.com/?utm_source=carlson-technologies&utm_campaign=oss"
@@ -136,7 +128,7 @@ const Footer = () => {
                     </Flex>
                 </Link>
             </Flex>
-        </Flex>
+        </Flex >
     )
 }
 

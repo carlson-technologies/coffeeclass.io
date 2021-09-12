@@ -9,7 +9,7 @@ import Footer from '../components/Navigation/Footer'
 const Container = ({ children }) => {
     return (
         <>
-            <NavbarTop />
+            <NavbarTop pos="fixed" />
             <NavbarLeft />
             <Flex
                 flexDirection="column"

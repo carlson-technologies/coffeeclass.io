@@ -12,21 +12,23 @@ import {
     DrawerContent,
     DrawerHeader,
     DrawerBody,
+    DrawerFooter,
     Link,
     ButtonGroup,
     InputGroup,
     Input,
     InputRightElement,
-    useColorModeValue,
+    Text,
+    Icon,
 } from '@chakra-ui/react'
-import { HamburgerIcon, CloseIcon, Search2Icon } from '@chakra-ui/icons'
+import { HamburgerIcon, CloseIcon, ChevronRightIcon } from '@chakra-ui/icons'
 import DarkModeSwitch from './DarkModeSwitch'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import { getMessage } from '../../scripts/time'
 import { SearchIcon } from '@chakra-ui/icons'
 
-const NavBarTop = () => {
+const NavBarTop = ({ pos, noScroll, placement }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const router = useRouter()
     const { colorMode } = useColorMode()
@@ -35,7 +37,7 @@ const NavBarTop = () => {
         dark: 'gray.700'
     }
     const hoverColor = {
-        light: 'gray.300',
+        light: 'gray.400',
         dark: 'gray.500'
     }
     const boxShadowColor = {
@@ -52,6 +54,8 @@ const NavBarTop = () => {
     }
     const [scrolled, setScrolled] = useState(false)
     const scrollValue = 10
+
+    const [opacity, setOpacity] = useState(0)
 
     const handleState = () => {
         var scrollTop = 0
@@ -82,35 +86,21 @@ const NavBarTop = () => {
     return (
         <>
             <Box
-                pos="fixed"
-                right={0}
-                top={0}
-                mt={3}
-                mr={3}
-                boxShadow={scrolled ? boxShadowColor[colorMode] : null}
+                display={pos == 'fixed' ? ['block', 'block', 'block', 'block', 'none', 'none'] : ['none', 'none', 'none', 'none', 'block', 'block']}
                 as="nav"
                 aria-label="Nav 1"
-                zIndex="10"
-                transition="box-shadow .5s ease-in-out"
             >
-                <DarkModeSwitch color={scrolled ? bgColor[colorMode] : 'transparent'} />
                 <IconButton
+                    pos={pos}
+                    right={pos != 'relative' && 0}
+                    top={pos != 'relative' && 0}
+                    mt={pos != 'relative' && 3}
+                    mr={pos != 'relative' && 3}
+                    boxShadow={(scrolled && !noScroll) ? boxShadowColor[colorMode] : null}
+                    zIndex="10"
+                    transition="box-shadow .5s ease-in-out"
                     transition="background-color .5s ease-in-out"
-                    bgColor={scrolled ? bgColor[colorMode] : 'transparent'}
-                    aria-label="Open Menu"
-                    size="lg"
-                    _hover={{
-                        textDecoration: 'none',
-                        color: hoverColor[colorMode]
-                    }}
-                    icon={
-                        <Search2Icon />
-                    }
-                    onClick={() => router.push('/search')}
-                />
-                <IconButton
-                    transition="background-color .5s ease-in-out"
-                    bgColor={scrolled ? bgColor[colorMode] : 'transparent'}
+                    bgColor={(scrolled && !noScroll) ? bgColor[colorMode] : 'transparent'}
                     aria-label="Open Menu"
                     size="lg"
                     _hover={{
@@ -121,10 +111,11 @@ const NavBarTop = () => {
                         <HamburgerIcon />
                     }
                     onClick={onOpen}
+                    borderRadius={5}
                 />
             </Box>
 
-            <Drawer onClose={onClose} isOpen={isOpen} size="sm">
+            <Drawer onClose={onClose} isOpen={isOpen} size="sm" placement={placement ? placement : 'right'}>
                 <DrawerOverlay />
                 <DrawerContent>
                     <DrawerHeader borderBottomWidth="1px">
@@ -165,173 +156,207 @@ const NavBarTop = () => {
                         }
                         <Heading as="h4" size="sm" textTransform="uppercase" mt={4}>Content</Heading>
                         <Flex flexDir="column" fontSize="lg">
-                            <NextLink href="/" passHref>
-                                <Link
-                                    href="/"
-                                    _hover={{ textDecor: 'none' }}
-                                    aria-label="Home"
-                                    color="gray.500"
-                                    transition="margin .3s ease-in-out"
-                                    _hover={{ ml: "2" }}
-                                >
-                                    Home
-                                </Link>
-                            </NextLink>
+                            <Text>
+                                <NextLink href="/" passHref>
+                                    <Link
+                                        href="/"
+                                        _hover={{ textDecor: 'none' }}
+                                        aria-label="Home"
+                                        color="gray.500"
+                                        transition="margin .3s ease-in-out"
+                                        _hover={{ ml: "4" }}
+                                    >
+                                        Home
+                                    </Link>
+                                </NextLink>
+                            </Text>
 
-                            <NextLink href="/snippets" passHref>
-                                <Link
-                                    href="/snippets"
-                                    _hover={{ textDecor: 'none' }}
-                                    aria-label="Snippets"
-                                    color="gray.500"
-                                    transition="margin .3s ease-in-out"
-                                    _hover={{ ml: "2" }}
-                                >
-                                    Snippets
-                                </Link>
-                            </NextLink>
+                            <Text>
+                                <NextLink href="/snippets" passHref>
+                                    <Link
+                                        href="/snippets"
+                                        _hover={{ textDecor: 'none' }}
+                                        aria-label="Snippets"
+                                        color="gray.500"
+                                        transition="margin .3s ease-in-out"
+                                        _hover={{ ml: "2" }}
+                                    >
+                                        Snippets
+                                    </Link>
+                                </NextLink>
+                            </Text>
 
-                            <NextLink href="/learn" passHref>
-                                <Link
-                                    href="/learn"
-                                    _hover={{ textDecor: 'none' }}
-                                    aria-label="Learn"
-                                    color="gray.500"
-                                    transition="margin .3s ease-in-out"
-                                    _hover={{ ml: "2" }}
-                                >
-                                    Learn
-                                </Link>
-                            </NextLink>
+                            <Text>
+                                <NextLink href="/learn" passHref>
+                                    <Link
+                                        href="/learn"
+                                        _hover={{ textDecor: 'none' }}
+                                        aria-label="Learn"
+                                        color="gray.500"
+                                        transition="margin .3s ease-in-out"
+                                        _hover={{ ml: "2" }}
+                                    >
+                                        Learn
+                                    </Link>
+                                </NextLink>
+                            </Text>
 
-                            <NextLink href="/tutorials" passHref>
-                                <Link
-                                    href="/tutorials"
-                                    _hover={{ textDecor: 'none' }}
-                                    aria-label="Tutorials"
-                                    color="gray.500"
-                                    transition="margin .3s ease-in-out"
-                                    _hover={{ ml: "2" }}
-                                >
-                                    Tutorials
-                                </Link>
-                            </NextLink>
+                            <Text>
+                                <NextLink href="/tutorials" passHref>
+                                    <Link
+                                        href="/tutorials"
+                                        _hover={{ textDecor: 'none' }}
+                                        aria-label="Tutorials"
+                                        color="gray.500"
+                                        transition="margin .3s ease-in-out"
+                                        _hover={{ ml: "2" }}
+                                    >
+                                        Tutorials
+                                    </Link>
+                                </NextLink>
+                            </Text>
 
-                            <NextLink href="/tags" passHref>
-                                <Link
-                                    href="/tags"
-                                    _hover={{ textDecor: 'none' }}
-                                    aria-label="Tags"
-                                    color="gray.500"
-                                    transition="margin .3s ease-in-out"
-                                    _hover={{ ml: "2" }}
-                                >
-                                    Tags
-                                </Link>
-                            </NextLink>
+                            <Text>
+                                <NextLink href="/tags" passHref>
+                                    <Link
+                                        href="/tags"
+                                        _hover={{ textDecor: 'none' }}
+                                        aria-label="Tags"
+                                        color="gray.500"
+                                        transition="margin .3s ease-in-out"
+                                        _hover={{ ml: "2" }}
+                                    >
+                                        Tags
+                                    </Link>
+                                </NextLink>
+                            </Text>
 
-                            <NextLink href="/authors" passHref>
-                                <Link
-                                    href="/authors"
-                                    _hover={{ textDecor: 'none' }}
-                                    aria-label="Authors"
-                                    color="gray.500"
-                                    transition="margin .3s ease-in-out"
-                                    _hover={{ ml: "2" }}
-                                >
-                                    Authors
-                                </Link>
-                            </NextLink>
+                            <Text>
+                                <NextLink href="/authors" passHref>
+                                    <Link
+                                        href="/authors"
+                                        _hover={{ textDecor: 'none' }}
+                                        aria-label="Authors"
+                                        color="gray.500"
+                                        transition="margin .3s ease-in-out"
+                                        _hover={{ ml: "2" }}
+                                    >
+                                        Authors
+                                    </Link>
+                                </NextLink>
+                            </Text>
                         </Flex>
 
                         <Heading as="h4" size="sm" textTransform="uppercase" mt={4}>Company</Heading>
                         <Flex flexDir="column" fontSize="lg">
-                            <NextLink href="/about" passHref>
-                                <Link
-                                    href="/about"
-                                    _hover={{ textDecor: 'none' }}
-                                    aria-label="About"
-                                    color="gray.500"
-                                    transition="margin .3s ease-in-out"
-                                    _hover={{ ml: "2" }}
-                                >
-                                    About
-                                </Link>
-                            </NextLink>
-                            <NextLink href="/legal/terms" passHref>
-                                <Link
-                                    href="/legal/terms"
-                                    _hover={{ textDecor: 'none' }}
-                                    aria-label="Terms And Conditions"
-                                    color="gray.500"
-                                    transition="margin .3s ease-in-out"
-                                    _hover={{ ml: "2" }}
-                                >
-                                    Terms And Conditions
-                                </Link>
-                            </NextLink>
-                            <NextLink href="/legal/privacy" passHref>
-                                <Link
-                                    href="/legal/privacy"
-                                    _hover={{ textDecor: 'none' }}
-                                    aria-label="Privacy Policy"
-                                    color="gray.500"
-                                    transition="margin .3s ease-in-out"
-                                    _hover={{ ml: "2" }}
-                                >
-                                    Privacy Policy
-                                </Link>
-                            </NextLink>
-                            <NextLink href="/legal/disclaimer" passHref>
-                                <Link
-                                    href="/legal/disclaimer"
-                                    _hover={{ textDecor: 'none' }}
-                                    aria-label="Disclaimer"
-                                    color="gray.500"
-                                    transition="margin .3s ease-in-out"
-                                    _hover={{ ml: "2" }}
-                                >
-                                    Disclaimer
-                                </Link>
-                            </NextLink>
+                            <Text>
+                                <NextLink href="/about" passHref>
+                                    <Link
+                                        href="/about"
+                                        _hover={{ textDecor: 'none' }}
+                                        aria-label="About"
+                                        color="gray.500"
+                                        transition="margin .3s ease-in-out"
+                                        _hover={{ ml: "2" }}
+                                    >
+                                        About
+                                    </Link>
+                                </NextLink>
+                            </Text>
+
+                            <Text>
+                                <NextLink href="/legal/terms" passHref>
+                                    <Link
+                                        href="/legal/terms"
+                                        _hover={{ textDecor: 'none' }}
+                                        aria-label="Terms And Conditions"
+                                        color="gray.500"
+                                        transition="margin .3s ease-in-out"
+                                        _hover={{ ml: "2" }}
+                                    >
+                                        Terms And Conditions
+                                    </Link>
+                                </NextLink>
+                            </Text>
+
+                            <Text>
+                                <NextLink href="/legal/privacy" passHref>
+                                    <Link
+                                        href="/legal/privacy"
+                                        _hover={{ textDecor: 'none' }}
+                                        aria-label="Privacy Policy"
+                                        color="gray.500"
+                                        transition="margin .3s ease-in-out"
+                                        _hover={{ ml: "2" }}
+                                    >
+                                        Privacy Policy
+                                    </Link>
+                                </NextLink>
+                            </Text>
+
+                            <Text>
+                                <NextLink href="/legal/disclaimer" passHref>
+                                    <Link
+                                        href="/legal/disclaimer"
+                                        _hover={{ textDecor: 'none' }}
+                                        aria-label="Disclaimer"
+                                        color="gray.500"
+                                        transition="margin .3s ease-in-out"
+                                        _hover={{ ml: "2" }}
+                                    >
+                                        Disclaimer
+                                    </Link>
+                                </NextLink>
+                            </Text>
                         </Flex>
                         <Heading as="h4" size="sm" textTransform="uppercase" mt={4}>Open Source</Heading>
                         <Flex flexDir="column" fontSize="lg">
-                            <Link
-                                isExternal
-                                href="https://github.com/carlson-technologies/coffeeclass.io"
-                                _hover={{ textDecor: 'none' }}
-                                aria-label="Code"
-                                color="gray.500"
-                                transition="margin .3s ease-in-out"
-                                _hover={{ ml: "2" }}
-                            >
-                                Code
-                            </Link>
-                            <Link
-                                isExternal
-                                href="https://benjamincarlson.notion.site/609b8bb171844146a9bcd9fbabd171a8?v=341de17fff6149bea36dbafbe2f2cf88"
-                                _hover={{ textDecor: 'none' }}
-                                aria-label="Roadmap"
-                                color="gray.500"
-                                transition="margin .3s ease-in-out"
-                                _hover={{ ml: "2" }}
-                            >
-                                Roadmap
-                            </Link>
-                            <Link
-                                isExternal
-                                href="https://engineering.coffeeclass.io"
-                                _hover={{ textDecor: 'none' }}
-                                aria-label="Developer Blog"
-                                color="gray.500"
-                                transition="margin .3s ease-in-out"
-                                _hover={{ ml: "2" }}
-                            >
-                                Engineering Blog
-                            </Link>
+                            <Text>
+                                <Link
+                                    isExternal
+                                    href="https://github.com/carlson-technologies/coffeeclass.io"
+                                    _hover={{ textDecor: 'none' }}
+                                    aria-label="Code"
+                                    color="gray.500"
+                                    transition="margin .3s ease-in-out"
+                                    _hover={{ ml: "2" }}
+                                >
+                                    Code
+                                </Link>
+                            </Text>
+
+                            <Text>
+                                <Link
+                                    isExternal
+                                    href="https://benjamincarlson.notion.site/609b8bb171844146a9bcd9fbabd171a8?v=341de17fff6149bea36dbafbe2f2cf88"
+                                    _hover={{ textDecor: 'none' }}
+                                    aria-label="Roadmap"
+                                    color="gray.500"
+                                    transition="margin .3s ease-in-out"
+                                    _hover={{ ml: "2" }}
+                                >
+                                    Roadmap
+                                </Link>
+                            </Text>
+
+                            <Text>
+                                <Link
+                                    isExternal
+                                    href="https://engineering.coffeeclass.io"
+                                    _hover={{ textDecor: 'none' }}
+                                    aria-label="Developer Blog"
+                                    color="gray.500"
+                                    transition="margin .3s ease-in-out"
+                                    _hover={{ ml: "2" }}
+                                >
+                                    Engineering Blog
+                                </Link>
+                            </Text>
                         </Flex>
                     </DrawerBody>
+                    <DrawerFooter>
+                        <DarkModeSwitch />
+                    </DrawerFooter>
                 </DrawerContent>
             </Drawer>
         </>

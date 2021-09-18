@@ -32,17 +32,19 @@ export default function FeaturedTutorial({ tut }) {
                 <Flex flexDir="column" maxW={600} mx={4}>
                     <Heading as="h1" size="lg">By 2029, <Underline>316,000</Underline> Software Engineering jobs will be added with a median annual pay of <Underline>$110,140</Underline>.<Text as="small" fontSize="sm" fontWeight="thin" letterSpacing="tight" ml={1}>- <Link textDecor="underline" href="https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm" isExternal>bls.gov</Link></Text></Heading>
                     <Heading as="h2" size="lg" fontWeight="normal" color={useColorModeValue("gray.700", "gray.200")} mt={4}>Learn to code on coffeeclass.io</Heading>
-                    <Button
-                        my={8}
-                        colorScheme="brand_one"
-                        w={["100%", "100%", "100%", 200, 200, 200]}
-                        transition="width 0.3s"
-                        href="/learn"
-                        as="a"
-                        variant="outline"
-                    >
-                        Learn Now!
-                    </Button>
+                    <NextLink href="/learn" passHref>
+                        <Button
+                            my={8}
+                            colorScheme="brand_one"
+                            w={["100%", "100%", "100%", 200, 200, 200]}
+                            transition="width 0.3s"
+                            href="/learn"
+                            as="a"
+                            variant="outline"
+                        >
+                            Learn Now!
+                        </Button>
+                    </NextLink>
                 </Flex>
                 <Flex
                     mx={4}
@@ -53,18 +55,20 @@ export default function FeaturedTutorial({ tut }) {
                 >
                     <Flex justify="center" overflow="hidden">
                         <Skeleton isLoaded={loaded}>
-                            <Link href={`/tutorials/${tut.filePath.replace(/\.mdx?$/, '')}`}>
-                                <div className="featured-tutorial-img">
-                                    <NextImage
-                                        width={500}
-                                        height={250}
-                                        objectFit="cover"
-                                        src={`/content/tutorials/${tut.filePath.replace(/\.mdx?$/, '')}/${tut.data.featureImg}`}
-                                        alt={tut.data.title}
-                                        onLoad={() => { setLoaded(true) }}
-                                    />
-                                </div>
-                            </Link>
+                            <NextLink href={`/tutorials/${tut.filePath.replace(/\.mdx?$/, '')}`} passHref>
+                                <Link href={`/tutorials/${tut.filePath.replace(/\.mdx?$/, '')}`}>
+                                    <div className="featured-tutorial-img">
+                                        <NextImage
+                                            width={500}
+                                            height={250}
+                                            objectFit="cover"
+                                            src={`/content/tutorials/${tut.filePath.replace(/\.mdx?$/, '')}/${tut.data.featureImg}`}
+                                            alt={tut.data.title}
+                                            onLoad={() => { setLoaded(true) }}
+                                        />
+                                    </div>
+                                </Link>
+                            </NextLink>
                         </Skeleton>
                     </Flex>
                     <Flex
@@ -75,10 +79,13 @@ export default function FeaturedTutorial({ tut }) {
                     >
                         <Flex flexDir="column">
                             <Heading as="h1" size="xl">
-                                <Link
-                                    href={`/tutorials/${tut.filePath.replace(/\.mdx?$/, '')}`}>
-                                    We Recommend: {tut.data.title}
-                                </Link>
+                                <NextLink href={`/tutorials/${tut.filePath.replace(/\.mdx?$/, '')}`} passHref>
+                                    <Link
+                                        href={`/tutorials/${tut.filePath.replace(/\.mdx?$/, '')}`}
+                                    >
+                                        We Recommend: {tut.data.title}
+                                    </Link>
+                                </NextLink>
                             </Heading>
                             <Text fontSize="xl" color={useColorModeValue("blackAlpha.700", "gray.400")} mt={2} mb={4}>{tut.data.description}</Text>
                             <Flex wrap="wrap" align="center">

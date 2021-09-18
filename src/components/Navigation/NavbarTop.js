@@ -247,6 +247,24 @@ const NavBarTop = ({ pos, noScroll, placement }) => {
                             </Text>
                         </Flex>
 
+                        <Heading as="h4" size="sm" textTransform="uppercase" mt={4}>Write For Us!</Heading>
+                        <Flex flexDir="column" fontSize="lg">
+                            <Text>
+                                <NextLink href="/contribute/getting-started" passHref>
+                                    <Link
+                                        href="/contribute/getting-started"
+                                        _hover={{ textDecor: 'none' }}
+                                        aria-label="Getting Started"
+                                        color="gray.500"
+                                        transition="margin .3s ease-in-out"
+                                        _hover={{ ml: "2" }}
+                                    >
+                                        Getting Started
+                                    </Link>
+                                </NextLink>
+                            </Text>
+                        </Flex>
+
                         <Heading as="h4" size="sm" textTransform="uppercase" mt={4}>Company</Heading>
                         <Flex flexDir="column" fontSize="lg">
                             <Text>
@@ -309,6 +327,7 @@ const NavBarTop = ({ pos, noScroll, placement }) => {
                                 </NextLink>
                             </Text>
                         </Flex>
+
                         <Heading as="h4" size="sm" textTransform="uppercase" mt={4}>Open Source</Heading>
                         <Flex flexDir="column" fontSize="lg">
                             <Text>

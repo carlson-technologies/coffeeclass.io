@@ -213,6 +213,30 @@ export default function Index({ snippets, tutorials }) {
                         </Box>
                     </Flex>
                 </Flex>
+
+                <Flex
+                    as="section"
+                    flexDir="column"
+                    align="center"
+                    justify="space-around"
+                    mt={20}
+                    mx={4}
+                    px={4}
+                >
+                    <Heading
+                        as="h2"
+                        size="xl"
+                        letterSpacing="tight"
+                        mb={2}
+                        textTransform="uppercase"
+                    >
+                        Write For Us
+                    </Heading>
+                    <Text mb={2} fontSize="xl" mt={2} mb={4} textAlign="center">Like to write code? Try writing about it!</Text>
+                    <NextLink href="/contribute/getting-started" passHref>
+                        <Button colorScheme="brand_one" w={['100%', '100%', '100%', 200, 200, 200]} to="/about">See How</Button>
+                    </NextLink>
+                </Flex>
             </Flex>
         </Container>
     )

@@ -3,8 +3,7 @@ import {
     Flex,
     Stack,
     useColorMode,
-    Text,
-    Grid
+    Grid,
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../../components/Container'
@@ -63,10 +62,10 @@ export default function Index({ posts }) {
                         textTransform="uppercase"
                         color={headerColor[colorMode]}
                         textAlign="center"
+                        mb={8}
                     >
                         coffeeclass.io Snippets ✂️
                     </Heading>
-                    <Text color={color[colorMode]} mt={2} mb={8} fontSize="lg" textAlign="center">Snippets are code bits that you can easily copy and paste into your project.</Text>
                     <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
                         {snippetsOrderedByPublishedDate.map((post) => (
                             <Snippet

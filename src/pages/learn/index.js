@@ -19,6 +19,7 @@ import Container from '../../components/Container'
 import subjects from "../../configs/learn.json"
 import Image from 'next/image'
 import { ExternalLinkIcon } from '@chakra-ui/icons'
+import NextLink from 'next/link'
 
 const url = 'https://www.coffeeclass.io/learn'
 const title = 'Learn | coffeeclass.io'
@@ -32,29 +33,31 @@ const Wrapper = ({ path, children }) => {
     }
     const [opacity, setOpacity] = useState(0)
     return (
-        <Link
-            href={path}
-            mt={2}
-            mr={2}
-            _hover={{ textDecor: 'none' }}
-            onMouseOver={() => setOpacity(1)}
-            onMouseLeave={() => setOpacity(0)}
-        >
-            <Flex
-                bgColor={useColorModeValue("gray.200", "gray.700")}
-                p={4}
-                flexDir="column"
-                borderRadius={15}
-                transition='box-shadow 0.3s ease-in-out'
-                _hover={{
-                    boxShadow: boxShadowColor[colorMode],
-                }}
-                h="100%"
+        <NextLink href={path} passHref>
+            <Link
+                href={path}
+                mt={2}
+                mr={2}
+                _hover={{ textDecor: 'none' }}
+                onMouseOver={() => setOpacity(1)}
+                onMouseLeave={() => setOpacity(0)}
             >
-                <Icon as={ExternalLinkIcon} fontSize="30px" color="gray.500" pos="absolute" opacity={opacity} transition="opacity .5s ease" />
-                {children}
-            </Flex>
-        </Link>
+                <Flex
+                    bgColor={useColorModeValue("gray.200", "gray.700")}
+                    p={4}
+                    flexDir="column"
+                    borderRadius={15}
+                    transition='box-shadow 0.3s ease-in-out'
+                    _hover={{
+                        boxShadow: boxShadowColor[colorMode],
+                    }}
+                    h="100%"
+                >
+                    <Icon as={ExternalLinkIcon} fontSize="30px" color="gray.500" pos="absolute" opacity={opacity} transition="opacity .5s ease" />
+                    {children}
+                </Flex>
+            </Link>
+        </NextLink>
     )
 }
 
@@ -96,8 +99,6 @@ export default function Index() {
                     >
                         coffeeclass.io Learn 🎒
                     </Heading>
-                    <Heading as="h2" size="md" fontWeight="normal" mt={2}>Follow step by step modules to learn a new skill.</Heading>
-                    <Divider mt={2} />
                     <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]} gap={6}>
                         {
                             data.map((item, index) => {

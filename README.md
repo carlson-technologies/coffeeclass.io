@@ -25,17 +25,7 @@ This entire project is open source. We encourage contributions! Read on to see h
 
 ### Contributing an Article
 
-If you want to contribute an article please follow the steps below.
-
-1. Clone the repo: `git clone https://github.com/carlson-technologies/coffeeclass.io.git`.
-2. Open the project in your IDE.
-3. Run `yarn` to install dependencies.
-4. Create a new branch! `git checkout -b branch-name-here`. The branch name is not too important but it should be short and reflect the article in some way. e.g. If you are creating a snippet on how to use `useState` in React, you might name the branch `snippet-react-usestate`.
-5. Add the `mdx` file to the content folder. If you are creating a snippet, add it to the snippet folder. If you are creating a tutorial add it to the tutorial folder. If you are adding to the learn section, please refer to the [Roadmap 🚗](https://benjamincarlson.notion.site/609b8bb171844146a9bcd9fbabd171a8?v=341de17fff6149bea36dbafbe2f2cf88) to see what is currently being worked on.
-6. Add your info to `authors.json`. This can be found inside the configs folder.
-7. Push up the branch! `git push origin branch-name`.
-
-Have an article you want to submit but don't want to create a pull request? Feel free to email us the article and we'll add it for you. Contact: ben@carlsontechnologies.dev
+If you want to contribute an article please follow the steps on https://www.coffeeclass.io/contribute/getting-started/
 
 ### Contributing to the Website
 

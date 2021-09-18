@@ -69,10 +69,11 @@ const Footer = () => {
         >
             <Divider my={4} />
             <SimpleGrid
-                columns={[1, 2, 2, 2, 4, 4]}
+                columns={[1, 1, 1, 2, 4, 4]}
                 w="100%"
                 maxW={[320, 320, 320, 1000, 1000, 1000]}
-                my={4}
+                mt={4}
+                mb={6}
             >
                 <Box>
                     <FooterHeading title="Legal" />
@@ -107,7 +108,7 @@ const Footer = () => {
             </SimpleGrid>
 
             <Image src="/carlson-technologies-logo.png" alt="Carlson Technologies Logo" w={75} />
-            <Text as="small">&copy; Copyright {year}, Carlson Technologies LLC. All Rights Reserved.</Text>
+            <Text as="small" mt={2}>&copy; Copyright {year}, Carlson Technologies LLC. All Rights Reserved.</Text>
 
             <Flex my={2}>
                 <Link

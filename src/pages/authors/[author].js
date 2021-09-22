@@ -25,7 +25,7 @@ import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
 import NextImage from 'next/image'
 
-export default function Index({ tutorials, snippets, source, frontMatter }) {
+export default function Index({ tutorials, snippets, frontMatter }) {
     TimeAgo.addLocale(en)
     const timeAgo = new TimeAgo('en-US')
 
@@ -300,10 +300,6 @@ export const getStaticProps = async ({ params }) => {
     const { content, data } = matter(source)
 
     const mdxSource = await serialize(content, {
-        // MDXComponents,
-        // Optionally pass remark/rehype plugins
-        // mdxOptions: {
-        // },
         scope: data,
     })
 
@@ -320,17 +316,6 @@ export const getStaticProps = async ({ params }) => {
 
     const snippets = snippetsFilePaths.map((filePath) => {
         const source = fs.readFileSync(path.join(SNIPPETS_PATH, filePath))
-        const { content, data } = matter(source)
-
-        return {
-            content,
-            data,
-            filePath,
-        }
-    })
-
-    const authors = authorsFilePaths.map((filePath) => {
-        const source = fs.readFileSync(path.join(AUTHORS_PATH, filePath))
         const { content, data } = matter(source)
 
         return {

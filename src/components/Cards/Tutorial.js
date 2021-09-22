@@ -33,8 +33,8 @@ export default function Tutorial({ src, title, description, tags, href, as, main
     return (
         <Flex
             w="100%"
-            my={2}
-            mt={[10, 10, 0]}
+            // my={2}
+            // mt={[10, 10, 0]}
             key={title}
             borderRadius={5}
             transition='box-shadow 0.3s ease-in-out'

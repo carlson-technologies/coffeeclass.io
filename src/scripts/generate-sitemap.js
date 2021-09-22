@@ -14,6 +14,32 @@ const prettier = require('prettier');
     const sitemap = `
         <?xml version="1.0" encoding="UTF-8"?>
         <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+            <!--Base URL-->
+            <url>
+                <loc>https://www.coffeeclass.io</loc>
+            </url>
+
+            <!--Page URLS In Order-->
+            <url>
+                <loc>https://www.coffeeclass.io/authors</loc>
+            </url>
+
+            <url>
+                <loc>https://www.coffeeclass.io/getting-started</loc>
+            </url>
+
+            <url>
+                <loc>https://www.coffeeclass.io/learn</loc>
+            </url>
+
+            <url>
+                <loc>https://www.coffeeclass.io/learn/chakra-ui</loc>
+            </url>
+
+            <url>
+                <loc>https://www.coffeeclass.io/learn/python</loc>
+            </url>
+
             <url>
                 <loc>https://www.coffeeclass.io/legal/disclaimer</loc>
             </url>
@@ -37,11 +63,16 @@ const prettier = require('prettier');
             <url>
                 <loc>https://www.coffeeclass.io/tutorials</loc>
             </url>
-            
+
             <url>
-                <loc>https://www.coffeeclass.io/authors</loc>
+                <loc>https://www.coffeeclass.io/about</loc>
             </url>
-                   
+
+            <url>
+                <loc>https://www.coffeeclass.io/search</loc>
+            </url>
+                  
+            <!--Dynamic URLS-->
             ${pages
             .map((page) => {
                 const path = page

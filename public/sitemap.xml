@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!--Base URL-->
+  <url>
+    <loc>https://www.coffeeclass.io</loc>
+  </url>
+
+  <!--Page URLS In Order-->
+  <url>
+    <loc>https://www.coffeeclass.io/authors</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/getting-started</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/learn</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/learn/chakra-ui</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/learn/python</loc>
+  </url>
+
   <url>
     <loc>https://www.coffeeclass.io/legal/disclaimer</loc>
   </url>
@@ -25,8 +51,14 @@
   </url>
 
   <url>
-    <loc>https://www.coffeeclass.io/authors</loc>
+    <loc>https://www.coffeeclass.io/about</loc>
   </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/search</loc>
+  </url>
+
+  <!--Dynamic URLS-->
 
   <url>
     <loc>https://www.coffeeclass.io/authors/benjamin-carlson</loc>
@@ -38,6 +70,20 @@
 
   <url>
     <loc>https://www.coffeeclass.io/authors/sumit-kumar</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/tutorials/add-firebase-to-nextjs</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/tutorials/java-inheritance-tutorial</loc>
+  </url>
+
+  <url>
+    <loc
+      >https://www.coffeeclass.io/tutorials/nextjs-crash-course-build-a-developer-portfolio-website</loc
+    >
   </url>
 
   <url>
@@ -113,17 +159,87 @@
   </url>
 
   <url>
-    <loc>https://www.coffeeclass.io/tutorials/add-firebase-to-nextjs</loc>
+    <loc>https://www.coffeeclass.io/tags/chakra-ui</loc>
   </url>
 
   <url>
-    <loc>https://www.coffeeclass.io/tutorials/java-inheritance-tutorial</loc>
+    <loc>https://www.coffeeclass.io/tags/crash-course</loc>
   </url>
 
   <url>
-    <loc
-      >https://www.coffeeclass.io/tutorials/nextjs-crash-course-build-a-developer-portfolio-website</loc
-    >
+    <loc>https://www.coffeeclass.io/tags/css-animation</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/tags/css</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/tags/dart</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/tags/dates</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/tags/firebase</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/tags/flutter</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/tags/google-analytics</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/tags/inheritance</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/tags/java</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/tags/javascript</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/tags/mdx</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/tags/navigation</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/tags/nextjs</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/tags/react-hooks</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/tags/react-native</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/tags/react</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/tags/splitbee</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/tags/useeffect</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/tags/utteranc</loc>
   </url>
 
   <url>

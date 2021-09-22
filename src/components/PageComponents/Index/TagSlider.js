@@ -3,7 +3,7 @@ import NextLink from 'next/link'
 
 export default function TagSlider({ tags }) {
     return (
-        <Flex align="center" mt={4} mb={12} px={4}>
+        <Flex align="center" mt={4} mb={12} px={4} mx={4}>
             <Flex flex="0 0 auto">
                 <Heading
                     color={useColorModeValue("gray.600", "gray.400")}
@@ -27,6 +27,15 @@ export default function TagSlider({ tags }) {
                         </NextLink>
                     </Flex>
                 ))}
+                <Flex flex="0 0 auto" ml={1}>
+                    <NextLink href="/tags">
+                        <Link href="/tags" _hover={{ textDecor: 'none' }}>
+                            <Tag p={2} colorScheme="brand_one" variant="subtle">
+                                <Text fontSize="lg">Explore All</Text>
+                            </Tag>
+                        </Link>
+                    </NextLink>
+                </Flex>
             </Flex>
         </Flex>
     )

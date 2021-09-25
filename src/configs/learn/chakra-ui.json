@@ -1,30 +1,29 @@
 {
   "title": "Chakra UI",
+  "description": "Learn the Chakra UI css framework in this beginner and intermediate learn series. Start by adding Chakra UI and get an overview of it's components. Then, we use it to build multiple modern, responsive layouts.",
+  "free": true,
+  "image": "/learn-images/language-logo/chakra-ui.png",
   "routes": [
     {
       "title": "What Is Chakra UI?",
-      "path": "/learn/chakra-ui/what-is-chakra-ui",
-      "new": true
+      "description": "Introduction to Chakra UI - a simple, modular and accessible component library for React based apps.",
+      "path": "/learn/chakra-ui/what-is-chakra-ui"
     },
     {
       "title": "Getting Started",
-      "path": "/learn/chakra-ui/getting-started-with-chakra-ui",
-      "new": true
+      "path": "/learn/chakra-ui/getting-started-with-chakra-ui"
     },
     {
       "title": "Default Theme",
-      "path": "/learn/chakra-ui/chakra-ui-default-theme",
-      "new": true
+      "path": "/learn/chakra-ui/chakra-ui-default-theme"
     },
     {
       "title": "Custom Theme",
-      "path": "/learn/chakra-ui/chakra-ui-custom-theme",
-      "new": true
+      "path": "/learn/chakra-ui/chakra-ui-custom-theme"
     },
     {
       "title": "Dark Mode",
-      "path": "/learn/chakra-ui/chakra-ui-dark-mode",
-      "new": true
+      "path": "/learn/chakra-ui/chakra-ui-dark-mode"
     }
   ]
 }

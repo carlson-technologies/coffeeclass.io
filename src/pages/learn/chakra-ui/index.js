@@ -4,13 +4,15 @@ import {
     Text,
     Flex,
     Link,
-    OrderedList,
-    ListItem,
-    Stack
+    Stack,
+    Box,
+    useColorModeValue,
+    Image,
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import lessons from "../../../configs/learn/chakra-ui.json"
 import Container from "../../../components/Container"
+import NextLink from "next/link"
 
 const url = 'https://www.coffeeclass.io/chakra-ui'
 const title = 'Learn Chakra UI | coffeeclass.io'
@@ -32,22 +34,55 @@ export default function ChakraUI() {
             />
             <Stack
                 spacing={8}
-                px={4}
+            // px={4}
             >
                 <Flex
                     flexDir="column"
-                    mt={50}
                 >
-                    <Heading as="h1" size="2xl" mb={4} textAlign="center">{lessons.title}</Heading>
-                    <Text mb={8} textAlign="center" fontSize="large">
-                        Learn Chakra UI programming language in this beginner and intermediate tutorial series.
-                    </Text>
-                    <Heading mb={4} textAlign="center">🚗 Road Map</Heading>
-                    <OrderedList>
+                    <Box
+                        bgColor={useColorModeValue("gray.100", "gray.800")}
+                        maxW={1000}
+                        minH="100vh"
+                        alignSelf="center"
+                        w="100%"
+                    >
+                        <Box px={4}>
+                            <Flex justify="center" mt={10}>
+                                <Image src={lessons.image} w={100} justifySelf="center" alt={`Image of ${lessons.title} Logo`} />
+                            </Flex>
+                            <Heading as="h1" size="2xl" mb={4} mt={5} textAlign="center">{lessons.title}</Heading>
+                            <Text mb={2} textAlign="center">{data.length} modules / 6 hours</Text>
+                            <Text mb={8} textAlign="center" fontSize="large">
+                                {lessons.description}
+                            </Text>
+                            <Heading size="md" mb={2}>🚗 Road Map</Heading>
+                        </Box>
                         {data.map((item, index) => (
-                            <ListItem m={2} fontSize="lg" key={index}><Link href={item.path}>{item.title}</Link></ListItem>
+                            <NextLink href={item.path} passHref>
+                                <Link href={item.path} _hover={{ textDecor: 'none' }}>
+                                    <Flex
+                                        _hover={{
+                                            transform: "scale(1.05)",
+                                        }}
+                                        transition="transform .5s"
+                                        key={index}
+                                        bgColor={useColorModeValue("#fff", "#15161a")}
+                                        border="1px solid"
+                                        borderColor={useColorModeValue("gray.200", "gray.700")}
+                                        borderRadius={5}
+                                        p={5}
+                                        align="center"
+                                    >
+                                        <Text mr={4} fontSize="lg">{index + 1}.</Text>
+                                        <Flex flexDir="column">
+                                            <Heading as="h2" size="md">{item.title}</Heading>
+                                            <Text mt={1}>{item.description}</Text>
+                                        </Flex>
+                                    </Flex>
+                                </Link>
+                            </NextLink>
                         ))}
-                    </OrderedList>
+                    </Box>
                 </Flex>
             </Stack>
         </Container >

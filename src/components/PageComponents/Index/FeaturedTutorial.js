@@ -83,39 +83,42 @@ export default function FeaturedTutorial({ tut }) {
                                     <Link
                                         href={`/tutorials/${tut.filePath.replace(/\.mdx?$/, '')}`}
                                     >
-                                        We Recommend: {tut.data.title}
+                                        {tut.data.title}
                                     </Link>
                                 </NextLink>
                             </Heading>
                             <Text fontSize="xl" color={useColorModeValue("blackAlpha.700", "gray.400")} mt={2} mb={4}>{tut.data.description}</Text>
                             <Flex wrap="wrap" align="center">
-                                <Flex align="center" wrap="wrap">
-                                    <Avatar mr={2} size="sm" src={`/authors/${tut.data.authorImage}`} />
-                                    <Text fontWeight="semibold" fontStyle="italic">{timeAgo.format(new Date(tut.data.publishedAt))}</Text>
-                                    <Text mx={1}>by</Text>
-                                    <Text textDecor="underline"><Link href={`/authors/${getAuthorSlug(tut.data.author)}`} passHref>{tut.data.author}</Link></Text>
-                                </Flex>
-                                <Text mx={1}>in</Text>
-                                {tut.data?.tags?.map((tag) => {
-                                    return (
-                                        <Flex
-                                            mr={2}
-                                            key={tag}
-                                            _hover={{
-                                                textDecor: 'none',
-                                                opacity: '.5'
-                                            }}
-                                            cursor="pointer"
-                                        >
-                                            <NextLink href={`/tags/${tag}`} passHref>
-                                                <Link href={`/${tag}`}
+                                <Avatar mr={2} size="md" src={`/authors/${tut.data.authorImage}`} />
+                                <Flex flexDir="column">
+                                    <Flex align="center" wrap="wrap">
+                                        <Text fontWeight="semibold" fontStyle="italic">{timeAgo.format(new Date(tut.data.publishedAt))}</Text>
+                                        <Text mx={1}>by</Text>
+                                        <Text textDecor="underline"><Link href={`/authors/${getAuthorSlug(tut.data.author)}`} passHref>{tut.data.author}</Link></Text>
+                                    </Flex>
+                                    <Flex>
+                                        {tut.data?.tags?.map((tag) => {
+                                            return (
+                                                <Flex
+                                                    mr={2}
+                                                    key={tag}
+                                                    _hover={{
+                                                        textDecor: 'none',
+                                                        opacity: '.5'
+                                                    }}
+                                                    cursor="pointer"
                                                 >
-                                                    <Text fontSize="lg" color={tagColor[colorMode]}>#{tag}</Text>
-                                                </Link>
-                                            </NextLink>
-                                        </Flex>
-                                    )
-                                })}
+                                                    <NextLink href={`/tags/${tag}`} passHref>
+                                                        <Link href={`/${tag}`}
+                                                        >
+                                                            <Text fontSize="lg" color={tagColor[colorMode]}>#{tag}</Text>
+                                                        </Link>
+                                                    </NextLink>
+                                                </Flex>
+                                            )
+                                        })}
+                                    </Flex>
+                                </Flex>
                             </Flex>
                         </Flex>
                     </Flex>
@@ -123,11 +126,10 @@ export default function FeaturedTutorial({ tut }) {
             </Flex>
             <style jsx>{`
             .featured-tutorial-img {
-                opacity: 0.85;
                 transition: opacity .5s ease-in-out, transform .5s ease-in-out;
             }
             .featured-tutorial-img:hover {
-                opacity: 1;
+                opacity: .85;
                 transform: scale(1.1);
             }
             `}</style>

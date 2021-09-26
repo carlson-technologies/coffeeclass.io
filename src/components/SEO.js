@@ -10,7 +10,7 @@ const SEO = ({ title, seoDescription, publishedAt, lastUpdated, url, author, fea
     return (
         <>
             <NextSeo
-                title={`${title} | coffeeclass.io`}
+                title={title}
                 description={seoDescription}
                 canonical={url}
                 openGraph={{
@@ -32,7 +32,7 @@ const SEO = ({ title, seoDescription, publishedAt, lastUpdated, url, author, fea
                 images={[featuredImage]}
                 publisherLogo="/favicons/logo-white-bg.png"
                 publisherName="coffeeclass.io"
-                title={`${title} | coffeeclass.io`}
+                title={title}
                 url={url}
             />
         </>

@@ -21,7 +21,6 @@ import { parseISO, format } from 'date-fns'
 import { ChevronUpIcon, ArrowForwardIcon } from '@chakra-ui/icons'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
-import Ad from '../components/Ad'
 
 export default function Layout({ frontMatter, children }) {
     const router = useRouter()
@@ -106,7 +105,6 @@ export default function Layout({ frontMatter, children }) {
                         maxH="calc(100vh - 5em)"
                         h="fit-content"
                     >
-                        <Ad />
                         {frontMatter.youtubeId &&
                             <Link href={frontMatter.youtubeId} _hover={{ textDecor: 'none' }} mt={8} isExternal>
                                 <Button
@@ -179,6 +177,13 @@ export default function Layout({ frontMatter, children }) {
                                     On this page
                                 </Heading>
                                 {frontMatter?.headers.map((h) => {
+
+                                    for (let i = 0; i < h.text.length; i++) {
+                                        if (h.text[i] == '`') {
+                                            h.text = h.text.replace('`', '')
+                                        }
+                                    }
+
                                     return (
                                         <Heading
                                             as="h4"

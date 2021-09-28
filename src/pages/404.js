@@ -35,33 +35,20 @@ export default function Custom404() {
                 <Flex
                     flexDir="column"
                     mt={50}
+                    textAlign="center"
                 >
                     <Heading
                         as="h1"
-                        size="xl"
+                        size="2xl"
                         letterSpacing="tight"
                         textTransform="uppercase"
                         color={headerColor[colorMode]}
+                        mb={2}
                     >
-                        This page doesn't seem to exist :(
+                        This page doesn't seem to exist!
                     </Heading>
-                    <NextLink href="/search" passHref>
-                        <Link mx={2} href="/search">
-                            <Icon
-                                aria-label="Search Site"
-                                size="lg"
-                                _hover={{
-                                    textDecoration: 'none',
-                                    color: hoverColor[colorMode]
-                                }}
-                                as={Search2Icon}
-                            />
-                        </Link>
-                    </NextLink>
-                    <NextLink href="/" passHref>
-                        <Button w={200} my={4} href="/" as="a" colorScheme="orange">Go Home</Button>
-                    </NextLink>
-                    <Text as="small">Think this is an error? Send us an <Link href="mailto:ben@carlsontechnologies.dev" isExternal color="brown">email</Link>.</Text>
+                    <Text fontSize="2xl" mb={4}>Why don't you get up 🧍, stretch 🧘, get another cup of coffee ☕, and then <NextLink href="/search" passHref><Link href="/search" color="gray.500">search</Link></NextLink> for what you're looking for!</Text>
+                    <Text as="small" fontSize="md">Think this is an error? Send us an <Link href="mailto:ben@carlsontechnologies.dev" isExternal color="gray.500">email</Link>.</Text>
                 </Flex>
             </Stack>
         </Container>

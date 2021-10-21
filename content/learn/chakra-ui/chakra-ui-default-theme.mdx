@@ -3,34 +3,44 @@ title: "Default Theme"
 publishedAt: '2021-08-05'
 description: "An overview of Chakra UI's default theme."
 author: "Benjamin Carlson"
-lastUpdated: '2021-08-05'
+lastUpdated: "2021-10-20"
 type: learn
 language: chakra-ui
 ---
 
-You probably noticed that without any configuration on our part, the Chakra UI components look pretty good. That is because we are provided with a [default theme](https://chakra-ui.com/docs/theming/theme) out of the box. You can custimize this theme easily, which we'll see in the next module, but for now let's take a look at the default theme so we can better understand it.
+You probably noticed that without any configuration on our part, the Chakra UI components look beautiful. That is because we are provided with a [default theme](https://chakra-ui.com/docs/theming/theme) out of the box. You can customize this theme easily, which we'll see in the next module, but for now let's take a deeper look at the default theme so we can better understand it.
 
 ## Colors
 
 Chakra UI comes with a set of default colors. If you are familiar with [Tailwind CSS](https://tailwindcss.com/), this should look familiar as the Chakra UI defaults are heavily inspired by Tailwind CSS.
 
+Using colors is simple. They range from 50 to 900 in value. Take a look at the gray value below.
+
+![Gray color Chakra UI](/content/learn/chakra-ui/chakra-ui-default-theme/gray.png)
+
 > See all colors on [Chakra UI's](https://chakra-ui.com/docs/theming/theme#colors) website.
+
+If you want to use gray 400, you would use it like so:
+
+```jsx
+<Text color="gray.400">I am gray text</Text>
+```
+
+As you can see, we have a Chakra UI `Text` component which lets us define the color through the `color` prop.
 
 ## Typography
 
 There are 5 `css` properties in the default typography section.
 
-- Fonts
-- Font Sizes
-- Font Weights
-- Line heights
-- Letter Spacing
+1. Fonts (Font Family)
+2. Font Sizes
+3. Font Weights
+4. Line heights
+5. Letter Spacing
 
-Below are the default configs:
+### Fonts Default Config
 
-### Fonts
-
-```javascript
+```jsx
 export default {
   fonts: {
     body: "system-ui, sans-serif",
@@ -39,9 +49,9 @@ export default {
   },
 ```
 
-### Font Sizes
+### Font Sizes Default Config
 
-```javascript
+```jsx
 export default {
   fontSizes: {
     xs: "0.75rem",
@@ -61,9 +71,9 @@ export default {
 };
 ```
 
-### Font Weights
+### Font Weights Default Config
 
-```javascript
+```jsx
 export default {
   fontWeights: {
     hairline: 100,
@@ -79,9 +89,9 @@ export default {
 };
 ```
 
-### Line Heights
+### Line Heights Default Config
 
-```javascript
+```jsx
 export default {
   lineHeights: {
     normal: "normal",
@@ -103,9 +113,9 @@ export default {
 };
 ```
 
-### Letter Spacings
+### Letter Spacings Default Config
 
-```javascript
+```jsx
 export default {
   letterSpacings: {
     tighter: "-0.05em",
@@ -118,23 +128,11 @@ export default {
 };
 ```
 
-Using the above code, if you applied a `fontSize` of `lg` to a `Text` component, it would render with a `font-size` of `1.125rem`. 
-
-```javascript
-<Text fontSize="lg">I am a large text!</Text>
-```
-
-It is also important to note that by using `lg`, the text will be mobile responsive.
-
 ## Breakpoints
 
-Breakpoints allow us to easily make any components responsive. They simply render to [media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries).
+Breakpoints allow us to easily make responsive components. They simply render to [media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries).
 
-Below are the default breakpoints.
-
-```javascript
-import { createBreakpoints } from "@chakra-ui/theme-tools"
-
+```jsx
 export default createBreakpoints({
   sm: "30em",
   md: "48em",
@@ -148,7 +146,7 @@ export default createBreakpoints({
 
 For spacing, we have `padding`, `margin`, and `top`, `left`, `right`, and `bottom`.
 
-```javascript
+```jsx
 export default {
   space: {
     px: "1px",
@@ -192,7 +190,7 @@ export default {
 
 The sizes properties refer to `width`, `height`, `maxWidth`, `minWidth`, `maxHeight` and `minHeight` styles.
 
-```javascript
+```jsx
 export default {
   sizes: {
     ...theme.space,
@@ -227,7 +225,7 @@ export default {
 
 Border radius is a property that allows us to easily set the border radius of any component.
 
-```javascript
+```jsx
 export default {
   radii: {
     none: "0",
@@ -247,7 +245,7 @@ export default {
 
 Finally, we have `z-index`. Chakra UI recommends solving stacking without z-index. However, there are times where `z-index` will come in handy.
 
-```javascript
+```jsx
 export default {
   zIndices: {
     hide: -1,

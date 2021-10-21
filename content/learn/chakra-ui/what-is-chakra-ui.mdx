@@ -3,23 +3,59 @@ title: "What Is Chakra UI?"
 publishedAt: "2021-08-05"
 description: "Introduction to Chakra UI - a simple, modular and accessible component library for React based apps."
 author: "Benjamin Carlson"
-lastUpdated: "2021-08-05"
+lastUpdated: "2021-10-20"
 type: learn
 language: chakra-ui
 ---
 
-[Chakra UI](https://chakra-ui.com/) is a CSS framework for React based applications (React, Next.js, and Gatsby) which allows you to create accessible React apps with speed.
+## Chakra UI Introduction
+
+Chakra UI is a CSS framework for React based applications (React, Next.js, and Gatsby) which allows you to create accessible React apps with speed.
 
 > Chakra UI is a simple, modular and accessible component library that gives you the building blocks you need to build your React applications.
 
-## Pros Of Chakra UI
+## Chakra VS
 
-Here are some of the pros of Chakra UI taken directly from their website.
+You may have heard of other CSS frameworks such as Bootstrap or TailwindCSS. While there are some similarities between Chakra UI and these other frameworks, there are also distinct differences.
 
-<ChakraUILearnCards />
+### Tailwind CSS
 
-If these pros look appealing to you, then you should definitely give Chakra UI a try.
+Tailwind CSS is a CSS Framework that provides atomic CSS classes to help you style components. Tailwind CSS handles responsive styles, dark mode, etc using pseudo-classes.
 
-## Looking Forward
+```html
+<p w-16 md:w-32 bg-gray-500 dark:bg-gray-100 hover:dark:bg-gray-200>I am text</p>
+```
 
-In this series, we will start by installing Chakra UI (in React, Next.js, and Gatsby), use it in a Next.js project, and cover some important, fundamental concepts. This is _not_ intended to be documentation of any sort. If you are looking for that, see the official [Chakra UI documentation](https://chakra-ui.com/).
+A downside to TailwindCSS is that it is up to you, the developer, to handle semantic html, WAI-ARIA requirements, keyboard navigation, and more.
+
+### Bootstrap
+
+Bootstrap (rather React-Bootstrap) is an open source toolkit to quickly design and customize responsive mobile-first sites with Bootstrap. Bootstrap is. widely considered the industry standard for CSS Frameworks.
+
+### Material UI
+
+Material UI is a set of React components for faster and easier web development. It is a comprehensive guide for visual, motion, and interaction design across platforms and devices.
+
+### Theme UI
+
+Chakra UI was heavily inspired by Theme UI and follows the system UI specifications. With that said, Chakra UI provides more components, improved styling API, accessibility, and intuitive component APIs than Theme UI.
+
+## Chakra UI Pros
+
+Now that you know a little bit about some Chakra UI alternatives, let's dive into some pros of Chakra UI.
+
+### Accessable
+
+Chakra UI strictly follows WAI-ARIA standards for all components.
+
+### Themeable
+
+We can easily customize any part of the Chakra UI components to match our design needs. We dive deep into this in the Customize Them module.
+
+### Composable
+
+Components compose other components under the hood and Chakra UI allows you to do the same.
+
+### Light and Dark UI
+
+Optimized for multiple color modes out of the box!

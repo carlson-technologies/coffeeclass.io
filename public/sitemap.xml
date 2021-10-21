@@ -23,10 +23,6 @@
   </url>
 
   <url>
-    <loc>https://www.coffeeclass.io/learn/python</loc>
-  </url>
-
-  <url>
     <loc>https://www.coffeeclass.io/legal/disclaimer</loc>
   </url>
 
@@ -243,28 +239,6 @@
   </url>
 
   <url>
-    <loc
-      >https://www.coffeeclass.io/learn/python/installing-and-using-an-ide</loc
-    >
-  </url>
-
-  <url>
-    <loc>https://www.coffeeclass.io/learn/python/introduction-to-python</loc>
-  </url>
-
-  <url>
-    <loc
-      >https://www.coffeeclass.io/learn/chakra-ui/chakra-ui-basic-components</loc
-    >
-  </url>
-
-  <url>
-    <loc
-      >https://www.coffeeclass.io/learn/chakra-ui/chakra-ui-component-examples</loc
-    >
-  </url>
-
-  <url>
     <loc>https://www.coffeeclass.io/learn/chakra-ui/chakra-ui-custom-theme</loc>
   </url>
 
@@ -276,6 +250,10 @@
     <loc
       >https://www.coffeeclass.io/learn/chakra-ui/chakra-ui-default-theme</loc
     >
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/learn/chakra-ui/course-introduction</loc>
   </url>
 
   <url>

@@ -21,7 +21,6 @@ import {
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import SnippetStep from '../components/SnippetStep'
-import ChakraUILearnCards from './ChakraUILearnCards'
 import ExampleColorModeComponent from '../components/ExampleColorModeComponent'
 import KeyboardKey from '../components/KeyboardKey'
 import FloatUpDivAnimation from '../components/FloatUpDivAnimation'
@@ -71,11 +70,17 @@ const CustomLink = (props) => {
 }
 
 const CustomListItem = (props) => {
+    const { colorMode } = useColorMode()
+    const color = {
+        light: 'gray.700',
+        dark: 'gray.300'
+    }
     return (
         <ListItem
             my={2}
             fontSize="xl"
             key={props.children}
+            color={color[colorMode]}
         >
             {props.children}
         </ListItem>
@@ -154,7 +159,6 @@ const MDXComponents = {
     td: (props) => <Td {...props} />,
     th: (props) => <Th {...props} />,
     SnippetStep,
-    ChakraUILearnCards,
     ExampleColorModeComponent,
     KeyboardKey,
     FloatUpDivAnimation,

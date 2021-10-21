@@ -8,6 +8,8 @@ import {
     Box,
     useColorModeValue,
     Image,
+    Badge,
+    Wrap,
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import lessons from "../../../configs/learn/chakra-ui.json"
@@ -51,20 +53,31 @@ export default function ChakraUI() {
                                 <Image src={lessons.image} w={100} justifySelf="center" alt={`Image of ${lessons.title} Logo`} />
                             </Flex>
                             <Heading as="h1" size="2xl" mb={4} mt={5} textAlign="center">{lessons.title}</Heading>
-                            <Text mb={2} textAlign="center">{data.length} modules / 6 hours</Text>
                             <Text mb={8} textAlign="center" fontSize="large">
                                 {lessons.description}
                             </Text>
-                            <Heading size="md" mb={2}>🚗 Road Map</Heading>
                         </Box>
+                        <Text fontSize="lg" mb={2} ml={2}>🚗 Road Map / {data.length} modules</Text>
                         {data.map((item, index) => (
                             <NextLink href={item.path} passHref>
-                                <Link href={item.path} _hover={{ textDecor: 'none' }}>
+                                <Link 
+                                href={item.path} 
+                                _hover={{ textDecor: 'none' }}
+                                    as="button"
+                                    textAlign="left"
+                                    disabled={item.tag == "coming soon" && true}
+                                    _disabled={{
+                                        opacity: 0.5,
+                                        cursor: "not-allowed"
+                                    }}
+                                    w="100%"
+                                >
                                     <Flex
                                         _hover={{
                                             transform: "scale(1.05)",
+                                            boxShadow: useColorModeValue("0px 8px 26px rgba(0, 0, 0, 0.25)", "0px 8px 26px rgba(255, 255, 255, 0.1)"),
                                         }}
-                                        transition="transform .5s"
+                                        transition="transform .5s, box-shadow .5s"
                                         key={index}
                                         bgColor={useColorModeValue("#fff", "#15161a")}
                                         border="1px solid"
@@ -77,6 +90,7 @@ export default function ChakraUI() {
                                         <Flex flexDir="column">
                                             <Heading as="h2" size="md">{item.title}</Heading>
                                             <Text mt={1}>{item.description}</Text>
+                                            <Text>{item.tag == "coming soon" && <Badge>Coming Soon!</Badge>}</Text>
                                         </Flex>
                                     </Flex>
                                 </Link>
@@ -85,6 +99,6 @@ export default function ChakraUI() {
                     </Box>
                 </Flex>
             </Stack>
-        </Container >
+        </Container>
     )
 }

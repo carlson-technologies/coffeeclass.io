@@ -36,10 +36,6 @@ const prettier = require('prettier');
             </url>
 
             <url>
-                <loc>https://www.coffeeclass.io/learn/python</loc>
-            </url>
-
-            <url>
                 <loc>https://www.coffeeclass.io/legal/disclaimer</loc>
             </url>
 

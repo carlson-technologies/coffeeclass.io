@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useRouter } from "next/router"
-import pythonSidebar from "../configs/learn/python.json"
 import chakraUISidebar from "../configs/learn/chakra-ui.json"
 import {
     Box,
@@ -19,7 +18,6 @@ import Ad from '../components/Ad'
 
 export function getRoutes(slug) {
     const configMap = {
-        "/learn/python": pythonSidebar,
         "/learn/chakra-ui": chakraUISidebar
     }
 
@@ -54,10 +52,10 @@ const Sidebar = ({ src, alt }) => {
                 overscrollBehavior: "contain",
             }}
             w="300px"
-            top="4em"
+            top="2em"
             maxH="calc(100vh - 5em)"
             h="fit-content"
-            mt="5em"
+            mt="3em"
             overflowY="auto"
             flexShrink={0}
         >
@@ -66,13 +64,17 @@ const Sidebar = ({ src, alt }) => {
             >
                 <Flex flexDirection="column" alignItems="center">
                     <SkeletonCircle isLoaded={loaded}>
-                        <Image
-                            src={`/learn-images/language-logo/${src}`}
-                            alt={alt}
-                            height={35}
-                            width={35}
-                            onLoad={() => setLoaded(true)}
-                        />
+                        <NextLink href="/learn/chakra-ui" passHref>
+                            <Link href="/learn/chakra-ui">
+                                <Image
+                                    src={`/learn-images/language-logo/${src}`}
+                                    alt={alt}
+                                    height={35}
+                                    width={35}
+                                    onLoad={() => setLoaded(true)}
+                                />
+                            </Link>
+                        </NextLink>
                     </SkeletonCircle>
                     <Heading as="h4" size="md" mt={4}>Modules 🔖</Heading>
                 </Flex>
@@ -84,7 +86,17 @@ const Sidebar = ({ src, alt }) => {
                             href={r.path}
                             _hover={{
                                 textDecoration: 'none'
-                            }}>
+                            }}
+                            my={1}
+                            as="button"
+                            textAlign="left"
+                            disabled={r.tag == "coming soon" && true}
+                            _disabled={{
+                                opacity: 0.5,
+                                cursor: "not-allowed"
+                            }}
+                            w="100%"
+                        >
                             <Box
                                 _hover={{
                                     textDecoration: 'none',
@@ -92,14 +104,13 @@ const Sidebar = ({ src, alt }) => {
                                 }}
                                 transition="background-color .15s ease-in-out"
                                 w="100%"
-                                my={2}
-                                borderRadius={5}
-                                p={1}
+                                borderRadius={2}
+                                p={2}
                                 backgroundColor={r.path.includes(router.query.slug) ? sideBarActiveColor[colorMode] : null}
                             >
                                 <Flex justify="space-between" align="center">
                                     <Text py="1px" pl={1}>{r.title}</Text>
-                                    {r.new && <Badge colorScheme="purple">New!</Badge>}
+                                    {r.tag && <Badge colorScheme={r.tag == "new" ? "green" : "purple"}>{r.tag}</Badge>}
                                 </Flex>
                             </Box>
                         </Link>

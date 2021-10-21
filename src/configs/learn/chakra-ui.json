@@ -1,29 +1,85 @@
 {
   "title": "Chakra UI",
-  "description": "Learn the Chakra UI css framework in this beginner and intermediate learn series. Start by adding Chakra UI and get an overview of it's components. Then, we use it to build multiple modern, responsive layouts.",
-  "free": true,
+  "description": "Learn Chakra UI - a modular and accessible component library for React apps. Learn how to add Chakra UI to a Next.js website, get an overview of it's components, use it to build a modern, responsive landing page, and more.",
   "image": "/learn-images/language-logo/chakra-ui.png",
   "routes": [
     {
-      "title": "What Is Chakra UI?",
-      "description": "Introduction to Chakra UI - a simple, modular and accessible component library for React based apps.",
-      "path": "/learn/chakra-ui/what-is-chakra-ui"
+      "title": "Course Introduction",
+      "description": "An introduction to this course.",
+      "path": "/learn/chakra-ui/course-introduction",
+      "tag": "new"
     },
     {
-      "title": "Getting Started",
-      "path": "/learn/chakra-ui/getting-started-with-chakra-ui"
+      "title": "What Is Chakra UI?",
+      "description": "Introduction to Chakra UI - a simple, modular and accessible component library for React based apps.",
+      "path": "/learn/chakra-ui/what-is-chakra-ui",
+      "tag": "new"
+    },
+    {
+      "title": "Installing + Getting Started",
+      "description": "Install Chakra UI in Next.js, React, and Gatsby.",
+      "path": "/learn/chakra-ui/getting-started-with-chakra-ui",
+      "tag": "new"
     },
     {
       "title": "Default Theme",
-      "path": "/learn/chakra-ui/chakra-ui-default-theme"
+      "description": "Learn how to use the default theme.",
+      "path": "/learn/chakra-ui/chakra-ui-default-theme",
+      "tag": "new"
     },
     {
       "title": "Custom Theme",
-      "path": "/learn/chakra-ui/chakra-ui-custom-theme"
+      "description": "Learn how to create a custom theme with custom colors, fonts, and more.",
+      "path": "/learn/chakra-ui/chakra-ui-custom-theme",
+      "tag": "new"
     },
     {
       "title": "Dark Mode",
-      "path": "/learn/chakra-ui/chakra-ui-dark-mode"
+      "description": "Add dark mode to your site in just a few lines of code.",
+      "path": "/learn/chakra-ui/chakra-ui-dark-mode",
+      "tag": "new"
+    },
+    {
+      "title": "Basic Components",
+      "description": "",
+      "path": "",
+      "tag": "coming soon"
+    },
+    {
+      "title": "CSS Grid Using Grid Component",
+      "description": "",
+      "path": "",
+      "tag": "coming soon"
+    },
+    {
+      "title": "CSS Flex Box Using Flex Component",
+      "description": "",
+      "path": "",
+      "tag": "coming soon"
+    },
+    {
+      "title": "Animating With Framer Motion",
+      "description": "",
+      "path": "",
+      "tag": "coming soon"
+    },
+    {
+      "title": "Theme Extensions",
+      "description": "",
+      "path": "",
+      "tag": "coming soon"
+    },
+    {
+      "title": "SEO",
+      "description": "",
+      "path": "",
+      "tag": "coming soon"
+    },
+    {
+      "title": "Build A Landing Page",
+      "description": "",
+      "path": "",
+      "tag": "coming soon"
     }
   ]
 }

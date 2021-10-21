@@ -3,68 +3,77 @@ title: "Getting Started"
 publishedAt: "2021-08-05"
 description: "Add Chakra UI to your website and write some code!"
 author: "Benjamin Carlson"
-lastUpdated: "2021-08-05"
+lastUpdated: "2021-10-20"
 type: learn
 language: chakra-ui
 ---
 
-## Installation
+## Installing Chakra UI
 
-To install Chakra UI on your website, you will need to add the packages either via [yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/). In the root of your application, run the following command:
+To install Chakra UI on your website (regardless of the framework), you will need to add the packages either via [yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/). Navigate to the root of your project.
+
+### Installing Chakra UI Via Yarn
 
 ```bash
-npm i @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^4
-
-or
-
 yarn add @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^4
 ```
 
-As you can see, we are also installing `@emotion/react`, `@emotion/styled` and `framer-motion`. This is because Chakra UI depends upon them. No need to worry about these extra dependencies for now.
+### Installing Chakra UI Via NPM
+
+```bash
+npm i @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^4
+```
+
+We are also installing `@emotion/react`, `@emotion/styled` and `framer-motion` because Chakra UI depends upon them.
 
 ## Chakra Provider
 
-Now that we have the packages installed, we need to wrap our app with `ChakraProvider`. Please follow along with your framework below as each one is different.
+Now that we have the packages installed, we need to wrap our app with ChakraProvider. Please follow along with your framework below as each one is different.
 
-<details><summary>React</summary>
-<p>In the root of your application:</p>
+### React And ChakraProvider
 
-```javascript
-import * as React from "react";
+1. Navigate to the root of your react app.
+2. Add the following code:
+    
+    ```bash
+    import * as React from "react";
+    
+    // 1. import `ChakraProvider` component
+    import { ChakraProvider } from "@chakra-ui/react";
+    
+    function App({ Component }) {
+      // 2. Use at the root of your app
+      return (
+        <ChakraProvider>
+          <Component />
+        </ChakraProvider>
+      );
+    }
+    ```
+    
 
-// 1. import `ChakraProvider` component
-import { ChakraProvider } from "@chakra-ui/react";
+### Next.js And ChakraProvider
 
-function App({ Component }) {
-  // 2. Use at the root of your app
-  return (
-    <ChakraProvider>
-      <Component />
-    </ChakraProvider>
-  );
-}
-```
-</details>
+1. Open `_app.js`
+2. Add the following code:
+    
+    ```bash
+    import { ChakraProvider } from "@chakra-ui/react"
+    
+    function MyApp({ Component, pageProps }) {
+      return (
+        <ChakraProvider>
+          <Component {...pageProps} />
+        </ChakraProvider>
+      )
+    }
+    export default MyApp
+    ```
+    
 
-<details><summary>Next.js</summary>
-<p>In <code>_app.js</code>:</p>
+### Gatsby And ChakraProvider
 
-```javascript:_app.js
-import { ChakraProvider } from "@chakra-ui/react"
-
-function MyApp({ Component, pageProps }) {
-  return (
-    <ChakraProvider>
-      <Component {...pageProps} />
-    </ChakraProvider>
-  )
-}
-export default MyApp
-```
-</details>
-
-<details><summary>Gatsby</summary>
-<p>Add the <code>@chakra-ui/gatsby-plugin</code>:</p>
+1. Add the `@chakra-ui/gatsby-plugin`
 
 ```bash
 npm i @chakra-ui/gatsby-plugin
@@ -73,6 +82,37 @@ npm i @chakra-ui/gatsby-plugin
 
 yarn add @chakra-ui/gatsby-plugin
 ```
-</details>
 
 🎉 Chakra UI is now ready to use! 🎉
+
+## Optional Packages
+
+There are 2 optional packages you can install.
+
+### Chakra Icons
+
+Chakra UI does have its own icon pack! Although it is small, it offers some common icons that look minimalistic. To use these icons we must install the icons.
+
+```bash
+yarn add @chakra-ui/icons
+
+// or
+
+npm i @chakra-ui/icons
+```
+
+### Theme Tools
+
+This package is meant to make it easier for you to customize components or build your own design system. This is an advanced feature and in most cases is not necessary. However, if you are so inclined, you can add the package, again via yarn or npm.
+
+```bash
+yarn add @chakra-ui/theme-tools
+
+// or
+
+npm i @chakra-ui/theme-tools
+```
+
+## Using Chakra UI With TypeScript
+
+According to the Chakra UI docs, when using TypeScript a minimum TypeScript version of `4.1.0` is required.

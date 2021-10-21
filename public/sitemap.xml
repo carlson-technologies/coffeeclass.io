@@ -70,6 +70,12 @@
 
   <url>
     <loc
+      >https://www.coffeeclass.io/tutorials/todo-app-nextjs-chakraui-firebase</loc
+    >
+  </url>
+
+  <url>
+    <loc
       >https://www.coffeeclass.io/snippets/add-comments-to-nextjs-website</loc
     >
   </url>
@@ -110,6 +116,10 @@
 
   <url>
     <loc>https://www.coffeeclass.io/snippets/flutter-bottom-navigation-bar</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/snippets/generate-dynamic-sitemap</loc>
   </url>
 
   <url>
@@ -227,6 +237,10 @@
   </url>
 
   <url>
+    <loc>https://www.coffeeclass.io/tags/seo</loc>
+  </url>
+
+  <url>
     <loc>https://www.coffeeclass.io/tags/splitbee</loc>
   </url>
 
@@ -255,13 +269,11 @@
   <url>
     <loc>https://www.coffeeclass.io/learn/chakra-ui/course-introduction</loc>
   </url>
-
   <url>
     <loc
       >https://www.coffeeclass.io/learn/chakra-ui/getting-started-with-chakra-ui</loc
     >
   </url>
-
   <url>
     <loc>https://www.coffeeclass.io/learn/chakra-ui/what-is-chakra-ui</loc>
   </url>

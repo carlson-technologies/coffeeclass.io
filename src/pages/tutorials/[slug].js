@@ -6,6 +6,7 @@ import { MDXRemote } from 'next-mdx-remote'
 import path from 'path'
 import Layout from '../../layouts/tutorial'
 import { tutorialsFilePaths, TUTORIALS_PATH } from '../../scripts/mdx-utils'
+import { snippetsFilePaths, SNIPPETS_PATH } from '../../scripts/mdx-utils'
 import MDXComponents from '../../components/MDXComponents'
 import mdxPrism from 'mdx-prism'
 import readingTime from 'reading-time'
@@ -19,6 +20,7 @@ import {
     Avatar,
     Button,
     Skeleton,
+    Box,
 } from '@chakra-ui/react'
 import Comments from '../../components/Comments'
 import getHeaders from '../../scripts/get-headings'
@@ -26,8 +28,9 @@ import { useRouter } from 'next/router'
 import getAuthorSlug from '../../scripts/get-author-slug'
 import NextImage from 'next/image'
 import Ad from '../../components/Ad'
+import RelatedPosts from '../../components/RelatedPosts'
 
-export default function PostPage({ source, frontMatter }) {
+export default function PostPage({ source, frontMatter, posts }) {
     const { colorMode } = useColorMode()
     const color = {
         light: 'gray.600',
@@ -44,28 +47,30 @@ export default function PostPage({ source, frontMatter }) {
                 alignSelf="center"
                 as="heading"
             >
-                <Heading
-                    mt={[10, 10, 10, 10, 0, 0]}
-                    as="h1"
-                    size="xl"
-                    textAlign={["left", "left", "left", "center", "center", "center"]}
-                >
-                    {frontMatter.title}
-                </Heading>
-                <Text
-                    fontSize="xl"
-                    mt={2}
-                    mb={4}
-                    color={color[colorMode]}
-                    textAlign={["left", "left", "left", "center", "center", "center"]}
-                >
-                    {frontMatter.description}
-                </Text>
+                <Flex flexDir="column" maxW={800} m="auto">
+                    <Heading
+                        mt={[10, 10, 10, 10, 0, 0]}
+                        as="h1"
+                        size="xl"
+                        textAlign={["left", "left", "left", "center", "center", "center"]}
+                    >
+                        {frontMatter.title}
+                    </Heading>
+                    <Text
+                        fontSize="xl"
+                        mt={2}
+                        mb={4}
+                        color={color[colorMode]}
+                        textAlign={["left", "left", "left", "center", "center", "center"]}
+                    >
+                        {frontMatter.description}
+                    </Text>
+                </Flex>
                 <Flex justify="center">
                     <Skeleton isLoaded={loaded}>
                         <NextImage
-                            width={650}
-                            height={350}
+                            width={800}
+                            height={400}
                             objectFit="cover"
                             src={`/content/tutorials/${slug}/${frontMatter.featureImg}`}
                             alt={frontMatter.title}
@@ -80,9 +85,14 @@ export default function PostPage({ source, frontMatter }) {
                 alignSelf="center"
                 maxW="800px"
                 id="tutorial-content"
+                px={4}
             >
-                <Ad />
+                {/* <Ad /> */}
                 <MDXRemote {...source} components={MDXComponents} />
+            </Flex>
+            <Divider mt={12} mb={4} w="30%" alignSelf="center" />
+            <Flex flexDir="column" m="auto" my={10}>
+                <RelatedPosts tags={frontMatter.tags} posts={posts} currPostTitle={frontMatter.title} />
             </Flex>
             <Flex
                 justify="center"
@@ -141,8 +151,21 @@ export const getStaticProps = async ({ params }) => {
         scope: data,
     })
 
+    // all snippets
+    const posts = snippetsFilePaths.map((filePath) => {
+        const source = fs.readFileSync(path.join(SNIPPETS_PATH, filePath))
+        const { content, data } = matter(source)
+
+        return {
+            content,
+            data,
+            filePath,
+        }
+    })
+
     return {
         props: {
+            posts,
             source: mdxSource,
             frontMatter: {
                 readingTime: readingTime(content),

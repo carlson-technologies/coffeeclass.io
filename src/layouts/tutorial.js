@@ -101,27 +101,34 @@ export default function Layout({ frontMatter, children }) {
                         flexDir="column"
                         mt={10}
                         display={['none', 'none', 'none', 'none', 'none', 'flex']}
+                        overflowY="auto"
+                        maxH="calc(100vh - 5em)"
+                        h="fit-content"
                     >
-                        <Link href={frontMatter.youtubeId} _hover={{ textDecor: 'none' }} mt={8} isExternal>
-                            <Button
-                                isFullWidth
-                                fontSize="sm"
-                                leftIcon={<YoutubeIcon fontSize="xl" />}
-                                bgColor={bgColor[colorMode]}
-                            >
-                                Watch on YouTube
-                            </Button>
-                        </Link>
-                        <Link href={frontMatter.githubURL} _hover={{ textDecor: 'none' }} my={2} isExternal>
-                            <Button
-                                isFullWidth
-                                fontSize="sm"
-                                leftIcon={<GitHubIcon fontSize="xl" />}
-                                bgColor={bgColor[colorMode]}
-                            >
-                                View Code
-                            </Button>
-                        </Link>
+                        {frontMatter.youtubeId &&
+                            <Link href={frontMatter.youtubeId} _hover={{ textDecor: 'none' }} mt={8} isExternal>
+                                <Button
+                                    isFullWidth
+                                    fontSize="sm"
+                                    leftIcon={<YoutubeIcon fontSize="xl" />}
+                                    bgColor={bgColor[colorMode]}
+                                >
+                                    Watch on YouTube
+                                </Button>
+                            </Link>}
+
+                        {frontMatter.githubURL &&
+                            <Link href={frontMatter.githubURL} _hover={{ textDecor: 'none' }} my={2} isExternal>
+                                <Button
+                                    isFullWidth
+                                    fontSize="sm"
+                                    leftIcon={<GitHubIcon fontSize="xl" />}
+                                    bgColor={bgColor[colorMode]}
+                                >
+                                    View Code
+                                </Button>
+                            </Link>}
+
                         <Flex bgColor={bgColor[colorMode]} flexDir="column" p={3} borderRadius={10} mb={2}>
                             <List>
                                 <ListItem color={color[colorMode]} fontSize="sm">
@@ -170,6 +177,13 @@ export default function Layout({ frontMatter, children }) {
                                     On this page
                                 </Heading>
                                 {frontMatter?.headers.map((h) => {
+
+                                    for (let i = 0; i < h.text.length; i++) {
+                                        if (h.text[i] == '`') {
+                                            h.text = h.text.replace('`', '')
+                                        }
+                                    }
+
                                     return (
                                         <Heading
                                             as="h4"

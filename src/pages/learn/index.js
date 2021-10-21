@@ -118,7 +118,7 @@ export default function Index() {
                                         <Heading textAlign="center" mx={2} mb={2} as="h2">{item.title}</Heading>
                                         <Text textAlign="center" mx={2}>{item.description}</Text>
                                         <Divider borderColor={useColorModeValue("blackAlpha.300", "gray.300")} my={4} />
-                                        <Heading as="h3" size="sm" textTransform="uppercase" color={useColorModeValue("gray.600", "gray.400")} mb={2}>First Modules</Heading>
+                                        {/* <Heading as="h3" size="sm" textTransform="uppercase" color={useColorModeValue("gray.600", "gray.400")} mb={2}>First Modules</Heading> */}
                                         <OrderedList spacing={4}>
                                             {item['first-5-lessons'].map((lesson, index) => {
                                                 return (

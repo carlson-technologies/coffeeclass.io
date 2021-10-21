@@ -23,10 +23,6 @@
   </url>
 
   <url>
-    <loc>https://www.coffeeclass.io/learn/python</loc>
-  </url>
-
-  <url>
     <loc>https://www.coffeeclass.io/legal/disclaimer</loc>
   </url>
 
@@ -70,20 +66,6 @@
 
   <url>
     <loc>https://www.coffeeclass.io/authors/sumit-kumar</loc>
-  </url>
-
-  <url>
-    <loc>https://www.coffeeclass.io/tutorials/add-firebase-to-nextjs</loc>
-  </url>
-
-  <url>
-    <loc>https://www.coffeeclass.io/tutorials/java-inheritance-tutorial</loc>
-  </url>
-
-  <url>
-    <loc
-      >https://www.coffeeclass.io/tutorials/nextjs-crash-course-build-a-developer-portfolio-website</loc
-    >
   </url>
 
   <url>
@@ -166,6 +148,20 @@
 
   <url>
     <loc>https://www.coffeeclass.io/snippets/using-react-useeffect</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/tutorials/add-firebase-to-nextjs</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/tutorials/java-inheritance-tutorial</loc>
+  </url>
+
+  <url>
+    <loc
+      >https://www.coffeeclass.io/tutorials/nextjs-crash-course-build-a-developer-portfolio-website</loc
+    >
   </url>
 
   <url>
@@ -257,28 +253,6 @@
   </url>
 
   <url>
-    <loc
-      >https://www.coffeeclass.io/learn/python/installing-and-using-an-ide</loc
-    >
-  </url>
-
-  <url>
-    <loc>https://www.coffeeclass.io/learn/python/introduction-to-python</loc>
-  </url>
-
-  <url>
-    <loc
-      >https://www.coffeeclass.io/learn/chakra-ui/chakra-ui-basic-components</loc
-    >
-  </url>
-
-  <url>
-    <loc
-      >https://www.coffeeclass.io/learn/chakra-ui/chakra-ui-component-examples</loc
-    >
-  </url>
-
-  <url>
     <loc>https://www.coffeeclass.io/learn/chakra-ui/chakra-ui-custom-theme</loc>
   </url>
 
@@ -293,11 +267,13 @@
   </url>
 
   <url>
+    <loc>https://www.coffeeclass.io/learn/chakra-ui/course-introduction</loc>
+  </url>
+  <url>
     <loc
       >https://www.coffeeclass.io/learn/chakra-ui/getting-started-with-chakra-ui</loc
     >
   </url>
-
   <url>
     <loc>https://www.coffeeclass.io/learn/chakra-ui/what-is-chakra-ui</loc>
   </url>

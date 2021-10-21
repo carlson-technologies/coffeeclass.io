@@ -25,7 +25,6 @@ import matter from 'gray-matter'
 import path from 'path'
 import { snippetsFilePaths, SNIPPETS_PATH } from '../scripts/mdx-utils'
 import { tutorialsFilePaths, TUTORIALS_PATH } from '../scripts/mdx-utils'
-import { learnPythonFilePaths, LEARN_PYTHON_PATH } from '../scripts/mdx-utils'
 import { learnChakraUIFilePaths, LEARN_CHAKRAUI_PATH } from '../scripts/mdx-utils'
 import { SearchIcon } from '@chakra-ui/icons'
 import getType from '../scripts/get-type'
@@ -34,14 +33,13 @@ import getAuthorSlug from '../scripts/get-author-slug'
 
 const url = 'https://www.coffeeclass.io/search'
 const title = 'Search | coffeeclass.io'
-const description = 'Search free programming tutorials on beginner Python, intermediate Python, advanced Python, JavaScript, algorithms, Next.js, react, and more all for free on coffeeclass.io.'
+const description = 'Search free programming tutorials on JavaScript, algorithms, Next.js, React, Chakra UI, and more all for free on coffeeclass.io.'
 
-export default function Search({ snippets, tutorials, learn_python, learn_chakraui }) {
+export default function Search({ snippets, tutorials, learn_chakraui }) {
     const [searchValue, setSearchValue] = useState('')
     const allPosts = []
     snippets.map(s => { allPosts.push(s) })
     tutorials.map(t => { allPosts.push(t) })
-    learn_python.map(l_p => { allPosts.push(l_p) })
     learn_chakraui.map(l_c => { allPosts.push(l_c) })
 
     allPosts.sort((a, b) => {
@@ -205,17 +203,6 @@ export function getStaticProps() {
         }
     })
 
-    const learn_python = learnPythonFilePaths.map((filePath) => {
-        const source = fs.readFileSync(path.join(LEARN_PYTHON_PATH, filePath))
-        const { content, data } = matter(source)
-
-        return {
-            content,
-            data,
-            filePath,
-        }
-    })
-
     const learn_chakraui = learnChakraUIFilePaths.map((filePath) => {
         const source = fs.readFileSync(path.join(LEARN_CHAKRAUI_PATH, filePath))
         const { content, data } = matter(source)
@@ -227,5 +214,5 @@ export function getStaticProps() {
         }
     })
 
-    return { props: { tutorials, snippets, learn_python, learn_chakraui } }
+    return { props: { tutorials, snippets, learn_chakraui } }
 }

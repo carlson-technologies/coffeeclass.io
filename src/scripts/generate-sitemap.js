@@ -1,5 +1,4 @@
 const fs = require('fs');
-
 const globby = require('globby');
 const prettier = require('prettier');
 
@@ -34,10 +33,6 @@ const prettier = require('prettier');
 
             <url>
                 <loc>https://www.coffeeclass.io/learn/chakra-ui</loc>
-            </url>
-
-            <url>
-                <loc>https://www.coffeeclass.io/learn/python</loc>
             </url>
 
             <url>

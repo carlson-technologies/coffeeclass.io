@@ -1,5 +1,4 @@
 import { useRouter } from "next/router"
-import pythonSidebar from "../configs/learn/python.json"
 import chakraUISidebar from "../configs/learn/chakra-ui.json"
 import {
     Flex,
@@ -14,7 +13,6 @@ import NextLink from 'next/link'
 export function getRoutes(slug) {
 
     const configMap = {
-        "/learn/python": pythonSidebar,
         "/learn/chakra-ui": chakraUISidebar
     }
 

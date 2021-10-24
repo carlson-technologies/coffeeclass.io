@@ -11,7 +11,7 @@ import {
     Button,
     ListItem,
     ListIcon,
-    List
+    List,
 } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import SEO from '../components/SEO'
@@ -19,14 +19,10 @@ import { YoutubeIcon, GitHubIcon } from '../components/CustomIcons'
 import NextLink from 'next/link'
 import { parseISO, format } from 'date-fns'
 import { ChevronUpIcon, ArrowForwardIcon } from '@chakra-ui/icons'
-import TimeAgo from 'javascript-time-ago'
-import en from 'javascript-time-ago/locale/en'
 
 export default function Layout({ frontMatter, children }) {
     const router = useRouter()
     const slug = router.asPath
-    TimeAgo.addLocale(en)
-    const timeAgo = new TimeAgo('en-US')
 
     const { colorMode } = useColorMode()
     const color = {
@@ -37,48 +33,7 @@ export default function Layout({ frontMatter, children }) {
         light: 'gray.100',
         dark: 'whiteAlpha.100'
     }
-    const [activeHeader, setActiveHeader] = useState(frontMatter?.headers[0]?.text) // set to the first header to avoid a small window when the page loads where there is no active header
     const [width, setWidth] = useState(0)
-
-    const handleScroll = () => {
-        let scrollTop = window.scrollY
-        let docHeight = document.body.offsetHeight
-        let winHeight = window.innerHeight
-        let scrollPercent = scrollTop / (docHeight - winHeight)
-        let scrollPercentRounded = Math.round(scrollPercent * 100)
-        setWidth(scrollPercentRounded)
-    }
-
-    const handleIntersectionObserver = () => {
-        let options = {
-            root: null,
-            rootMargin: '-350px',
-            threshold: 1.0
-        }
-        // grab all heading tags for the tutorial
-        const targets = document.getElementById('tutorial-content').querySelectorAll("h2, h3, h4, h5, h6")
-        const activeHeader = (target) => {
-            const headerObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        setActiveHeader(entry.target.getAttribute("id"))
-                        observer.disconnect()
-                    }
-                })
-            }, options)
-
-            headerObserver.observe(target)
-        }
-        targets.forEach(activeHeader)
-    }
-
-    useEffect(() => {
-        handleIntersectionObserver()
-        window.addEventListener('scroll', handleScroll)
-        return () => {
-            window.removeEventListener('scroll', handleScroll)
-        }
-    })
 
     return (
         <Container>
@@ -89,11 +44,12 @@ export default function Layout({ frontMatter, children }) {
                     flexDir="column"
                     mx={[0, 0, 0, 0, 1, 1]}
                     px={[4, 4, 4, 2, 1, 4]}
-                    w={frontMatter.headers ? ["100%", "100%", "100%", "100%", "100%", "calc(100% - 250px)"] : '100%'}
+                    // w={frontMatter.headers ? ["100%", "100%", "100%", "100%", "100%", "calc(100% - 250px)"] : '100%'}
+                    w="100%"
                 >
                     {children}
                 </Flex>
-                <aside>
+                {/* <aside>
                     <Flex
                         pos="sticky"
                         top={10}
@@ -188,11 +144,11 @@ export default function Layout({ frontMatter, children }) {
                                         <Heading
                                             as="h4"
                                             size="sm"
-                                            fontWeight={activeHeader == h.text ? "bold" : "normal"}
                                             my={1}
                                             key={h.text}
                                             transition="margin .3s ease-in-out"
                                             _hover={{ ml: "2" }}
+                                            fontWeight="normal"
                                         >
                                             <Link href={`#${h.text}`} ml={(h.level - 2) * 2}>{h.text}</Link>
                                         </Heading>
@@ -212,7 +168,7 @@ export default function Layout({ frontMatter, children }) {
                             </Button>
                         </Link>
                     </Flex>
-                </aside>
+                </aside> */}
             </Flex>
         </Container>
     )

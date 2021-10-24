@@ -25,7 +25,7 @@ import ExampleColorModeComponent from '../components/ExampleColorModeComponent'
 import KeyboardKey from '../components/KeyboardKey'
 import FloatUpDivAnimation from '../components/FloatUpDivAnimation'
 import FloatUpDivAnimationNoHeight from './FloatUpDivAnimationNoHeight'
-
+import EmbeddedVideo from './EmbeddedVideo'
 import Image from 'next/image'
 
 const Quote = (props) => {
@@ -163,6 +163,7 @@ const MDXComponents = {
     KeyboardKey,
     FloatUpDivAnimation,
     FloatUpDivAnimationNoHeight,
+    EmbeddedVideo,
 }
 
 export default MDXComponents

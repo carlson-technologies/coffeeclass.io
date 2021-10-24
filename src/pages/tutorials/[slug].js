@@ -19,16 +19,30 @@ import {
     useColorMode,
     Avatar,
     Button,
-    Skeleton,
     Box,
+    AspectRatio,
+    Image,
+    Accordion,
+    AccordionItem,
+    AccordionButton,
+    AccordionPanel,
+    AccordionIcon,
+    useColorModeValue,
+    Wrap,
+    Tooltip,
+    Tag,
 } from '@chakra-ui/react'
 import Comments from '../../components/Comments'
 import getHeaders from '../../scripts/get-headings'
 import { useRouter } from 'next/router'
 import getAuthorSlug from '../../scripts/get-author-slug'
-import NextImage from 'next/image'
+import EmbeddedVideo from '../../components/EmbeddedVideo'
 import Ad from '../../components/Ad'
 import RelatedPosts from '../../components/RelatedPosts'
+import { getEmbedId } from '../../scripts/get-embed-id'
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en'
+import NextLink from 'next/link'
 
 export default function PostPage({ source, frontMatter, posts }) {
     const { colorMode } = useColorMode()
@@ -39,6 +53,9 @@ export default function PostPage({ source, frontMatter, posts }) {
     const [loaded, setLoaded] = useState(false)
     const router = useRouter()
     const slug = router.query.slug
+
+    TimeAgo.addLocale(en)
+    const timeAgo = new TimeAgo('en-US')
     return (
         <Layout frontMatter={frontMatter}>
             <Flex
@@ -66,17 +83,48 @@ export default function PostPage({ source, frontMatter, posts }) {
                         {frontMatter.description}
                     </Text>
                 </Flex>
-                <Flex justify="center">
-                    <Skeleton isLoaded={loaded}>
-                        <NextImage
-                            width={800}
-                            height={400}
-                            objectFit="cover"
-                            src={`/content/tutorials/${slug}/${frontMatter.featureImg}`}
-                            alt={frontMatter.title}
-                            onLoad={() => { setLoaded(true) }}
-                        />
-                    </Skeleton>
+                {frontMatter.youtubeId ?
+                    <Flex justify="center">
+                        <EmbeddedVideo src={getEmbedId(frontMatter.youtubeId)} alt={frontMatter.title} maxW={800} />
+                    </Flex> :
+                    <Flex justify="center">
+                        <AspectRatio w="100%" ratio={16 / 9} maxW={800}>
+                            <Image src={`/content/tutorials/${slug}/${frontMatter.featureImg}`} alt={frontMatter.title} />
+                        </AspectRatio>
+                    </Flex>
+                }
+                <Flex
+                    maxW={800}
+                    mx="auto"
+                    w="100%"
+                    align={["left", "left", "left", "left", "center", "center"]}
+                    justify="center"
+                    my={2}
+                    flexDir={["column", "column", "column", "column", "row", "row"]}
+                >
+                    <Flex align="center" my={[2, 2, 2, 2, 0, 0]}>
+                        <Avatar src={`/authors/${frontMatter.authorImage}`} size="md" mr={2} alt={`Image of ${frontMatter.author}`} />
+                        <Flex flexDir="column" align="left">
+                            <Text>Written By {frontMatter.author}</Text>
+                            <Text color={color[colorMode]}>{frontMatter.authorPosition}</Text>
+                        </Flex>
+                    </Flex>
+                    <Divider orientation="vertical" mx={2} h="80%" alignSelf="center" display={['none', 'none', 'none', 'none', 'flex', 'flex']} />
+                    <Text my={[2, 2, 2, 2, 0, 0]} color={color[colorMode]}>Posted {timeAgo.format(new Date(frontMatter.publishedAt))}</Text>
+                    <Divider orientation="vertical" mx={2} h="80%" alignSelf="center" display={['none', 'none', 'none', 'none', 'flex', 'flex']} />
+                    <Wrap maxW={[null, null, null, null, 250, 250]} mt={[2, 2, 2, 2, 0, 0]}>
+                        {frontMatter.tags?.map((tag) => {
+                            return (
+                                <NextLink key={tag} href={`/tags/${tag}`} _hover={{ textDecor: 'none' }} passHref>
+                                    <Tooltip hasArrow label={`View posts relating to ${tag}`}>
+                                        <Link href={`/tags/${tag}`} _hover={{ textDecor: 'none' }}>
+                                            <Tag borderRadius={10} bgColor={useColorModeValue("gray.100", "whiteAlpha.100")} size="lg" mb={2}>#{tag}</Tag>
+                                        </Link>
+                                    </Tooltip>
+                                </NextLink>
+                            )
+                        })}
+                    </Wrap>
                 </Flex>
             </Flex>
             <Flex
@@ -87,6 +135,50 @@ export default function PostPage({ source, frontMatter, posts }) {
                 id="tutorial-content"
                 px={4}
             >
+                <Accordion allowMultiple mt={4}>
+                    <AccordionItem>
+                        <h2>
+                            <AccordionButton>
+                                <Box flex="1" textAlign="left">
+                                    On this page
+                                </Box>
+                                <AccordionIcon />
+                            </AccordionButton>
+                        </h2>
+                        <AccordionPanel>
+                            {frontMatter?.headers.map((h) => {
+                                return (
+                                    <Link href={`#${h.text}`}>
+                                        <Box
+                                            key={h.text}
+                                            p={1}
+                                            _hover={{
+                                                bgColor: useColorModeValue("gray.100", "gray.800"),
+                                                cursor: "pointer",
+                                            }}
+                                            my={1}
+                                            borderRadius={2}
+                                        >
+                                            <Heading
+                                                as="h4"
+                                                size="sm"
+                                                color={color[colorMode]}
+                                                my={1}
+                                            >
+                                                <Text
+                                                    ml={(h.level - 2) * 6}
+                                                    _hover={{ textDecor: 'none' }}
+                                                >
+                                                    {h.text}
+                                                </Text>
+                                            </Heading>
+                                        </Box>
+                                    </Link>
+                                )
+                            })}
+                        </AccordionPanel>
+                    </AccordionItem>
+                </Accordion>
                 {/* <Ad /> */}
                 <MDXRemote {...source} components={MDXComponents} />
             </Flex>

@@ -55,18 +55,17 @@ export default function Index({ tutorials, snippets }) {
             >
                 <Flex
                     flexDir="column"
-                    mt={50}
                 >
                     <Heading
                         as="h1"
-                        size="xl"
+                        size="2xl"
                         letterSpacing="tight"
                         textTransform="uppercase"
-                        color={headerColor[colorMode]}
+                        my={8}
                     >
-                        All Tags 🏷️
+                        Tags 🏷️
                     </Heading>
-                    <Divider my={6} />
+                    <Divider mb={6} />
                     <Flex
                         wrap="wrap"
                         borderRadius="50%"
@@ -83,7 +82,7 @@ export default function Index({ tutorials, snippets }) {
                                                     opacity: '.5'
                                                 }}
                                             >
-                                                <Tag size="lg" colorScheme="orange">#{tag.tag} ({tag.count})</Tag>
+                                                <Tag size="lg" colorScheme="brand_one">#{tag.tag} ({tag.count})</Tag>
                                             </Link>
                                         </NextLink>
                                     </Flex>

@@ -52,7 +52,7 @@ const Sidebar = ({ src, alt }) => {
                 overscrollBehavior: "contain",
             }}
             w="300px"
-            top="2em"
+            top="5em"
             maxH="calc(100vh - 5em)"
             h="fit-content"
             mt="3em"

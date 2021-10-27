@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from "react"
 
 const BlogAd = () => {
     useEffect(() => {
         try {
-            (window.adsbygoogle = window.adsbygoogle || []).push({});
+            (window.adsbygoogle = window.adsbygoogle || []).push({})
         } catch (err) {
             console.log(err);
         }
     }, [])
 
     return (
-        <div style={{ width: '100%' }}>
+        <div style={{ width: '100%', marginTop: "10px", overflowX: 'scroll' }}>
             <ins class="adsbygoogle"
                 style={{ display: 'block' }}
                 data-ad-format="fluid"

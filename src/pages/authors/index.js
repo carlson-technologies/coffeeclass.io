@@ -46,17 +46,17 @@ export default function Index({ authors }) {
                 spacing={8}
                 px={4}
             >
-                <Flex flexDir="column" mt={50}>
+                <Flex flexDir="column">
                     <Heading
                         as="h1"
-                        size="xl"
+                        size="2xl"
                         letterSpacing="tight"
                         textTransform="uppercase"
-                        color={headerColor[colorMode]}
+                        my={8}
                     >
-                        coffeeclass.io Authors
+                        Authors
                     </Heading>
-                    <Text color={color[colorMode]} mt={2} mb={8} fontSize="lg">All authors on coffeeclass.io.</Text>
+                    <Text color={color[colorMode]} mb={2} fontSize="lg">All authors on coffeeclass.io.</Text>
                     <UnorderedList>
                         {authors.map(author =>
                             <ListItem><Link textDecor="underline" href={`/authors/${author.data.slug}`}>{author.data.name}</Link></ListItem>

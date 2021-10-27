@@ -42,16 +42,15 @@ export default function About() {
             >
                 <Flex
                     flexDir="column"
-                    mt={50}
                     w={["100%", "100%", "100%", "100%", "100%", "60%"]}
                     alignSelf="center"
                 >
                     <Heading
                         as="h1"
-                        size="xl"
+                        size="2xl"
                         letterSpacing="tight"
                         textTransform="uppercase"
-                        color={headerColor[colorMode]}
+                        my={8}
                     >
                         About coffeeclass.io 👋
                     </Heading>

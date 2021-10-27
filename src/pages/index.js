@@ -10,6 +10,7 @@ import {
     Icon,
     useColorMode,
     useColorModeValue,
+    SimpleGrid,
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../components/Container'
@@ -64,7 +65,7 @@ export default function Index({ snippets, tutorials }) {
         .sort(
             (a, b) =>
                 Number(new Date(b.data.publishedAt)) - Number(new Date(a.data.publishedAt))
-        ).slice(0, 4) // we want the newest 4 snippets
+        ).slice(0, 6) // we want the newest 6 snippets
 
     const tutorialsOrderedByPublishedDate = tutorials
         .sort(
@@ -91,7 +92,8 @@ export default function Index({ snippets, tutorials }) {
                 <Flex
                     flexDir="column"
                     as="section"
-                    bgGradient={`linear(to-r,${useColorModeValue("gray.50", "gray.600")},${useColorModeValue("gray.200", "gray.800")},${useColorModeValue("gray.300", "gray.900")})`}
+                    bgColor={useColorModeValue("gray.100", "gray.900")}
+                    // bgGradient={`linear(to-r,${useColorModeValue("gray.50", "gray.600")},${useColorModeValue("gray.200", "gray.800")},${useColorModeValue("gray.300", "gray.900")})`}
                 >
                     <FeaturedTutorial tut={tutorials[0]} />
                 </Flex>
@@ -105,8 +107,8 @@ export default function Index({ snippets, tutorials }) {
                 <Flex
                     as="section"
                     flexDir="column"
-                    mx={4}
-                    px={4}
+                    mx={2}
+                    px={2}
                 >
                     <Heading
                         as="h2"
@@ -118,19 +120,18 @@ export default function Index({ snippets, tutorials }) {
                     >
                         Latest Tutorials
                     </Heading>
-                    <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
-                        {tutorialsOrderedByPublishedDate.map((post) => (
-                            <Tutorial
-                                key={post.data.title}
-                                src={`/content/tutorials/${post.filePath.replace(/\.mdx?$/, '')}/${post.data.featureImg}`}
-                                title={post.data.title}
-                                description={post.data.description}
-                                tags={post.data.tags}
-                                as={`/tutorials/${post.filePath.replace(/\.mdx?$/, '')}`}
-                                href={`/tutorials/[slug]`}
-                            />
-                        ))}
-                    </Grid>
+                    <SimpleGrid minChildWidth={["100%", "100%", "100%", "100%", "400px", "400px"]} spacing="40px">                        {tutorialsOrderedByPublishedDate.map((post) => (
+                        <Tutorial
+                            key={post.data.title}
+                            src={`/content/tutorials/${post.filePath.replace(/\.mdx?$/, '')}/${post.data.featureImg}`}
+                            title={post.data.title}
+                            description={post.data.description}
+                            tags={post.data.tags}
+                            as={`/tutorials/${post.filePath.replace(/\.mdx?$/, '')}`}
+                            href={`/tutorials/[slug]`}
+                        />
+                    ))}
+                    </SimpleGrid>
                 </Flex>
 
                 <Box bgColor={useColorModeValue("gray.100", "gray.800")} mt={8}>
@@ -138,8 +139,8 @@ export default function Index({ snippets, tutorials }) {
                         as="section"
                         flexDir="column"
                         my={8}
-                        mx={4}
-                        px={4}
+                        mx={2}
+                        px={2}
                     >
                         <Heading
                             as="h2"
@@ -150,7 +151,7 @@ export default function Index({ snippets, tutorials }) {
                         >
                             Latest Snippets
                         </Heading>
-                        <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
+                        <SimpleGrid minChildWidth={["100%", "100%", "100%", "100%", "400px", "400px"]} spacing="40px">
                             {snippetsOrderedByPublishedDate.map((post) => (
                                 <Snippet
                                     key={post.data.title}
@@ -165,7 +166,7 @@ export default function Index({ snippets, tutorials }) {
                                     authorName={post.data.author}
                                 />
                             ))}
-                        </Grid>
+                        </SimpleGrid>
                         <Flex justify="center" mt={16}>
                             <Flex _hover={{ cursor: 'pointer' }}>
                                 <NextLink href="/snippets">
@@ -187,8 +188,8 @@ export default function Index({ snippets, tutorials }) {
                     align="center"
                     justify="space-around"
                     mt={20}
-                    mx={4}
-                    px={4}
+                    mx={2}
+                    px={2}
                 >
                     <Flex flexDir="column" w={['100%', '100%', '100%', '100%', 500, 500]}>
                         <Heading
@@ -220,8 +221,8 @@ export default function Index({ snippets, tutorials }) {
                     align="center"
                     justify="space-around"
                     mt={20}
-                    mx={4}
-                    px={4}
+                    mx={2}
+                    px={2}
                 >
                     <Heading
                         as="h2"

@@ -1,8 +1,8 @@
 import {
     Heading,
     Flex,
-    Grid,
     useColorModeValue,
+    SimpleGrid,
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../../components/Container'
@@ -35,18 +35,17 @@ export default function Index({ posts }) {
                     description
                 }}
             />
-            <Flex flexDir="column" mt={50} px={4}>
+            <Flex flexDir="column" px={4}>
                 <Heading
                     as="h1"
-                    size="xl"
+                    size="2xl"
                     letterSpacing="tight"
                     textTransform="uppercase"
-                    color={useColorModeValue("brand_one.600", "brand_one.500")}
-                    mb={4}
+                    my={8}
                 >
-                    coffeeclass.io Tutorials 📚
+                    Tutorials 📚
                 </Heading>
-                <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
+                <SimpleGrid minChildWidth={["100%", "100%", "100%", "100%", "400px", "400px"]} spacing="40px">
                     {tutorialsOrderedByPublishedDate.map((post) => (
                         <Tutorial
                             key={post.data.title}
@@ -58,7 +57,7 @@ export default function Index({ posts }) {
                             href={`/tutorials/[slug]`}
                         />
                     ))}
-                </Grid>
+                </SimpleGrid>
             </Flex>
         </Container>
     )

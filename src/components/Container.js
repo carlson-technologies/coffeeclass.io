@@ -1,23 +1,19 @@
 import {
     Flex,
-    Box
 } from '@chakra-ui/react'
-import NavbarLeft from '../components/Navigation/NavbarLeft'
-import NavbarTop from '../components/Navigation/NavbarTop'
 import Footer from '../components/Navigation/Footer'
+import Navbar from '../components/Navigation/Navbar'
 
 const Container = ({ children }) => {
     return (
         <>
-            <NavbarTop pos="fixed" />
-            <NavbarLeft />
+            <Navbar />
             <Flex
                 flexDirection="column"
             >
                 <Flex
                     display="block"
                     minH="100vh"
-                    ml={[0, 0, 0, 0, 55, 55]}
                     as="main"
                 >
                     {children}

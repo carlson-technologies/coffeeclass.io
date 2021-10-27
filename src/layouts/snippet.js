@@ -7,6 +7,7 @@ import {
   useColorMode,
   Text,
   Skeleton,
+  AspectRatio,
 } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import SEO from '../components/SEO'
@@ -57,7 +58,7 @@ export default function Layout({ frontMatter, children }) {
         flexDir="column"
       >
         <Box
-          bgColor={headerBgColor[colorMode]}
+          // bgColor={headerBgColor[colorMode]}
           display={["block", "block", "block", "block", "block", "flex"]}
           justifyContent="center"
           flexDir="column"
@@ -89,42 +90,48 @@ export default function Layout({ frontMatter, children }) {
                     // This is not the best solution, but it works for now.
                     image.includes('light') ?
                       <Box
-                        w="5em"
-                        mb={4}
-                        mr={2}
                         alignSelf="left"
+                        mb={4}
+                        mr={4}
+                        w={75}
+                        h={75}
                       >
-                        <Skeleton isLoaded={loaded}>
-                          <Image
-                            key={index}
-                            src={`/snippet-images/${image}`}
-                            alt={frontMatter.logoImage}
-                            width="200px"
-                            height="200px"
-                            objectFit="contain"
-                            priority={true}
-                            onLoad={() => setLoaded(true)}
-                          />
-                        </Skeleton>
+                        <AspectRatio ratio={1}>
+                          <Skeleton isLoaded={loaded}>
+                            <Image
+                              key={index}
+                              src={`/snippet-images/${image}`}
+                              alt={frontMatter.logoImage}
+                              width="200px"
+                              height="200px"
+                              objectFit="contain"
+                              priority={true}
+                              onLoad={() => setLoaded(true)}
+                            />
+                          </Skeleton>
+                        </AspectRatio>
                       </Box> :
                       <Box
-                        w="5em"
-                        mb={4}
-                        mr={2}
                         alignSelf="left"
+                        mb={4}
+                        mr={4}
+                        w={75}
+                        h={75}
                       >
-                        <Skeleton isLoaded={loaded}>
-                          <Image
-                            key={index}
-                            src={`/snippet-images/${image}`}
-                            alt={frontMatter.logoImage}
-                            width="200px"
-                            height="200px"
-                            objectFit="cover"
-                            priority={true}
-                            onLoad={() => setLoaded(true)}
-                          />
-                        </Skeleton>
+                        <AspectRatio ratio={1}>
+                          <Skeleton isLoaded={loaded}>
+                            <Image
+                              key={index}
+                              src={`/snippet-images/${image}`}
+                              alt={frontMatter.logoImage}
+                              width="200px"
+                              height="200px"
+                              objectFit="cover"
+                              priority={true}
+                              onLoad={() => setLoaded(true)}
+                            />
+                          </Skeleton>
+                        </AspectRatio>
                       </Box>
                   ))
                 }

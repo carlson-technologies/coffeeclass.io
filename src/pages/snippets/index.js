@@ -2,8 +2,7 @@ import {
     Heading,
     Flex,
     Stack,
-    useColorMode,
-    Grid,
+    SimpleGrid,
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../../components/Container'
@@ -20,16 +19,6 @@ const title = 'Snippets | coffeeclass.io'
 const description = 'coffeeclass.io snippets are code bits that you can easily copy and paste into your project.'
 
 export default function Index({ posts }) {
-    const { colorMode } = useColorMode()
-    const color = {
-        light: 'gray.700',
-        dark: 'gray.300'
-    }
-    const headerColor = {
-        light: 'brand_one.600',
-        dark: 'brand_one.500'
-    }
-
     TimeAgo.addLocale(en)
     const timeAgo = new TimeAgo('en-US')
     
@@ -54,19 +43,17 @@ export default function Index({ posts }) {
                 spacing={8}
                 px={4}
             >
-                <Flex flexDir="column" mt={50}>
+                <Flex flexDir="column">
                     <Heading
                         as="h1"
-                        size="xl"
+                        size="2xl"
                         letterSpacing="tight"
                         textTransform="uppercase"
-                        color={headerColor[colorMode]}
-                        textAlign="center"
-                        mb={8}
+                        my={8}
                     >
-                        coffeeclass.io Snippets ✂️
+                        Snippets ✂️
                     </Heading>
-                    <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
+                    <SimpleGrid minChildWidth={["100%", "100%", "100%", "100%", "400px", "400px"]} spacing="40px">
                         {snippetsOrderedByPublishedDate.map((post) => (
                             <Snippet
                                 key={post.data.title}
@@ -81,7 +68,7 @@ export default function Index({ posts }) {
                                 authorName={post.data.author}
                             />
                         ))}
-                    </Grid>
+                    </SimpleGrid>
                 </Flex>
             </Stack>
         </Container>

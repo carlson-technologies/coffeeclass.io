@@ -88,16 +88,15 @@ export default function Index() {
             >
                 <Flex
                     flexDir="column"
-                    mt={50}
                 >
                     <Heading
                         as="h1"
-                        size="xl"
+                        size="2xl"
                         letterSpacing="tight"
                         textTransform="uppercase"
-                        color={headerColor[colorMode]}
+                        my={8}
                     >
-                        coffeeclass.io Learn 🎒
+                        Learn 🎒
                     </Heading>
                     <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]} gap={6}>
                         {

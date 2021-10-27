@@ -86,21 +86,22 @@ const NavBarTop = ({ pos, noScroll, placement }) => {
     return (
         <>
             <Box
-                display={pos == 'fixed' ? ['block', 'block', 'block', 'block', 'none', 'none'] : ['none', 'none', 'none', 'none', 'block', 'block']}
+                // display={pos == 'fixed' ? ['block', 'block', 'block', 'block', 'none', 'none'] : ['none', 'none', 'none', 'none', 'block', 'block']}
+                display={["inherit", "inherit", "inherit", "inherit", "none", "none"]}
                 as="nav"
                 aria-label="Nav 1"
             >
                 <IconButton
-                    pos={pos}
-                    right={pos != 'relative' && 0}
-                    top={pos != 'relative' && 0}
-                    mt={pos != 'relative' && 3}
-                    mr={pos != 'relative' && 3}
-                    boxShadow={(scrolled && !noScroll) ? boxShadowColor[colorMode] : null}
-                    zIndex="10"
-                    transition="box-shadow .5s ease-in-out"
-                    transition="background-color .5s ease-in-out"
-                    bgColor={(scrolled && !noScroll) ? bgColor[colorMode] : 'transparent'}
+                    // pos={pos}
+                    // right={pos != 'relative' && 0}
+                    // top={pos != 'relative' && 0}
+                    // mt={pos != 'relative' && 3}
+                    // mr={pos != 'relative' && 3}
+                    // boxShadow={(scrolled && !noScroll) ? boxShadowColor[colorMode] : null}
+                    // zIndex="10"
+                    // transition="box-shadow .5s ease-in-out"
+                    // transition="background-color .5s ease-in-out"
+                    bgColor="transparent"
                     aria-label="Open Menu"
                     size="lg"
                     _hover={{

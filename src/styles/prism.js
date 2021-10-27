@@ -10,7 +10,7 @@ const prismBaseTheme = css`
     color: ${theme.colors.gray[800]};
     background: none;
     font-family: ${theme.fonts.mono};
-    font-size: ${theme.fontSizes.lg};
+    font-size: ${theme.fontSizes.md};
     text-align: left;
     word-spacing: normal;
     word-break: normal;
@@ -34,7 +34,7 @@ const prismBaseTheme = css`
     margin: ${theme.space[6]} 0;
     overflow: auto;
     min-width: 100%;
-    font-size: ${theme.fontSizes.lg};
+    font-size: ${theme.fontSizes.md};
     white-space: nowrap;
   }
   :not(pre) > code[class*='language-'],
@@ -137,7 +137,7 @@ const prismBaseTheme = css`
       border-top-left-radius: 0;
       border-top-right-radius: 0;
       margin-top: 0 !important;
-      max-height: 40em;
+      max-height: 400px;
     }
   }
 `;

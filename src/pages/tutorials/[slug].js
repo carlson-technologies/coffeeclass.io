@@ -31,6 +31,7 @@ import {
     Wrap,
     Tooltip,
     Tag,
+    Code,
 } from '@chakra-ui/react'
 import Comments from '../../components/Comments'
 import getHeaders from '../../scripts/get-headings'
@@ -93,7 +94,7 @@ export default function PostPage({ source, frontMatter, posts }) {
                         </AspectRatio>
                     </Flex>
                 }
-                <Flex
+                {/* <Flex
                     maxW={800}
                     mx="auto"
                     w="100%"
@@ -125,7 +126,7 @@ export default function PostPage({ source, frontMatter, posts }) {
                             )
                         })}
                     </Wrap>
-                </Flex>
+                </Flex> */}
             </Flex>
             <Flex
                 flexDir="column"
@@ -220,7 +221,7 @@ export default function PostPage({ source, frontMatter, posts }) {
             </Flex>
             <Divider my={12} w="30%" alignSelf="center" />
             <Comments />
-        </Layout>
+        </Layout >
     )
 }
 

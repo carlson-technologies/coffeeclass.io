@@ -12,8 +12,8 @@ const DarkModeSwitch = ({ color }) => {
         dark: 'gray.700'
     }
     const hoverColor = {
-        light: 'gray.300',
-        dark: 'gray.500'
+        light: 'gray.500',
+        dark: 'gray.300'
     }
     return (
         <IconButton

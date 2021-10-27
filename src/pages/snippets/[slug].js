@@ -10,6 +10,7 @@ import MDXComponents from '../../components/MDXComponents'
 import mdxPrism from 'mdx-prism'
 import readingTime from 'reading-time'
 import { parseISO, format } from 'date-fns'
+import getHeaders from '../../scripts/get-headings'
 import {
     Text,
     Link,
@@ -20,6 +21,15 @@ import {
     Badge,
     Divider,
     useToast,
+    Accordion,
+    AccordionItem,
+    AccordionButton,
+    AccordionPanel,
+    AccordionIcon,
+    UnorderedList,
+    Box,
+    Heading,
+    useColorModeValue,
 } from '@chakra-ui/react'
 import Comments from '../../components/Comments'
 import { motion } from 'framer-motion'
@@ -66,6 +76,52 @@ export default function PostPage({ source, frontMatter, posts }) {
                     flexDir="column"
                     maxW="800px"
                 >
+                    <Box>
+                        <Accordion allowMultiple mt={4}>
+                            <AccordionItem>
+                                <h2>
+                                    <AccordionButton>
+                                        <Box flex="1" textAlign="left">
+                                            On this page
+                                        </Box>
+                                        <AccordionIcon />
+                                    </AccordionButton>
+                                </h2>
+                                <AccordionPanel>
+                                    {frontMatter?.headers.map((h) => {
+                                        return (
+                                            <Link href={`#${h.text}`}>
+                                                <Box
+                                                    key={h.text}
+                                                    p={1}
+                                                    _hover={{
+                                                        bgColor: useColorModeValue("gray.100", "gray.800"),
+                                                        cursor: "pointer",
+                                                    }}
+                                                    my={1}
+                                                    borderRadius={2}
+                                                >
+                                                    <Heading
+                                                        as="h4"
+                                                        size="sm"
+                                                        color={color[colorMode]}
+                                                        my={1}
+                                                    >
+                                                        <Text
+                                                            ml={(h.level - 2) * 6}
+                                                            _hover={{ textDecor: 'none' }}
+                                                        >
+                                                            {h.text}
+                                                        </Text>
+                                                    </Heading>
+                                                </Box>
+                                            </Link>
+                                        )
+                                    })}
+                                </AccordionPanel>
+                            </AccordionItem>
+                        </Accordion>
+                    </Box>
                     <Ad />
                     <MDXRemote {...source} components={MDXComponents} />
                 </Flex>
@@ -99,7 +155,9 @@ export default function PostPage({ source, frontMatter, posts }) {
                         </Flex>
                     </Flex>
                     <Divider my={4} />
-                    <RelatedPosts tags={frontMatter.tags} posts={posts} currPostTitle={frontMatter.title} />
+                    <Flex flexDir="column" m="auto" my={10}>
+                        <RelatedPosts tags={frontMatter.tags} posts={posts} currPostTitle={frontMatter.title} />
+                    </Flex>
                     <Flex flexDir="column" align="center" mb={4} display={display}>
                         <Text mt={4}>Was this snippet helpful?</Text>
                         <Flex mt={4}>
@@ -116,7 +174,7 @@ export default function PostPage({ source, frontMatter, posts }) {
                                         duration: 4000,
                                         isClosable: true,
                                     }),
-                                    setDisplay("none")
+                                        setDisplay("none")
                                 }
                                 }
                             >
@@ -199,7 +257,6 @@ export const getStaticProps = async ({ params }) => {
     const posts = snippetsFilePaths.map((filePath) => {
         const source = fs.readFileSync(path.join(SNIPPETS_PATH, filePath))
         const { content, data } = matter(source)
-
         return {
             content,
             data,
@@ -213,6 +270,7 @@ export const getStaticProps = async ({ params }) => {
             source: mdxSource,
             frontMatter: {
                 readingTime: readingTime(content),
+                headers: await getHeaders(content),
                 ...data
             },
         },

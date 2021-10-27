@@ -6,6 +6,7 @@ import {
     Box,
     useColorMode,
     Skeleton,
+    AspectRatio,
 } from '@chakra-ui/react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -32,7 +33,7 @@ export default function Tutorial({ src, title, description, tags, href, as, main
     const [loaded, setLoaded] = useState(false)
     return (
         <Flex
-            w="100%"
+            // w="100%"
             // my={2}
             // mt={[10, 10, 0]}
             key={title}
@@ -44,7 +45,7 @@ export default function Tutorial({ src, title, description, tags, href, as, main
         >
             <Box
                 bgColor={bgColor[colorMode]}
-                p={5}
+                // p={5}
                 borderRadius={5}
                 overflow="hidden"
                 w="100%"
@@ -58,44 +59,54 @@ export default function Tutorial({ src, title, description, tags, href, as, main
                         whileHover={{ scale: 1.1 }}
                         transition={{ duration: 0.5 }}
                     >
-                        <Flex justify="center">
-                            <Skeleton isLoaded={loaded}>
-                                <Image
-                                    width={550}
-                                    height={350}
-                                    objectFit="contain"
-                                    src={src}
-                                    alt={title}
-                                    onLoad={() => setLoaded(true)}
-                                />
-                            </Skeleton>
-                        </Flex>
+                        <Link href={href} as={as}>
+                            <Box
+                                _hover={{ opacity: .9, cursor: 'pointer' }}
+                                transition="opacity .5s ease-in-out"
+                                borderRadius={5}
+                            >
+                                <AspectRatio ratio={16 / 9}>
+                                    <Skeleton isLoaded={loaded} borderRadius={5}>
+                                        <Image
+                                            width={550}
+                                            height={350}
+                                            objectFit="contain"
+                                            src={src}
+                                            alt={title}
+                                            onLoad={() => setLoaded(true)}
+                                        />
+                                    </Skeleton>
+                                </AspectRatio>
+                            </Box>
+                        </Link>
                     </MotionBox>
                 </MotionBox>
-                <Flex wrap="wrap" mt={4}>
-                    {tags?.map((tag) => {
-                        return (
-                            <Flex
-                                mr={2}
-                                key={tag}
-                                _hover={{
-                                    textDecor: 'none',
-                                    opacity: '.5'
-                                }}
-                                cursor="pointer"
-                            >
-                                <NextLink href={`/tags/${tag}`} passHref>
-                                    <Link href={`/${tag}`}
-                                    >
-                                        <Text fontSize="lg" fontWeight={mainTag == tag ? "bold" : "normal"} color={tagColor[colorMode]}>#{tag}</Text>
-                                    </Link>
-                                </NextLink>
-                            </Flex>
-                        )
-                    })}
+                <Flex flexDirection="column" p={5}>
+                    <Flex wrap="wrap">
+                        {tags?.map((tag) => {
+                            return (
+                                <Flex
+                                    mr={2}
+                                    key={tag}
+                                    _hover={{
+                                        textDecor: 'none',
+                                        opacity: '.5'
+                                    }}
+                                    cursor="pointer"
+                                >
+                                    <NextLink href={`/tags/${tag}`} passHref>
+                                        <Link href={`/${tag}`}
+                                        >
+                                            <Text fontSize="md" fontWeight={mainTag == tag ? "bold" : "normal"} color={tagColor[colorMode]}>#{tag}</Text>
+                                        </Link>
+                                    </NextLink>
+                                </Flex>
+                            )
+                        })}
+                    </Flex>
+                    <Heading size="md" _hover={{ opacity: .7 }}><Link href={href} as={as}>{title}</Link></Heading>
+                    <Text _hover={{ opacity: .7 }}><Link href={href} as={as}>{description}</Link></Text>
                 </Flex>
-                <Heading><Link href={href} as={as}>{title}</Link></Heading>
-                <Text><Link href={href} as={as}>{description}</Link></Text>
             </Box>
         </Flex>
     )

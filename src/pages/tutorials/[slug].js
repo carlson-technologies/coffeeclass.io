@@ -180,7 +180,7 @@ export default function PostPage({ source, frontMatter, posts }) {
                         </AccordionPanel>
                     </AccordionItem>
                 </Accordion>
-                {/* <Ad /> */}
+                <Ad />
                 <MDXRemote {...source} components={MDXComponents} />
             </Flex>
             <Divider mt={12} mb={4} w="30%" alignSelf="center" />

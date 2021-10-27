@@ -103,7 +103,7 @@ export default function Snippet({ title, description, tags, href, as, mainTag, i
                             ))}
                         </Wrap>
                     }
-                    {/* <Text mt={4} fontStyle="italic" color={useColorModeValue("gray.500", "gray.300")} mr={1}>{timeAge}</Text> */}
+                    <Text mt={2} fontStyle="italic" color={useColorModeValue("gray.500", "gray.300")} mr={1}>{timeAge}</Text>
                 </Flex>
             </Flex>
         </Box>

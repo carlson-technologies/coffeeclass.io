@@ -1,0 +1,111 @@
+---
+title: "Chakra UI Menu Dropdown on Hover"
+description: "Create a  Bootstrap like top nav menu using the useDisclosure hook"
+seoDescription: "How to use Chakra UI's useDisclosure hook to create a dropdown menu on hover."
+author: "Benjamin Carlson"
+authorImage: "benjamin-carlson.jpeg"
+authorPosition: "Founder coffeeclass.io"
+publishedAt: "2021-10-27T19:30"
+tags: ["chakra-ui", "navigation", "hooks"]
+type: "snippet"
+logoImage: ["chakra-ui.png"]
+---
+
+## Introduction
+
+[Chakra UI](https://chakra-ui.com) is a component based React library that allows us to rapidly build beautiful, responsive, and accessible user interfaces. One of the components it gives us, is the `Menu` component. Out of the box, to expand the menu, you need to click on the `MenuButton`. In this snippet, I'll show you how to use the `useDisclosure` hook to create a dropdown menu on hover.
+
+## useDisclosure
+
+### Definition
+
+[useDisclosure](https://chakra-ui.com/docs/hooks/use-disclosure) is defined in the Chakra UI documentation as such:
+
+> `useDisclosure` is a custom hook used to help handle common open, close, or toggle scenarios. It can be used to control feedback component such as `Modal`, `AlertDialog`, `Drawer`, etc.
+
+### Import
+
+We can import the `useDisclosure` hook from `@chakra-ui/react`.
+
+```javascript
+import { useDisclosure } from "@chakra-ui/react"
+```
+
+### Usage
+
+Here is how you would use the `useDisclosure` hook to create a dropdown menu on hover. In the next section, we'll take a look at each line and explain what is happening.
+
+```javascript:Navbar.js
+import {
+    useDisclosure,
+    MenuItem,
+    Menu,
+    MenuButton,
+    MenuList,
+} from "@chakra-ui/react"
+import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
+
+export default function Navbar() {
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    return (
+        <Menu isOpen={isOpen}>
+            <MenuButton
+                variant="ghost"
+                mx={1}
+                py={[1, 2, 2]}
+                px={4}
+                borderRadius={5}
+                _hover={{ bg: useColorModeValue("gray.100", "gray.700") }}
+                aria-label="Courses"
+                fontWeight="normal"
+                onMouseEnter={onOpen}
+                onMouseLeave={onClose}
+            >
+                More {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
+            </MenuButton>
+            <MenuList onMouseEnter={onOpen} onMouseLeave={onClose}>
+                <MenuItem>Menu Item 1</MenuItem>
+                <MenuItem>Menu Item 2</MenuItem>
+                <MenuItem>Menu Item 3</MenuItem>
+            </MenuList>
+        </Menu>
+    )
+}
+```
+
+## Explanation
+
+Let's take a more detailed look at the code. First, we are importing the `useDisclosure` hook and the `Menu` components. We are also importing 2 Chakra UI icons to make the dropdown look a bit nicer.
+
+We are using the `useDisclosure` hook like such:
+
+```javascript
+const { isOpen, onOpen, onClose } = useDisclosure()
+```
+
+We can then use `isOpen`, `onOpen`, and `onClose` to control the state of the dropdown.
+
+- `isOpen` is a boolean that tells us if the dropdown is open or not.
+- `onOpen` is a callback function to set a truthy value for the isOpen parameter.
+- `onClose` is a callback function to set a falsy value for the isOpen parameter.
+
+### `onMouseEnter` and `onMouseLeave`
+
+At this point, the Menu dropdown works, but there is still no hover effect! To add this we can use `onMouseEnter` and `onMouseLeave` to control the state of the dropdown.
+
+When we use it like such:
+
+```javascript
+onMouseEnter={onOpen} 
+onMouseLeave={onClose}
+```
+
+We are saying when a user hovers over that Component, set the `isOpen` parameter to `true`. When they leave the Component, set the `isOpen` parameter to `false`. Simple!
+
+> The [mouseenter](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseenter_event) event is fired at an Element when a pointing device (usually a mouse) is initially moved so that its hotspot is within the element at which the event was fired.
+
+> The [mouseleave](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseleave_event) event is fired at an Element when the cursor of a pointing device (usually a mouse) is moved out of it.
+
+## Conclusion
+
+In this snippet you learned how to use the `useDisclosure` hook paired with `onMouseEnter` and `onMouseLeave` to create a dropdown menu on hover.

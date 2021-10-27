@@ -36,6 +36,7 @@ const prismBaseTheme = css`
     min-width: 100%;
     font-size: ${theme.fontSizes.md};
     white-space: nowrap;
+    max-height: 500px;
   }
   :not(pre) > code[class*='language-'],
   pre[class*='language-'] {
@@ -137,7 +138,6 @@ const prismBaseTheme = css`
       border-top-left-radius: 0;
       border-top-right-radius: 0;
       margin-top: 0 !important;
-      max-height: 400px;
     }
   }
 `;

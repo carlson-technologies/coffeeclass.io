@@ -1,0 +1,70 @@
+---
+title: "Next/Image Doesn't Fill Parent Div!"
+description: "Spoiler, the answer is position: relative"
+seoDescription: "If next/image does not fill the parent div, you need to use position relative."
+author: "Benjamin Carlson"
+authorImage: "benjamin-carlson.jpeg"
+authorPosition: "Founder coffeeclass.io"
+publishedAt: "2021-11-01T22:30"
+tags: ["nextjs"]
+type: "snippet"
+logoImage: ["nextjs-light.png"]
+---
+
+## Introduction
+
+If you have worked with Next.js, you have without a doubt come across the `next/image` component. Introduced in `v10.0.0`, `next/image` is an imporovement over the humble `<img />` HTML tag.
+
+Features of `next/image` include:
+
+- Image lazy loading
+- A custom loader
+- Quality control
+- Placeholder image
+- and more!
+
+The `NextImage` component makes the lives of the website visiter much better, however, at times it can be hard to work with and make the lives of the developer harder!
+
+## next/image Not Filling Parent Div
+
+One of the most common issues with `next/image` is that it doesn't fill the parent div. Let's take a look at the following example:
+
+```javascript
+import NextImage from 'next/image'
+
+<div height="500px" width="500px">
+    <NextImage src="https://picsum.photos/id/1/500/500" layout="fill" />
+</div>
+```
+
+Note: The code above is "pseudo code". It will not run. `height` and `width` cannot be declared on `div` like I did in the example above.
+
+If I aked you what would happen, you would probably say that the image would render with a height of 500px and a width of 500px. However, this is not the case! The image will have the height and width of itself! If the raw image is 230px by 570px, those will be the dimensions.
+
+## The Solution
+
+I have seen this question asked many times on sites like stackoverflow. Some of the answers aren't even helpful!
+
+- https://stackoverflow.com/questions/67421778/next-js-image-layout-fill-is-broken
+- https://github.com/vercel/next.js/discussions/18739
+- https://dev.to/tanahmed/next-image-make-image-fill-available-space-272o
+
+The simple solution is to add `position: relative` to the parent div!
+
+```javascript
+import NextImage from 'next/image'
+
+<div height="500px" width="500px" position="relative">
+    <NextImage src="https://picsum.photos/id/1/500/500" layout="fill" />
+</div>
+```
+
+Now, the image will take up the width of the parent div!
+
+## Explanation
+
+So why does this work? The default position of a html div tag is [`static`](https://stackoverflow.com/questions/16316834/what-is-the-default-value-of-position-attribute-of-a-div).
+
+> You can even check for yourself and check in Chrome by doing: Click On the Element --> Computed --> Filter --> Show All. [Thanks SO](https://stackoverflow.com/questions/16316834/what-is-the-default-value-of-position-attribute-of-a-div)
+
+Because of this, the image will not fill the parent div.

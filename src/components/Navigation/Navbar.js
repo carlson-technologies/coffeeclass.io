@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react"
 import {
     Box,
     useColorModeValue,
@@ -59,11 +60,29 @@ const More = () => {
 export default function Navbar() {
     const router = useRouter()
     const { isOpen, onOpen, onClose } = useDisclosure()
+
+    // on scroll get the users scroll position
+    // if the user has scrolled 100px, change boxShadow to true
+    const [boxShadow, setBoxShadow] = useState(false)
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 100) {
+                setBoxShadow(true)
+            } else {
+                setBoxShadow(false)
+            }
+        }
+        window.addEventListener('scroll', handleScroll)
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
+    }, [])
+
     return (
         <Box
             as="nav"
             w="100%"
-            bg={useColorModeValue('gray.50', 'gray.900')}
             px="4"
             py="2"
             display="flex"
@@ -71,7 +90,9 @@ export default function Navbar() {
             pos="sticky"
             top={0}
             zIndex={10}
-            boxShadow="0px 2px 4px rgba(0, 0, 0, 0.3)"
+            boxShadow={boxShadow && useColorModeValue("0px 2px 4px rgba(0, 0, 0, 0.2)", "0px 2px 4px rgba(255, 255, 255, 0.1)")}
+            backdropFilter="saturate(180%) blur(20px)"
+            transition="box-shadow 0.3s ease-in-out"
         >
             <NextLink href="/" mr={1} passHref>
                 <Button

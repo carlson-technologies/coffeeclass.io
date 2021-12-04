@@ -83,9 +83,10 @@ const Subscribe = () => {
                 <InputGroup size="md" mt={4} borderColor={borderColor[colorMode]}>
                     <Input
                         aria-label="Email for newsletter"
-                        placeholder="ben@benjamincarlson.io"
+                        placeholder="ben@carlsontechnologies.dev"
                         ref={inputEl}
                         type="email"
+                        focusBorderColor="brand_one.500"
                     />
                     <InputRightElement width="6.75rem">
                         <Button
@@ -94,7 +95,7 @@ const Subscribe = () => {
                             h="1.75rem"
                             size="sm"
                             onClick={subscribe}
-                            colorScheme="blue"
+                            colorScheme="brand_one"
                             variant="outline"
                             px={10}
                         >

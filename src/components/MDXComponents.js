@@ -81,6 +81,7 @@ const CustomListItem = (props) => {
             fontSize="xl"
             key={props.children}
             color={color[colorMode]}
+            listStylePos="inside"
         >
             {props.children}
         </ListItem>
@@ -94,8 +95,8 @@ const DocsHeading = (props) => (
 const CustomP = (props) => {
     const { colorMode } = useColorMode()
     const color = {
-        light: 'gray.700',
-        dark: 'gray.300'
+        light: 'gray.600',
+        dark: 'gray.400'
     }
     return (
         <Text fontSize="xl" my={4} color={color[colorMode]} {...props} />

@@ -24,7 +24,7 @@ const GlobalStyle = ({ children }) => {
             background-color: ${colorMode === 'light' ? '#fff' : '#15161a'};
           }
           ::selection {
-            background-color: ${colorMode === 'light' ? '#EAD9CD' : '#714B2F'};
+            background-color: ${colorMode === 'light' ? '#EAD9CD' : '#75694f'};
           }
           ::-moz-selection {
             background: ${colorMode === 'light' ? '#EAD9CD' : '#714B2F'};

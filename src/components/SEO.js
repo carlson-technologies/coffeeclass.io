@@ -3,7 +3,7 @@ import { NextSeo, ArticleJsonLd } from 'next-seo'
 const SEO = ({ title, seoDescription, publishedAt, lastUpdated, url, author, featureImg, slug }) => {
     const date = new Date(publishedAt).toISOString()
     const featuredImage = {
-        url: featureImg ? `https://www.coffeeclass.io/content${slug}/${featureImg}` : `https://www.coffeeclass.io/favicons/logo-white-bg.png`,
+        url: featureImg ? `https://www.coffeeclass.io/content${slug}/${featureImg}` : `https://www.coffeeclass.io/logo-white-bg.png`,
         alt: title,
     }
 
@@ -30,7 +30,7 @@ const SEO = ({ title, seoDescription, publishedAt, lastUpdated, url, author, fea
                 datePublished={date}
                 description={seoDescription}
                 images={[featuredImage]}
-                publisherLogo="/favicons/logo-white-bg.png"
+                publisherLogo="/logo-white-bg.png"
                 publisherName="coffeeclass.io"
                 title={title}
                 url={url}

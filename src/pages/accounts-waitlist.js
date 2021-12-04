@@ -5,6 +5,7 @@ import {
     Text,
     OrderedList,
     ListItem,
+    Box,
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../components/Container'
@@ -36,15 +37,8 @@ export default function AccountsWaitlist() {
                     w={["100%", "100%", "100%", "100%", "100%", "60%"]}
                     alignSelf="center"
                 >
-                    <Heading
-                        as="h1"
-                        size="2xl"
-                        letterSpacing="tight"
-                        textTransform="uppercase"
-                        my={8}
-                    >
-                        Accounts Waitlist
-                    </Heading>
+                    <Heading mt={4} as="h1" size="2xl" color="brand_one.500">Accounts Waitlist</Heading>
+                    <Box bgColor="brand_one.500" h={2} w={150} borderRadius={5} mb={4} mt={2} />
                     <Text fontSize="xl" mb={4}>
                         Thanks for your interest in coffeeclass.io user accounts. We are working hard to build this site including more content and features.
                     </Text>
@@ -54,7 +48,7 @@ export default function AccountsWaitlist() {
 
                     <OrderedList spacing={4} mb={8}>
                         <ListItem>
-                            Bookmark snippets and tutorials
+                            Bookmark articles
                         </ListItem>
                         <ListItem>
                             Track your progress in courses

@@ -1,0 +1,90 @@
+---
+title: "Add Google Analytics To Next.js Website"
+description: "Easily connect your website to Google Analytics."
+seoDescription: "Connect Google analytics to your Next.js website and track clicks, scrolls, page views, and more."
+author: "Benjamin Carlson"
+authorImage: "benjamin-carlson.jpeg"
+authorPosition: "Founder coffeeclass.io"
+publishedAt: "2021-04-29"
+tags: ["nextjs", "google-analytics"]
+youtubeId: ["https://youtu.be/I9KJ_rVkmxk"]
+type: "snippet"
+logoImage: ["google-analytics.png"]
+---
+
+## Introduction
+
+Adding Google analytics to a Next.js website seems complicated, but is not that difficult. To begin, make sure you have
+a [Google Analytics](https://analytics.google.com/) account with your project set up. Create a folder in your Next.js root directory called `lib`. Inside of here, create a file named `gtag.js`. Paste in the following
+code:
+
+```javascript:gtag.js
+export const GA_TRACKING_ID = 'G-XXXXXXXXXX'
+
+// https://developers.google.com/analytics/devguides/collection/gtagjs/pages
+export const pageview = (url) => {
+    window.gtag('config', GA_TRACKING_ID, {
+        page_path: url,
+    })
+}
+
+// https://developers.google.com/analytics/devguides/collection/gtagjs/events
+export const event = ({ action, category, label, value }) => {
+    window.gtag('event', action, {
+        event_category: category,
+        event_label: label,
+        value: value,
+    })
+}
+```
+
+Replace the `'G-XXXXXXXXXX'` with your tracking id (This can be found in the Google Analytics admin pannel for your website).
+
+## Halfway There!
+
+Next, open up `_document.js`. If you do not have this file created already, [follow along with the docs](https://nextjs.org/docs/advanced-features/custom-document) and
+and create a custom `_document` file for your site. Inside of here we will import our gtag and use it.
+
+```javascript:_document.js
+import { GA_TRACKING_ID } from '../lib/gtag'
+// other imports
+
+export default class MyDocument extends NextDocument {
+    render() {
+        return (
+            <Html lang="en">
+
+                {/* other code */}
+
+            <Head>
+                    {/* Global Site Tag (gtag.js) - Google Analytics */}
+                    <script
+                        async
+                        src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+                    />
+                    <script
+                        dangerouslySetInnerHTML={{
+                            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_TRACKING_ID}', {
+              page_path: window.location.pathname,
+            });
+          `,
+                        }}
+                    />
+            </Head>
+
+            {/* Other code */}
+
+        </Html>
+        )
+    }
+}
+```
+
+That's it! Once you [deploy to Vercel](https://vercel.com/) (or another hosting service of your choice) you should see analytics coming
+through after 5 minutes or so.
+
+![Realtime Views](/content/articles/add-google-analytics-to-nextjs/realtime.png)

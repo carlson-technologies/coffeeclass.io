@@ -38,6 +38,8 @@ export default function Snippet({ title, description, tags, href, as, mainTag, i
             p={5}
             borderRadius={5}
             w="100%"
+            h="100%"
+            minH={150}
             key={title}
             borderRadius={5}
             transition='box-shadow 0.3s ease-in-out'

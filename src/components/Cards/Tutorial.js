@@ -33,9 +33,10 @@ export default function Tutorial({ src, title, description, tags, href, as, main
     const [loaded, setLoaded] = useState(false)
     return (
         <Flex
-            // w="100%"
-            // my={2}
+            w="100%"
+            my={2}
             // mt={[10, 10, 0]}
+            w={300}
             key={title}
             borderRadius={5}
             transition='box-shadow 0.3s ease-in-out'
@@ -71,7 +72,7 @@ export default function Tutorial({ src, title, description, tags, href, as, main
                                             width={550}
                                             height={350}
                                             objectFit="contain"
-                                            src={src}
+                                            src={`/content/articles/${post.filePath.replace(/\.mdx?$/, '')}/${post.data.featureImg}`}
                                             alt={title}
                                             onLoad={() => setLoaded(true)}
                                         />

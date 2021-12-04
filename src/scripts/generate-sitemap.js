@@ -32,7 +32,7 @@ const prettier = require('prettier');
             </url>
 
             <url>
-                <loc>https://www.coffeeclass.io/learn/chakra-ui</loc>
+                <loc>https://www.coffeeclass.io/courses/chakra-ui</loc>
             </url>
 
             <url>

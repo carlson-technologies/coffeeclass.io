@@ -1,0 +1,71 @@
+---
+title: "Add Splitbee Analytics To Next.js"
+description: "Tracking analytics has never been easier."
+seoDescription: "Add Splitbee Analytics to a Next.js Jamstack website for free. Track analytics, users, funnels, automate tasks, run experiments like a/b testing and more with Splitbee Analytics."
+author: "Benjamin Carlson"
+authorImage: "benjamin-carlson.jpeg"
+authorPosition: "Founder coffeeclass.io"
+publishedAt: "2021-07-20"
+tags: ["splitbee", "nextjs"]
+type: "snippet"
+logoImage: ["splitbee.png"]
+---
+
+<EmbeddedVideo src="https://www.youtube.com/embed/WcckDQ716_o" alt="Watch Advanced Chakra UI on YouTube." maxW={800} />
+
+## Introduction
+
+Most websites use [Google Analytics](https://analytics.google.com/analytics/web/) to track users and events. This is a great way to get an idea of how your website is performing. However, there are some downsides to using Google Analytics.
+
+1. They sell your data
+2. It slows down your website speed slightly
+3. There is a significant learning curve
+
+In this snippet, we will explore an alternative analytics solution called [Splitbee Analytics](https://www.splitbee.com/).
+
+<SnippetStep number="1" title="Register" />
+
+Navigate to [https://splitbee.io/](https://splitbee.io/) and sign up for a free account (no credit card required).
+
+<SnippetStep number="2" title="Add The Tracking Tag" />
+
+Add the folling tag to the head of your website. In Next.js this is inside of `_document.js`.
+
+```javascript
+<script async src="https://cdn.splitbee.io/sb.js"></script>
+```
+
+```javascript:_document.js
+import NextDocument, { Html, Head, Main, NextScript } from 'next/document'
+
+export default class MyDocument extends NextDocument {
+    render() {
+        return (
+            <Html lang="en">
+                <Head>
+                    {/* Splitbee Analytics */}
+                    <script async src="https://cdn.splitbee.io/sb.js"></script>
+                </Head>
+                <body>
+                    <Main />
+                    <NextScript />
+                </body>
+            </Html>
+        )
+    }
+}
+```
+
+<SnippetStep number="3" title="Go To Your Site" />
+
+Navigate to your site and you should see analytics flow through your dashboard!
+
+<SnippetStep number="4" title="Advanced Usage" />
+
+To get the most out of Splitbee, the Splitbee team recommends looking into event tracking and storing user properties. They allow you to do things like:
+
+- Track conversion events
+- Capture form data and attach it to a user
+- Assign data to a user, like their email address
+
+Happy tracking!

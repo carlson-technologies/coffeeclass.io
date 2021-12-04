@@ -20,6 +20,7 @@ import {
     InputRightElement,
     Text,
     Icon,
+    useColorModeValue,
 } from '@chakra-ui/react'
 import { HamburgerIcon, CloseIcon, ChevronRightIcon } from '@chakra-ui/icons'
 import DarkModeSwitch from './DarkModeSwitch'
@@ -92,15 +93,6 @@ const NavBarTop = ({ pos, noScroll, placement }) => {
                 aria-label="Nav 1"
             >
                 <IconButton
-                    // pos={pos}
-                    // right={pos != 'relative' && 0}
-                    // top={pos != 'relative' && 0}
-                    // mt={pos != 'relative' && 3}
-                    // mr={pos != 'relative' && 3}
-                    // boxShadow={(scrolled && !noScroll) ? boxShadowColor[colorMode] : null}
-                    // zIndex="10"
-                    // transition="box-shadow .5s ease-in-out"
-                    // transition="background-color .5s ease-in-out"
                     bgColor="transparent"
                     aria-label="Open Menu"
                     size="lg"
@@ -131,7 +123,7 @@ const NavBarTop = ({ pos, noScroll, placement }) => {
                         </Flex>
                     </DrawerHeader>
                     <DrawerBody>
-                        <ButtonGroup spacing="4" justifyContent="space-around" w="100%" size="sm">
+                        {/* <ButtonGroup spacing="4" justifyContent="space-around" w="100%" size="sm">
                             <NextLink href="/learn" passHref>
                                 <Button colorScheme="brand_one" minW={[null, null, 110, 110, 110, 110]} href="/learn">Learn</Button>
                             </NextLink>
@@ -141,21 +133,19 @@ const NavBarTop = ({ pos, noScroll, placement }) => {
                             <NextLink href="/tutorials" passHref>
                                 <Button colorScheme="brand_one" minW={[null, null, 110, 110, 110, 110]} href="/tutorials">Tutorials</Button>
                             </NextLink>
-                        </ButtonGroup>
-                        {router.pathname != '/search' &&
-                            <InputGroup my={4}>
-                                <Input
-                                    focusBorderColor={focusColor[colorMode]}
-                                    aria-label="Search by title and summary"
-                                    placeholder={`Search all posts!`}
-                                    onClick={() => router.push('/search')}
-                                />
-                                <InputRightElement>
-                                    <SearchIcon color={secondaryColor[colorMode]} />
-                                </InputRightElement>
-                            </InputGroup>
-                        }
-                        <Heading as="h4" size="sm" textTransform="uppercase" mt={4}>Content</Heading>
+                        </ButtonGroup> */}
+                        <Heading
+                            as="h3"
+                            textTransform="uppercase"
+                            marginBottom={2}
+                            marginTop={8}
+                            color={useColorModeValue('gray.600', 'gray.400')}
+                            fontSize="sm"
+                            fontWeight="semibold"
+                            letterSpacing="wider"
+                            textAlign="left"
+                        >Content
+                        </Heading>
                         <Flex flexDir="column" fontSize="lg">
                             <Text>
                                 <NextLink href="/" passHref>
@@ -173,46 +163,31 @@ const NavBarTop = ({ pos, noScroll, placement }) => {
                             </Text>
 
                             <Text>
-                                <NextLink href="/snippets" passHref>
+                                <NextLink href="/articles" passHref>
                                     <Link
-                                        href="/snippets"
+                                        href="/articles"
                                         _hover={{ textDecor: 'none' }}
-                                        aria-label="Snippets"
+                                        aria-label="Articles"
                                         color="gray.500"
                                         transition="margin .3s ease-in-out"
                                         _hover={{ ml: "2" }}
                                     >
-                                        Snippets
+                                        Articles
                                     </Link>
                                 </NextLink>
                             </Text>
 
                             <Text>
-                                <NextLink href="/learn" passHref>
+                                <NextLink href="/courses" passHref>
                                     <Link
-                                        href="/learn"
+                                        href="/courses"
                                         _hover={{ textDecor: 'none' }}
-                                        aria-label="Learn"
+                                        aria-label="Courses"
                                         color="gray.500"
                                         transition="margin .3s ease-in-out"
                                         _hover={{ ml: "2" }}
                                     >
-                                        Learn
-                                    </Link>
-                                </NextLink>
-                            </Text>
-
-                            <Text>
-                                <NextLink href="/tutorials" passHref>
-                                    <Link
-                                        href="/tutorials"
-                                        _hover={{ textDecor: 'none' }}
-                                        aria-label="Tutorials"
-                                        color="gray.500"
-                                        transition="margin .3s ease-in-out"
-                                        _hover={{ ml: "2" }}
-                                    >
-                                        Tutorials
+                                        Courses
                                     </Link>
                                 </NextLink>
                             </Text>
@@ -248,7 +223,19 @@ const NavBarTop = ({ pos, noScroll, placement }) => {
                             </Text>
                         </Flex>
 
-                        <Heading as="h4" size="sm" textTransform="uppercase" mt={4}>Write For Us!</Heading>
+                        <Heading
+                            as="h3"
+                            textTransform="uppercase"
+                            marginBottom={2}
+                            marginTop={8}
+                            color={useColorModeValue('gray.600', 'gray.400')}
+                            fontSize="sm"
+                            fontWeight="semibold"
+                            letterSpacing="wider"
+                            textAlign="left"
+                        >
+                            Write For Us!
+                        </Heading>
                         <Flex flexDir="column" fontSize="lg">
                             <Text>
                                 <NextLink href="/contribute/getting-started" passHref>
@@ -266,7 +253,19 @@ const NavBarTop = ({ pos, noScroll, placement }) => {
                             </Text>
                         </Flex>
 
-                        <Heading as="h4" size="sm" textTransform="uppercase" mt={4}>Company</Heading>
+                        <Heading
+                            as="h3"
+                            textTransform="uppercase"
+                            marginBottom={2}
+                            marginTop={8}
+                            color={useColorModeValue('gray.600', 'gray.400')}
+                            fontSize="sm"
+                            fontWeight="semibold"
+                            letterSpacing="wider"
+                            textAlign="left"
+                        >
+                            Company
+                        </Heading>
                         <Flex flexDir="column" fontSize="lg">
                             <Text>
                                 <NextLink href="/about" passHref>
@@ -329,7 +328,19 @@ const NavBarTop = ({ pos, noScroll, placement }) => {
                             </Text>
                         </Flex>
 
-                        <Heading as="h4" size="sm" textTransform="uppercase" mt={4}>Open Source</Heading>
+                        <Heading
+                            as="h3"
+                            textTransform="uppercase"
+                            marginBottom={2}
+                            marginTop={8}
+                            color={useColorModeValue('gray.600', 'gray.400')}
+                            fontSize="sm"
+                            fontWeight="semibold"
+                            letterSpacing="wider"
+                            textAlign="left"
+                        >
+                            Open Source
+                        </Heading>
                         <Flex flexDir="column" fontSize="lg">
                             <Text>
                                 <Link

@@ -16,16 +16,12 @@ import { serialize } from 'next-mdx-remote/serialize'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { snippetsFilePaths, SNIPPETS_PATH } from '../../scripts/mdx-utils'
-import { tutorialsFilePaths, TUTORIALS_PATH } from '../../scripts/mdx-utils'
 import { authorsFilePaths, AUTHORS_PATH } from '../../scripts/mdx-utils'
-import Snippet from '../../components/Cards/Snippet'
-import Tutorial from '../../components/Cards/Tutorial'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
 import NextImage from 'next/image'
 
-export default function Index({ tutorials, snippets, frontMatter }) {
+export default function Index({ frontMatter }) {
     TimeAgo.addLocale(en)
     const timeAgo = new TimeAgo('en-US')
 
@@ -34,33 +30,6 @@ export default function Index({ tutorials, snippets, frontMatter }) {
     const description = `coffeeclass.io articles written by ${frontMatter.name}. ${frontMatter.description}`
 
     const [loaded, setLoaded] = useState(false)
-
-    const snippetsOrderedByPublishedDate = snippets
-        .sort(
-            (a, b) =>
-                Number(new Date(b.data.publishedAt)) - Number(new Date(a.data.publishedAt))
-        )
-
-    const tutorialsOrderedByPublishedDate = tutorials
-        .sort(
-            (a, b) =>
-                Number(new Date(b.data.publishedAt)) - Number(new Date(a.data.publishedAt))
-        )
-
-    var snippetCount = 0
-    var tutorialCount = 0
-
-    for (var i = 0; i < snippetsOrderedByPublishedDate.length; i++) {
-        if (snippetsOrderedByPublishedDate[i].data.author == frontMatter.name) {
-            snippetCount++
-        }
-    }
-
-    for (var i = 0; i < tutorialsOrderedByPublishedDate.length; i++) {
-        if (tutorialsOrderedByPublishedDate[i].data.author == frontMatter.name) {
-            tutorialCount++
-        }
-    }
 
     return (
         <Container>
@@ -233,62 +202,9 @@ export default function Index({ tutorials, snippets, frontMatter }) {
                         </Box>
                     </Flex>
                     <Box bgGradient={`linear(to-r,${useColorModeValue("gray.50", "gray.600")},${useColorModeValue("gray.200", "gray.800")},${useColorModeValue("gray.300", "gray.900")})`}>
-                        <Text ml={4} fontSize="lg"><Link _hover={{ textDecor: 'none', opacity: .5 }} href="#snippets" passHref><span style={{ fontWeight: 'bold' }}>{snippetCount != 0 && snippetCount}</span> {snippetCount != 0 && "snippet"}{snippetCount <= 1 ? null : 's'}</Link> {snippetCount != 0 && tutorialCount != 0 && "/"} <Link _hover={{ textDecor: 'none', opacity: .5 }} href="#tutorials"><span style={{ fontWeight: 'bold' }}>{tutorialCount != 0 && tutorialCount}</span> {tutorialCount != 0 && "tutorial"}{tutorialCount <= 1 ? null : 's'}</Link></Text>
+                        {/* <Text ml={4} fontSize="lg"><Link _hover={{ textDecor: 'none', opacity: .5 }} href="#snippets" passHref><span style={{ fontWeight: 'bold' }}>{snippetCount != 0 && snippetCount}</span> {snippetCount != 0 && "snippet"}{snippetCount <= 1 ? null : 's'}</Link> {snippetCount != 0 && tutorialCount != 0 && "/"} <Link _hover={{ textDecor: 'none', opacity: .5 }} href="#tutorials"><span style={{ fontWeight: 'bold' }}>{tutorialCount != 0 && tutorialCount}</span> {tutorialCount != 0 && "tutorial"}{tutorialCount <= 1 ? null : 's'}</Link></Text> */}
                     </Box>
                 </Box>
-                <Flex flexDir="column" px={4}>
-                    {snippetCount > 0 &&
-                        <Box as="section" id="snippets">
-                            <Heading my={4} as="h2">Snippets</Heading>
-                            <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
-                                {
-                                    snippetsOrderedByPublishedDate.map(s => {
-                                        return (
-                                            s.data.author == frontMatter.name ?
-                                                <Snippet
-                                                    key={s.data.title}
-                                                    src={`/content/snippets/${s.filePath.replace(/\.mdx?$/, '')}/${s.data.featureImg}`}
-                                                    title={s.data.title}
-                                                    description={s.data.description}
-                                                    tags={s.data.tags}
-                                                    as={`/snippets/${s.filePath.replace(/\.mdx?$/, '')}`}
-                                                    href={`/snippets/[slug]`}
-                                                    image={`/snippet-images/${s.data.logoImage[0]}`}
-                                                    timeAge={timeAgo.format(new Date(s.data.publishedAt))}
-                                                    authorName={s.data.author}
-                                                /> : null
-                                        )
-                                    })
-                                }
-                            </Grid>
-                        </Box>
-                    }
-                    {tutorialCount > 0 &&
-                        <Box as="section" id="tutorials">
-                            <Heading my={4} as="h2">Tutorials</Heading>
-                            <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
-                                {
-                                    tutorialsOrderedByPublishedDate.map(t => {
-                                        return (
-                                            t.data.author == frontMatter.name ?
-                                                <Flex m={1, 1, 1, 2, 2, 2}>
-                                                    <Tutorial
-                                                        key={t.data.title}
-                                                        src={`/content/tutorials/${t.filePath.replace(/\.mdx?$/, '')}/${t.data.featureImg}`}
-                                                        title={t.data.title}
-                                                        description={t.data.description}
-                                                        tags={t.data.tags}
-                                                        as={`/tutorials/${t.filePath.replace(/\.mdx?$/, '')}`}
-                                                        href={`/tutorials/[slug]`}
-                                                    />
-                                                </Flex> : null
-                                        )
-                                    })
-                                }
-                            </Grid>
-                        </Box>
-                    }
-                </Flex>
             </Flex>
         </Container >
     )
@@ -303,32 +219,8 @@ export const getStaticProps = async ({ params }) => {
         scope: data,
     })
 
-    const tutorials = tutorialsFilePaths.map((filePath) => {
-        const source = fs.readFileSync(path.join(TUTORIALS_PATH, filePath))
-        const { content, data } = matter(source)
-
-        return {
-            content,
-            data,
-            filePath,
-        }
-    })
-
-    const snippets = snippetsFilePaths.map((filePath) => {
-        const source = fs.readFileSync(path.join(SNIPPETS_PATH, filePath))
-        const { content, data } = matter(source)
-
-        return {
-            content,
-            data,
-            filePath,
-        }
-    })
-
     return {
         props: {
-            tutorials,
-            snippets,
             source: mdxSource,
             frontMatter: {
                 ...data

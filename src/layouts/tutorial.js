@@ -20,7 +20,7 @@ import NextLink from 'next/link'
 import { parseISO, format } from 'date-fns'
 import { ChevronUpIcon, ArrowForwardIcon } from '@chakra-ui/icons'
 
-export default function Layout({ frontMatter, children }) {
+export default function TutorialLayout({ frontMatter, children }) {
     const router = useRouter()
     const slug = router.asPath
 

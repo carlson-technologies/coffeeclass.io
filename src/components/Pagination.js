@@ -1,5 +1,5 @@
 import { useRouter } from "next/router"
-import chakraUISidebar from "../configs/learn/chakra-ui.json"
+import chakraUISidebar from "../configs/courses/chakra-ui.json"
 import {
     Flex,
     Text,
@@ -13,7 +13,7 @@ import NextLink from 'next/link'
 export function getRoutes(slug) {
 
     const configMap = {
-        "/learn/chakra-ui": chakraUISidebar
+        "/courses/chakra-ui": chakraUISidebar
     }
 
     const [_path, sidebar] =

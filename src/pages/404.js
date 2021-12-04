@@ -1,16 +1,14 @@
 import {
     Heading,
     Flex,
-    Stack,
     Text,
     useColorMode,
     Link,
-    Button,
-    Icon
+    Center,
+    Box,
 } from '@chakra-ui/react'
 import Container from '../components/Container'
 import NextLink from 'next/link'
-import { Search2Icon } from '@chakra-ui/icons'
 
 export default function Custom404() {
     const { colorMode } = useColorMode()
@@ -18,24 +16,14 @@ export default function Custom404() {
         light: 'brand_one.600',
         dark: 'brand_one.500'
     }
-    const bgColor = {
-        light: 'gray.100',
-        dark: 'gray.700'
-    }
-    const hoverColor = {
-        light: 'gray.300',
-        dark: 'gray.500'
-    }
     return (
         <Container>
-            <Stack
-                spacing={8}
-                px={4}
-            >
-                <Flex
-                    flexDir="column"
-                    mt={50}
+            <Center minH="calc(100vh - 100px)">
+                <Box
                     textAlign="center"
+                    maxW={1000}
+                    mx="auto"
+                    px={4}
                 >
                     <Heading
                         as="h1"
@@ -47,10 +35,10 @@ export default function Custom404() {
                     >
                         This page doesn't seem to exist!
                     </Heading>
-                    <Text fontSize="2xl" mb={4}>Why don't you get up 🧍, stretch 🧘, get another cup of coffee ☕, and then <NextLink href="/search" passHref><Link href="/search" color="gray.500">search</Link></NextLink> for what you're looking for!</Text>
+                    <Text fontSize="2xl" mb={4}>Take this opportunity to get up 🧍, stretch 🧘, get another cup of coffee ☕, and then <NextLink href="/search" passHref><Link href="/search" color="gray.500">search</Link></NextLink> for what you're looking for!</Text>
                     <Text as="small" fontSize="md">Think this is an error? Send us an <Link href="mailto:ben@carlsontechnologies.dev" isExternal color="gray.500">email</Link>.</Text>
-                </Flex>
-            </Stack>
+                </Box>
+            </Center>
         </Container>
     )
 }

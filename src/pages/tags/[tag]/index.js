@@ -80,14 +80,14 @@ export default function Index({ tutorials, snippets, frontMatter }) {
                                     t == frontMatter.title ?
                                         <Snippet
                                             key={post.data.title}
-                                            src={`/content/snippets/${post.filePath.replace(/\.mdx?$/, '')}/${post.data.featureImg}`}
+                                            src={`/content/articles/${post.filePath.replace(/\.mdx?$/, '')}/${post.data.featureImg}`}
                                             title={post.data.title}
                                             description={post.data.description}
                                             tags={post.data.tags}
                                             as={`/snippets/${post.filePath.replace(/\.mdx?$/, '')}`}
                                             href={`/snippets/[slug]`}
                                             mainTag={frontMatter.title}
-                                            image={`/snippet-images/${post.data.logoImage[0]}`}
+                                            image={`/logos/${post.data.logoImage[0]}`}
                                             timeAge={timeAgo.format(new Date(post.data.publishedAt))}
                                             authorName={post.data.author}
                                         /> : null
@@ -109,12 +109,12 @@ export default function Index({ tutorials, snippets, frontMatter }) {
                                     t == frontMatter.title ?
                                         <Tutorial
                                             key={post.data.title}
-                                            src={`/content/tutorials/${post.filePath.replace(/\.mdx?$/, '')}/${post.data.featureImg}`}
+                                            src={`/content/articles/${post.filePath.replace(/\.mdx?$/, '')}/${post.data.featureImg}`}
                                             title={post.data.title}
                                             description={post.data.description}
                                             tags={post.data.tags}
-                                            as={`/tutorials/${post.filePath.replace(/\.mdx?$/, '')}`}
-                                            href={`/tutorials/[slug]`}
+                                            as={`/articles/${post.filePath.replace(/\.mdx?$/, '')}`}
+                                            href={`/articles/[slug]`}
                                             mainTag={frontMatter.title}
                                         /> : null
                                 )

@@ -1,0 +1,162 @@
+---
+title: "Add Comments To React/Next.js Website"
+description: "The easiest (and best?) way to add comments to a Jamstack website."
+seoDescription: "How to add comments to a Next.js/React website? In this tutorial, we'll use utteranc - a comment solution which uses GitHub issues to store comments."
+author: "Benjamin Carlson"
+authorImage: "benjamin-carlson.jpeg"
+authorPosition: "Founder coffeeclass.io"
+publishedAt: "2021-05-01"
+tags: ["react", "utteranc"]
+youtubeId: ["https://youtu.be/Yi0AMpJXrJ0"]
+type: "snippet"
+logoImage: ["utterances.png"]
+---
+
+## Introduction
+
+Adding comments to a [Jamstack](https://jamstack.org/) website is a challenge. The main reason for this is because
+comments require some sort of database, and (one of) Jamstack's selling point is that it doesn't need one!
+You can choose to connect a database such as [Firestore](https://firebase.google.com/docs/firestore) or [AWS](https://aws.amazon.com/products/databases/) - but we're not going to do that because it's
+
+- challenging
+- time consuming
+- **costs money!**
+
+In this article, I'll show you how to connect [utterances](https://utteranc.es/) to your React based application.
+
+## What Is Utterances?
+
+Utteranc under the hood interacts with the [GitHub api](https://docs.github.com/en/rest) to store all of your comments in the issues tab. According to their website, some of the pros of using utteranc are:
+
+- Open source. 🙌
+- No tracking, no ads, always free. 📡🚫
+- No lock-in. All data stored in GitHub issues. 🔓
+- Styled with Primer, the css toolkit that powers GitHub. 💅
+- Dark theme. 🌘
+- Lightweight. Vanilla TypeScript. No font downloads, JavaScript frameworks or polyfills for evergreen browsers. 🐦🌲
+
+I don't know about you, but this sounds like a great comment solution.
+
+## Adding Utterances To A React Website
+
+If you want to add Utteranc to a simple html site, all you need to do is paste in a `<script>` tag. Unfortuantly, in React, we can't do this. We need to create a [custom component](https://reactjs.org/docs/components-and-props.html).
+
+### Step 1: Create a GitHub repo
+
+The first step is to create a GitHub repo to store your comments. You can use the same repo that your website
+is pushed to, however, I recommend creating a new one just for the comments. You can then name this `comments-your-website-name` - or another name if you feel so inclined.
+
+![The comments GitHub repo for this website](/content/articles/add-comments-to-nextjs-website/comments-coffeeclass-io.png)
+
+> ❗ Make sure this repo is public and that Utterances is authorized. ❗
+
+### Step 2: Create The React Component
+
+Next, create a component named `Comments.js` in your app.
+
+Add the following code:
+
+```JavaScript:Comments.js
+import React, { Component } from "react";
+
+export default class Comments extends Component {
+
+    constructor(props) {
+        super(props);
+        this.commentBox = React.createRef(); // use ref to create our element
+    }
+
+    componentDidMount() {
+        scriptEl.setAttribute("theme", 'github-light');
+        let scriptEl = document.createElement("script");
+        scriptEl.setAttribute("src", "https://utteranc.es/client.js");
+        scriptEl.setAttribute("crossorigin", "anonymous");
+        scriptEl.setAttribute("async", true);
+        scriptEl.setAttribute("repo", "your-repo-name-here"); // i.e. bjcarlson42/comments-coffeeclass.io
+        scriptEl.setAttribute("issue-term", "url"); // you can change 'url' with other options
+        this.commentBox.current.appendChild(scriptEl);
+    }
+
+    render() {
+        return (
+            <div style={{ width: '100%' }} id="comments">
+                <div ref={this.commentBox} />
+            </div>
+        );
+    }
+}
+```
+
+As you can see, we are doing the following:
+
+- Create a class named Comments which extends Component
+- Creating our element using `React.createRef()`
+- Using `componentDidMount()` to set all the properties
+
+Be sure to include your repo name on this line:
+
+```JavaScript
+scriptEl.setAttribute("repo", "your-repo-name-here");
+```
+
+Be sure to add your username too. For example, I would do `bjcarlson42/comments-coffeeclass.io` and not `comments-coffeeclass.io`.
+
+#### Dynamic colorMode
+
+If you want to dynamically change the color mode, you can do that too. Here is an example
+of that using [Chakra-UI](https://chakra-ui.com/).
+
+```JavaScript:Comments.js
+import React, { Component } from "react";
+
+export default class Comments extends Component {
+
+    constructor(props) {
+        super(props);
+        this.commentBox = React.createRef(); // use ref to create our element
+    }
+
+    componentDidMount() {
+        // dynamically getting color mode
+        let colorMode = localStorage.getItem('chakra-ui-color-mode');
+        const utteranceTheme = colorMode === "dark" ? "github-dark" : "github-light";
+        scriptEl.setAttribute("theme", utteranceTheme);
+
+        // or
+        scriptEl.setAttribute("theme", 'github-light');
+
+        // rest
+        let scriptEl = document.createElement("script");
+        scriptEl.setAttribute("src", "https://utteranc.es/client.js");
+        scriptEl.setAttribute("crossorigin", "anonymous");
+        scriptEl.setAttribute("async", true);
+        scriptEl.setAttribute("repo", "your-repo-name-here"); // i.e. bjcarlson42/comments-coffeeclass.io
+        scriptEl.setAttribute("issue-term", "url"); // you can change 'url' with other options
+        this.commentBox.current.appendChild(scriptEl);
+    }
+
+    render() {
+        return (
+            <div style={{ width: '100%' }} id="comments">
+                <div ref={this.commentBox} />
+            </div>
+        );
+    }
+}
+```
+
+Finally, we return the actual html:
+
+```JavaScript:Comments.js
+render() {
+        return (
+            <div style={{ width: '100%' }} id="comments">
+                <div ref={this.commentBox} />
+            </div>
+        );
+    }
+```
+
+> Make sure to add the `style={{ width: '100%' }}` otherwise your comment box will be squished. The `id=comments` is optional.
+
+Now, go ahead and test it out by importing the component anywhere in your application! If you have questions feel free to leave them in the comments below - which uses utteranc ;).

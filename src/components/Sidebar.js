@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useRouter } from "next/router"
-import chakraUISidebar from "../configs/learn/chakra-ui.json"
+import chakraUISidebar from "../configs/courses/chakra-ui.json"
 import {
     Box,
     Flex,
@@ -11,6 +11,7 @@ import {
     Divider,
     Badge,
     SkeletonCircle,
+    AspectRatio,
 } from "@chakra-ui/react"
 import Image from 'next/image'
 import NextLink from 'next/link'
@@ -18,7 +19,7 @@ import Ad from '../components/Ad'
 
 export function getRoutes(slug) {
     const configMap = {
-        "/learn/chakra-ui": chakraUISidebar
+        "/courses/chakra-ui": chakraUISidebar
     }
 
     const [_path, sidebar] =
@@ -64,15 +65,16 @@ const Sidebar = ({ src, alt }) => {
             >
                 <Flex flexDirection="column" alignItems="center">
                     <SkeletonCircle isLoaded={loaded}>
-                        <NextLink href="/learn/chakra-ui" passHref>
-                            <Link href="/learn/chakra-ui">
-                                <Image
-                                    src={`/learn-images/language-logo/${src}`}
-                                    alt={alt}
-                                    height={35}
-                                    width={35}
-                                    onLoad={() => setLoaded(true)}
-                                />
+                        <NextLink href="/courses/chakra-ui" passHref>
+                            <Link href="/courses/chakra-ui">
+                                <AspectRatio ratio={1}>
+                                    <Image
+                                        src={`/logos/${src}`}
+                                        alt={alt}
+                                        layout="fill"
+                                        onLoad={() => setLoaded(true)}
+                                    />
+                                </AspectRatio>
                             </Link>
                         </NextLink>
                     </SkeletonCircle>

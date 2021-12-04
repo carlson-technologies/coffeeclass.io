@@ -165,7 +165,7 @@ export default function GettingStarted() {
                     </UnorderedList>
 
                     <Text fontSize="lg" color={useColorModeValue("gray.600", "gray.400")} my={2}>
-                        As you can see, tutorials are longer than snippets and cover much more. They usually involve building something using multiple tools - but not always. Check out an example of a tutorial <NextLink href="/tutorials/add-firebase-to-nextjs" passHref><Link href="/tutorials/add-firebase-to-nextjs" fontWeight="bold">here</Link></NextLink>.
+                        As you can see, tutorials are longer than snippets and cover much more. They usually involve building something using multiple tools - but not always. Check out an example of a tutorial <NextLink href="/articles/add-firebase-to-nextjs" passHref><Link href="/articles/add-firebase-to-nextjs" fontWeight="bold">here</Link></NextLink>.
                     </Text>
 
                     {/* Guides have not been implemented yet */}
@@ -258,7 +258,7 @@ export default function GettingStarted() {
                     <SnippetStep number="4" title="Add the content!" />
 
                     <Text fontSize="lg" color={useColorModeValue("gray.600", "gray.400")} my={2}>
-                        Now is the time to add your content. If you are creating a snippet, add your <Code>.mdx</Code> file to the snippets folder. If you are creating a guide or tutorial, add it to the respective folder. Inside of the file add your metadata and content. Use <Link isExternal fontWeight="bold" href="https://raw.githubusercontent.com/carlson-technologies/coffeeclass.io/main/content/snippets/make-div-float-up-hover-css.mdx">this link</Link> as a reference. A couple of other things to note, if you are creating a snippet, the <Code>logoImage</Code> is a picture of the logo. Check to see if we already have one in the public folder. To use custom components, create them in the components folder and import them inside of <Code>MDXComponents.js</Code>. For any images, create a folder inside of public with the same name as the <Code>.mdx</Code> file.
+                        Now is the time to add your content. If you are creating a snippet, add your <Code>.mdx</Code> file to the snippets folder. If you are creating a guide or tutorial, add it to the respective folder. Inside of the file add your metadata and content. Use <Link isExternal fontWeight="bold" href="https://raw.githubusercontent.com/carlson-technologies/coffeeclass.io/main/content/articles/make-div-float-up-hover-css.mdx">this link</Link> as a reference. A couple of other things to note, if you are creating a snippet, the <Code>logoImage</Code> is a picture of the logo. Check to see if we already have one in the public folder. To use custom components, create them in the components folder and import them inside of <Code>MDXComponents.js</Code>. For any images, create a folder inside of public with the same name as the <Code>.mdx</Code> file.
                     </Text>
 
                     <Text fontSize="lg" color={useColorModeValue("gray.600", "gray.400")} my={2}>

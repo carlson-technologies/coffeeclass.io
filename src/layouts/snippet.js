@@ -8,6 +8,7 @@ import {
   Text,
   Skeleton,
   AspectRatio,
+  useColorModeValue,
 } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import SEO from '../components/SEO'
@@ -85,54 +86,30 @@ export default function Layout({ frontMatter, children }) {
               <Flex mt={10}>
                 {
                   frontMatter.logoImage?.map((image, index) => (
-                    // If the image title includes "light", it has a dark mode image
-                    // so we need to use the correct image.
-                    // This is not the best solution, but it works for now.
-                    image.includes('light') ?
-                      <Box
-                        alignSelf="left"
-                        mb={4}
-                        mr={4}
-                        w={75}
-                        h={75}
-                      >
-                        <AspectRatio ratio={1}>
-                          <Skeleton isLoaded={loaded}>
-                            <Image
-                              key={index}
-                              src={`/snippet-images/${image}`}
-                              alt={frontMatter.logoImage}
-                              width="200px"
-                              height="200px"
-                              objectFit="contain"
-                              priority={true}
-                              onLoad={() => setLoaded(true)}
-                            />
-                          </Skeleton>
-                        </AspectRatio>
-                      </Box> :
-                      <Box
-                        alignSelf="left"
-                        mb={4}
-                        mr={4}
-                        w={75}
-                        h={75}
-                      >
-                        <AspectRatio ratio={1}>
-                          <Skeleton isLoaded={loaded}>
-                            <Image
-                              key={index}
-                              src={`/snippet-images/${image}`}
-                              alt={frontMatter.logoImage}
-                              width="200px"
-                              height="200px"
-                              objectFit="cover"
-                              priority={true}
-                              onLoad={() => setLoaded(true)}
-                            />
-                          </Skeleton>
-                        </AspectRatio>
-                      </Box>
+                    <Box
+                      alignSelf="left"
+                      mb={4}
+                      mr={4}
+                      w={75}
+                      h={75}
+                      bgColor={useColorModeValue("gray.100", "gray.800")}
+                      borderRadius={5}
+                      p={3}
+                    >
+                      <AspectRatio ratio={1}>
+                        <Skeleton isLoaded={loaded}>
+                          <Image
+                            key={index}
+                            src={`/logos/${image}`}
+                            alt={frontMatter.logoImage}
+                            layout="fill"
+                            objectFit="cover"
+                            priority={true}
+                            onLoad={() => setLoaded(true)}
+                          />
+                        </Skeleton>
+                      </AspectRatio>
+                    </Box>
                   ))
                 }
               </Flex>

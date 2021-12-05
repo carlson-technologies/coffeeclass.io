@@ -22,6 +22,10 @@ const description = 'Learn the css framework Chakra UI.'
 
 export default function ChakraUI() {
     const data = lessons.routes
+    const boxShadow = useColorModeValue("0px 8px 26px rgba(0, 0, 0, 0.25)", "0px 8px 26px rgba(255, 255, 255, 0.1)")
+    const bgColor = useColorModeValue("#fff", "#15161a")
+    const borderColor = useColorModeValue("gray.200", "gray.700")
+
     return (
         <Container>
             <NextSeo
@@ -59,7 +63,7 @@ export default function ChakraUI() {
                         </Box>
                         <Text fontSize="lg" mb={2} ml={2}>🚗 Road Map / {data.length} modules</Text>
                         {data.map((item, index) => (
-                            <NextLink href={item.path} passHref>
+                            <NextLink href={item.path} key={index} passHref>
                                 <Link 
                                 href={item.path} 
                                 _hover={{ textDecor: 'none' }}
@@ -75,13 +79,12 @@ export default function ChakraUI() {
                                     <Flex
                                         _hover={{
                                             transform: "scale(1.05)",
-                                            boxShadow: useColorModeValue("0px 8px 26px rgba(0, 0, 0, 0.25)", "0px 8px 26px rgba(255, 255, 255, 0.1)"),
+                                            boxShadow: boxShadow,
                                         }}
                                         transition="transform .5s, box-shadow .5s"
-                                        key={index}
-                                        bgColor={useColorModeValue("#fff", "#15161a")}
+                                        bgColor={bgColor}
                                         border="1px solid"
-                                        borderColor={useColorModeValue("gray.200", "gray.700")}
+                                        borderColor={borderColor}
                                         borderRadius={5}
                                         p={5}
                                         align="center"

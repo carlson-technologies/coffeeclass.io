@@ -42,7 +42,8 @@ export default function Index({ posts }) {
             Number(new Date(b.data.publishedAt)) - Number(new Date(a.data.publishedAt))
     )
 
-    const [opacity, setOpacity] = useState(0)
+    const bgColor = useColorModeValue("gray.100", "gray.900")
+    const color = useColorModeValue("gray.500", "gray.400")
 
     return (
         <Container>
@@ -78,7 +79,7 @@ export default function Index({ posts }) {
                                     <Link href={`/articles/${post.filePath.replace(".mdx", "")}`} _hover={{ textDecor: 'none' }}>
                                         <Flex
                                             flexDir="column"
-                                            bgColor={useColorModeValue("gray.100", "gray.900")}
+                                            bgColor={bgColor}
                                             h="100%"
                                             p={5}
                                             borderRadius={5}
@@ -90,7 +91,7 @@ export default function Index({ posts }) {
                                             justify="space-between"
                                         >
                                             <Box>
-                                                <Text mb={2} minW={120} textAlign="center" color={useColorModeValue("gray.500", "gray.400")} fontSize="md" mb={6}>{timeAgo.format(new Date(post.data.publishedAt))}</Text>
+                                                <Text minW={120} textAlign="center" color={color} fontSize="md" mb={6}>{timeAgo.format(new Date(post.data.publishedAt))}</Text>
                                                 {post?.data?.logoImage &&
                                                     <Box>
                                                         <Box

@@ -30,8 +30,8 @@ export default function Search({ is404 }) {
     // for search modal
     const { isOpen, onOpen, onClose } = useDisclosure()
     const bgColor = useColorModeValue("gray.100", "gray.800")
-    const color = useColorModeValue("gray.500", "gray.400")
     const color1 = useColorModeValue("gray.300", "gray.600")
+    const bgColor1 = useColorModeValue("gray.200", "gray.700")
 
     if (is404) {
         return (
@@ -90,7 +90,7 @@ export default function Search({ is404 }) {
                     </ModalBody>
                     <ModalFooter>
                         <ThanksBox src="/logos/algolia.png" intro="Search By" title="Algolia" width={8} href="https://www.algolia.com" />
-                        <Button variant="ghost" onClick={onClose} ml={2}>
+                        <Button variant="ghost" onClick={onClose} ml={2} _hover={{ bgColor: bgColor1 }}>
                             Close
                         </Button>
                     </ModalFooter>

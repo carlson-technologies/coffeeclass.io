@@ -14,7 +14,7 @@ const BlogAd = () => {
         <>
             {process.env.NODE_ENV !== 'development' ?
                 <div style={{ width: '100%', marginTop: "5px", marginBottom: "5px", overflowX: 'scroll' }}>
-                    <ins class="adsbygoogle"
+                    <ins className="adsbygoogle"
                         style={{ display: 'block' }}
                         data-ad-format="fluid"
                         data-ad-layout-key="-fb+5w+4e-db+86"

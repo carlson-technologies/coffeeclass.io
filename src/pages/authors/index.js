@@ -52,8 +52,8 @@ export default function Index({ authors }) {
                     <Box bgColor="brand_one.500" h={2} w={150} borderRadius={5} mb={4} mt={2} />
                     <Text color={color[colorMode]} mb={2} fontSize="lg">All authors on coffeeclass.io.</Text>
                     <UnorderedList>
-                        {authors.map(author =>
-                            <ListItem><Link textDecor="underline" href={`/authors/${author.data.slug}`}>{author.data.name}</Link></ListItem>
+                        {authors.map((author, index) =>
+                            <ListItem key={index}><Link textDecor="underline" href={`/authors/${author.data.slug}`}>{author.data.name}</Link></ListItem>
                         )
                         }
                     </UnorderedList>

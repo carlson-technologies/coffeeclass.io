@@ -64,13 +64,9 @@ const Wrapper = ({ path, children }) => {
 
 export default function Index() {
     const data = subjects.routes
-    const { colorMode } = useColorMode()
-    const headerColor = {
-        light: 'brand_one.600',
-        dark: 'brand_one.500'
-    }
-
     const [loaded, setLoaded] = useState(false)
+    const dividerBorder = useColorModeValue("blackAlpha.300", "gray.300")
+    const color = useColorModeValue("gray.400", "gray.600")
     return (
         <Container>
             <NextSeo
@@ -110,7 +106,7 @@ export default function Index() {
                                         </Flex>
                                         <Heading textAlign="center" mx={2} mb={2} as="h2">{item.title}</Heading>
                                         <Text textAlign="center" mx={2}>{item.description}</Text>
-                                        <Divider borderColor={useColorModeValue("blackAlpha.300", "gray.300")} my={4} />
+                                        <Divider borderColor={dividerBorder} my={4} />
                                         {/* <Heading as="h3" size="sm" textTransform="uppercase" color={useColorModeValue("gray.600", "gray.400")} mb={2}>First Modules</Heading> */}
                                         <OrderedList spacing={4}>
                                             {item['first-5-lessons'].map((lesson, index) => {
@@ -120,7 +116,7 @@ export default function Index() {
                                             }
                                             )}
                                         </OrderedList>
-                                        <Text fontSize="sm" textTransform="uppercase" color={useColorModeValue("gray.400", "gray.600")} mt={2}>and more...</Text>
+                                        <Text fontSize="sm" textTransform="uppercase" color={color} mt={2}>and more...</Text>
                                     </Wrapper>
                                 )
                             })

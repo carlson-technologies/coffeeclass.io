@@ -30,6 +30,7 @@ export default function Index({ frontMatter }) {
     const description = `coffeeclass.io articles written by ${frontMatter.name}. ${frontMatter.description}`
 
     const [loaded, setLoaded] = useState(false)
+    const color = useColorModeValue("gray.600", "gray.300")
 
     return (
         <Container>
@@ -81,7 +82,7 @@ export default function Index({ frontMatter }) {
                             </Flex>
                             <Heading as="h1" size="2xl" textAlign="center" letterSpacing="tight" color={useColorModeValue("brand_one.600", "brand_one.500")}>{frontMatter.name}</Heading>
                             {frontMatter.description &&
-                                <Text textAlign="center" color={useColorModeValue("gray.600", "gray.300")} fontSize="xl">{frontMatter.description}</Text>
+                                <Text textAlign="center" color={color} fontSize="xl">{frontMatter.description}</Text>
                             }
                             <Flex
                                 my={4}

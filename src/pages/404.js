@@ -33,9 +33,9 @@ export default function Custom404() {
                         color={headerColor[colorMode]}
                         mb={2}
                     >
-                        This page doesn't seem to exist!
+                        This page doesn&apos;t seem to exist!
                     </Heading>
-                    <Text fontSize="2xl" mb={4}>Take this opportunity to get up 🧍, stretch 🧘, get another cup of coffee ☕, and then <Search is404 /> for what you're looking for!</Text>
+                    <Text fontSize="2xl" mb={4}>Take this opportunity to get up 🧍, stretch 🧘, get another cup of coffee ☕, and then <Search is404 /> for what you&apos;re looking for!</Text>
                     <Text as="small" fontSize="md">Think this is an error? Send us an <Link href="mailto:ben@carlsontechnologies.dev" isExternal color="gray.500">email</Link>.</Text>
                 </Box>
             </Center>

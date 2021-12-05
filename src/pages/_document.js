@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import NextDocument, { Html, Head, Main, NextScript } from 'next/document'
 import { ColorModeScript } from "@chakra-ui/react"
 import theme from '../styles/theme'
@@ -12,12 +11,10 @@ export default class MyDocument extends NextDocument {
             window.splitbee.track("Snippet Helpful")
         }
 
-        useEffect(() => {
+        if (typeof window !== 'undefined') {
             window.addEventListener('load', handleState)
-            return () => {
-                window.removeEventListener('load', handleState)
-            }
-        })
+        }
+
         return (
             <Html lang="en">
                 <GoogleFonts href="https://fonts.googleapis.com/css?family=Inter&display=swap" />

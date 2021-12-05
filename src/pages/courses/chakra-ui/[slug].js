@@ -41,6 +41,7 @@ export default function PostPage({ source, frontMatter }) {
         light: 'gray.600',
         dark: 'gray.400'
     }
+    const bgColor = useColorModeValue("gray.100", "gray.800")
     return (
         <LearnLayout frontMatter={frontMatter} src="chakra-ui.png" alt="Chakra UI Image">
             <motion.div
@@ -70,12 +71,11 @@ export default function PostPage({ source, frontMatter }) {
                             <AccordionPanel>
                                 {frontMatter?.headers.map((h) => {
                                     return (
-                                        <Link href={`#${h.text}`}>
+                                        <Link href={`#${h.text}`} key={h.text}>
                                             <Box
-                                                key={h.text}
                                                 p={1}
                                                 _hover={{
-                                                    bgColor: useColorModeValue("gray.100", "gray.800"),
+                                                    bgColor: bgColor,
                                                     cursor: "pointer",
                                                 }}
                                                 my={1}
@@ -107,7 +107,7 @@ export default function PostPage({ source, frontMatter }) {
                     maxW="1000px"
                     id="main-content"
                 >
-                    {/* <Ad /> */}
+                    <Ad />
                     <MDXRemote {...source} components={MDXComponents} />
                 </Flex>
                 <Box mb={4} mt={10}>

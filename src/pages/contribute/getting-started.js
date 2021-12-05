@@ -91,7 +91,7 @@ export default function GettingStarted() {
                     </Heading>
 
                     <Text fontSize="lg" color={useColorModeValue("gray.600", "gray.400")} my={2}>
-                        coffeeclass.io is different than other programming blogs. That is because our "blog" is broken up into different categories of posts. They are not all lumped together under a "/blog" url.
+                        coffeeclass.io is different than other programming blogs. That is because our articles are broken up into different categories of posts. They are not all lumped together under a &quot;/blog&quot; (or in our case &quot;/articles&quot;) url.
                     </Text>
 
                     <Heading as="h3" size="md" mt={8} mb={4}>
@@ -135,7 +135,7 @@ export default function GettingStarted() {
                     </Text>
 
                     <Text fontSize="lg" color={useColorModeValue("gray.600", "gray.400")} my={2}>
-                        You'll also notice that it includes interactive examples as well as custom step components. This is another thing that differentiates our site from others. Since all of the posts are <Code>.mdx</Code> files, we can embed custom components in them! You should definitely take advantage of this and use some custom components in your snippets. You can create your own or use some that are already built. They can all be found <Link fontWeight="bold" href="https://github.com/carlson-technologies/coffeeclass.io/tree/main/src/components" isExternal>here</Link>.
+                        You&quot;ll also notice that it includes interactive examples as well as custom step components. This is another thing that differentiates our site from others. Since all of the posts are <Code>.mdx</Code> files, we can embed custom components in them! You should definitely take advantage of this and use some custom components in your snippets. You can create your own or use some that are already built. They can all be found <Link fontWeight="bold" href="https://github.com/carlson-technologies/coffeeclass.io/tree/main/src/components" isExternal>here</Link>.
                     </Text>
 
                     <Heading as="h3" size="md" mt={8} mb={4}>
@@ -216,7 +216,7 @@ export default function GettingStarted() {
                     </Heading>
 
                     <Text fontSize="lg" color={useColorModeValue("gray.600", "gray.400")} my={2}>
-                        And that's it! At the moment, coffeeclass.io is made up of those 4 types of content. If you still want to write, read on for more info!
+                        And that&quot;s it! At the moment, coffeeclass.io is made up of those 4 types of content. If you still want to write, read on for more info!
                     </Text>
 
                     <Heading as="h2" size="lg" mt={8} mb={4} id="How to Submit">
@@ -232,7 +232,7 @@ export default function GettingStarted() {
                     </Heading>
 
                     <Text fontSize="lg" color={useColorModeValue("gray.600", "gray.400")} my={2}>
-                        The first way to submit an article is to create a pull request. Let's go through the steps.
+                        The first way to submit an article is to create a pull request. Let&quot;s go through the steps.
                     </Text>
 
                     <SnippetStep number="1" title="Clone this repo" />
@@ -262,7 +262,7 @@ export default function GettingStarted() {
                     </Text>
 
                     <Text fontSize="lg" color={useColorModeValue("gray.600", "gray.400")} my={2}>
-                        Don't be worried if something is not correct. When you create your pr we will review it and request any changes if necessary.
+                        Don&quot;t be worried if something is not correct. When you create your pr we will review it and request any changes if necessary.
                     </Text>
 
                     <SnippetStep number="5" title="Create your author page" />
@@ -276,7 +276,7 @@ export default function GettingStarted() {
                     </Heading>
 
                     <Text fontSize="lg" color={useColorModeValue("gray.600", "gray.400")} my={2}>
-                        If that is too much, feel free to email (<Link href="mailto:ben@carlsontechnologies.dev" fontWeight="bold">ben@carlsontechnologies.dev</Link>) the article to us and we'll do all the heavy lifting. We'd prefer if you emailed a link to the article (either a Google Doc or a shared Notion page) rather than emailing the entire article. Be sure to include the following info:
+                        If that is too much, feel free to email (<Link href="mailto:ben@carlsontechnologies.dev" fontWeight="bold">ben@carlsontechnologies.dev</Link>) the article to us and we&quot;ll do all the heavy lifting. We&quot;d prefer if you emailed a link to the article (either a Google Doc or a shared Notion page) rather than emailing the entire article. Be sure to include the following info:
                     </Text>
 
                     <UnorderedList>
@@ -317,7 +317,7 @@ export default function GettingStarted() {
                         </ListItem>
                         <ListItem>
                             <Text fontSize="lg" color={useColorModeValue("gray.600", "gray.400")} my={2}>
-                                Article Featured Image (If it's a tutorial)
+                                Article Featured Image (If it&quot;s a tutorial)
                             </Text>
                         </ListItem>
                     </UnorderedList>

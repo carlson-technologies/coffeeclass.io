@@ -28,6 +28,8 @@ export default function Index({ articles, frontMatter }) {
         return article.data.tags.includes(frontMatter.title)
     })
 
+    const color = useColorModeValue("gray.500", "gray.400")
+
     console.log(filteredArticles)
 
     return (
@@ -60,7 +62,7 @@ export default function Index({ articles, frontMatter }) {
                         <Heading
                             as="h2"
                             size="md"
-                            color={useColorModeValue("gray.500", "gray.400")}
+                            color={color}
                             mt={2}
                         >
                             {frontMatter.description}

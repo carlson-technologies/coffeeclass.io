@@ -26,10 +26,10 @@ function Hits({ searchState, searchResults }) {
             {searchResults?.hits.length > 0 && validQuery && (
                 <>
                     {searchResults.hits.map((hit, index) => (
-                        <div tabIndex={index}>
+                        <div tabIndex={index} key={hit.objectID}>
                             <>
                                 {hit.type === "article" && (
-                                    <NextLink href={`/article/${hit.slug.replace(".mdx", "")}`} key={hit.objectID} passHref>
+                                    <NextLink href={`/article/${hit.slug.replace(".mdx", "")}`} passHref>
                                         <Link href={`/article/${hit.slug.replace(".mdx", "")}`}>
                                             <Box bgColor={bgColor} my={4} p={5} borderRadius={5}>
                                                 <Breadcrumb color={color} spacing="4px" separator={<ChevronRightIcon color="gray.500" />}>
@@ -51,7 +51,7 @@ function Hits({ searchState, searchResults }) {
                             <>
                                 {hit.type === "author" && (
                                     <>
-                                        <NextLink href={`/authors/${hit.slug.replace(".mdx", "")}`} key={hit.objectID} passHref>
+                                        <NextLink href={`/authors/${hit.slug.replace(".mdx", "")}`} passHref>
                                             <Link href={`/authors/${hit.slug.replace(".mdx", "")}`}>
                                                 <Box bgColor={bgColor} my={4} p={5} borderRadius={5}>
                                                     <Breadcrumb color={color} spacing="4px" separator={<ChevronRightIcon color="gray.500" />}>
@@ -74,7 +74,7 @@ function Hits({ searchState, searchResults }) {
                             <>
                                 {hit.type === "tag" && (
                                     <>
-                                        <NextLink href={`/tags/${hit.slug.replace(".mdx", "")}`} key={hit.objectID} passHref>
+                                        <NextLink href={`/tags/${hit.slug.replace(".mdx", "")}`} passHref>
                                             <Link href={`/tags/${hit.slug.replace(".mdx", "")}`}>
                                                 <Box bgColor={bgColor} my={4} p={5} borderRadius={5}>
                                                     <Breadcrumb color={color} spacing="4px" separator={<ChevronRightIcon color="gray.500" />}>

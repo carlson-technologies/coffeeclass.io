@@ -77,6 +77,9 @@ export default function PostPage({ source, frontMatter, posts }) {
         }
     })
 
+    const bgColor = useColorModeValue("gray.100", "gray.700")
+    const bgColor1 = useColorModeValue("gray.100", "gray.800")
+
     return (
         <Container>
             <SEO url={`https://www.coffeeclass.io${slug}`} slug={slug} {...frontMatter} />
@@ -101,7 +104,7 @@ export default function PostPage({ source, frontMatter, posts }) {
                     <Flex flexGrow={1} flexDir="column" w="100%" p={4} maxW={800}>
                         {
                             frontMatter.logoImage &&
-                            <Box bgColor={useColorModeValue("gray.100", "gray.700")} w="fit-content" p={4} borderRadius={5}>
+                            <Box bgColor={bgColor} w="fit-content" p={4} borderRadius={5}>
                                 <AspectRatio ratio={1} w={50}>
                                     <Image src={`/logos/${frontMatter.logoImage[0]}`} alt={frontMatter.title} />
                                 </AspectRatio>
@@ -151,12 +154,11 @@ export default function PostPage({ source, frontMatter, posts }) {
                                 <AccordionPanel>
                                     {frontMatter?.headers.map((h) => {
                                         return (
-                                            <Link href={`#${h.text}`}>
+                                            <Link href={`#${h.text}`} key={h.text}>
                                                 <Box
-                                                    key={h.text}
                                                     p={1}
                                                     _hover={{
-                                                        bgColor: useColorModeValue("gray.100", "gray.800"),
+                                                        bgColor: bgColor1,
                                                         cursor: "pointer",
                                                     }}
                                                     my={1}

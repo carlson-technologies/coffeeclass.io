@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "node ./scripts/build-algolia-search.js",
+    "postbuild": "node ./src/scripts/build-algolia-search.js",
     "start": "next start"
   },
   "dependencies": {

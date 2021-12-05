@@ -31,7 +31,7 @@ export default function Privacy() {
                 >
                     <Heading mt={4} as="h1" size="2xl" color="brand_one.500">Disclaimer</Heading>
                     <Box bgColor="brand_one.500" h={2} w={150} borderRadius={5} mb={4} mt={2} />
-                    <Text color={useColorModeValue("gray.600", "gray.400")}>Last updated: June 30, 2021</Text>
+                    <Text color={useColorModeValue("gray.600", "gray.400")}>Last updated: June 30, 2021 - todo</Text>
                     <Heading mt={4} as="h2">Interpretation and Definitions</Heading>
                     <Heading mt={4} as="h2">Interpretation</Heading>
                     <Text color={useColorModeValue("gray.600", "gray.400")}>The words of which the initial letter is capitalized have meanings defined under the following conditions.
@@ -42,12 +42,12 @@ export default function Privacy() {
                         <ListItem><strong>Company</strong> (referred to as either &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Disclaimer) refers to Carlson Technologies LLC, 224 Briarwood Lane, Middletown, CT 06457.</ListItem>
                         <ListItem><strong>Service</strong> refers to the Website.</ListItem>
                         <ListItem><strong>You</strong> means the individual accessing the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</ListItem>
-                        <ListItem><strong>Website</strong> refers to coffeeclass.io, accessible from <a href="https://www.coffeeclass.io/" rel="external nofollow noopener" target="_blank">https://www.coffeeclass.io/</a></ListItem>
+                        <ListItem><strong>Website</strong> refers to coffeeclass.io, accessible from <Link color="brand_one.500" href="https://www.coffeeclass.io/" rel="external nofollow noopener" target="_blank">https://www.coffeeclass.io/</Link>.</ListItem>
                     </UnorderedList>
                     <Heading mt={4} as="h2">Disclaimer</Heading>
                     <Text color={useColorModeValue("gray.600", "gray.400")}>The information contained on the Service is for general information purposes only.</Text>
                     <Text color={useColorModeValue("gray.600", "gray.400")}>The Company assumes no responsibility for errors or omissions in the contents of the Service.</Text>
-                    <Text color={useColorModeValue("gray.600", "gray.400")}>In no event shall the Company be liable for any special, direct, indirect, consequential, or incidental damages or any damages whatsoever, whether in an action of contract, negligence or other tort, arising out of or in connection with the use of the Service or the contents of the Service. The Company reserves the right to make additions, deletions, or modifications to the contents on the Service at any time without prior notice. This Disclaimer has been created with the help of the <a href="https://www.termsfeed.com/disclaimer-generator/" target="_blank">Disclaimer Generator</a>.</Text>
+                    <Text color={useColorModeValue("gray.600", "gray.400")}>In no event shall the Company be liable for any special, direct, indirect, consequential, or incidental damages or any damages whatsoever, whether in an action of contract, negligence or other tort, arising out of or in connection with the use of the Service or the contents of the Service. The Company reserves the right to make additions, deletions, or modifications to the contents on the Service at any time without prior notice.</Text>
                     <Text color={useColorModeValue("gray.600", "gray.400")}>The Company does not warrant that the Service is free of viruses or other harmful components.</Text>
                     <Heading mt={4} as="h2">External Links Disclaimer</Heading>
                     <Text color={useColorModeValue("gray.600", "gray.400")}>The Service may contain links to external websites that are not provided or maintained by or in any way affiliated with the Company.</Text>

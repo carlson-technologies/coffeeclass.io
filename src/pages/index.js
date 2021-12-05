@@ -42,6 +42,9 @@ export default function Index({ posts }) {
 
     const [loaded, setLoaded] = useState(false)
 
+    const color = useColorModeValue("gray.500", "gray.400")
+    const bgColor = useColorModeValue("gray.100", "gray.900")
+
     return (
         <Container>
             <NextSeo
@@ -81,7 +84,7 @@ export default function Index({ posts }) {
                                     <Link href={`/articles/${post.filePath.replace(".mdx", "")}`} _hover={{ textDecor: 'none' }}>
                                         <Flex
                                             flexDir="column"
-                                            bgColor={useColorModeValue("gray.100", "gray.900")}
+                                            bgColor={bgColor}
                                             h="100%"
                                             p={5}
                                             borderRadius={5}
@@ -93,7 +96,7 @@ export default function Index({ posts }) {
                                             justify="space-between"
                                         >
                                             <Box>
-                                                <Text mb={2} minW={120} textAlign="center" color={useColorModeValue("gray.500", "gray.400")} fontSize="md" mb={6}>{timeAgo.format(new Date(post.data.publishedAt))}</Text>
+                                                <Text minW={120} textAlign="center" color={color} fontSize="md" mb={6}>{timeAgo.format(new Date(post.data.publishedAt))}</Text>
                                                 {post?.data?.logoImage &&
                                                     <Box>
                                                         <Box
@@ -173,7 +176,7 @@ export default function Index({ posts }) {
                     >
                         Write For Us
                     </Heading>
-                    <Text mb={2} fontSize="xl" mt={2} mb={4} textAlign="center">Like to write code? Try writing about it!</Text>
+                    <Text fontSize="xl" mt={2} mb={4} textAlign="center">Like to write code? Try writing about it!</Text>
                     <NextLink href="/contribute/getting-started" passHref>
                         <Button colorScheme="brand_one" w={['100%', '100%', '100%', 200, 200, 200]} to="/about">See How</Button>
                     </NextLink>

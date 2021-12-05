@@ -14,7 +14,7 @@ const DarkModeSwitch = () => {
             borderRadius={5}
             variant="ghost"
             _hover={{ backgroundColor: useColorModeValue("gray.200", "gray.700") }}
-            w={75}
+            w={65}
         />
     )
 }

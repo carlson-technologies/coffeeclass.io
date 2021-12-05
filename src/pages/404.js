@@ -8,7 +8,7 @@ import {
     Box,
 } from '@chakra-ui/react'
 import Container from '../components/Container'
-import NextLink from 'next/link'
+import Search from "../components/Navigation/Search"
 
 export default function Custom404() {
     const { colorMode } = useColorMode()
@@ -35,7 +35,7 @@ export default function Custom404() {
                     >
                         This page doesn't seem to exist!
                     </Heading>
-                    <Text fontSize="2xl" mb={4}>Take this opportunity to get up 🧍, stretch 🧘, get another cup of coffee ☕, and then <NextLink href="/search" passHref><Link href="/search" color="gray.500">search</Link></NextLink> for what you're looking for!</Text>
+                    <Text fontSize="2xl" mb={4}>Take this opportunity to get up 🧍, stretch 🧘, get another cup of coffee ☕, and then <Search is404 /> for what you're looking for!</Text>
                     <Text as="small" fontSize="md">Think this is an error? Send us an <Link href="mailto:ben@carlsontechnologies.dev" isExternal color="gray.500">email</Link>.</Text>
                 </Box>
             </Center>

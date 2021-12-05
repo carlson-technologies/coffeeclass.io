@@ -82,9 +82,8 @@ const Sidebar = ({ src, alt }) => {
                 </Flex>
                 <Divider my={4} />
                 {routes.map((r) =>
-                    <NextLink href={r.path} passHref>
+                    <NextLink href={r.path} key={r.title} passHref>
                         <Link
-                            key={r.title}
                             href={r.path}
                             _hover={{
                                 textDecoration: 'none'

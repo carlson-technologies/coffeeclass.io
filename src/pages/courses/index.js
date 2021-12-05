@@ -13,6 +13,7 @@ import {
     ListItem,
     Grid,
     Icon,
+    Box,
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../../components/Container'
@@ -89,15 +90,8 @@ export default function Index() {
                 <Flex
                     flexDir="column"
                 >
-                    <Heading
-                        as="h1"
-                        size="2xl"
-                        letterSpacing="tight"
-                        textTransform="uppercase"
-                        my={8}
-                    >
-                        Courses 🎒
-                    </Heading>
+                    <Heading mt={4} as="h1" size="2xl" color="brand_one.500">Courses 🎒</Heading>
+                    <Box bgColor="brand_one.500" h={2} w={150} borderRadius={5} mb={4} mt={2} />
                     <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]} gap={6}>
                         {
                             data.map((item, index) => {

@@ -28,7 +28,6 @@ export default function Privacy() {
                     mx={5}
                     as="section"
                     maxW="100em"
-                    mt={['1em', '1em', '1em', '1.5em', '2em', '2em']}
                 >
                     <Heading mt={4} as="h1" size="2xl" color="brand_one.500">Privacy Policy</Heading>
                     <Box bgColor="brand_one.500" h={2} w={150} borderRadius={5} mb={4} mt={2} />

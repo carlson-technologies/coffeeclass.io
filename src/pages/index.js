@@ -5,8 +5,6 @@ import {
     Button,
     Text,
     Box,
-    Grid,
-    Image,
     Link,
     Icon,
     useColorMode,
@@ -24,39 +22,23 @@ import matter from 'gray-matter'
 import path from 'path'
 import { contentFilePaths, CONTENT_PATH } from '../scripts/mdx-utils'
 import { ChevronRightIcon } from '@chakra-ui/icons'
-import Hero from '../components/PageComponents/Index/Hero'
-import removeDuplicatesAndCount from '../scripts/remove-duplicates-and-count'
+import Hero from '../components/Hero'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
 
 const url = 'https://www.coffeeclass.io/'
-const title = 'Home | coffeeclass.io'
-const description = 'Explore the latest programming and computer science tutorials, snippets, and learn sections on coffeeclass.io.'
+const title = 'Home'
+const description = 'Explore the latest programming and computer science articles and learn programming for free on coffeeclass.io.'
 
 export default function Index({ posts }) {
     const { colorMode } = useColorMode()
-    const borderBottomColor = {
-        light: 'black',
-        dark: 'white'
-    }
-    const headerColor = {
-        light: 'brand_one.600',
-        dark: 'brand_one.500'
-    }
     const bgImage = {
         light: 'linear-gradient(to bottom,rgba(255,255,255, 0),rgba(255,255,255, 1) 90%)',
         dark: 'linear-gradient(to bottom,rgba(0,0,0, 0),rgba(0,0,0, 1) 90%)'
     }
 
-    var tagArray = []
-    posts.map(tut => tut.data.tags.map(tag => {
-        tagArray.push(tag)
-    }))
-
     TimeAgo.addLocale(en)
     const timeAgo = new TimeAgo('en-US')
-
-    var tagArray = removeDuplicatesAndCount(tagArray)
 
     const [loaded, setLoaded] = useState(false)
 

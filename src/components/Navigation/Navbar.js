@@ -17,13 +17,13 @@ import {
     MenuDivider,
     Tooltip,
 } from "@chakra-ui/react"
-import { SearchIcon, ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
-import { FiCoffee, FiYoutube } from 'react-icons/fi'
+import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
+import { FiCoffee, FiYoutube, FiGithub } from 'react-icons/fi'
 import NextLink from 'next/link'
 import { FiUser } from 'react-icons/fi'
 import { useRouter } from 'next/router'
 import DarkModeSwitch from './DarkModeSwitch'
-import NavBarTop from './NavbarTop'
+import NavBarDrawer from './NavbarDrawer'
 import Search from "./Search"
 
 export default function Navbar() {
@@ -51,6 +51,11 @@ export default function Navbar() {
         }
     }, [])
 
+    const bgColor = useColorModeValue('gray.100', 'gray.900')
+    const bgColor1 = useColorModeValue('white', '#15161a')
+    const boxShadow1 = useColorModeValue("0px 2px 4px rgba(0, 0, 0, 0.2)", "0px 2px 4px rgba(255, 255, 255, 0.1)")
+    const bg = useColorModeValue("gray.200", "gray.700")
+
     return (
         <Box
             h={height}
@@ -63,8 +68,8 @@ export default function Navbar() {
             pos="sticky"
             top={0}
             zIndex={10}
-            bgColor={router.pathname === '/' ? useColorModeValue('gray.100', 'gray.900') : useColorModeValue('white', '#15161a')}
-            boxShadow={boxShadow && useColorModeValue("0px 2px 4px rgba(0, 0, 0, 0.2)", "0px 2px 4px rgba(255, 255, 255, 0.1)")}
+            bgColor={router.pathname === '/' ? bgColor : bgColor1}
+            boxShadow={boxShadow && boxShadow1}
             transition="height .5s ease-in-out"
         >
             <NextLink href="/" mr={1} passHref>
@@ -72,7 +77,7 @@ export default function Navbar() {
                     as="a"
                     variant="ghost"
                     p={[1, 2, 4]}
-                    _hover={{ backgroundColor: useColorModeValue("gray.200", "gray.700") }}
+                    _hover={{ backgroundColor: bg }}
                     aria-label="Home"
                     fontWeight="normal"
                     color="brand_one.500"
@@ -92,10 +97,10 @@ export default function Navbar() {
                         variant="ghost"
                         mx={1}
                         p={[1, 2, 4]}
-                        _hover={{ backgroundColor: useColorModeValue("gray.200", "gray.700") }}
+                        _hover={{ backgroundColor: bg }}
                         aria-label="Articles"
                         fontWeight="normal"
-                        bgColor={router.pathname.includes("/articles") && useColorModeValue("gray.200", "gray.700")}
+                        bgColor={router.pathname.includes("/articles") && bg}
                     >
                         Articles
                     </Button>
@@ -108,10 +113,10 @@ export default function Navbar() {
                         py={[1, 2, 2]}
                         px={4}
                         borderRadius={5}
-                        _hover={{ bg: useColorModeValue("gray.200", "gray.700") }}
+                        _hover={{ bg: bg }}
                         aria-label="Courses"
                         fontWeight="normal"
-                        bgColor={router.pathname.includes("/courses") && useColorModeValue("gray.200", "gray.700")}
+                        bgColor={router.pathname.includes("/courses") && bg}
                         onMouseEnter={onOpen}
                         onMouseLeave={onClose}
                     >
@@ -135,28 +140,46 @@ export default function Navbar() {
                             _hover={{ backgroundColor: "transparent", opacity: 0.8 }}
                             p={[1, 2, 4]}
                             ml={1}
-                            w={75}
+                            w={65}
+                        />
+                    </Link>
+                </Tooltip>
+                <Tooltip label="View the code!" placement="bottom">
+                    <Link href="https://github.com/carlson-technologies/coffeeclass.io" isExternal>
+                        <IconButton
+                            isExternal
+                            target="_blank"
+                            borderRadius={5}
+                            icon={<FiGithub />}
+                            fontSize='20px'
+                            aria-label="YouTube"
+                            href="https://github.com/carlson-technologies/coffeeclass.io"
+                            bgColor="transparent"
+                            _hover={{ backgroundColor: "transparent", opacity: 0.8 }}
+                            p={[1, 2, 4]}
+                            ml={1}
+                            w={65}
                         />
                     </Link>
                 </Tooltip>
                 <NextLink href="/accounts-waitlist" passHref>
                     <IconButton
-                        w={75}
+                        w={65}
                         borderRadius={5}
-                        icon={<FiUser/>}
+                        icon={<FiUser />}
                         fontSize='20px'
                         aria-label="Join Accounts Wait-List"
                         href="/accounts-waitlist"
                         variant="ghost"
-                        _hover={{ backgroundColor: useColorModeValue("gray.200", "gray.700") }}
+                        _hover={{ backgroundColor: bg }}
                         p={[1, 2, 4]}
                         ml={1}
-                        backgroundColor={router.pathname.includes("/accounts-waitlist") && useColorModeValue("gray.200", "gray.700")}
+                        backgroundColor={router.pathname.includes("/accounts-waitlist") && bg}
                     />
                 </NextLink>
                 <DarkModeSwitch />
             </Box>
-            <NavBarTop />
+            <NavBarDrawer />
         </Box>
     )
 }

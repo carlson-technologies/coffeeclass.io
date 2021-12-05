@@ -4,7 +4,6 @@ import {
     Box,
     IconButton,
     useColorMode,
-    Button,
     Heading,
     Drawer,
     useDisclosure,
@@ -14,76 +13,26 @@ import {
     DrawerBody,
     DrawerFooter,
     Link,
-    ButtonGroup,
-    InputGroup,
-    Input,
-    InputRightElement,
     Text,
-    Icon,
     useColorModeValue,
 } from '@chakra-ui/react'
-import { HamburgerIcon, CloseIcon, ChevronRightIcon } from '@chakra-ui/icons'
+import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
+import { FiYoutube, FiGithub, FiUser } from "react-icons/fi"
 import DarkModeSwitch from './DarkModeSwitch'
 import NextLink from 'next/link'
-import { useRouter } from 'next/router'
 import { getMessage } from '../../scripts/time'
-import { SearchIcon } from '@chakra-ui/icons'
+import { useRouter } from 'next/router'
 
-const NavBarTop = ({ pos, noScroll, placement }) => {
+const NavBarDrawer = ({ placement }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const router = useRouter()
     const { colorMode } = useColorMode()
-    const bgColor = {
-        light: 'gray.100',
-        dark: 'gray.700'
-    }
     const hoverColor = {
         light: 'gray.400',
         dark: 'gray.500'
     }
-    const boxShadowColor = {
-        light: '0 4px 12px 0 rgba(0, 0, 0, 0.3)',
-        dark: '0 4px 12px 0 rgba(0, 0, 0, 0.9)'
-    }
-    const secondaryColor = {
-        light: 'gray.500',
-        dark: 'gray.600'
-    }
-    const focusColor = {
-        light: 'brand_one.600',
-        dark: 'brand_one.500'
-    }
-    const [scrolled, setScrolled] = useState(false)
-    const scrollValue = 10
+    const bgColor = useColorModeValue("gray.200", "gray.700")
+    const router = useRouter()
 
-    const [opacity, setOpacity] = useState(0)
-
-    const handleState = () => {
-        var scrollTop = 0
-        scrollTop = scrollY
-        if (scrollTop > scrollValue) {
-            setScrolled(true)
-        } else if (scrollTop < scrollValue) {
-            setScrolled(false)
-        }
-    }
-    const handleScroll = () => {
-        var scrollTop = 0
-        scrollTop = scrollY
-        if (scrollTop > scrollValue) {
-            setScrolled(true)
-        } else if (scrollTop < scrollValue) {
-            setScrolled(false)
-        }
-    }
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll)
-        window.addEventListener('load', handleState)
-        return () => {
-            window.removeEventListener('scroll', handleScroll)
-            window.removeEventListener('load', handleState)
-        }
-    })
     return (
         <>
             <Box
@@ -151,11 +100,10 @@ const NavBarTop = ({ pos, noScroll, placement }) => {
                                 <NextLink href="/" passHref>
                                     <Link
                                         href="/"
-                                        _hover={{ textDecor: 'none' }}
+                                        _hover={{ textDecor: 'none', ml: "4" }}
                                         aria-label="Home"
                                         color="gray.500"
                                         transition="margin .3s ease-in-out"
-                                        _hover={{ ml: "4" }}
                                     >
                                         Home
                                     </Link>
@@ -166,11 +114,10 @@ const NavBarTop = ({ pos, noScroll, placement }) => {
                                 <NextLink href="/articles" passHref>
                                     <Link
                                         href="/articles"
-                                        _hover={{ textDecor: 'none' }}
+                                        _hover={{ textDecor: 'none', ml: "2" }}
                                         aria-label="Articles"
                                         color="gray.500"
                                         transition="margin .3s ease-in-out"
-                                        _hover={{ ml: "2" }}
                                     >
                                         Articles
                                     </Link>
@@ -181,11 +128,10 @@ const NavBarTop = ({ pos, noScroll, placement }) => {
                                 <NextLink href="/courses" passHref>
                                     <Link
                                         href="/courses"
-                                        _hover={{ textDecor: 'none' }}
+                                        _hover={{ textDecor: 'none', ml: "2" }}
                                         aria-label="Courses"
                                         color="gray.500"
                                         transition="margin .3s ease-in-out"
-                                        _hover={{ ml: "2" }}
                                     >
                                         Courses
                                     </Link>
@@ -196,11 +142,10 @@ const NavBarTop = ({ pos, noScroll, placement }) => {
                                 <NextLink href="/tags" passHref>
                                     <Link
                                         href="/tags"
-                                        _hover={{ textDecor: 'none' }}
+                                        _hover={{ textDecor: 'none', ml: "2" }}
                                         aria-label="Tags"
                                         color="gray.500"
                                         transition="margin .3s ease-in-out"
-                                        _hover={{ ml: "2" }}
                                     >
                                         Tags
                                     </Link>
@@ -211,11 +156,10 @@ const NavBarTop = ({ pos, noScroll, placement }) => {
                                 <NextLink href="/authors" passHref>
                                     <Link
                                         href="/authors"
-                                        _hover={{ textDecor: 'none' }}
+                                        _hover={{ textDecor: 'none', ml: "2" }}
                                         aria-label="Authors"
                                         color="gray.500"
                                         transition="margin .3s ease-in-out"
-                                        _hover={{ ml: "2" }}
                                     >
                                         Authors
                                     </Link>
@@ -241,11 +185,10 @@ const NavBarTop = ({ pos, noScroll, placement }) => {
                                 <NextLink href="/contribute/getting-started" passHref>
                                     <Link
                                         href="/contribute/getting-started"
-                                        _hover={{ textDecor: 'none' }}
+                                        _hover={{ textDecor: 'none', ml: "2" }}
                                         aria-label="Getting Started"
                                         color="gray.500"
                                         transition="margin .3s ease-in-out"
-                                        _hover={{ ml: "2" }}
                                     >
                                         Getting Started
                                     </Link>
@@ -271,11 +214,10 @@ const NavBarTop = ({ pos, noScroll, placement }) => {
                                 <NextLink href="/about" passHref>
                                     <Link
                                         href="/about"
-                                        _hover={{ textDecor: 'none' }}
+                                        _hover={{ textDecor: 'none', ml: "2" }}
                                         aria-label="About"
                                         color="gray.500"
                                         transition="margin .3s ease-in-out"
-                                        _hover={{ ml: "2" }}
                                     >
                                         About
                                     </Link>
@@ -286,11 +228,10 @@ const NavBarTop = ({ pos, noScroll, placement }) => {
                                 <NextLink href="/legal/terms" passHref>
                                     <Link
                                         href="/legal/terms"
-                                        _hover={{ textDecor: 'none' }}
+                                        _hover={{ textDecor: 'none', ml: "2" }}
                                         aria-label="Terms And Conditions"
                                         color="gray.500"
                                         transition="margin .3s ease-in-out"
-                                        _hover={{ ml: "2" }}
                                     >
                                         Terms And Conditions
                                     </Link>
@@ -301,11 +242,10 @@ const NavBarTop = ({ pos, noScroll, placement }) => {
                                 <NextLink href="/legal/privacy" passHref>
                                     <Link
                                         href="/legal/privacy"
-                                        _hover={{ textDecor: 'none' }}
+                                        _hover={{ textDecor: 'none', ml: "2" }}
                                         aria-label="Privacy Policy"
                                         color="gray.500"
                                         transition="margin .3s ease-in-out"
-                                        _hover={{ ml: "2" }}
                                     >
                                         Privacy Policy
                                     </Link>
@@ -316,11 +256,10 @@ const NavBarTop = ({ pos, noScroll, placement }) => {
                                 <NextLink href="/legal/disclaimer" passHref>
                                     <Link
                                         href="/legal/disclaimer"
-                                        _hover={{ textDecor: 'none' }}
+                                        _hover={{ textDecor: 'none', ml: "2" }}
                                         aria-label="Disclaimer"
                                         color="gray.500"
                                         transition="margin .3s ease-in-out"
-                                        _hover={{ ml: "2" }}
                                     >
                                         Disclaimer
                                     </Link>
@@ -346,11 +285,10 @@ const NavBarTop = ({ pos, noScroll, placement }) => {
                                 <Link
                                     isExternal
                                     href="https://github.com/carlson-technologies/coffeeclass.io"
-                                    _hover={{ textDecor: 'none' }}
+                                    _hover={{ textDecor: 'none', ml: "2" }}
                                     aria-label="Code"
                                     color="gray.500"
                                     transition="margin .3s ease-in-out"
-                                    _hover={{ ml: "2" }}
                                 >
                                     Code
                                 </Link>
@@ -360,11 +298,10 @@ const NavBarTop = ({ pos, noScroll, placement }) => {
                                 <Link
                                     isExternal
                                     href="https://benjamincarlson.notion.site/609b8bb171844146a9bcd9fbabd171a8?v=341de17fff6149bea36dbafbe2f2cf88"
-                                    _hover={{ textDecor: 'none' }}
+                                    _hover={{ textDecor: 'none', ml: "2" }}
                                     aria-label="Roadmap"
                                     color="gray.500"
                                     transition="margin .3s ease-in-out"
-                                    _hover={{ ml: "2" }}
                                 >
                                     Roadmap
                                 </Link>
@@ -374,11 +311,10 @@ const NavBarTop = ({ pos, noScroll, placement }) => {
                                 <Link
                                     isExternal
                                     href="https://engineering.coffeeclass.io"
-                                    _hover={{ textDecor: 'none' }}
+                                    _hover={{ textDecor: 'none', ml: "2" }}
                                     aria-label="Developer Blog"
                                     color="gray.500"
                                     transition="margin .3s ease-in-out"
-                                    _hover={{ ml: "2" }}
                                 >
                                     Engineering Blog
                                 </Link>
@@ -386,7 +322,56 @@ const NavBarTop = ({ pos, noScroll, placement }) => {
                         </Flex>
                     </DrawerBody>
                     <DrawerFooter>
-                        <DarkModeSwitch />
+                        <Box>
+                            <Link href="https://youtube.com/benjamincarlson" isExternal>
+                                <IconButton
+                                    isExternal
+                                    target="_blank"
+                                    borderRadius={5}
+                                    icon={<FiYoutube />}
+                                    fontSize='20px'
+                                    aria-label="YouTube"
+                                    href="https://youtube.com/benjamincarlson"
+                                    bgColor="transparent"
+                                    _hover={{ backgroundColor: "transparent", opacity: 0.8 }}
+                                    p={[1, 2, 4]}
+                                    ml={1}
+                                    w={65}
+                                />
+                            </Link>
+                            <Link href="https://github.com/carlson-technologies/coffeeclass.io" isExternal>
+                                <IconButton
+                                    isExternal
+                                    target="_blank"
+                                    borderRadius={5}
+                                    icon={<FiGithub />}
+                                    fontSize='20px'
+                                    aria-label="YouTube"
+                                    href="https://github.com/carlson-technologies/coffeeclass.io"
+                                    bgColor="transparent"
+                                    _hover={{ backgroundColor: "transparent", opacity: 0.8 }}
+                                    p={[1, 2, 4]}
+                                    ml={1}
+                                    w={65}
+                                />
+                            </Link>
+                            <NextLink href="/accounts-waitlist" passHref>
+                                <IconButton
+                                    w={65}
+                                    borderRadius={5}
+                                    icon={<FiUser />}
+                                    fontSize='20px'
+                                    aria-label="Join Accounts Wait-List"
+                                    href="/accounts-waitlist"
+                                    variant="ghost"
+                                    _hover={{ backgroundColor: useColorModeValue("gray.200", "gray.700") }}
+                                    p={[1, 2, 4]}
+                                    ml={1}
+                                    bgColor={router.pathname.includes("/accounts-waitlist") && bgColor}
+                                />
+                            </NextLink>
+                            <DarkModeSwitch />
+                        </Box>
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>
@@ -394,4 +379,4 @@ const NavBarTop = ({ pos, noScroll, placement }) => {
     )
 }
 
-export default NavBarTop
+export default NavBarDrawer

@@ -17,8 +17,6 @@ import fs from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
 import { contentFilePaths, CONTENT_PATH } from '../../scripts/mdx-utils'
-import Snippet from '../../components/Cards/Snippet'
-import Tutorial from '../../components/Cards/Tutorial'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
 import { motion } from "framer-motion"
@@ -27,9 +25,9 @@ import { useState } from 'react'
 import { ChevronRightIcon } from '@chakra-ui/icons'
 import NextLink from 'next/link'
 
-const url = 'https://www.coffeeclass.io/snippets'
-const title = 'Snippets | coffeeclass.io'
-const description = 'coffeeclass.io snippets are code bits that you can easily copy and paste into your project.'
+const url = 'https://www.coffeeclass.io/articles'
+const title = 'All Articles on coffeeclass.io'
+const description = 'Read the best programming tutorials for free on coffeeclass.io.'
 
 const MotionBox = motion(Box)
 
@@ -65,7 +63,7 @@ export default function Index({ posts }) {
                 <Flex flexDir="column">
                     <Heading mt={4} as="h1" size="2xl" color="brand_one.500">Articles</Heading>
                     <Box bgColor="brand_one.500" h={2} w={150} borderRadius={5} mb={4} mt={2} />
-                    <SimpleGrid minChildWidth={["100%", "100%", "100%", "100%", "250px", "250px"]} spacing="40px">
+                    <SimpleGrid minChildWidth={["100%", "100%", "100%", "100%", "300px", "300px"]} spacing="40px">
                         {orderedByDate.map((post) => (
                             <MotionBox
                                 initial={{ opacity: 0, marginTop: 5 }}
@@ -78,23 +76,6 @@ export default function Index({ posts }) {
                             >
                                 <NextLink href={`/articles/${post.filePath.replace(".mdx", "")}`} passHref>
                                     <Link href={`/articles/${post.filePath.replace(".mdx", "")}`} _hover={{ textDecor: 'none' }}>
-                                        {/* <Box
-                                                borderRadius={15}
-                                                bgColor={useColorModeValue("gray.100", "gray.900")}
-                                            >
-                                                <AspectRatio ratio={16 / 9} borderRadius={15}>
-                                                    <Skeleton isLoaded={loaded} borderRadius={15}>
-                                                        <NextImage
-                                                            src={post.data.type == 'tutorial' ? `/content/articles/${post.filePath.replace(/\.mdx?$/, '')}/${post.data.featureImg}` : `/logos/${post.data.logoImage[0]}`}
-                                                            alt={post.data.title}
-                                                            objectFit="contain"
-                                                            objectPosition="center"
-                                                            layout="fill"
-                                                            onLoad={() => setLoaded(true)}
-                                                        />
-                                                    </Skeleton>
-                                                </AspectRatio>
-                                            </Box> */}
                                         <Flex
                                             flexDir="column"
                                             bgColor={useColorModeValue("gray.100", "gray.900")}
@@ -109,12 +90,37 @@ export default function Index({ posts }) {
                                             justify="space-between"
                                         >
                                             <Box>
-                                                <Flex mt={2}>
-                                                    <Text fontSize="lg">{post.data.tags[0]}</Text>
-                                                    <Text mx={2} fontSize="lg">&middot;</Text>
-                                                    <Text fontSize="lg">{timeAgo.format(new Date(post.data.publishedAt))}</Text>
-                                                </Flex>
-                                                <Heading as="h3" size="lg" fontWeight="normal">{post.data.title}</Heading>
+                                                <Text mb={2} minW={120} textAlign="center" color={useColorModeValue("gray.500", "gray.400")} fontSize="md" mb={6}>{timeAgo.format(new Date(post.data.publishedAt))}</Text>
+                                                {post?.data?.logoImage &&
+                                                    <Box>
+                                                        <Box
+                                                            w={50}
+                                                            h={50}
+                                                            my={2}
+                                                            mx="auto"
+                                                        >
+                                                            <AspectRatio ratio={1}>
+                                                                <Skeleton isLoaded={loaded}>
+                                                                    <NextImage
+                                                                        src={`/logos/${post.data.logoImage[0]}`}
+                                                                        alt={post?.data?.logoImage[0]}
+                                                                        layout="fill"
+                                                                        onLoad={() => setLoaded(true)}
+                                                                    />
+                                                                </Skeleton>
+                                                            </AspectRatio>
+                                                        </Box>
+                                                    </Box>}
+
+                                                {
+                                                    post?.data?.featureImg &&
+                                                    <Flex justify="center">
+                                                        <AspectRatio w="100%" ratio={16 / 9}>
+                                                            <NextImage src={`/content/articles/${post?.filePath.replace(".mdx", "")}/${post?.data?.featureImg}`} alt={post?.data?.title} layout="fill" />
+                                                        </AspectRatio>
+                                                    </Flex>
+                                                }
+                                                <Heading as="h3" size="md" mt={4} fontWeight="normal">{post.data.title}</Heading>
                                             </Box>
                                             <Flex mt={4} align="center">
                                                 <Text color="brand_one.500" fontSize="lg">Read article</Text>

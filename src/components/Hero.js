@@ -5,22 +5,15 @@ import {
     Link,
     useColorModeValue,
     Heading,
-    Avatar,
-    useColorMode,
     Skeleton,
     Button,
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import NextImage from 'next/image'
-import Underline from '../../Underline'
-import chakra from "../../../configs/courses/chakra-ui.json"
+import Underline from './Underline'
+import chakra from "../configs/courses/chakra-ui.json"
 
 export default function Hero() {
-    const { colorMode } = useColorMode()
-    const tagColor = {
-        light: 'gray.600',
-        dark: 'gray.300'
-    }
     const [loaded, setLoaded] = useState(false)
     return (
         <>

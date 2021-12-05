@@ -59,6 +59,22 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
     TimeAgo.addLocale(en)
     const timeAgo = new TimeAgo('en-US')
 
+    const bgColor = useColorModeValue("gray.200", "gray.700")
+    const color = useColorModeValue("gray.500", "gray.400")
+    const boxShadow = useColorModeValue("0px 8px 26px rgba(0, 0, 0, 0.25)", "0px 8px 26px rgba(255, 255, 255, 0.25)")
+    const bgColor1 = useColorModeValue("gray.100", "gray.800")
+    const color1 = useColorModeValue("gray.700", "gray.400")
+
+    const [loaded, setLoaded] = useState(false)
+
+    const MySkeleton = (children) => {
+        return (
+            <Skeleton isLoaded={loaded}>
+                {children}
+            </Skeleton>
+        )
+    }
+
     if (style == "sidebar") {
         return (
             relatedPosts.length > 0 &&
@@ -74,12 +90,11 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
                         <Heading as="h4" size="sm" my={2}>View Related Posts</Heading>
                         {relatedPosts.map(post => {
                             return (
-                                <Link as={`/articles/${post.filePath.replace(/\.mdx?$/, '')}`} href={`/articles/[slug]`}>
+                                <Link as={`/articles/${post.filePath.replace(/\.mdx?$/, '')}`} href={`/articles/[slug]`} key={post.data.title}>
                                     <Box
-                                        key={post.data.title}
                                         p={2}
                                         _hover={{
-                                            bgColor: useColorModeValue("gray.100", "gray.800"),
+                                            bgColor: bgColor1,
                                             cursor: "pointer",
                                             textDecoration: 'underline',
                                         }}
@@ -89,7 +104,7 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
                                         <Heading
                                             as="h5"
                                             size="sm"
-                                            color={useColorModeValue("gray.700", "gray.400")}
+                                            color={color1}
                                             my={1}
                                             fontWeight="normal"
                                         >
@@ -105,8 +120,6 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
         )
     }
 
-    const [loaded, setLoaded] = useState(false)
-
     return (
         relatedPosts.length > 0 &&
         <>
@@ -120,22 +133,23 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
                             _hover={{
                                 cursor: "pointer",
                             }}
+                            key={post.data.title}
                         >
                             <Flex
                                 flexDir="column"
                                 justify="space-between"
-                                bgColor={useColorModeValue("gray.200", "gray.700")}
+                                bgColor={bgColor}
                                 m={2}
                                 p={5}
                                 transition='box-shadow 0.3s ease-in-out'
                                 borderRadius={5}
                                 _hover={{
-                                    boxShadow: useColorModeValue("0px 8px 26px rgba(0, 0, 0, 0.25)", "0px 8px 26px rgba(255, 255, 255, 0.25)"),
+                                    boxShadow: boxShadow,
                                     cursor: "pointer",
                                 }}
                                 maxW={200}
                             >
-                                <Text mb={2} minW={120} textAlign="center" color={useColorModeValue("gray.500", "gray.400")} fontSize="xs" mb={2}>{timeAgo.format(new Date(post.data.publishedAt))}</Text>
+                                <Text mb={2} minW={120} textAlign="center" color={color} fontSize="xs">{timeAgo.format(new Date(post.data.publishedAt))}</Text>
                                 {post?.data?.logoImage &&
                                     <Box>
                                         <Box
@@ -145,14 +159,14 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
                                             mx="auto"
                                         >
                                             <AspectRatio ratio={1}>
-                                                <Skeleton isLoaded={loaded}>
+                                                <MySkeleton>
                                                     <NextImage
                                                         src={`/logos/${post.data.logoImage[0]}`}
                                                         alt={post?.data?.logoImage[0]}
                                                         layout="fill"
                                                         onLoad={() => setLoaded(true)}
                                                     />
-                                                </Skeleton>
+                                                </MySkeleton>
                                             </AspectRatio>
                                         </Box>
                                     </Box>}

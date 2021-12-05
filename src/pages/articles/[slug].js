@@ -40,7 +40,7 @@ import getAuthorSlug from '../../scripts/get-author-slug'
 import RelatedPosts from '../../components/RelatedPosts'
 import Ad from '../../components/Ad'
 import EmbeddedVideo from '../../components/EmbeddedVideo'
-import { getEmbedId } from '../../scripts/get-embed-id'
+import getEmbedId from '../../scripts/get-embed-id'
 import Container from '../../components/Container'
 import SEO from '../../components/SEO'
 import { ExternalLinkIcon } from '@chakra-ui/icons'
@@ -54,11 +54,6 @@ export default function PostPage({ source, frontMatter, posts }) {
         light: 'gray.600',
         dark: 'gray.500'
     }
-
-    const [display, setDisplay] = useState("flex")
-
-    const toast = useToast()
-
     const router = useRouter()
     const slug = router.query.slug
 
@@ -68,7 +63,7 @@ export default function PostPage({ source, frontMatter, posts }) {
 
     const handleScroll = () => {
         let scrollTop = window.scrollY;
-        let docHeight = document.body.offsetHeight;
+        let docHeight = document.body.offsetHeight - document.getElementById("end-content").offsetHeight;
         let winHeight = window.innerHeight;
         let scrollPercent = scrollTop / (docHeight - winHeight);
         let scrollPercentRounded = Math.round(scrollPercent * 100);
@@ -85,7 +80,7 @@ export default function PostPage({ source, frontMatter, posts }) {
     return (
         <Container>
             <SEO url={`https://www.coffeeclass.io${slug}`} slug={slug} {...frontMatter} />
-            <Box h={1} as="div" bgGradient="linear(to-r, #EAD9CD, #714B2F)" pos="fixed" top={0} left={0} zIndex={15} w={`${width}%`}></Box>
+            <Box h={1} as="div" bgGradient="linear(to-r, #EAD9CD, #714B2F)" pos="fixed" top={0} left={0} zIndex={15} w={`${width}%`} transition="width .3s ease-in-out"></Box>
 
             <motion.div
                 initial={{ y: -20, opacity: 0 }}
@@ -129,12 +124,12 @@ export default function PostPage({ source, frontMatter, posts }) {
                         >
                             {frontMatter.description}
                         </Text>
-                        {/* {
-                        frontMatter.youtubeId &&
-                        <Flex justify="center">
-                            <EmbeddedVideo src={getEmbedId(frontMatter?.youtubeId)} alt={frontMatter.title} maxW={800} />
-                        </Flex>
-                    } */}
+                        {
+                            frontMatter.youtubeId &&
+                            <Flex justify="center">
+                                <EmbeddedVideo src={getEmbedId(frontMatter?.youtubeId)} alt={frontMatter.title} maxW={800} />
+                            </Flex>
+                        }
                         {
                             frontMatter.featureImg && !frontMatter.youtubeId &&
                             <Flex justify="center">
@@ -191,16 +186,18 @@ export default function PostPage({ source, frontMatter, posts }) {
                         <Box id="main-content">
                             <MDXRemote {...source} components={MDXComponents} />
                         </Box>
-                        <Flex align="center">
-                            <Icon as={ExternalLinkIcon} />
-                            <Text>Edit on GitHib</Text>
-                        </Flex>
+                        <Link textDecor="underline" _hover={{ opacity: .8 }}>
+                            <Flex align="center">
+                                <Icon as={ExternalLinkIcon} mr={2} />
+                                <Link href={`https://github.com/carlson-technologies/coffeeclass.io/blob/main/content/articles/${slug}.mdx`} isExternal>Edit on GitHib</Link>
+                            </Flex>
+                        </Link>
                     </Flex>
                 </Flex>
-                <Box maxW={800} mx="auto">
+                <Box maxW={800} mx="auto" id="end-content">
                     <Divider mt={12} mb={4} alignSelf="center" />
                     <Flex flexDir="column" m="auto" my={10}>
-                        <RelatedPosts tags={frontMatter.tags} posts={posts} currPostTitle={frontMatter.title} />
+                        {/* <RelatedPosts tags={frontMatter.tags} posts={posts} currPostTitle={frontMatter.title} /> */}
                     </Flex>
                     <Divider mt={12} mb={4} alignSelf="center" />
                     <Flex

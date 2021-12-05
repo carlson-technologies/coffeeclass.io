@@ -7,6 +7,7 @@ import {
     UnorderedList,
     ListItem,
     Link,
+    Box,
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../../components/Container'
@@ -47,15 +48,8 @@ export default function Index({ authors }) {
                 px={4}
             >
                 <Flex flexDir="column">
-                    <Heading
-                        as="h1"
-                        size="2xl"
-                        letterSpacing="tight"
-                        textTransform="uppercase"
-                        my={8}
-                    >
-                        Authors
-                    </Heading>
+                    <Heading mt={4} as="h1" size="2xl" color="brand_one.500">Authors</Heading>
+                    <Box bgColor="brand_one.500" h={2} w={150} borderRadius={5} mb={4} mt={2} />
                     <Text color={color[colorMode]} mb={2} fontSize="lg">All authors on coffeeclass.io.</Text>
                     <UnorderedList>
                         {authors.map(author =>

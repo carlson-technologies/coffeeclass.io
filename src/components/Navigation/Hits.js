@@ -1,7 +1,6 @@
 import { connectStateResults } from "react-instantsearch-dom"
 import {
     Box,
-    Flex,
     Text,
     Link,
     Heading,
@@ -16,6 +15,9 @@ import { ChevronRightIcon } from "@chakra-ui/icons"
 function Hits({ searchState, searchResults }) {
     const validQuery = searchState.query?.length >= 3 // 3 is the minimum query length
 
+    const bgColor = useColorModeValue("gray.200", "gray.700")
+    const color = useColorModeValue("gray.600", "gray.400")
+
     return (
         <>
             {searchResults?.hits.length === 0 && validQuery && (
@@ -23,14 +25,14 @@ function Hits({ searchState, searchResults }) {
             )}
             {searchResults?.hits.length > 0 && validQuery && (
                 <>
-                    {searchResults.hits.map((hit) => (
-                        <>
+                    {searchResults.hits.map((hit, index) => (
+                        <div tabIndex={index}>
                             <>
                                 {hit.type === "article" && (
                                     <NextLink href={`/article/${hit.slug.replace(".mdx", "")}`} key={hit.objectID} passHref>
                                         <Link href={`/article/${hit.slug.replace(".mdx", "")}`}>
-                                            <Box bgColor={useColorModeValue("gray.200", "gray.700")} my={4} p={5} borderRadius={5}>
-                                                <Breadcrumb color={useColorModeValue("gray.600", "gray.400")} spacing="4px" separator={<ChevronRightIcon color="gray.500" />}>
+                                            <Box bgColor={bgColor} my={4} p={5} borderRadius={5}>
+                                                <Breadcrumb color={color} spacing="4px" separator={<ChevronRightIcon color="gray.500" />}>
                                                     <BreadcrumbItem>
                                                         <BreadcrumbLink href="/">Home</BreadcrumbLink>
                                                     </BreadcrumbItem>
@@ -51,8 +53,8 @@ function Hits({ searchState, searchResults }) {
                                     <>
                                         <NextLink href={`/authors/${hit.slug.replace(".mdx", "")}`} key={hit.objectID} passHref>
                                             <Link href={`/authors/${hit.slug.replace(".mdx", "")}`}>
-                                                <Box bgColor={useColorModeValue("gray.200", "gray.700")} my={4} p={5} borderRadius={5}>
-                                                    <Breadcrumb color={useColorModeValue("gray.600", "gray.400")} spacing="4px" separator={<ChevronRightIcon color="gray.500" />}>
+                                                <Box bgColor={bgColor} my={4} p={5} borderRadius={5}>
+                                                    <Breadcrumb color={color} spacing="4px" separator={<ChevronRightIcon color="gray.500" />}>
                                                         <BreadcrumbItem>
                                                             <BreadcrumbLink href="/">Home</BreadcrumbLink>
                                                         </BreadcrumbItem>
@@ -74,8 +76,8 @@ function Hits({ searchState, searchResults }) {
                                     <>
                                         <NextLink href={`/tags/${hit.slug.replace(".mdx", "")}`} key={hit.objectID} passHref>
                                             <Link href={`/tags/${hit.slug.replace(".mdx", "")}`}>
-                                                <Box bgColor={useColorModeValue("gray.200", "gray.700")} my={4} p={5} borderRadius={5}>
-                                                    <Breadcrumb color={useColorModeValue("gray.600", "gray.400")} spacing="4px" separator={<ChevronRightIcon color="gray.500" />}>
+                                                <Box bgColor={bgColor} my={4} p={5} borderRadius={5}>
+                                                    <Breadcrumb color={color} spacing="4px" separator={<ChevronRightIcon color="gray.500" />}>
                                                         <BreadcrumbItem>
                                                             <BreadcrumbLink href="/">Home</BreadcrumbLink>
                                                         </BreadcrumbItem>
@@ -91,7 +93,7 @@ function Hits({ searchState, searchResults }) {
                                     </>
                                 )}
                             </>
-                        </>
+                        </div>
                     ))}
                 </>
             )}

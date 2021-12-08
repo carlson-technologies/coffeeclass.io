@@ -4,36 +4,30 @@ import matter from 'gray-matter'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
 import path from 'path'
-import LearnLayout from '../../../layouts/learn'
+import LearnLayout from '../../../layouts/course'
 import { learnChakraUIFilePaths, LEARN_CHAKRAUI_PATH } from '../../../scripts/mdx-utils'
 import MDXComponents from '../../../components/MDXComponents'
 import mdxPrism from 'mdx-prism'
 import readingTime from 'reading-time'
 import { motion } from 'framer-motion'
-import Pagination from '../../../components/Pagination'
+import Pagination from '../../../components/Courses/Pagination'
 import { parseISO, format } from 'date-fns'
 import getHeaders from '../../../scripts/get-headings'
 import {
     Heading,
     Text,
     Box,
-    Divider,
     Flex,
     useColorModeValue,
     useColorMode,
     Link,
-    Circle,
-    Center,
-    Wrap,
     Accordion,
     AccordionItem,
     AccordionButton,
     AccordionPanel,
     AccordionIcon,
-    UnorderedList,
-    ListItem,
 } from '@chakra-ui/react'
-import Ad from '../../../components/Ad'
+import Ad from '../../../components/Content/Ad'
 
 export default function PostPage({ source, frontMatter }) {
     const { colorMode } = useColorMode()

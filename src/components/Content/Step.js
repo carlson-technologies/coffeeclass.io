@@ -4,7 +4,7 @@ import {
     Flex
 } from '@chakra-ui/react'
 
-const SnippetStep = ({ number, title }) => {
+const Step = ({ number, title }) => {
 
     // for (let i = 0; i < title.length; i++) {
     //     if (title[i] == '`') {
@@ -35,4 +35,4 @@ const SnippetStep = ({ number, title }) => {
     )
 }
 
-export default SnippetStep
+export default Step

@@ -77,7 +77,7 @@ export default function Navbar() {
                     as="a"
                     variant="ghost"
                     p={[1, 2, 4]}
-                    _hover={{ backgroundColor: bg }}
+                    _hover={{ transform: 'scale(1.05)' }}
                     aria-label="Home"
                     fontWeight="normal"
                     color="brand_one.500"
@@ -144,7 +144,7 @@ export default function Navbar() {
                         />
                     </Link>
                 </Tooltip>
-                <Tooltip label="View the code!" placement="bottom">
+                <Tooltip label="View this website's code!" placement="bottom">
                     <Link href="https://github.com/carlson-technologies/coffeeclass.io" isExternal>
                         <IconButton
                             isExternal

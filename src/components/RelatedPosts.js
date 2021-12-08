@@ -4,16 +4,16 @@ import {
     Flex,
     Text,
     Box,
-    Divider,
     useColorModeValue,
     AspectRatio,
     Skeleton,
-    Image,
+    Link,
+    Wrap,
 } from '@chakra-ui/react'
-import Link from 'next/link'
 import NextImage from 'next/image'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
+import NextLink from 'next/link'
 
 export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
     var relatedPosts = []
@@ -64,16 +64,17 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
     const boxShadow = useColorModeValue("0px 8px 26px rgba(0, 0, 0, 0.25)", "0px 8px 26px rgba(255, 255, 255, 0.25)")
     const bgColor1 = useColorModeValue("gray.100", "gray.800")
     const color1 = useColorModeValue("gray.700", "gray.400")
+    const headerColor = useColorModeValue('gray.600', 'gray.400')
 
     const [loaded, setLoaded] = useState(false)
 
-    const MySkeleton = (children) => {
-        return (
-            <Skeleton isLoaded={loaded}>
-                {children}
-            </Skeleton>
-        )
-    }
+    // const MySkeleton = ({ children }) => {
+    //     return (
+    //         <Skeleton isLoaded={loaded}>
+    //             {children}
+    //         </Skeleton>
+    //     )
+    // }
 
     if (style == "sidebar") {
         return (
@@ -87,10 +88,49 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
                     px={2}
                 >
                     <Box overflowY="auto" h="calc(100vh - 100px)">
-                        <Heading as="h4" size="sm" my={2}>View Related Posts</Heading>
+                        <Text
+                            m={2}
+                            textTransform="uppercase"
+                            color={headerColor}
+                            fontSize="sm"
+                            fontWeight="semibold"
+                        >
+                            View Related Tags
+                        </Text>
+                        <Wrap>
+                            {tags.map((tag, index) => {
+                                return (
+                                    <Box key={index} px={2}>
+                                        <NextLink href="/tags/[tag]" as={`/tags/${tag}`} passHref>
+                                            <Link
+                                                href={`/tags/${tag}`}
+                                                color={color}
+                                                fontSize="sm"
+                                                fontWeight="semibold"
+                                                _hover={{ color: "brand_one.500" }}
+                                            >
+                                                {tag}
+                                            </Link>
+                                        </NextLink>
+                                    </Box>
+                                )
+                            })}
+                        </Wrap>
+
+                        <Text
+                            mt={4}
+                            mb={2}
+                            mx={2}
+                            textTransform="uppercase"
+                            color={headerColor}
+                            fontSize="sm"
+                            fontWeight="semibold"
+                        >
+                            View Related Posts
+                        </Text>
                         {relatedPosts.map(post => {
                             return (
-                                <Link as={`/articles/${post.filePath.replace(/\.mdx?$/, '')}`} href={`/articles/[slug]`} key={post.data.title}>
+                                <NextLink as={`/articles/${post.filePath.replace(/\.mdx?$/, '')}`} href={`/articles/[slug]`} key={post.data.title}>
                                     <Box
                                         p={2}
                                         _hover={{
@@ -111,7 +151,7 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
                                             {post.data.title} &middot; {timeAgo.format(new Date(post.data.publishedAt))}
                                         </Heading>
                                     </Box>
-                                </Link>
+                                </NextLink>
                             )
                         })}
                     </Box>
@@ -121,70 +161,70 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
     }
 
     return (
-        relatedPosts.length > 0 &&
-        <>
-            <Flex flexDir="column" w="100vw" maxW={800} minW={320}>
-                <Heading as="h4" size="md" mb={2} px={4}>View Related Posts</Heading>
-                <Flex overflowX="auto">
-                    {relatedPosts.map(post => (
-                        <Link
-                            as={`/articles/${post.filePath.replace(/\.mdx?$/, '')}`}
-                            href={`/articles/[slug]`}
-                            _hover={{
-                                cursor: "pointer",
-                            }}
-                            key={post.data.title}
-                        >
-                            <Flex
-                                flexDir="column"
-                                justify="space-between"
-                                bgColor={bgColor}
-                                m={2}
-                                p={5}
-                                transition='box-shadow 0.3s ease-in-out'
-                                borderRadius={5}
+        relatedPosts.length > 0 ?
+            <>
+                <Flex flexDir="column" w="100vw" maxW={800} minW={320}>
+                    <Heading as="h4" size="md" mb={2} px={4}>View Related Posts</Heading>
+                    <Flex overflowX="auto">
+                        {relatedPosts.map(post => (
+                            <NextLink
+                                as={`/articles/${post.filePath.replace(/\.mdx?$/, '')}`}
+                                href={`/articles/[slug]`}
                                 _hover={{
-                                    boxShadow: boxShadow,
                                     cursor: "pointer",
                                 }}
-                                maxW={200}
+                                key={post.data.title}
                             >
-                                <Text mb={2} minW={120} textAlign="center" color={color} fontSize="xs">{timeAgo.format(new Date(post.data.publishedAt))}</Text>
-                                {post?.data?.logoImage &&
-                                    <Box>
-                                        <Box
-                                            w={50}
-                                            h={50}
-                                            my={2}
-                                            mx="auto"
-                                        >
-                                            <AspectRatio ratio={1}>
-                                                <MySkeleton>
+                                <Flex
+                                    flexDir="column"
+                                    justify="space-between"
+                                    bgColor={bgColor}
+                                    m={2}
+                                    p={5}
+                                    transition='box-shadow 0.3s ease-in-out'
+                                    borderRadius={5}
+                                    _hover={{
+                                        boxShadow: boxShadow,
+                                        cursor: "pointer",
+                                    }}
+                                    maxW={200}
+                                >
+                                    <Text mb={2} minW={120} textAlign="center" color={color} fontSize="xs">{timeAgo.format(new Date(post.data.publishedAt))}</Text>
+                                    {post?.data?.logoImage &&
+                                        <Box>
+                                            <Box
+                                                w={50}
+                                                h={50}
+                                                my={2}
+                                                mx="auto"
+                                            >
+                                                <AspectRatio ratio={1}>
+                                                    {/* <MySkeleton> */}
                                                     <NextImage
                                                         src={`/logos/${post.data.logoImage[0]}`}
                                                         alt={post?.data?.logoImage[0]}
                                                         layout="fill"
-                                                        onLoad={() => setLoaded(true)}
+                                                    // onLoad={() => setLoaded(true)}
                                                     />
-                                                </MySkeleton>
-                                            </AspectRatio>
-                                        </Box>
-                                    </Box>}
+                                                    {/* </MySkeleton> */}
+                                                </AspectRatio>
+                                            </Box>
+                                        </Box>}
 
-                                {
-                                    post?.data?.featureImg &&
-                                    <Flex justify="center">
-                                        <AspectRatio w="100%" ratio={16 / 9}>
-                                            <NextImage src={`/content/articles/${post?.filePath.replace(".mdx", "")}/${post?.data?.featureImg}`} alt={post?.data?.title} layout="fill" />
-                                        </AspectRatio>
-                                    </Flex>
-                                }
-                                <Heading size="sm" mt={4}>{post.data.title}</Heading>
-                            </Flex>
-                        </Link>
-                    ))}
+                                    {
+                                        post?.data?.featureImg &&
+                                        <Flex justify="center">
+                                            <AspectRatio w="100%" ratio={16 / 9}>
+                                                <NextImage src={`/content/articles/${post?.filePath.replace(".mdx", "")}/${post?.data?.featureImg}`} alt={post?.data?.title} layout="fill" />
+                                            </AspectRatio>
+                                        </Flex>
+                                    }
+                                    <Heading size="sm" mt={4}>{post.data.title}</Heading>
+                                </Flex>
+                            </NextLink>
+                        ))}
+                    </Flex>
                 </Flex>
-            </Flex>
-        </>
+            </> : <Text fontSize="lg">No related posts! Like {tags[0]}? Try <NextLink href="/contribute/getting-started" passHref><Link href="/contributing/getting-started" color="brand_one.500">writing about it</Link></NextLink>.</Text>
     )
 }

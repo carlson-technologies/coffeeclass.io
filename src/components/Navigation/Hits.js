@@ -29,8 +29,8 @@ function Hits({ searchState, searchResults }) {
                         <div tabIndex={index} key={hit.objectID}>
                             <>
                                 {hit.type === "article" && (
-                                    <NextLink href={`/article/${hit.slug.replace(".mdx", "")}`} passHref>
-                                        <Link href={`/article/${hit.slug.replace(".mdx", "")}`}>
+                                    <NextLink href={`/articles/${hit.slug.replace(".mdx", "")}`} passHref>
+                                        <Link href={`/articles/${hit.slug.replace(".mdx", "")}`}>
                                             <Box bgColor={bgColor} my={4} p={5} borderRadius={5}>
                                                 <Breadcrumb color={color} spacing="4px" separator={<ChevronRightIcon color="gray.500" />}>
                                                     <BreadcrumbItem>

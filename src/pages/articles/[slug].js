@@ -38,12 +38,13 @@ import en from 'javascript-time-ago/locale/en'
 import { useRouter } from 'next/router'
 import getAuthorSlug from '../../scripts/get-author-slug'
 import RelatedPosts from '../../components/RelatedPosts'
-import Ad from '../../components/Ad'
+import Ad from '../../components/Content/Ad'
 import EmbeddedVideo from '../../components/EmbeddedVideo'
 import getEmbedId from '../../scripts/get-embed-id'
 import Container from '../../components/Container'
 import SEO from '../../components/SEO'
 import { ExternalLinkIcon } from '@chakra-ui/icons'
+import { parseISO, format } from 'date-fns'
 
 export default function PostPage({ source, frontMatter, posts }) {
     TimeAgo.addLocale(en)
@@ -188,7 +189,8 @@ export default function PostPage({ source, frontMatter, posts }) {
                         <Box id="main-content">
                             <MDXRemote {...source} components={MDXComponents} />
                         </Box>
-                        <Link textDecor="underline" _hover={{ opacity: .8 }}>
+                        <Text my={2} color={useColorModeValue("gray.600", "gray.400")}>Published on {format(parseISO(frontMatter.publishedAt), 'MMMM dd, yyyy')} ({timeAgo.format(new Date(frontMatter.publishedAt))})</Text>
+                        <Link textDecor="underline" _hover={{ opacity: .8 }} w="fit-content">
                             <Flex align="center">
                                 <Icon as={ExternalLinkIcon} mr={2} />
                                 <Link href={`https://github.com/carlson-technologies/coffeeclass.io/blob/main/content/articles/${slug}.mdx`} isExternal>Edit on GitHib</Link>
@@ -197,11 +199,6 @@ export default function PostPage({ source, frontMatter, posts }) {
                     </Flex>
                 </Flex>
                 <Box maxW={800} mx="auto" id="end-content">
-                    <Divider mt={12} mb={4} alignSelf="center" />
-                    <Flex flexDir="column" m="auto" my={10}>
-                        {/* <RelatedPosts tags={frontMatter.tags} posts={posts} currPostTitle={frontMatter.title} /> */}
-                    </Flex>
-                    <Divider mt={12} mb={4} alignSelf="center" />
                     <Flex
                         justify="center"
                         flexDir="column"
@@ -221,7 +218,11 @@ export default function PostPage({ source, frontMatter, posts }) {
                             </Link>
                         </Button>
                     </Flex>
-                    <Divider mt={12} mb={8} alignSelf="center" />
+                    <Divider mt={12} mb={4} alignSelf="center" />
+                    <Flex flexDir="column" m="auto" my={10}>
+                        <RelatedPosts tags={frontMatter.tags} posts={posts} currPostTitle={frontMatter.title} />
+                    </Flex>
+                    <Divider mt={12} mb={4} alignSelf="center" />
                     <Flex
                         align="center"
                         my={4}

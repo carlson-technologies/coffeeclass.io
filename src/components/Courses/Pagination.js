@@ -1,5 +1,5 @@
 import { useRouter } from "next/router"
-import chakraUISidebar from "../configs/courses/chakra-ui.json"
+import chakraUISidebar from "../../configs/courses/chakra-ui.json"
 import {
     Flex,
     Text,

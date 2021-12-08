@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useRouter } from "next/router"
-import chakraUISidebar from "../configs/courses/chakra-ui.json"
+import chakraUISidebar from "../../configs/courses/chakra-ui.json"
 import {
     Box,
     Flex,
@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react"
 import Image from 'next/image'
 import NextLink from 'next/link'
-import Ad from '../components/Ad'
+import Ad from '../Content/Ad'
 
 export function getRoutes(slug) {
     const configMap = {

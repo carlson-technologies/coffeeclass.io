@@ -20,11 +20,6 @@ import {
     Skeleton,
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
-import SnippetStep from '../components/SnippetStep'
-import ExampleColorModeComponent from '../components/ExampleColorModeComponent'
-import KeyboardKey from '../components/KeyboardKey'
-import FloatUpDivAnimation from '../components/FloatUpDivAnimation'
-import FloatUpDivAnimationNoHeight from './FloatUpDivAnimationNoHeight'
 import EmbeddedVideo from './EmbeddedVideo'
 import Image from 'next/image'
 
@@ -58,22 +53,41 @@ const CustomLink = (props) => {
 
     const href = props.href
     const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'))
+
     if (isInternalLink) {
         return (
             <NextLink href={href} passHref>
-                <Box _hover={{ opacity: '.6' }} as="span" borderBottom="2px solid" borderBottomColor={`${color[colorMode]}`}><Link _hover={{ TextDecoder: 'none' }} color={color[colorMode]} {...props} /></Box>
+                <Box
+                    _hover={{ borderBottomColor: `${color[colorMode]}` }}
+                    as="span"
+                    borderBottom="2px solid"
+                    borderBottomColor="transparent"
+                    transition="border-bottom-color .2s ease-in-out"
+                >
+                    <Link _hover={{ TextDecoder: 'none' }} color={color[colorMode]} {...props} />
+                </Box>
             </NextLink>
         )
     }
 
-    return <Box _hover={{ opacity: '.6' }} as="span" borderBottom="2px solid" borderBottomColor={`${color[colorMode]}`}><Link _hover={{ TextDecoder: 'none' }} color={color[colorMode]} isExternal {...props} /></Box>
+    return (
+        <Box
+            _hover={{ borderBottomColor: `${color[colorMode]}` }}
+            as="span"
+            borderBottom="2px solid"
+            borderBottomColor="transparent"
+            transition="border-bottom-color .2s ease-in-out"
+        >
+            <Link _hover={{ TextDecoder: 'none' }} color={color[colorMode]} isExternal {...props} />
+        </Box>
+    )
 }
 
 const CustomListItem = (props) => {
     const { colorMode } = useColorMode()
     const color = {
-        light: 'gray.700',
-        dark: 'gray.300'
+        light: 'gray.600',
+        dark: 'gray.400'
     }
     return (
         <ListItem
@@ -159,11 +173,6 @@ const MDXComponents = {
     tr: (props) => <Tr {...props} />,
     td: (props) => <Td {...props} />,
     th: (props) => <Th {...props} />,
-    SnippetStep,
-    ExampleColorModeComponent,
-    KeyboardKey,
-    FloatUpDivAnimation,
-    FloatUpDivAnimationNoHeight,
     EmbeddedVideo,
 }
 

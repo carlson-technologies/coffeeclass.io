@@ -2,7 +2,7 @@ import {
     Flex,
     Box,
 } from '@chakra-ui/react'
-import Sidebar from '../components/Sidebar'
+import Sidebar from '../components/Courses/Sidebar'
 import SEO from '../components/SEO'
 import Container from '../components/Container'
 import { useRouter } from 'next/router'

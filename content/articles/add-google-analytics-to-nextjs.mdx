@@ -15,7 +15,11 @@ logoImage: ["google-analytics.png"]
 ## Introduction
 
 Adding Google analytics to a Next.js website seems complicated, but is not that difficult. To begin, make sure you have
-a [Google Analytics](https://analytics.google.com/) account with your project set up. Create a folder in your Next.js root directory called `lib`. Inside of here, create a file named `gtag.js`. Paste in the following
+a [Google Analytics](https://analytics.google.com/) account with your project set up. 
+
+## Add The Tracking Code
+
+Create a folder in your Next.js root directory called `lib`. Inside of here, create a file named `gtag.js`. Paste in the following
 code:
 
 ```javascript:gtag.js
@@ -40,7 +44,7 @@ export const event = ({ action, category, label, value }) => {
 
 Replace the `'G-XXXXXXXXXX'` with your tracking id (This can be found in the Google Analytics admin pannel for your website).
 
-## Halfway There!
+## Add GTAG To Document.js
 
 Next, open up `_document.js`. If you do not have this file created already, [follow along with the docs](https://nextjs.org/docs/advanced-features/custom-document) and
 and create a custom `_document` file for your site. Inside of here we will import our gtag and use it.

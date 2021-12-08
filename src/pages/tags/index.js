@@ -1,10 +1,7 @@
 import {
     Heading,
     Flex,
-    Stack,
     Link,
-    Divider,
-    useColorMode,
     Tag,
     Box,
     Text,
@@ -19,7 +16,7 @@ import NextLink from 'next/link'
 import removeDuplicatesAndCount from '../../scripts/remove-duplicates-and-count'
 
 const url = `https://www.coffeeclass.io/tags/`
-const title = 'Tags | coffeeclass.io'
+const title = 'Tags'
 const description = `All tags on coffeeclass.io.`
 
 export default function Index({ tags }) {
@@ -44,23 +41,20 @@ export default function Index({ tags }) {
                 {
                     tags.map(tag => {
                         return (
-                            <Link
-                                href={`/tags/${tag.data.title}`}
-                                _hover={{
-                                    textDecor: 'none',
-                                    opacity: '.8',
-                                    transform: 'scale(1.1)'
-                                }}
-                                key={tag.data.title}
-                            >
-                                <Flex mr={2} mb={2} w="100px" h="100px" align="center" justify="center" borderRadius="50%" bgColor="brand_one.500">
-                                    <NextLink href={`/tags/${tag.data.title}`} passHref>
-
+                            <NextLink href={`/tags/${tag.data.title}`} key={tag.data.title} passHref>
+                                <Link
+                                    href={`/tags/${tag.data.title}`}
+                                    _hover={{
+                                        textDecor: 'none',
+                                        opacity: '.8',
+                                        transform: 'scale(1.1)'
+                                    }}
+                                >
+                                    <Flex mr={2} mb={2} w="100px" h="100px" align="center" justify="center" borderRadius="50%" bgColor="brand_one.500">
                                         <Text fontSize="sm" textAlign="center">#{tag.data.title}</Text>
-                                        {/* <Tag size="lg" colorScheme="brand_one">#{tag.data.title}</Tag> */}
-                                    </NextLink>
-                                </Flex>
-                            </Link>
+                                    </Flex>
+                                </Link>
+                            </NextLink>
                         )
                     })
                 }

@@ -105,8 +105,8 @@ const Footer = () => {
                 </SimpleGrid>
 
                 <Wrap w="100%" justify={['left', 'left', 'left', 'left', 'center', 'center']}>
-                    <ThanksBox src="/logos/splitbee.png" intro="Insights By" title="Splitbee" width={10} href="https://splitbee.io" />
-                    <ThanksBox src="/logos/vercel.png" intro="Powered By" title="Vercel" width={6} href="https://vercel.com/?utm_source=carlson-technologies&utm_campaign=oss" />
+                    <ThanksBox src="/logos/splitbee.png" alt="splitbee" intro="Insights By" title="Splitbee" width={10} href="https://splitbee.io" />
+                    <ThanksBox src="/logos/vercel.png" alt="Vercel" intro="Powered By" title="Vercel" width={6} href="https://vercel.com/?utm_source=carlson-technologies&utm_campaign=oss" />
                 </Wrap>
 
                 <Divider borderColor={useColorModeValue("gray.300", "gray.800")} my={8} w={['100%', '100%', '100%', '100%', '80%', '80%']} />

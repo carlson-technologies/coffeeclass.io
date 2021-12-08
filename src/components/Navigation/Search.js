@@ -51,7 +51,7 @@ export default function Search({ is404 }) {
                             </InstantSearch>
                         </ModalBody>
                         <ModalFooter>
-                            <ThanksBox src="/logos/algolia.png" intro="Search By" title="Algolia" width={8} href="https://www.algolia.com" />
+                            <ThanksBox src="/logos/algolia.png" alt="Algolia" intro="Search By" title="Algolia" width={8} href="https://www.algolia.com" />
                             <Button variant="ghost" onClick={onClose} ml={2}>
                                 Close
                             </Button>
@@ -89,7 +89,7 @@ export default function Search({ is404 }) {
                         </InstantSearch>
                     </ModalBody>
                     <ModalFooter>
-                        <ThanksBox src="/logos/algolia.png" intro="Search By" title="Algolia" width={8} href="https://www.algolia.com" />
+                        <ThanksBox src="/logos/algolia.png" alt="Algolia" intro="Search By" title="Algolia" width={8} href="https://www.algolia.com" />
                         <Button variant="ghost" onClick={onClose} ml={2} _hover={{ bgColor: bgColor1 }}>
                             Close
                         </Button>

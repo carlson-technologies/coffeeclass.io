@@ -145,6 +145,7 @@ const CustomImage = (props) => {
                     width={1000}
                     height={500}
                     onLoad={() => setLoaded(true)}
+                    alt={props.alt || ''}
                     {...props}
                 />
             </Skeleton>

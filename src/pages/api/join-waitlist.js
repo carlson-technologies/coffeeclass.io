@@ -1,4 +1,4 @@
-export default async (req, res) => {
+export default async function JoinWaitlist (req, res) {
     const { email } = req.body
 
     if (!email) {

@@ -54,7 +54,7 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
         return () => {
             window.removeEventListener('scroll', handleScroll)
         }
-    })
+    }, [])
 
     TimeAgo.addLocale(en)
     const timeAgo = new TimeAgo('en-US')

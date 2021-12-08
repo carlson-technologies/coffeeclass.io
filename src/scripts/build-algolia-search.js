@@ -6,6 +6,21 @@ const algoliasearch = require("algoliasearch/lite");
 
 // node ./src/scripts/build-algolia-search.js
 
+try {
+    dotenv.config();
+
+    if (!process.env.NEXT_PUBLIC_ALGOLIA_APP_ID) {
+        throw new Error("NEXT_PUBLIC_ALGOLIA_APP_ID is not defined");
+    }
+
+    if (!process.env.ALGOLIA_SEARCH_ADMIN_KEY) {
+        throw new Error("ALGOLIA_SEARCH_ADMIN_KEY is not defined");
+    }
+} catch (error) {
+    console.error(error);
+    process.exit(1);
+}
+
 const CONTENT_PATH = path.join(process.cwd(), 'content/articles')
 const contentFilePaths = fs
     .readdirSync(CONTENT_PATH)
@@ -70,7 +85,7 @@ function transformAuthorsToSearchObjects(authors) {
             objectID: article.data.name,
             name: article.data.name,
             description: article.data.description,
-            slug: article.filePath, 
+            slug: article.filePath,
             type: 'author',
         };
     });
@@ -127,7 +142,7 @@ function transformTagsToSearchObjects(tags) {
         transformed.push(...transformedAuthors);
         // add tags to the transformed array
         transformed.push(...transformTagsToSearchObjects(tags));
-        console.log(transformed);
+        // console.log(transformed);
 
         // initialize the client with your environment variables
         const client = algoliasearch(
@@ -149,4 +164,4 @@ function transformTagsToSearchObjects(tags) {
     catch (err) {
         console.error(err);
     }
-}) ();
+})();

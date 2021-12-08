@@ -15,7 +15,6 @@ import {
     Icon,
     Box,
 } from '@chakra-ui/react'
-import { NextSeo } from 'next-seo'
 import Container from '../../components/Container'
 import subjects from "../../configs/learn.json"
 import Image from 'next/image'
@@ -23,8 +22,8 @@ import { ExternalLinkIcon } from '@chakra-ui/icons'
 import NextLink from 'next/link'
 
 const url = 'https://www.coffeeclass.io/courses'
-const title = 'Learn | coffeeclass.io'
-const description = 'Learn programming languages quickly and easily.'
+const title = 'Courses'
+const description = 'Learn programming languages and frameworks through our easy to follow, interactive courses.'
 
 const Wrapper = ({ path, children }) => {
     const { colorMode } = useColorMode()
@@ -68,17 +67,7 @@ export default function Index() {
     const dividerBorder = useColorModeValue("blackAlpha.300", "gray.300")
     const color = useColorModeValue("gray.400", "gray.600")
     return (
-        <Container>
-            <NextSeo
-                title={title}
-                description={description}
-                canonical={url}
-                openGraph={{
-                    url,
-                    title,
-                    description
-                }}
-            />
+        <Container title={title} description={description} url={url}>
             <Stack
                 spacing={8}
                 px={4}

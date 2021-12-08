@@ -13,7 +13,6 @@ import {
     AspectRatio,
     Skeleton,
 } from '@chakra-ui/react'
-import { NextSeo } from 'next-seo'
 import Container from '../components/Container'
 import NextLink from 'next/link'
 import NextImage from 'next/image'
@@ -27,7 +26,7 @@ import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
 
 const url = 'https://www.coffeeclass.io/'
-const title = 'Home'
+const title = 'coffeeclass.io Home'
 const description = 'Explore the latest programming and computer science articles and learn programming for free on coffeeclass.io.'
 
 export default function Index({ posts }) {
@@ -46,17 +45,7 @@ export default function Index({ posts }) {
     const bgColor = useColorModeValue("gray.100", "gray.900")
 
     return (
-        <Container>
-            <NextSeo
-                title={title}
-                description={description}
-                canonical={url}
-                openGraph={{
-                    url,
-                    title,
-                    description
-                }}
-            />
+        <Container title={title} description={description} url={url}>
             <Flex
                 flexDir="column"
                 maxW="110em"

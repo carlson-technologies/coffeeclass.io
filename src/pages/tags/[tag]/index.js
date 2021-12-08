@@ -11,7 +11,6 @@ import {
     Skeleton,
     Icon,
 } from '@chakra-ui/react'
-import { NextSeo } from 'next-seo'
 import Container from '../../../components/Container'
 import { serialize } from 'next-mdx-remote/serialize'
 import fs from 'fs'
@@ -48,17 +47,7 @@ export default function Index({ articles, frontMatter }) {
     console.log(filteredArticles)
 
     return (
-        <Container>
-            <NextSeo
-                title={title}
-                description={description}
-                canonical={url}
-                openGraph={{
-                    url,
-                    title,
-                    description
-                }}
-            />
+        <Container title={title} description={description} url={url}>
             <Flex
                 bgGradient={`linear(to-r,${useColorModeValue("gray.50", "gray.600")},${useColorModeValue("gray.200", "gray.800")},${useColorModeValue("gray.300", "gray.900")})`}
                 flexDir="column"

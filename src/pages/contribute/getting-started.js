@@ -10,28 +10,17 @@ import {
     ListItem,
     Code,
 } from '@chakra-ui/react'
-import { NextSeo } from 'next-seo'
 import Container from '../../components/Container'
 import NextLink from 'next/link'
 import Step from '../../components/Content/Step'
 
 const url = 'https://www.coffeeclass.io/getting-started'
-const title = 'How To Get Started Writing A Snippet, Tutorial, or Guide on coffeeclass.io'
+const title = 'Getting Started'
 const description = 'Learn the benefits of writing a coding tutorial for coffeeclass.io and how to submit an article!'
 
 export default function GettingStarted() {
     return (
-        <Container>
-            <NextSeo
-                title={title}
-                description={description}
-                canonical={url}
-                openGraph={{
-                    url,
-                    title,
-                    description
-                }}
-            />
+        <Container title={title} description={description} url={url}>
             <Box py={100} bgColor={useColorModeValue("brand_one.100", "#75665f")}>
                 <Stack
                     spacing={8}

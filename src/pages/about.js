@@ -7,12 +7,11 @@ import {
     useColorMode,
     Link
 } from '@chakra-ui/react'
-import { NextSeo } from 'next-seo'
 import Container from '../components/Container'
 
 const url = 'https://www.coffeeclass.io/about'
-const title = 'About | coffeeclass.io'
-const description = 'coffeeclass.io offers programming tutorials through this website and their YouTube channel.'
+const title = 'About'
+const description = 'Learn about coffeeclass.io. coffeeclass.io offers programming tutorials through this website and their YouTube channel.'
 
 export default function About() {
     const { colorMode } = useColorMode()
@@ -25,17 +24,7 @@ export default function About() {
         dark: 'brand_one.500'
     }
     return (
-        <Container>
-            <NextSeo
-                title={title}
-                description={description}
-                canonical={url}
-                openGraph={{
-                    url,
-                    title,
-                    description
-                }}
-            />
+        <Container title={title} description={description} url={url}>
             <Stack
                 spacing={8}
                 px={4}

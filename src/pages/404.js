@@ -1,6 +1,5 @@
 import {
     Heading,
-    Flex,
     Text,
     useColorMode,
     Link,

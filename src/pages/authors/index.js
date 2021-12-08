@@ -9,7 +9,6 @@ import {
     Link,
     Box,
 } from '@chakra-ui/react'
-import { NextSeo } from 'next-seo'
 import Container from '../../components/Container'
 import fs from 'fs'
 import matter from 'gray-matter'
@@ -17,7 +16,7 @@ import path from 'path'
 import { authorsFilePaths, AUTHORS_PATH } from '../../scripts/mdx-utils'
 
 const url = 'https://www.coffeeclass.io/authors'
-const title = 'Authors | coffeeclass.io'
+const title = 'Authors'
 const description = 'All authors on coffeeclass.io.'
 
 export default function Index({ authors }) {
@@ -26,23 +25,9 @@ export default function Index({ authors }) {
         light: 'gray.700',
         dark: 'gray.300'
     }
-    const headerColor = {
-        light: 'brand_one.600',
-        dark: 'brand_one.500'
-    }
 
     return (
-        <Container>
-            <NextSeo
-                title={title}
-                description={description}
-                canonical={url}
-                openGraph={{
-                    url,
-                    title,
-                    description
-                }}
-            />
+        <Container title={title} description={description} url={url}>
             <Stack
                 spacing={8}
                 px={4}

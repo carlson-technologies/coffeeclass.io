@@ -6,7 +6,6 @@ import {
     Box,
     Text,
 } from '@chakra-ui/react'
-import { NextSeo } from 'next-seo'
 import Container from '../../components/Container'
 import fs from 'fs'
 import matter from 'gray-matter'
@@ -21,17 +20,7 @@ const description = `All tags on coffeeclass.io.`
 
 export default function Index({ tags }) {
     return (
-        <Container>
-            <NextSeo
-                title={title}
-                description={description}
-                canonical={url}
-                openGraph={{
-                    url,
-                    title,
-                    description
-                }}
-            />
+        <Container title={title} description={description} url={url}>
             <Heading px={4} mt={4} as="h1" size="2xl" color="brand_one.500">Tags 🏷️</Heading>
             <Box mx={4} bgColor="brand_one.500" h={2} w={150} borderRadius={5} mb={12} mt={2} />
             <Flex

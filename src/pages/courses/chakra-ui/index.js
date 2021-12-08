@@ -9,16 +9,14 @@ import {
     useColorModeValue,
     Image,
     Badge,
-    Wrap,
 } from '@chakra-ui/react'
-import { NextSeo } from 'next-seo'
 import lessons from "../../../configs/courses/chakra-ui.json"
 import Container from "../../../components/Container"
 import NextLink from "next/link"
 
 const url = 'https://www.coffeeclass.io/chakra-ui'
-const title = 'Learn Chakra UI | coffeeclass.io'
-const description = 'Learn the css framework Chakra UI.'
+const title = 'Chakra UI Complete Course'
+const description = 'Learn the css framework Chakra UI though our easy to follow, step by step course modules.'
 
 export default function ChakraUI() {
     const data = lessons.routes
@@ -27,20 +25,9 @@ export default function ChakraUI() {
     const borderColor = useColorModeValue("gray.200", "gray.700")
 
     return (
-        <Container>
-            <NextSeo
-                title={title}
-                description={description}
-                canonical={url}
-                openGraph={{
-                    url,
-                    title,
-                    description
-                }}
-            />
+        <Container title={title} description={description} url={url}>
             <Stack
                 spacing={8}
-            // px={4}
             >
                 <Flex
                     flexDir="column"

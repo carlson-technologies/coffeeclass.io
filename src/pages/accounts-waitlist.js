@@ -7,27 +7,16 @@ import {
     ListItem,
     Box,
 } from '@chakra-ui/react'
-import { NextSeo } from 'next-seo'
 import Container from '../components/Container'
 import Subscribe from '../components/Subscribe'
 
 const url = 'https://www.coffeeclass.io/accounts-waitlist'
 const title = 'Accounts Waitlist | coffeeclass.io'
-const description = 'Join the coffeeclass.io accounts waitlist so you can have access to features like bookmarking a snippet, tracking your progress in courses, and better commenting.'
+const description = 'Join the coffeeclass.io accounts waitlist so you can have access to features like bookmarking articles, tracking your progress in courses, and better commenting.'
 
 export default function AccountsWaitlist() {
     return (
-        <Container>
-            <NextSeo
-                title={title}
-                description={description}
-                canonical={url}
-                openGraph={{
-                    url,
-                    title,
-                    description
-                }}
-            />
+        <Container title={title} description={description} url={url}>
             <Stack
                 spacing={8}
                 px={4}

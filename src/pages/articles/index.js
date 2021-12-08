@@ -11,7 +11,6 @@ import {
     Link,
     Icon,
 } from '@chakra-ui/react'
-import { NextSeo } from 'next-seo'
 import Container from '../../components/Container'
 import fs from 'fs'
 import matter from 'gray-matter'
@@ -26,8 +25,8 @@ import { ChevronRightIcon } from '@chakra-ui/icons'
 import NextLink from 'next/link'
 
 const url = 'https://www.coffeeclass.io/articles'
-const title = 'All Articles on coffeeclass.io'
-const description = 'Read the best programming tutorials for free on coffeeclass.io.'
+const title = 'Articles'
+const description = 'Read all coffeeclass.io articles on programming and computer science for free.'
 
 const MotionBox = motion(Box)
 
@@ -46,17 +45,7 @@ export default function Index({ posts }) {
     const color = useColorModeValue("gray.500", "gray.400")
 
     return (
-        <Container>
-            <NextSeo
-                title={title}
-                description={description}
-                canonical={url}
-                openGraph={{
-                    url,
-                    title,
-                    description
-                }}
-            />
+        <Container title={title} description={description} url={url}>
             <Stack
                 spacing={8}
                 px={4}

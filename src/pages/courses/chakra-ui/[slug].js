@@ -26,8 +26,11 @@ import {
     AccordionButton,
     AccordionPanel,
     AccordionIcon,
+    Icon,
 } from '@chakra-ui/react'
 import Ad from '../../../components/Content/Ad'
+import { ExternalLinkIcon } from '@chakra-ui/icons'
+import { useRouter } from 'next/router'
 
 export default function PostPage({ source, frontMatter }) {
     const { colorMode } = useColorMode()
@@ -36,6 +39,10 @@ export default function PostPage({ source, frontMatter }) {
         dark: 'gray.400'
     }
     const bgColor = useColorModeValue("gray.100", "gray.800")
+
+    const router = useRouter()
+    const slug = router.query.slug
+
     return (
         <LearnLayout frontMatter={frontMatter} src="chakra-ui.png" alt="Chakra UI Image">
             <motion.div
@@ -107,6 +114,12 @@ export default function PostPage({ source, frontMatter }) {
                 <Box mb={4} mt={10}>
                     {frontMatter.lastUpdated && <Text color="gray.500" fontSize="sm" textAlign="center">Last updated on {format(parseISO(frontMatter.lastUpdated || frontMatter.publishedAt), 'MMMM dd, yyyy')}</Text>}
                 </Box>
+                <Link textDecor="underline" _hover={{ opacity: .8 }} w="fit-content">
+                    <Flex align="center">
+                        <Icon as={ExternalLinkIcon} mr={2} />
+                        <Link href={`https://github.com/carlson-technologies/coffeeclass.io/blob/main/content/courses/chakra-ui/${slug}.mdx`} isExternal>Edit on GitHib</Link>
+                    </Flex>
+                </Link>
                 <Pagination />
             </motion.div>
         </LearnLayout>

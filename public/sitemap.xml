@@ -7,6 +7,10 @@
 
   <!--Page URLS In Order-->
   <url>
+    <loc>https://www.coffeeclass.io/articles</loc>
+  </url>
+
+  <url>
     <loc>https://www.coffeeclass.io/authors</loc>
   </url>
 
@@ -15,7 +19,7 @@
   </url>
 
   <url>
-    <loc>https://www.coffeeclass.io/learn</loc>
+    <loc>https://www.coffeeclass.io/courses</loc>
   </url>
 
   <url>
@@ -35,15 +39,7 @@
   </url>
 
   <url>
-    <loc>https://www.coffeeclass.io/snippets</loc>
-  </url>
-
-  <url>
     <loc>https://www.coffeeclass.io/tags</loc>
-  </url>
-
-  <url>
-    <loc>https://www.coffeeclass.io/tutorials</loc>
   </url>
 
   <url>
@@ -51,7 +47,7 @@
   </url>
 
   <url>
-    <loc>https://www.coffeeclass.io/search</loc>
+    <loc>https://www.coffeeclass.io/accounts-waitlist</loc>
   </url>
 
   <!--Dynamic URLS-->
@@ -161,6 +157,18 @@
   </url>
 
   <url>
+    <loc>https://www.coffeeclass.io/authors/benjamin-carlson</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/authors/muhammad-nadeem</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/authors/sumit-kumar</loc>
+  </url>
+
+  <url>
     <loc>https://www.coffeeclass.io/tags/chakra-ui</loc>
   </url>
 
@@ -250,18 +258,6 @@
 
   <url>
     <loc>https://www.coffeeclass.io/tags/utteranc</loc>
-  </url>
-
-  <url>
-    <loc>https://www.coffeeclass.io/authors/benjamin-carlson</loc>
-  </url>
-
-  <url>
-    <loc>https://www.coffeeclass.io/authors/muhammad-nadeem</loc>
-  </url>
-
-  <url>
-    <loc>https://www.coffeeclass.io/authors/sumit-kumar</loc>
   </url>
 
   <url>

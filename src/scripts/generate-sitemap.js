@@ -20,6 +20,10 @@ const prettier = require('prettier');
 
             <!--Page URLS In Order-->
             <url>
+                <loc>https://www.coffeeclass.io/articles</loc>
+            </url>
+
+            <url>
                 <loc>https://www.coffeeclass.io/authors</loc>
             </url>
 
@@ -28,7 +32,7 @@ const prettier = require('prettier');
             </url>
 
             <url>
-                <loc>https://www.coffeeclass.io/learn</loc>
+                <loc>https://www.coffeeclass.io/courses</loc>
             </url>
 
             <url>
@@ -48,15 +52,7 @@ const prettier = require('prettier');
             </url>
 
             <url>
-                <loc>https://www.coffeeclass.io/snippets</loc>
-            </url>
-
-            <url>
                 <loc>https://www.coffeeclass.io/tags</loc>
-            </url>
-
-            <url>
-                <loc>https://www.coffeeclass.io/tutorials</loc>
             </url>
 
             <url>
@@ -64,7 +60,7 @@ const prettier = require('prettier');
             </url>
 
             <url>
-                <loc>https://www.coffeeclass.io/search</loc>
+                <loc>https://www.coffeeclass.io/accounts-waitlist</loc>
             </url>
                   
             <!--Dynamic URLS-->

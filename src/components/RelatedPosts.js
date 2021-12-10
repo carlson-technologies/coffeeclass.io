@@ -62,7 +62,7 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
     const bgColor = useColorModeValue("gray.200", "gray.700")
     const color = useColorModeValue("gray.500", "gray.400")
     const boxShadow = useColorModeValue("0px 8px 26px rgba(0, 0, 0, 0.25)", "0px 8px 26px rgba(255, 255, 255, 0.25)")
-    const bgColor1 = useColorModeValue("gray.100", "gray.800")
+    const bgColor1 = useColorModeValue("gray.100", "gray.700")
     const color1 = useColorModeValue("gray.700", "gray.400")
     const headerColor = useColorModeValue('gray.600', 'gray.400')
 
@@ -87,7 +87,7 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
                     visibility={scrollY > 500 ? "visible" : "hidden"}
                     px={2}
                 >
-                    <Box overflowY="auto" h="calc(100vh - 100px)">
+                    <Box overflowY="auto" overflowX="hidden" h="calc(100vh - 100px)">
                         <Text
                             m={2}
                             textTransform="uppercase"
@@ -118,7 +118,7 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
                         </Wrap>
 
                         <Text
-                            mt={4}
+                            mt={8}
                             mb={2}
                             mx={2}
                             textTransform="uppercase"

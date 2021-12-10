@@ -21,7 +21,7 @@ I added the sitemap on 7/20/21 and you can see the clicks spiked right after.
 
 In this snippet, we'll write code to generate a dynamic sitemap for a React (specifically Next.js) based website.
 
-<SnippetStep title="Install Dependencies" number="1" />
+<Step title="Install Dependencies" number="1" />
 
 First, install these 3 dependencies:
 
@@ -31,7 +31,7 @@ yarn add fs globby prettier
 
 We will be using `fs` to write to our file system, `globby` to read and sort the files, and `prettier` to format our outputted `sitemap.xml`.
 
-<SnippetStep title="Write Code!" number="2" />
+<Step title="Write Code!" number="2" />
 
 Create a file named `generate-sitemap.js`. Inside of here, require all 3 of the packages we just imported.
 
@@ -49,7 +49,7 @@ Next, define our `async` function.
 })();
 ```
 
-<SnippetStep title="Use `globby` to find files and directories using glob patterns" number="3" />
+<Step title="Use `globby` to find files and directories using glob patterns" number="3" />
 
 We'll initialize our prettier variable named `prettierConfig` and use `globby` to find files and directories using glob patterns. In this example, I have `js` pages inside of a `pages` folder and `mdx` files inside of a  `content` folder. We can also exclude routes using `!`.
 
@@ -65,7 +65,7 @@ We'll initialize our prettier variable named `prettierConfig` and use `globby` t
 })();
 ```
 
-<SnippetStep title="Create our `sitemap` variable" number="4" />
+<Step title="Create our `sitemap` variable" number="4" />
 
 Declare a variable `sitemap` which will be our sitemap content. Go ahead and add any urls that were not able to be fetched with `globby`. Below that, map over the `pages` variable, remove the extensions, and add them to the sitemap.
 
@@ -109,7 +109,7 @@ const sitemap = `
 })();
 ```
 
-<SnippetStep title="Use `fs` To Write To Public Folder" number="5" />
+<Step title="Use `fs` To Write To Public Folder" number="5" />
 
 Finally, format the sitemap using prettier and write the sitemap to our `public` directory using `fs`.
 

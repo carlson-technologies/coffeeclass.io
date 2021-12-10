@@ -60,7 +60,7 @@ export default function Index({ posts }) {
 
                 <Box backgroundImage={bgImage[colorMode]} w="100%" h="2em" mt="-2em" />
 
-                <Box mt="-12" p={5}>
+                <Box mt="-12" p={5} zIndex={9}>
                     <SimpleGrid minChildWidth={["100%", "100%", "100%", "100%", "250px", "250px"]} spacing="40px">
                         {posts
                             .sort(
@@ -140,7 +140,7 @@ export default function Index({ posts }) {
                                     align="center"
                                     justify="center"
                                 >
-                                    <Heading as="h3" size="md" mt={4} fontWeight="normal" textAlign="center">All Articles</Heading>
+                                    <Heading as="h3" size="md" fontWeight="normal" textAlign="center">All Articles</Heading>
                                 </Flex>
                             </Link>
                         </NextLink>

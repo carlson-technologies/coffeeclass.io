@@ -52,7 +52,7 @@ export default function Navbar() {
     }, [])
 
     const bgColor = useColorModeValue('gray.100', 'gray.900')
-    const bgColor1 = useColorModeValue('white', '#15161a')
+    const bgColor1 = useColorModeValue('white', 'gray.800')
     const boxShadow1 = useColorModeValue("0px 2px 4px rgba(0, 0, 0, 0.2)", "0px 2px 4px rgba(255, 255, 255, 0.1)")
     const bg = useColorModeValue("gray.200", "gray.700")
 

@@ -16,7 +16,7 @@ logoImage: ["chakra-ui.png"]
 
 [Chakra UI](https://chakra-ui.com) is a css framework for React based apps. It is super easy to use which makes for a smooth developer experience. I've been using Chakra UI for over a year now and in this time I've learned a lot about it. In this post, I'll show you 5 Chakra UI features that will take you from beginner to advanced.
 
-<SnippetStep number="1" title="Custom Theme Multiple Files" />
+<Step number="1" title="Custom Theme Multiple Files" />
 
 When you override the default theme, most developers create one theme file - usually named `theme.js`. When your project gets larger and you have multiple components and multiple overrides this file will get long and hard to read. To fix this we can use multiple theme files. It will look something like this: We can create a folder named `theme`. Inside of here create a file named `index.js`. This will be the main entry point for our theme. It is where we will use the `extendTheme` hook and pass in the overrides.
 
@@ -58,7 +58,7 @@ const overrides = {
 export default extendTheme(overrides)
 ```
 
-<SnippetStep number="2" title="useBreakpointValue" />
+<Step number="2" title="useBreakpointValue" />
 
 Normally to create responsive values in Chakra UI you do something like this:
 
@@ -87,7 +87,7 @@ function Example() {
 }
 ```
 
-<SnippetStep number="3" title="useMediaQuery" />
+<Step number="3" title="useMediaQuery" />
 
 `mediaQuery` is an advanced css feature but Chakra UI makes it easier to use. You might be thinking, why do we need this if we already have custom breakpoints? Well, you might want to add a breakpoint that is not defined in our custom breakpoints to only one element. To use this, simply use the `useMediaQuery` hook and pass in your value. Then use the variable in the code!
 
@@ -103,7 +103,7 @@ function Example() {
 }
 ```
 
-<SnippetStep number="4" title="config" />
+<Step number="4" title="config" />
 
 There is a property called `config` which is passed into the `extendTheme` hook. This property takes in 3 global theme config properties which most people don't use.
 
@@ -121,7 +121,7 @@ The second is `useSystemColorMode`. This is a boolean value that tells Chakra UI
 
 The third is `cssVarPrefix`. This is the prefix that Chakra UI will use for all of its css variables. It does not change any of the behavior but it is a cool way to further personalize your app.
 
-<SnippetStep number="5" title="Custom Color Palette" />
+<Step number="5" title="Custom Color Palette" />
 
 Right out of the box, Chakra UI provides us with some nice looking colors. If you dive deeper into the colors, you'll notice that each color has a value from [50 to 900](https://chakra-ui.com/docs/theming/theme). This is so it works well with the `colorScheme` property and the color mode. You can create your own custom color palette such as a brand color palette but naming it and then passing in hex values for each of the values. You'll want to make 50 your lightest color and work your way darker for best results.
 

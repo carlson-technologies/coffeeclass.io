@@ -49,7 +49,7 @@ export default function GettingStarted() {
                     maxW={800}
                     alignSelf="center"
                 >
-                    <Box bgColor={useColorModeValue("gray.100", "gray.800")} p={4} mb={8} borderRadius={5}>
+                    <Box bgColor={useColorModeValue("gray.100", "gray.900")} p={4} mb={8} borderRadius={5}>
                         <Flex align="center">
                             <Text fontSize="5xl" mr={2}>💡</Text>
                             <Heading size="md" fontWeight="normal" mb={2}>On this page</Heading>
@@ -141,7 +141,7 @@ export default function GettingStarted() {
                     </UnorderedList>
 
                     <Text fontSize="lg" color={useColorModeValue("gray.600", "gray.400")} my={2}>
-                        Here is an <NextLink href="/snippets/make-div-float-up-hover-css" passHref><Link href="/snippets/make-div-float-up-hover-css" fontWeight="bold">example</Link></NextLink> of a snippet. As you can see,
+                        Here is an <NextLink href="/articles/make-div-float-up-hover-css" passHref><Link href="/articles/make-div-float-up-hover-css" fontWeight="bold">example</Link></NextLink> of a snippet. As you can see,
                         it includes all of the parts mentioned above.
                     </Text>
 

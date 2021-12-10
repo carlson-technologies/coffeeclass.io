@@ -79,7 +79,8 @@ export default function PostPage({ source, frontMatter, posts }) {
     })
 
     const bgColor = useColorModeValue("gray.100", "gray.700")
-    const bgColor1 = useColorModeValue("gray.100", "gray.800")
+    const bgColor1 = useColorModeValue("gray.100", "gray.700")
+    const hoverBg = useColorModeValue("gray.100", "gray.700")
 
     return (
         <Container>
@@ -145,7 +146,7 @@ export default function PostPage({ source, frontMatter, posts }) {
                         <Accordion allowMultiple mt={4}>
                             <AccordionItem>
                                 <h2>
-                                    <AccordionButton>
+                                    <AccordionButton _hover={{ bgColor: hoverBg }}>
                                         <Box flex="1" textAlign="left">
                                             On this page
                                         </Box>

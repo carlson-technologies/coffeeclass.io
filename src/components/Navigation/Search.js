@@ -64,7 +64,7 @@ export default function Search({ is404 }) {
 
     return (
         <>
-            <InputGroup mx={2}>
+            <InputGroup>
                 <InputLeftElement
                     pointerEvents="none"
                     color={color1}

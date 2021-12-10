@@ -17,11 +17,11 @@ const GlobalStyle = ({ children }) => {
           ${colorMode === 'light' ? prismLightTheme : prismDarkTheme};
           ${colorMode === 'light' ? lightAvatarTheme : darkAvatarTheme};
           #__next {
-            background-color: ${colorMode === 'light' ? '#fff' : '#15161a'};
+            background-color: ${colorMode === 'light' ? '#fff' : 'gray.700'};
             color: ${colorMode === 'light' ? 'black' : 'white'};
           }
           html {
-            background-color: ${colorMode === 'light' ? '#fff' : '#15161a'};
+            background-color: ${colorMode === 'light' ? '#fff' : 'gray.700'};
           }
           ::selection {
             background-color: ${colorMode === 'light' ? '#EAD9CD' : '#75694f'};

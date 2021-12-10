@@ -21,7 +21,7 @@ function Hits({ searchState, searchResults }) {
     return (
         <>
             {searchResults?.hits.length === 0 && validQuery && (
-                <Text>No results found.</Text>
+                <Text mt={2}>No results found!</Text>
             )}
             {searchResults?.hits.length > 0 && validQuery && (
                 <>

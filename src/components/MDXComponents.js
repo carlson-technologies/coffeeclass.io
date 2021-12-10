@@ -22,6 +22,10 @@ import {
 import NextLink from 'next/link'
 import EmbeddedVideo from './EmbeddedVideo'
 import Image from 'next/image'
+import ExampleColorModeComponent from "./Content/ExampleColorModeComponent"
+import FloatUpDivAnimation from "./Content/FloatUpDivAnimation"
+import FloatUpDivAnimationNoHeight from './Content/FloatUpDivAnimationNoHeight'
+import Step from "./Content/Step"
 
 const Quote = (props) => {
     const { colorMode } = useColorMode()
@@ -86,8 +90,8 @@ const CustomLink = (props) => {
 const CustomListItem = (props) => {
     const { colorMode } = useColorMode()
     const color = {
-        light: 'gray.600',
-        dark: 'gray.400'
+        light: 'gray.800',
+        dark: 'gray.200'
     }
     return (
         <ListItem
@@ -109,8 +113,8 @@ const DocsHeading = (props) => (
 const CustomP = (props) => {
     const { colorMode } = useColorMode()
     const color = {
-        light: 'gray.600',
-        dark: 'gray.400'
+        light: 'gray.800',
+        dark: 'gray.200'
     }
     return (
         <Text fontSize="xl" my={4} color={color[colorMode]} {...props} />
@@ -175,6 +179,10 @@ const MDXComponents = {
     td: (props) => <Td {...props} />,
     th: (props) => <Th {...props} />,
     EmbeddedVideo,
+    ExampleColorModeComponent,
+    FloatUpDivAnimation,
+    FloatUpDivAnimationNoHeight,
+    Step,
 }
 
 export default MDXComponents

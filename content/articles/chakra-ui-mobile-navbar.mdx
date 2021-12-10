@@ -15,7 +15,7 @@ logoImage: ["chakra-ui.png"]
 
 In this snippet we will create a simple mobile navigation bar using Chakra UI's [drawer component](https://chakra-ui.com/docs/overlay/drawer). It will be similar to the one on this website.
 
-<SnippetStep number="1" title="Creating the Hamburger Icon Button" />
+<Step number="1" title="Creating the Hamburger Icon Button" />
 
 To begin, we will create a simple `IconButton` to open the Navbar. Declare some basic properties such as `aria-label`, `m`, and `zIndex`.
 
@@ -42,7 +42,7 @@ export default NavBarTop;
 
 You will notice that the `onClick` property is set to `onOpen`. This is from `useDisclosure`. [Chakra UI](https://chakra-ui.com/) gives us this along with `isOpen` and `onClose` to handle the state of the Drawer.
 
-<SnippetStep number="2" title="Adding The Drawer" />
+<Step number="2" title="Adding The Drawer" />
 
 Import the drawer component and all of its sub components.
 
@@ -86,7 +86,7 @@ The last step is to add the `useDisclosure` hook above the return statement.
 const { isOpen, onOpen, onClose } = useDisclosure();
 ```
 
-<SnippetStep number="3" title="More Improvements" />
+<Step number="3" title="More Improvements" />
 
 Lastly, let's add a button to close the Drawer. We can use the `onClose` method to do this. Again, I am not repeating any code for brevity.
 

@@ -55,7 +55,7 @@ const FooterHeading = ({ title }) => {
 
 const Footer = () => {
     return (
-        <Box bgColor={useColorModeValue("gray.100", "gray.800")} mt={8}>
+        <Box bgColor={useColorModeValue("gray.100", "gray.700")} mt={8}>
             <Flex
                 flexDir="column"
                 align={['left', 'left', 'left', 'left', 'center', 'center']}

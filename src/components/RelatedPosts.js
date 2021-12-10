@@ -14,6 +14,7 @@ import NextImage from 'next/image'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
 import NextLink from 'next/link'
+import Subscribe from '../components/Subscribe'
 
 export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
     var relatedPosts = []
@@ -41,7 +42,7 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
     relatedPosts.sort((a, b) => {
         return new Date(b.data.publishedAt) - new Date(a.data.publishedAt)
     })
-
+    
     const [scrollY, setScrollY] = useState(0)
 
     const handleScroll = () => {
@@ -82,12 +83,12 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
             <>
                 <Flex
                     flexDir="column"
-                    opacity={scrollY > 500 ? 1 : 0}
+                    opacity={scrollY > 200 ? 1 : 0}
                     transition="opacity .7s ease-in-out"
-                    visibility={scrollY > 500 ? "visible" : "hidden"}
+                    visibility={scrollY > 200 ? "visible" : "hidden"}
                     px={2}
                 >
-                    <Box overflowY="auto" overflowX="hidden" h="calc(100vh - 100px)">
+                    <Box overflowY="auto" overflowX="hidden" h="calc(100vh - 100px)" as="aside">
                         <Text
                             m={2}
                             textTransform="uppercase"
@@ -95,7 +96,7 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
                             fontSize="sm"
                             fontWeight="semibold"
                         >
-                            View Related Tags
+                            Related Tags
                         </Text>
                         <Wrap>
                             {tags.map((tag, index) => {
@@ -126,9 +127,9 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
                             fontSize="sm"
                             fontWeight="semibold"
                         >
-                            View Related Posts
+                            Related Posts
                         </Text>
-                        {relatedPosts.map(post => {
+                        {relatedPosts.slice(0, 5).map(post => {
                             return (
                                 <NextLink as={`/articles/${post.filePath.replace(/\.mdx?$/, '')}`} href={`/articles/[slug]`} key={post.data.title}>
                                     <Box
@@ -154,6 +155,7 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
                                 </NextLink>
                             )
                         })}
+                        <Subscribe isSidebar />
                     </Box>
                 </Flex>
             </>

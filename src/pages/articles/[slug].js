@@ -93,15 +93,6 @@ export default function PostPage({ source, frontMatter, posts }) {
                 transition={{ duration: .5 }}
             >
                 <Flex justify="center">
-                    {/* Left sidebar */}
-                    <Flex display={['none', 'none', 'none', 'none', 'none', 'flex']}>
-                        <div>
-                            <Box maxW={300} overflow="scroll" pos="sticky" top={20}>
-                                <RelatedPosts style="sidebar" tags={frontMatter.tags} posts={posts} currPostTitle={frontMatter.title} />
-                            </Box>
-                        </div>
-                    </Flex>
-
                     {/* main content */}
                     <Flex flexGrow={1} flexDir="column" w="100%" p={4} maxW={800}>
                         {
@@ -197,6 +188,15 @@ export default function PostPage({ source, frontMatter, posts }) {
                                 <Link href={`https://github.com/carlson-technologies/coffeeclass.io/blob/main/content/articles/${slug}.mdx`} isExternal>Edit on GitHib</Link>
                             </Flex>
                         </Link>
+                    </Flex>
+
+                    {/* Right sidebar */}
+                    <Flex display={['none', 'none', 'none', 'none', 'none', 'flex']}>
+                        <div>
+                            <Box maxW={300} overflow="scroll" pos="sticky" top={20}>
+                                <RelatedPosts style="sidebar" tags={frontMatter.tags} posts={posts} currPostTitle={frontMatter.title} />
+                            </Box>
+                        </div>
                     </Flex>
                 </Flex>
                 <Box maxW={800} mx="auto" id="end-content">

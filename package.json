@@ -37,7 +37,8 @@
     "reading-time": "^1.5.0",
     "rehype": "^12.0.0",
     "remark-autolink-headings": "^7.0.1",
-    "remark-code-titles": "^0.1.2"
+    "remark-code-titles": "^0.1.2",
+    "swr": "^1.1.1"
   },
   "devDependencies": {
     "eslint": "<8.0.0",

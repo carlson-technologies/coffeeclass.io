@@ -11,9 +11,11 @@ import {
     Text,
     Heading,
     InputRightElement,
+    Flex,
+    useColorModeValue,
 } from "@chakra-ui/react"
 
-const Subscribe = () => {
+const Subscribe = ({ isSidebar }) => {
     const router = useRouter()
     const inputEl = useRef(null)
     const [loading, setLoading] = useState(false)
@@ -29,6 +31,8 @@ const Subscribe = () => {
         light: 'gray.200',
         dark: 'gray.600'
     }
+
+    const headerColor = useColorModeValue('gray.600', 'gray.400')
 
     const subscribe = async (e) => {
         e.preventDefault()
@@ -52,7 +56,7 @@ const Subscribe = () => {
                 title: 'Whoops! There\'s an error!',
                 description: error,
                 status: "error",
-                duration: 3000,
+                duration: 6000,
                 isClosable: true,
             })
             return
@@ -66,6 +70,41 @@ const Subscribe = () => {
             duration: 6000,
             isClosable: true,
         })
+    }
+
+    if (isSidebar) {
+        return (
+            <Flex flexDir="column">
+                <Text
+                    mt={6}
+                    mb={2}
+                    mx={2}
+                    textTransform="uppercase"
+                    color={headerColor}
+                    fontSize="sm"
+                    fontWeight="semibold"
+                >
+                    Email Newsletter
+                </Text>
+                <Input
+                    aria-label="Email for newsletter"
+                    placeholder="ben@carlsontechnologies.dev"
+                    ref={inputEl}
+                    type="email"
+                    focusBorderColor="brand_one.500"
+                />
+                <Button
+                    isLoading={loading}
+                    fontWeight="bold"
+                    size="md"
+                    my={2}
+                    onClick={subscribe}
+                    colorScheme="brand_one"
+                >
+                    Subscribe
+                </Button>
+            </Flex>
+        )
     }
 
     return (

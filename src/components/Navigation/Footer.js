@@ -8,10 +8,13 @@ import {
     SimpleGrid,
     Box,
     Wrap,
+    Badge,
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import { year } from '../../scripts/time'
 import ThanksBox from './ThanksBox'
+import useSWR from "swr"
+import fetcher from "../../scripts/fetcher"
 
 const FooterNavItem = ({ text, href }) => {
     return (
@@ -54,6 +57,11 @@ const FooterHeading = ({ title }) => {
 }
 
 const Footer = () => {
+
+    const { data, error } = useSWR("/api/getTags", fetcher)
+
+    const bgColor = useColorModeValue("brand_one.500", "brand_one.800")
+
     return (
         <Box bgColor={useColorModeValue("gray.100", "gray.700")} mt={8}>
             <Flex
@@ -63,6 +71,17 @@ const Footer = () => {
                 px={4}
                 as="footer"
             >
+                {!error && <Wrap maxW={1200} justify="center" mx="auto">
+                    {data?.tags.map((tag, index) => (
+                        <NextLink href={`/tags/${tag}`} key={index} passHref>
+                            <Link href={`/tags/${tag}`}>
+                                <Badge colorScheme="brand_one" fontSize={["sm", "sm", "sm", "md", "lg", "lg"]} p={2} borderRadius={5} _hover={{ bgColor: bgColor }}>
+                                    {tag}
+                                </Badge>
+                            </Link>
+                        </NextLink>
+                    ))}
+                </Wrap>}
                 <SimpleGrid
                     columns={[1, 1, 1, 2, 4, 4]}
                     w="100%"

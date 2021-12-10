@@ -1,0 +1,233 @@
+---
+title: "Pure CSS Float On Hover Effect"
+description: "A simple and fun css margin animation."
+seoDescription: "Add a float up hover transition animation to a div using css."
+author: "Benjamin Carlson"
+authorImage: "benjamin-carlson.jpeg"
+authorPosition: "Founder coffeeclass.io"
+publishedAt: "2021-08-23T21:40"
+tags: ["css", "css-animation"]
+type: "snippet"
+logoImage: ["css.png"]
+---
+
+## Demo
+
+In this step by step snippet, you will learn how to add a simple `css` hover animation to a `HTML` element to create the following effect:
+
+<FloatUpDivAnimation />
+
+## Code
+
+```html
+<div class="flex-wrapper">
+  <div class="tag">
+    <p>Hover Me</p>
+  </div>
+  <div class="tag">
+    <p>To Float Up</p>
+  </div>
+</div>
+
+<style>
+  .flex-wrapper {
+    display: flex;
+    height: 5px;
+  }
+
+  .tag {
+    margin-right: 2px;
+    transition: margin 0.2s ease-in-out;
+    background-color: gray;
+  }
+
+  .tag:hover {
+    margin-top: -2;
+  }
+</style>
+```
+
+> The code above is basic `HTML`. Later on in this snippet, I'll show you the [React](https://reactjs.org/) implementation and a [Chakra UI](https://chakra-ui.com/) implementation.
+
+## Steps + Explanation
+
+<Step number="1" title="Add The HTML Markup" />
+
+The basic `HTML` markup with class names.
+
+```html
+<div class="flex-wrapper">
+  <div class="tag">
+    <p>Hover Me</p>
+  </div>
+  <div class="tag">
+    <p>To Float Up</p>
+  </div>
+</div>
+```
+
+<Step number="2" title="Define The Wrapper CSS" />
+
+We will make the wrapper `flex` and set the height to `5px`. The height can be whatever height you want.
+
+```html
+<style>
+  .flex-wrapper {
+    display: flex;
+    height: 5px;
+  }
+</style>
+```
+
+<Step number="3" title="Define The Tag CSS" />
+
+Both of these styles are optional and subjective.
+
+```html
+<style>
+  .tag {
+    margin-right: 2px;
+    background-color: gray;
+  }
+</style>
+```
+
+<Step number="4" title="Create The Hover State" />
+
+When the user hovers over the tag, the `margin` will be changed to "-2". If you try this code out, you will notice that the tag will jump up, rather than float nicely.
+
+```html
+<style>
+  .tag:hover {
+    margin-top: -2;
+  }
+</style>
+```
+
+<Step number="5" title="Add The CSS Transition" />
+
+We can use a `transition` to make the tag float nicely. This transition is added to the `tag` class.
+
+```html
+<style>
+  .tag {
+    margin-right: 2px;
+    transition: margin 0.2s ease-in-out; // Add the transition
+    background-color: gray;
+  }
+</style>
+```
+
+## Going Further
+
+Let's take a further look at some of the code bits.
+
+### css Transition
+
+#### Definition
+
+> CSS transitions provide a way to control animation speed when changing CSS properties. Instead of having property changes take effect immediately, you can cause the changes in a property to take place over a period of time. For example, if you change the color of an element from white to black, usually the change is instantaneous. With CSS transitions enabled, changes occur at time intervals that follow an acceleration curve, all of which can be customized. - [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions)
+
+#### How We Use Transition
+
+In our case, our transition looks like
+
+```css
+transition: margin 0.2s ease-in-out;
+```
+
+Breaking this down further, we have:
+
+- `margin` - the property we are changing
+- `.2s` - the time it takes for the transition to complete
+- `ease-in-out` - the easing function
+
+### ease-in-out
+
+#### Definition
+
+> Easing both in and out is akin to a car accelerating and decelerating and, used judiciously, can provide a more dramatic effect than just easing out. - [Google Developers](https://developers.google.com/web/fundamentals/design-and-ux/animations/the-basics-of-easing)
+
+## Common Mistakes
+
+Here are some common mistakes and how to avoid them.
+
+- not having a defined `height`
+
+If you don't have a defined `height`, the tag layout will shift if you hover quickly between the tags. This is because the tag you are hovering over will grow larger causing the wraper to also grow and create a layout shift.
+
+<FloatUpDivAnimationNoHeight />
+
+This is the exact same code as above except we have no defined `height`.
+
+```css
+.flex-wrapper {
+  display: flex;
+  // height: 5px; // <-- this line is removed
+}
+```
+
+- adding `transition` to the wrong element
+
+Be sure you are adding `transition` to each `tag` and not the `wrapper`.
+
+## React Example
+
+Here is the react code with inline styles.
+
+```javascript
+import React from 'react'
+
+export default function make-div-float-up-hover-css() {
+    return (
+        <div style={{border: '2px dotted', borderColor: 'gray', padding: '10px 0', marginTop: '4px'}}>
+            <div style={{display: 'flex', margin: '4px 0', justifyContent: 'center', height: 5}}>
+                <div style={{marginRight: 2, transition: 'margin .2s ease-in-out'}} _hover={{marginTop: 2}}>
+                    <p>Hover Me</p>
+                </div>
+                <div style={{marginRight: 2, transition: 'margin .2s ease-in-out'}} _hover={{marginTop: 2}}>
+                    <p>To Float Up</p>
+                </div>
+            </div>
+        </div>
+    )
+}
+```
+
+> Some of the specific subjective `css` styles will differ slightly from the example. i.e. `border`, `borderColor`, tag color/size.
+
+## Chakra UI Example
+
+```javascript
+import { Flex, Tag, Text, Box, useColorModeValue } from "@chakra-ui/react";
+
+export default function FloatUpDivAnimation() {
+  return (
+    <Box
+      border="2px dotted"
+      borderColor={useColorModeValue("gray.300", "gray.100")}
+      py={10}
+      mt={4}
+    >
+      <Flex my={4} justifyContent="center" h={5}>
+        <Tag
+          mr={2}
+          size="lg"
+          transition="margin .2s ease-in-out"
+          _hover={{ mt: "-2" }}
+        >
+          <Text>Hover Me</Text>
+        </Tag>
+        <Tag
+          mr={2}
+          size="lg"
+          transition="margin .2s ease-in-out"
+          _hover={{ mt: "-2" }}
+        >
+          <Text>To Float Up</Text>
+        </Tag>
+      </Flex>
+    </Box>
+  );
+}
+```

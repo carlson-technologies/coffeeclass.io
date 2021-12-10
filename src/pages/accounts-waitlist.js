@@ -5,28 +5,18 @@ import {
     Text,
     OrderedList,
     ListItem,
+    Box,
 } from '@chakra-ui/react'
-import { NextSeo } from 'next-seo'
 import Container from '../components/Container'
 import Subscribe from '../components/Subscribe'
 
 const url = 'https://www.coffeeclass.io/accounts-waitlist'
 const title = 'Accounts Waitlist | coffeeclass.io'
-const description = 'Join the coffeeclass.io accounts waitlist so you can have access to features like bookmarking a snippet, tracking your progress in courses, and better commenting.'
+const description = 'Join the coffeeclass.io accounts waitlist so you can have access to features like bookmarking articles, tracking your progress in courses, and better commenting.'
 
 export default function AccountsWaitlist() {
     return (
-        <Container>
-            <NextSeo
-                title={title}
-                description={description}
-                canonical={url}
-                openGraph={{
-                    url,
-                    title,
-                    description
-                }}
-            />
+        <Container title={title} description={description} url={url}>
             <Stack
                 spacing={8}
                 px={4}
@@ -36,15 +26,8 @@ export default function AccountsWaitlist() {
                     w={["100%", "100%", "100%", "100%", "100%", "60%"]}
                     alignSelf="center"
                 >
-                    <Heading
-                        as="h1"
-                        size="2xl"
-                        letterSpacing="tight"
-                        textTransform="uppercase"
-                        my={8}
-                    >
-                        Accounts Waitlist
-                    </Heading>
+                    <Heading mt={4} as="h1" size="2xl" color="brand_one.500">Accounts Waitlist</Heading>
+                    <Box bgColor="brand_one.500" h={2} w={150} borderRadius={5} mb={4} mt={2} />
                     <Text fontSize="xl" mb={4}>
                         Thanks for your interest in coffeeclass.io user accounts. We are working hard to build this site including more content and features.
                     </Text>
@@ -54,7 +37,7 @@ export default function AccountsWaitlist() {
 
                     <OrderedList spacing={4} mb={8}>
                         <ListItem>
-                            Bookmark snippets and tutorials
+                            Bookmark articles
                         </ListItem>
                         <ListItem>
                             Track your progress in courses

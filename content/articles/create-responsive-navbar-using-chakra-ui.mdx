@@ -1,0 +1,370 @@
+---
+title: "Chakra-UI Responsive Navigation Bar"
+description: "Learn how to create a responsive navigation bar using Chakra-UI."
+seoDescription: "Create a responsive navigation bar using Chakra-UI. Mobile responsive, add animation using framer motion."
+author: "Benjamin Carlson"
+authorImage: 'benjamin-carlson.jpeg'
+authorPosition: 'Founder coffeeclass.io'
+publishedAt: "2021-04-25"
+tags: ["chakra-ui"]
+youtubeId: "https://youtu.be/9paBIA2R5C0"
+type: "snippet"
+logoImage: ["chakra-ui.png"]
+---
+
+## Introduction
+
+If you are familiar with Bootstrap, you know how easy it is to create a responsive nav-bar. In Chakra-UI,
+there is no built in, out of the box solution. In this snippet, we will create a responsive
+nav-bar component that you can use in your React app.
+
+## Setup
+
+We will be using Next.js in this example but it works for any react based framework. Navigate to the [Next.js GitHub repo](https://github.com/vercel/next.js/tree/canary/examples/with-chakra-ui) and
+clone their starter example using Chakra-UI. If you don't want
+to leave this page the command is:
+
+```bash
+yarn create next-app --example with-chakra-ui with-chakra-ui-app
+```
+
+Open this in your preferred IDE - mine is [VSCode](https://code.visualstudio.com/). Inside of `src/components`, open up the `DarkModeSwitch` component.
+This is the only file we will be modifying.
+
+## Imports
+
+We will start by importing everything we need.
+
+```javascript:DarkModeSwitch.js
+import { useState } from 'react'
+import {
+  useColorMode,
+  Switch,
+  Flex,
+  Button,
+  IconButton
+} from '@chakra-ui/react'
+import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
+import NextLink from 'next/link'
+```
+
+## Adding Desktop Content
+
+First, wrap everything inside of a `Flex` element. Then, add the below code.
+
+```javascript:DarkModeSwitch.js
+<Flex>
+<Flex position="fixed" top="1rem" right="1rem" align="center">
+  {/* Desktop */}
+  <Flex>
+    <NextLink href="/" passHref>
+      <Button as="a" variant="ghost" aria-label="Home" my={5} w="100%">
+        Home
+      </Button>
+    </NextLink>
+
+    <NextLink href="/about" passHref>
+      <Button as="a" variant="ghost" aria-label="About" my={5} w="100%">
+        About
+      </Button>
+    </NextLink>
+
+    <NextLink href="/contact" passHref>
+      <Button as="a" variant="ghost" aria-label="Contact" my={5} w="100%">
+        Contact
+      </Button>
+    </NextLink>
+  </Flex>
+
+  {/* Mobile */}
+  <IconButton
+    aria-label="Open Menu"
+    size="lg"
+    mr={2}
+    icon={<HamburgerIcon />}
+    onClick={}
+  />
+  <Switch color="green" isChecked={isDark} onChange={toggleColorMode} />
+</Flex>
+{/* Mobile Content */}
+</Flex>
+```
+
+## Adding Mobile Content
+
+This is simply our desktop nav bar. We will add the mobile content below the comment. Let's do that now.
+
+```javascript:DarkModeSwitch.js
+{/* Code above */}
+
+{/* Mobile Content */}
+<Flex
+  bgColor="gray.50"
+  overflowY="auto"
+  flexDir="column"
+>
+  <Flex justify="flex-end">
+    <IconButton
+      mt={2}
+      mr={2}
+      aria-label="Open Menu"
+      size="lg"
+      icon={<CloseIcon />}
+      onClick={}
+    />
+  </Flex>
+
+  <Flex flexDir="column" align="center">
+    <NextLink href="/" passHref>
+      <Button as="a" variant="ghost" aria-label="Home" my={5} w="100%">
+        Home
+      </Button>
+    </NextLink>
+
+    <NextLink href="/about" passHref>
+      <Button as="a" variant="ghost" aria-label="About" my={5} w="100%">
+        About
+      </Button>
+    </NextLink>
+
+    <NextLink href="/contact" passHref>
+      <Button as="a" variant="ghost" aria-label="Contact" my={5} w="100%">
+        Contact
+      </Button>
+    </NextLink>
+  </Flex>
+</Flex>
+```
+
+## Using useState To Open And Close Navigation
+
+Now that we have content, we need a way to show it. We can use `useState` for this. Before the
+return statement, add the following:
+
+```javascript:DarkModeSwitch.js
+const [display, changeDisplay] = useState('none')
+```
+
+We now have a variable `display` set initially to none, and a method `changeDisplay` we can use
+to change it.
+
+Let's add this to our code. Note, I am only writing the components that we are changing below.
+
+```javascript:DarkModeSwitch.js
+<IconButton
+          aria-label="Open Menu"
+          size="lg"
+          mr={2}
+          icon={
+            <HamburgerIcon />
+          }
+          onClick={() => changeDisplay('flex')} // added line
+        />
+
+<Flex
+  display={display} // added line
+  bgColor="gray.50"
+  overflowY="auto"
+  flexDir="column"
+>
+
+<IconButton
+            mt={2}
+            mr={2}
+            aria-label="Open Menu"
+            size="lg"
+            icon={
+              <CloseIcon />
+            }
+            onClick={() => changeDisplay('none')} // added line
+          />
+```
+
+Now we should be able to open and close the menu! It looks a bit messy though. Let's add styles to the `Flex`.
+
+```javascript:DarkModeSwitch.js
+<Flex
+  w="100vw"
+  display={display}
+  bgColor="gray.50"
+  zIndex={20}
+  h="100vh"
+  pos="fixed"
+  top="0"
+  left="0"
+  overflowY="auto"
+  flexDir="column"
+>
+```
+
+The important styles we added:
+
+- Setting the height to 100vh
+- Setting the width to 100vw
+- Setting the position to fixed
+- Making z-index 20 so it is above the page content
+- Setting top and left to 0
+- Setting the display to our dynamic display variable.
+
+The rest is subjective.
+
+## Completed Code
+
+And that's it! Here is the completed code:
+
+```javascript:DarkModeSwitch.js
+import { useState } from 'react'
+import {
+  useColorMode,
+  Switch,
+  Flex,
+  Button,
+  IconButton
+} from '@chakra-ui/react'
+import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
+import NextLink from 'next/link'
+
+
+export const DarkModeSwitch = () => {
+  const { colorMode, toggleColorMode } = useColorMode()
+  const isDark = colorMode === 'dark'
+  const [display, changeDisplay] = useState('none')
+  return (
+    <Flex>
+      <Flex
+        position="fixed"
+        top="1rem"
+        right="1rem"
+        align="center"
+      >
+        {/* Desktop */}
+        <Flex
+          display={['none', 'none', 'flex','flex']}
+        >
+          <NextLink href="/" passHref>
+            <Button
+              as="a"
+              variant="ghost"
+              aria-label="Home"
+              my={5}
+              w="100%"
+            >
+              Home
+                    </Button>
+          </NextLink>
+
+          <NextLink href="/about" passHref>
+            <Button
+              as="a"
+              variant="ghost"
+              aria-label="About"
+              my={5}
+              w="100%"
+            >
+              About
+                    </Button>
+          </NextLink>
+
+          <NextLink href="/contact" passHref>
+            <Button
+              as="a"
+              variant="ghost"
+              aria-label="Contact"
+              my={5}
+              w="100%"
+            >
+              Contact
+                    </Button>
+          </NextLink>
+        </Flex>
+
+        {/* Mobile */}
+        <IconButton
+          aria-label="Open Menu"
+          size="lg"
+          mr={2}
+          icon={
+            <HamburgerIcon />
+          }
+          onClick={() => changeDisplay('flex')}
+          display={['flex', 'flex', 'none', 'none']}
+        />
+        <Switch
+          color="green"
+          isChecked={isDark}
+          onChange={toggleColorMode}
+        />
+      </Flex>
+
+      {/* Mobile Content */}
+      <Flex
+        w='100vw'
+        display={display}
+        bgColor="gray.50"
+        zIndex={20}
+        h="100vh"
+        pos="fixed"
+        top="0"
+        left="0"
+        zIndex={20}
+        overflowY="auto"
+        flexDir="column"
+      >
+        <Flex justify="flex-end">
+          <IconButton
+            mt={2}
+            mr={2}
+            aria-label="Open Menu"
+            size="lg"
+            icon={
+              <CloseIcon />
+            }
+            onClick={() => changeDisplay('none')}
+          />
+        </Flex>
+
+        <Flex
+          flexDir="column"
+          align="center"
+        >
+          <NextLink href="/" passHref>
+            <Button
+              as="a"
+              variant="ghost"
+              aria-label="Home"
+              my={5}
+              w="100%"
+            >
+              Home
+                    </Button>
+          </NextLink>
+
+          <NextLink href="/about" passHref>
+            <Button
+              as="a"
+              variant="ghost"
+              aria-label="About"
+              my={5}
+              w="100%"
+            >
+              About
+                    </Button>
+          </NextLink>
+
+          <NextLink href="/contact" passHref>
+            <Button
+              as="a"
+              variant="ghost"
+              aria-label="Contact"
+              my={5}
+              w="100%"
+            >
+              Contact
+            </Button>
+          </NextLink>
+        </Flex>
+      </Flex>
+    </Flex>
+  )
+}
+```

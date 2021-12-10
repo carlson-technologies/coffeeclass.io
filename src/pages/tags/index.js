@@ -1,104 +1,60 @@
 import {
     Heading,
     Flex,
-    Stack,
     Link,
-    Divider,
-    useColorMode,
     Tag,
+    Box,
+    Text,
 } from '@chakra-ui/react'
-import { NextSeo } from 'next-seo'
 import Container from '../../components/Container'
 import fs from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
-import { snippetsFilePaths, SNIPPETS_PATH } from '../../scripts/mdx-utils'
-import { tutorialsFilePaths, TUTORIALS_PATH } from '../../scripts/mdx-utils'
+import { tagsFilePaths, TAGS_PATH } from '../../scripts/mdx-utils'
 import NextLink from 'next/link'
 import removeDuplicatesAndCount from '../../scripts/remove-duplicates-and-count'
 
 const url = `https://www.coffeeclass.io/tags/`
-const title = 'Tags | coffeeclass.io'
+const title = 'Tags'
 const description = `All tags on coffeeclass.io.`
 
-export default function Index({ tutorials, snippets }) {
-    const { colorMode } = useColorMode()
-    const headerColor = {
-        light: 'brand_one.600',
-        dark: 'brand_one.500'
-    }
-    var tagArray = []
-    tutorials.map(tut => tut.data.tags.map(tag => {
-        tagArray.push(tag)
-    }))
-    snippets.map(snip => snip.data.tags.map(tag => {
-        tagArray.push(tag)
-    }))
-
-    var tagArray = removeDuplicatesAndCount(tagArray)
-
+export default function Index({ tags }) {
     return (
-        <Container>
-            <NextSeo
-                title={title}
-                description={description}
-                canonical={url}
-                openGraph={{
-                    url,
-                    title,
-                    description
-                }}
-            />
-            <Stack
-                spacing={8}
-                px={4}
+        <Container title={title} description={description} url={url}>
+            <Heading px={4} mt={4} as="h1" size="2xl" color="brand_one.500">Tags 🏷️</Heading>
+            <Box mx={4} bgColor="brand_one.500" h={2} w={150} borderRadius={5} mb={12} mt={2} />
+            <Flex
+                wrap="wrap"
+                justify="center"
             >
-                <Flex
-                    flexDir="column"
-                >
-                    <Heading
-                        as="h1"
-                        size="2xl"
-                        letterSpacing="tight"
-                        textTransform="uppercase"
-                        my={8}
-                    >
-                        Tags 🏷️
-                    </Heading>
-                    <Divider mb={6} />
-                    <Flex
-                        wrap="wrap"
-                        borderRadius="50%"
-                    >
-                        {
-                            tagArray.map(tag => {
-                                return (
-                                    <Flex mr={2} mb={2} key={tag.tag}>
-                                        <NextLink href={`/tags/${tag.tag}`} passHref>
-                                            <Link
-                                                href={`/${tag.tag}`}
-                                                _hover={{
-                                                    textDecor: 'none',
-                                                    opacity: '.5'
-                                                }}
-                                            >
-                                                <Tag size="lg" colorScheme="brand_one">#{tag.tag} ({tag.count})</Tag>
-                                            </Link>
-                                        </NextLink>
+                {
+                    tags.map(tag => {
+                        return (
+                            <NextLink href={`/tags/${tag.data.title}`} key={tag.data.title} passHref>
+                                <Link
+                                    href={`/tags/${tag.data.title}`}
+                                    _hover={{
+                                        textDecor: 'none',
+                                        opacity: '.8',
+                                        transform: 'scale(1.1)'
+                                    }}
+                                >
+                                    <Flex mr={2} mb={2} w="100px" h="100px" align="center" justify="center" borderRadius="50%" bgColor="brand_one.500">
+                                        <Text fontSize="sm" textAlign="center">#{tag.data.title}</Text>
                                     </Flex>
-                                )
-                            })
-                        }
-                    </Flex>
-                </Flex>
-            </Stack>
+                                </Link>
+                            </NextLink>
+                        )
+                    })
+                }
+            </Flex>
         </Container>
     )
 }
 
 export function getStaticProps() {
-    const tutorials = tutorialsFilePaths.map((filePath) => {
-        const source = fs.readFileSync(path.join(TUTORIALS_PATH, filePath))
+    const tags = tagsFilePaths.map((filePath) => {
+        const source = fs.readFileSync(path.join(TAGS_PATH, filePath))
         const { content, data } = matter(source)
 
         return {
@@ -108,16 +64,6 @@ export function getStaticProps() {
         }
     })
 
-    const snippets = snippetsFilePaths.map((filePath) => {
-        const source = fs.readFileSync(path.join(SNIPPETS_PATH, filePath))
-        const { content, data } = matter(source)
 
-        return {
-            content,
-            data,
-            filePath,
-        }
-    })
-
-    return { props: { tutorials, snippets } }
+    return { props: { tags } }
 }

@@ -2,22 +2,20 @@ import { useState, useEffect } from 'react'
 import {
     Heading,
     Flex,
-    UnorderedList,
-    ListItem,
-    Badge,
     Text,
     Box,
-    Divider,
     useColorModeValue,
     AspectRatio,
     Skeleton,
+    Link,
+    Wrap,
 } from '@chakra-ui/react'
-import Link from 'next/link'
 import NextImage from 'next/image'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
+import NextLink from 'next/link'
 
-export default function RelatedPosts({ tags, posts, currPostTitle, style }) {
+export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
     var relatedPosts = []
 
     // loop through all tags and see if they match any of the tags of the current post
@@ -34,6 +32,16 @@ export default function RelatedPosts({ tags, posts, currPostTitle, style }) {
     // remove duplicates
     relatedPosts = [...new Set(relatedPosts)]
 
+    // remove current post
+    relatedPosts = relatedPosts.filter(
+        post => post.data.title !== currPostTitle
+    )
+
+    // order posts by date
+    relatedPosts.sort((a, b) => {
+        return new Date(b.data.publishedAt) - new Date(a.data.publishedAt)
+    })
+
     const [scrollY, setScrollY] = useState(0)
 
     const handleScroll = () => {
@@ -46,130 +54,177 @@ export default function RelatedPosts({ tags, posts, currPostTitle, style }) {
         return () => {
             window.removeEventListener('scroll', handleScroll)
         }
-    })
-
-    const [showRelatedPostsSidebar, setShowRelatedPostsSidebar] = useState(null)
-
-    useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth < 1000) {
-                setShowRelatedPostsSidebar("none")
-            } else {
-                setShowRelatedPostsSidebar("flex")
-            }
-        }
-        window.addEventListener('resize', handleResize)
-        return () => {
-            window.removeEventListener('resize', handleResize)
-        }
     }, [])
 
     TimeAgo.addLocale(en)
     const timeAgo = new TimeAgo('en-US')
 
+    const bgColor = useColorModeValue("gray.200", "gray.700")
+    const color = useColorModeValue("gray.500", "gray.400")
+    const boxShadow = useColorModeValue("0px 8px 26px rgba(0, 0, 0, 0.25)", "0px 8px 26px rgba(255, 255, 255, 0.25)")
+    const bgColor1 = useColorModeValue("gray.100", "gray.700")
+    const color1 = useColorModeValue("gray.700", "gray.400")
+    const headerColor = useColorModeValue('gray.600', 'gray.400')
+
+    const [loaded, setLoaded] = useState(false)
+
+    // const MySkeleton = ({ children }) => {
+    //     return (
+    //         <Skeleton isLoaded={loaded}>
+    //             {children}
+    //         </Skeleton>
+    //     )
+    // }
+
     if (style == "sidebar") {
         return (
-            relatedPosts.length > 1 &&
+            relatedPosts.length > 0 &&
             <>
                 <Flex
                     flexDir="column"
-                    mr={10}
-                    // pos="sticky"
-                    // top={10}
                     opacity={scrollY > 500 ? 1 : 0}
                     transition="opacity .7s ease-in-out"
-                    display={showRelatedPostsSidebar}
+                    visibility={scrollY > 500 ? "visible" : "hidden"}
+                    px={2}
                 >
-                    <Heading as="h4" size="sm" my={2}>View Related Posts</Heading>
-                    {relatedPosts.map(post => {
-                        return (
-                            <Link as={`/snippets/${post.filePath.replace(/\.mdx?$/, '')}`} href={`/snippets/[slug]`}>
-                                <Box
-                                    key={post.data.title}
-                                    p={1}
-                                    _hover={{
-                                        bgColor: useColorModeValue("gray.100", "gray.800"),
-                                        cursor: "pointer",
-                                    }}
-                                    my={1}
-                                    borderRadius={2}
-                                >
-                                    <Heading
-                                        as="h5"
-                                        size="sm"
-                                        // color={color[colorMode]}
+                    <Box overflowY="auto" overflowX="hidden" h="calc(100vh - 100px)">
+                        <Text
+                            m={2}
+                            textTransform="uppercase"
+                            color={headerColor}
+                            fontSize="sm"
+                            fontWeight="semibold"
+                        >
+                            View Related Tags
+                        </Text>
+                        <Wrap>
+                            {tags.map((tag, index) => {
+                                return (
+                                    <Box key={index} px={2}>
+                                        <NextLink href="/tags/[tag]" as={`/tags/${tag}`} passHref>
+                                            <Link
+                                                href={`/tags/${tag}`}
+                                                color={color}
+                                                fontSize="sm"
+                                                fontWeight="semibold"
+                                                _hover={{ color: "brand_one.500" }}
+                                            >
+                                                {tag}
+                                            </Link>
+                                        </NextLink>
+                                    </Box>
+                                )
+                            })}
+                        </Wrap>
+
+                        <Text
+                            mt={8}
+                            mb={2}
+                            mx={2}
+                            textTransform="uppercase"
+                            color={headerColor}
+                            fontSize="sm"
+                            fontWeight="semibold"
+                        >
+                            View Related Posts
+                        </Text>
+                        {relatedPosts.map(post => {
+                            return (
+                                <NextLink as={`/articles/${post.filePath.replace(/\.mdx?$/, '')}`} href={`/articles/[slug]`} key={post.data.title}>
+                                    <Box
+                                        p={2}
+                                        _hover={{
+                                            bgColor: bgColor1,
+                                            cursor: "pointer",
+                                            textDecoration: 'underline',
+                                        }}
                                         my={1}
-                                        fontWeight="normal"
+                                        borderRadius={2}
                                     >
-                                        {post.data.title}
-                                    </Heading>
-                                </Box>
-                            </Link>
-                        )
-                    })}
+                                        <Heading
+                                            as="h5"
+                                            size="sm"
+                                            color={color1}
+                                            my={1}
+                                            fontWeight="normal"
+                                        >
+                                            {post.data.title} &middot; {timeAgo.format(new Date(post.data.publishedAt))}
+                                        </Heading>
+                                    </Box>
+                                </NextLink>
+                            )
+                        })}
+                    </Box>
                 </Flex>
             </>
         )
     }
 
-    const [loaded, setLoaded] = useState(false)
-
     return (
-        relatedPosts.length > 1 && // we need 1 because the current post is also in the list
-        <>
-            <Flex flexDir="column" w="95vw" maxW={800}>
-                <Heading as="h4" size="md" mb={2}>View Related Posts</Heading>
-                <Flex overflowX="auto">
-                    {relatedPosts.map(post => (
-                        <Link
-                            as={`/snippets/${post.filePath.replace(/\.mdx?$/, '')}`}
-                            href={`/snippets/[slug]`}
-                            _hover={{
-                                cursor: "pointer",
-                            }}
-                        >
-                            <Flex
-                                flexDir="column"
-                                justify="space-between"
-                                bgColor={useColorModeValue("gray.200", "gray.700")}
-                                m={2}
-                                p={5}
-                                transition='box-shadow 0.3s ease-in-out'
-                                borderRadius={5}
+        relatedPosts.length > 0 ?
+            <>
+                <Flex flexDir="column" w="100vw" maxW={800} minW={320}>
+                    <Heading as="h4" size="md" mb={2} px={4}>View Related Posts</Heading>
+                    <Flex overflowX="auto">
+                        {relatedPosts.map(post => (
+                            <NextLink
+                                as={`/articles/${post.filePath.replace(/\.mdx?$/, '')}`}
+                                href={`/articles/[slug]`}
                                 _hover={{
-                                    boxShadow: useColorModeValue("0px 8px 26px rgba(0, 0, 0, 0.25)", "0px 8px 26px rgba(255, 255, 255, 0.25)"),
                                     cursor: "pointer",
                                 }}
-                                maxW={200}
+                                key={post.data.title}
                             >
-                                <Box>
-                                    <Text mb={2} minW={120} textAlign="center" color={useColorModeValue("gray.500", "gray.400")} fontSize="xs" mb={2}>{timeAgo.format(new Date(post.data.publishedAt))}</Text>
-                                    <Box
-                                        w={50}
-                                        h={50}
-                                        my={2}
-                                        mx="auto"
-                                    >
-                                        <AspectRatio ratio={1}>
-                                            <Skeleton isLoaded={loaded}>
-                                                <NextImage
-                                                    src={`/snippet-images/${post.data.logoImage[0]}`}
-                                                    alt={post?.data?.logoImage[0]}
-                                                    width="50px"
-                                                    height="50px"
-                                                    objectFit="contain"
-                                                    onLoad={() => setLoaded(true)}
-                                                />
-                                            </Skeleton>
-                                        </AspectRatio>
-                                    </Box>
-                                </Box>
-                                <Heading size="sm" mt={4}>{post.data.title}</Heading>
-                            </Flex>
-                        </Link>
-                    ))}
+                                <Flex
+                                    flexDir="column"
+                                    justify="space-between"
+                                    bgColor={bgColor}
+                                    m={2}
+                                    p={5}
+                                    transition='box-shadow 0.3s ease-in-out'
+                                    borderRadius={5}
+                                    _hover={{
+                                        boxShadow: boxShadow,
+                                        cursor: "pointer",
+                                    }}
+                                    maxW={200}
+                                >
+                                    <Text mb={2} minW={120} textAlign="center" color={color} fontSize="xs">{timeAgo.format(new Date(post.data.publishedAt))}</Text>
+                                    {post?.data?.logoImage &&
+                                        <Box>
+                                            <Box
+                                                w={50}
+                                                h={50}
+                                                my={2}
+                                                mx="auto"
+                                            >
+                                                <AspectRatio ratio={1}>
+                                                    {/* <MySkeleton> */}
+                                                    <NextImage
+                                                        src={`/logos/${post.data.logoImage[0]}`}
+                                                        alt={post?.data?.logoImage[0]}
+                                                        layout="fill"
+                                                    // onLoad={() => setLoaded(true)}
+                                                    />
+                                                    {/* </MySkeleton> */}
+                                                </AspectRatio>
+                                            </Box>
+                                        </Box>}
+
+                                    {
+                                        post?.data?.featureImg &&
+                                        <Flex justify="center">
+                                            <AspectRatio w="100%" ratio={16 / 9}>
+                                                <NextImage src={`/content/articles/${post?.filePath.replace(".mdx", "")}/${post?.data?.featureImg}`} alt={post?.data?.title} layout="fill" />
+                                            </AspectRatio>
+                                        </Flex>
+                                    }
+                                    <Heading size="sm" mt={4}>{post.data.title}</Heading>
+                                </Flex>
+                            </NextLink>
+                        ))}
+                    </Flex>
                 </Flex>
-            </Flex>
-        </>
+            </> : <Text fontSize="lg">No related posts! Like {tags[0]}? Try <NextLink href="/contribute/getting-started" passHref><Link href="/contributing/getting-started" color="brand_one.500">writing about it</Link></NextLink>.</Text>
     )
 }

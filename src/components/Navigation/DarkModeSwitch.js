@@ -1,34 +1,20 @@
-import { useColorMode, IconButton, } from '@chakra-ui/react'
-import { SunIcon, MoonIcon } from '@chakra-ui/icons'
+import { useColorMode, IconButton, useColorModeValue, } from '@chakra-ui/react'
+import { FiSun, FiMoon } from "react-icons/fi"
 
-const DarkModeSwitch = ({ color }) => {
+const DarkModeSwitch = () => {
     const { colorMode, toggleColorMode } = useColorMode()
-    const iconColor = {
-        light: 'black',
-        dark: 'white'
-    }
-    const bgColor = {
-        light: 'gray.100',
-        dark: 'gray.700'
-    }
-    const hoverColor = {
-        light: 'gray.500',
-        dark: 'gray.300'
-    }
+
     return (
         <IconButton
-            transition="background-color .5s ease-in-out"
-            bgColor={color}
-            size="lg"
-            _hover={{
-                textDecoration: 'none',
-                color: hoverColor[colorMode]
-            }}
+            size="md"
             aria-label="Toggle dark mode"
-            icon={colorMode === 'dark' ? <SunIcon /> : <MoonIcon />}
+            icon={colorMode === 'dark' ? <FiSun /> : <FiMoon />}
+            fontSize='20px'
             onClick={toggleColorMode}
-            color={iconColor[colorMode]}
             borderRadius={5}
+            variant="ghost"
+            _hover={{ backgroundColor: useColorModeValue("gray.200", "gray.700") }}
+            w={65}
         />
     )
 }

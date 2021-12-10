@@ -7,6 +7,10 @@
 
   <!--Page URLS In Order-->
   <url>
+    <loc>https://www.coffeeclass.io/articles</loc>
+  </url>
+
+  <url>
     <loc>https://www.coffeeclass.io/authors</loc>
   </url>
 
@@ -15,11 +19,11 @@
   </url>
 
   <url>
-    <loc>https://www.coffeeclass.io/learn</loc>
+    <loc>https://www.coffeeclass.io/courses</loc>
   </url>
 
   <url>
-    <loc>https://www.coffeeclass.io/learn/chakra-ui</loc>
+    <loc>https://www.coffeeclass.io/courses/chakra-ui</loc>
   </url>
 
   <url>
@@ -35,15 +39,7 @@
   </url>
 
   <url>
-    <loc>https://www.coffeeclass.io/snippets</loc>
-  </url>
-
-  <url>
     <loc>https://www.coffeeclass.io/tags</loc>
-  </url>
-
-  <url>
-    <loc>https://www.coffeeclass.io/tutorials</loc>
   </url>
 
   <url>
@@ -51,10 +47,114 @@
   </url>
 
   <url>
-    <loc>https://www.coffeeclass.io/search</loc>
+    <loc>https://www.coffeeclass.io/accounts-waitlist</loc>
   </url>
 
   <!--Dynamic URLS-->
+
+  <url>
+    <loc
+      >https://www.coffeeclass.io/articles/add-comments-to-nextjs-website</loc
+    >
+  </url>
+
+  <url>
+    <loc
+      >https://www.coffeeclass.io/articles/add-firebase-to-flutter-mobile-app</loc
+    >
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/articles/add-firebase-to-nextjs</loc>
+  </url>
+
+  <url>
+    <loc
+      >https://www.coffeeclass.io/articles/add-google-analytics-to-nextjs</loc
+    >
+  </url>
+
+  <url>
+    <loc
+      >https://www.coffeeclass.io/articles/add-splitbee-analytics-to-nextjs</loc
+    >
+  </url>
+
+  <url>
+    <loc
+      >https://www.coffeeclass.io/articles/advanced-chakra-ui-do-you-know-all-5</loc
+    >
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/articles/chakra-ui-mobile-navbar</loc>
+  </url>
+
+  <url>
+    <loc
+      >https://www.coffeeclass.io/articles/create-responsive-navbar-using-chakra-ui</loc
+    >
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/articles/flutter-bottom-navigation-bar</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/articles/generate-dynamic-sitemap</loc>
+  </url>
+
+  <url>
+    <loc
+      >https://www.coffeeclass.io/articles/how-to-compare-dates-in-javascript</loc
+    >
+  </url>
+
+  <url>
+    <loc
+      >https://www.coffeeclass.io/articles/how-to-create-react-native-app</loc
+    >
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/articles/java-inheritance-tutorial</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/articles/make-div-float-up-hover-css</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/articles/map-function-with-dart-lists</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/articles/next-image-position-relative</loc>
+  </url>
+
+  <url>
+    <loc
+      >https://www.coffeeclass.io/articles/nextjs-crash-course-build-a-developer-portfolio-website</loc
+    >
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/articles/nextjs-mdx-quickstart</loc>
+  </url>
+
+  <url>
+    <loc
+      >https://www.coffeeclass.io/articles/todo-app-nextjs-chakraui-firebase</loc
+    >
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/articles/use-disclosure-menu-chakra-ui</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/articles/using-react-useeffect</loc>
+  </url>
 
   <url>
     <loc>https://www.coffeeclass.io/authors/benjamin-carlson</loc>
@@ -66,90 +166,6 @@
 
   <url>
     <loc>https://www.coffeeclass.io/authors/sumit-kumar</loc>
-  </url>
-
-  <url>
-    <loc
-      >https://www.coffeeclass.io/snippets/add-comments-to-nextjs-website</loc
-    >
-  </url>
-
-  <url>
-    <loc
-      >https://www.coffeeclass.io/snippets/add-firebase-to-flutter-mobile-app</loc
-    >
-  </url>
-
-  <url>
-    <loc
-      >https://www.coffeeclass.io/snippets/add-google-analytics-to-nextjs</loc
-    >
-  </url>
-
-  <url>
-    <loc
-      >https://www.coffeeclass.io/snippets/add-splitbee-analytics-to-nextjs</loc
-    >
-  </url>
-
-  <url>
-    <loc
-      >https://www.coffeeclass.io/snippets/advanced-chakra-ui-do-you-know-all-5</loc
-    >
-  </url>
-
-  <url>
-    <loc>https://www.coffeeclass.io/snippets/chakra-ui-mobile-navbar</loc>
-  </url>
-
-  <url>
-    <loc
-      >https://www.coffeeclass.io/snippets/create-responsive-navbar-using-chakra-ui</loc
-    >
-  </url>
-
-  <url>
-    <loc>https://www.coffeeclass.io/snippets/flutter-bottom-navigation-bar</loc>
-  </url>
-
-  <url>
-    <loc>https://www.coffeeclass.io/snippets/generate-dynamic-sitemap</loc>
-  </url>
-
-  <url>
-    <loc
-      >https://www.coffeeclass.io/snippets/how-to-compare-dates-in-javascript</loc
-    >
-  </url>
-
-  <url>
-    <loc
-      >https://www.coffeeclass.io/snippets/how-to-create-react-native-app</loc
-    >
-  </url>
-
-  <url>
-    <loc>https://www.coffeeclass.io/snippets/make-div-float-up-hover-css</loc>
-  </url>
-
-  <url>
-    <loc>https://www.coffeeclass.io/snippets/map-function-with-dart-lists</loc>
-  </url>
-
-  <url>
-    <loc>https://www.coffeeclass.io/snippets/next-image-position-relative</loc>
-  </url>
-
-  <url>
-    <loc>https://www.coffeeclass.io/snippets/nextjs-mdx-quickstart</loc>
-  </url>
-
-  <url>
-    <loc>https://www.coffeeclass.io/snippets/use-disclosure-menu-chakra-ui</loc>
-  </url>
-
-  <url>
-    <loc>https://www.coffeeclass.io/snippets/using-react-useeffect</loc>
   </url>
 
   <url>
@@ -245,50 +261,32 @@
   </url>
 
   <url>
-    <loc>https://www.coffeeclass.io/tutorials/add-firebase-to-nextjs</loc>
-  </url>
-
-  <url>
-    <loc>https://www.coffeeclass.io/tutorials/java-inheritance-tutorial</loc>
-  </url>
-
-  <url>
     <loc
-      >https://www.coffeeclass.io/tutorials/nextjs-crash-course-build-a-developer-portfolio-website</loc
+      >https://www.coffeeclass.io/course/chakra-ui/chakra-ui-custom-theme</loc
     >
   </url>
 
   <url>
-    <loc
-      >https://www.coffeeclass.io/tutorials/todo-app-nextjs-chakraui-firebase</loc
-    >
-  </url>
-
-  <url>
-    <loc>https://www.coffeeclass.io/learn/chakra-ui/chakra-ui-custom-theme</loc>
-  </url>
-
-  <url>
-    <loc>https://www.coffeeclass.io/learn/chakra-ui/chakra-ui-dark-mode</loc>
+    <loc>https://www.coffeeclass.io/course/chakra-ui/chakra-ui-dark-mode</loc>
   </url>
 
   <url>
     <loc
-      >https://www.coffeeclass.io/learn/chakra-ui/chakra-ui-default-theme</loc
+      >https://www.coffeeclass.io/course/chakra-ui/chakra-ui-default-theme</loc
     >
   </url>
 
   <url>
-    <loc>https://www.coffeeclass.io/learn/chakra-ui/course-introduction</loc>
+    <loc>https://www.coffeeclass.io/course/chakra-ui/course-introduction</loc>
   </url>
 
   <url>
     <loc
-      >https://www.coffeeclass.io/learn/chakra-ui/getting-started-with-chakra-ui</loc
+      >https://www.coffeeclass.io/course/chakra-ui/getting-started-with-chakra-ui</loc
     >
   </url>
 
   <url>
-    <loc>https://www.coffeeclass.io/learn/chakra-ui/what-is-chakra-ui</loc>
+    <loc>https://www.coffeeclass.io/course/chakra-ui/what-is-chakra-ui</loc>
   </url>
 </urlset>

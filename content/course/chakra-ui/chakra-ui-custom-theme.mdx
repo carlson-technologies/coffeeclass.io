@@ -1,0 +1,160 @@
+---
+title: "Custom Theme"
+publishedAt: '2021-08-05'
+description: "Overriding the default Chakra UI theme."
+author: "Benjamin Carlson"
+lastUpdated: '2021-08-05'
+type: learn
+language: chakra-ui
+---
+
+In the [last module](/courses/chakra-ui/chakra-ui-default-theme), we took a look at Chakra UI's default theme. These styles work great, however you will most likely need to custimize some or all of them. We can do this by creating a custom theme, also known as overriding the default theme.
+
+To begin, create a file named `theme.js`. Inside of this file, we will extend our default theme. To do this, we will use 2 Chakra UI imports.
+
+```javascript:theme.js
+import { extendTheme } from "@chakra-ui/react"
+import { createBreakpoints } from "@chakra-ui/theme-tools"
+```
+
+`extendTheme` will allow us to pass our changes into the default theme and `createBreakpoints` will allow us to override the default breakpoints.
+
+Add the following code beneth the imports.
+
+```javascript:theme.js
+const overrides = {
+    
+}
+
+const customTheme = extendTheme(overrides)
+
+export default customTheme
+```
+
+Above, we are creating a new object called `overrides` and passing it into our `extendTheme` function.
+
+## Overriding Fonts
+
+Let's start by overriding the default font. Declare a variable called `fonts` and set the `body` and `heading` fonts to whatever you'd like.
+
+```javascript:theme.js
+const fonts = {
+    body: `Inter,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"`,
+    heading: `Inter,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"`
+}
+```
+
+In my case I am setting it to `Inter` - a google font and also passing in a bunch of fallbacks. Next, add this to our `overrides` object.
+
+```javascript:theme.js
+const overrides = {
+    fonts, // <-- pass in the fonts object
+}
+```
+
+Right now nothing will happen. This is because we aren't using this custom theme anywhere in our website! 
+
+Recall in the [getting started](/courses/chakra-ui/getting-started-with-chakra-ui) section that we are using the `ChakraProvider` to render our app. This takes in a property called `theme` which is, you guessed it, our custom theme.
+
+```javascript:_app.js
+import customTheme from '../theme' // <-- import our custom theme
+
+function MyApp({ Component, pageProps }) {
+  return (
+    <ChakraProvider theme={customTheme}> // <-- pass in our custom theme
+        <Component {...pageProps} />
+    </ChakraProvider>
+  )
+}
+```
+
+You should now see your website font change!
+
+## Overriding Breakpoints
+
+Depending on your use case, you might want your own custom breakpoints. You can add them by using `createBreakpoints` and passing in a list of breakpoints.
+
+```javascript:theme.js
+const breakpoints = createBreakpoints({
+    sm: '10em',
+    md: '30em',
+    lg: '40em',
+    xl: '50em',
+    "2xl": '55em',
+    // and so on
+})
+
+const overrides = {
+    fonts,
+    breakpoints, // <-- pass in our breakpoints
+}
+```
+
+> Pro Tip! Use `em` instead of `px` for font sizes.
+
+## Overriding Configs
+
+In the last module we added a dark mode switch. Chakra UI gives us some options to handle the starting color mode and use the users system preferences.
+
+```javascript:theme.js
+const config = {
+    initialColorMode: "light",
+    useSystemColorMode: false,
+}
+
+const overrides = {
+    fonts,
+    breakpoints,
+    config, // <-- pass in our config
+}
+```
+
+`initialColorMode` takes in `light` or `dark` and `useSystemColorMode` takes in `true` or `false`.
+
+## Overriding Colors
+
+In a lot of cases, you will have cusotm brand colors. You can hard code them if you want, but this is not a best practive. We can define a custom brand color pallet so you can take advantage of Chakra UI's `colorScheme` properties.
+
+```javascript:theme.js
+const colors = {
+    brand_one: {
+        50: '#EAD9CD',
+        100: '#E3CDBC',
+        200: '#DCC0AC',
+        300: '#D5B39B',
+        400: '#CEA78B',
+        500: '#C89B7B',
+        600: '#BB855E',
+        700: '#AA7047',
+        800: '#8E5E3B',
+        900: '#714B2F'
+    },
+}
+
+const overrides = {
+    fonts,
+    breakpoints,
+    config,
+    colors, // <-- pass in our colors
+}
+```
+
+Now you can use these colors like such:
+
+```javascript
+<Button colorScheme="brand_one">I am a custom brand button!</Button>
+
+or
+
+<Text color="brand_one.500">I am a custom brand text!</Text>
+```
+
+You can also override the Chakra UI default colors. For example, if you don't like `red.500` as `#E53E3E` you can override it.
+
+```javascript:theme.js
+const colors = {
+    red: {
+        500: '#fff', // <-- setting red.500 to white!
+    },
+}
+```

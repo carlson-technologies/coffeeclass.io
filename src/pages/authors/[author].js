@@ -2,13 +2,16 @@ import { useState } from 'react'
 import {
     Heading,
     Flex,
-    Grid,
     Tag,
     Link,
     Text,
     useColorModeValue,
     Box,
     SkeletonCircle,
+    SimpleGrid,
+    AspectRatio,
+    Skeleton,
+    Icon,
 } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import Container from '../../components/Container'
@@ -16,16 +19,18 @@ import { serialize } from 'next-mdx-remote/serialize'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { snippetsFilePaths, SNIPPETS_PATH } from '../../scripts/mdx-utils'
-import { tutorialsFilePaths, TUTORIALS_PATH } from '../../scripts/mdx-utils'
-import { authorsFilePaths, AUTHORS_PATH } from '../../scripts/mdx-utils'
-import Snippet from '../../components/Cards/Snippet'
-import Tutorial from '../../components/Cards/Tutorial'
+import { contentFilePaths, CONTENT_PATH, authorsFilePaths, AUTHORS_PATH } from '../../scripts/mdx-utils'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
 import NextImage from 'next/image'
+import getAuthorSlug from "../../scripts/get-author-slug"
+import { motion } from "framer-motion"
+import NextLink from 'next/link'
+import { ChevronRightIcon } from '@chakra-ui/icons'
 
-export default function Index({ tutorials, snippets, frontMatter }) {
+const MotionBox = motion(Box)
+
+export default function Index({ articles, frontMatter }) {
     TimeAgo.addLocale(en)
     const timeAgo = new TimeAgo('en-US')
 
@@ -34,33 +39,14 @@ export default function Index({ tutorials, snippets, frontMatter }) {
     const description = `coffeeclass.io articles written by ${frontMatter.name}. ${frontMatter.description}`
 
     const [loaded, setLoaded] = useState(false)
+    // const color = useColorModeValue("gray.600", "gray.300")
+    const color = useColorModeValue("gray.500", "gray.400")
+    const bgColor = useColorModeValue("gray.100", "gray.900")
 
-    const snippetsOrderedByPublishedDate = snippets
-        .sort(
-            (a, b) =>
-                Number(new Date(b.data.publishedAt)) - Number(new Date(a.data.publishedAt))
-        )
-
-    const tutorialsOrderedByPublishedDate = tutorials
-        .sort(
-            (a, b) =>
-                Number(new Date(b.data.publishedAt)) - Number(new Date(a.data.publishedAt))
-        )
-
-    var snippetCount = 0
-    var tutorialCount = 0
-
-    for (var i = 0; i < snippetsOrderedByPublishedDate.length; i++) {
-        if (snippetsOrderedByPublishedDate[i].data.author == frontMatter.name) {
-            snippetCount++
-        }
-    }
-
-    for (var i = 0; i < tutorialsOrderedByPublishedDate.length; i++) {
-        if (tutorialsOrderedByPublishedDate[i].data.author == frontMatter.name) {
-            tutorialCount++
-        }
-    }
+    // loop through articles and if the author slug matches getAuthorSlug(frontMatter.author) add it
+    const filteredArticles = articles.filter(article => {
+        return getAuthorSlug(article.data.author) === frontMatter.slug
+    })
 
     return (
         <Container>
@@ -112,7 +98,7 @@ export default function Index({ tutorials, snippets, frontMatter }) {
                             </Flex>
                             <Heading as="h1" size="2xl" textAlign="center" letterSpacing="tight" color={useColorModeValue("brand_one.600", "brand_one.500")}>{frontMatter.name}</Heading>
                             {frontMatter.description &&
-                                <Text textAlign="center" color={useColorModeValue("gray.600", "gray.300")} fontSize="xl">{frontMatter.description}</Text>
+                                <Text textAlign="center" color={color} fontSize="xl">{frontMatter.description}</Text>
                             }
                             <Flex
                                 my={4}
@@ -233,62 +219,81 @@ export default function Index({ tutorials, snippets, frontMatter }) {
                         </Box>
                     </Flex>
                     <Box bgGradient={`linear(to-r,${useColorModeValue("gray.50", "gray.600")},${useColorModeValue("gray.200", "gray.800")},${useColorModeValue("gray.300", "gray.900")})`}>
-                        <Text ml={4} fontSize="lg"><Link _hover={{ textDecor: 'none', opacity: .5 }} href="#snippets" passHref><span style={{ fontWeight: 'bold' }}>{snippetCount != 0 && snippetCount}</span> {snippetCount != 0 && "snippet"}{snippetCount <= 1 ? null : 's'}</Link> {snippetCount != 0 && tutorialCount != 0 && "/"} <Link _hover={{ textDecor: 'none', opacity: .5 }} href="#tutorials"><span style={{ fontWeight: 'bold' }}>{tutorialCount != 0 && tutorialCount}</span> {tutorialCount != 0 && "tutorial"}{tutorialCount <= 1 ? null : 's'}</Link></Text>
+                        <Text pl={2} fontSize="lg"><strong>{filteredArticles.length}</strong> articles</Text>
+                    </Box>
+
+                    <Box p={4}>
+                        <SimpleGrid minChildWidth={["100%", "100%", "100%", "100%", "300px", "300px"]} spacing="40px">
+                            {filteredArticles.map((post) => (
+                                <MotionBox
+                                    initial={{ opacity: 0, marginTop: 5 }}
+                                    animate={{ opacity: 1, marginTop: 0 }}
+                                    transition={{ duration: 1, delay: 0.3 }}
+                                    style={{
+                                        height: '100%',
+                                    }}
+                                    key={post.data.title}
+                                >
+                                    <NextLink href={`/articles/${post.filePath.replace(".mdx", "")}`} passHref>
+                                        <Link href={`/articles/${post.filePath.replace(".mdx", "")}`} _hover={{ textDecor: 'none' }}>
+                                            <Flex
+                                                flexDir="column"
+                                                bgColor={bgColor}
+                                                h="100%"
+                                                p={5}
+                                                borderRadius={5}
+                                                _hover={{
+                                                    boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
+                                                    transform: 'scale(1.05)',
+                                                }}
+                                                transition="box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out"
+                                                justify="space-between"
+                                            >
+                                                <Box>
+                                                    <Text minW={120} textAlign="center" color={color} fontSize="md" mb={6}>{timeAgo.format(new Date(post.data.publishedAt))}</Text>
+                                                    {post?.data?.logoImage &&
+                                                        <Box>
+                                                            <Box
+                                                                w={50}
+                                                                h={50}
+                                                                my={2}
+                                                                mx="auto"
+                                                            >
+                                                                <AspectRatio ratio={1}>
+                                                                    <Skeleton isLoaded={loaded}>
+                                                                        <NextImage
+                                                                            src={`/logos/${post.data.logoImage[0]}`}
+                                                                            alt={post?.data?.logoImage[0]}
+                                                                            layout="fill"
+                                                                            onLoad={() => setLoaded(true)}
+                                                                        />
+                                                                    </Skeleton>
+                                                                </AspectRatio>
+                                                            </Box>
+                                                        </Box>}
+
+                                                    {
+                                                        post?.data?.featureImg &&
+                                                        <Flex justify="center">
+                                                            <AspectRatio w="100%" ratio={16 / 9}>
+                                                                <NextImage src={`/content/articles/${post?.filePath.replace(".mdx", "")}/${post?.data?.featureImg}`} alt={post?.data?.title} layout="fill" />
+                                                            </AspectRatio>
+                                                        </Flex>
+                                                    }
+                                                    <Heading as="h3" size="md" mt={4} fontWeight="normal">{post.data.title}</Heading>
+                                                </Box>
+                                                <Flex mt={4} align="center">
+                                                    <Text color="brand_one.500" fontSize="lg">Read article</Text>
+                                                    <Icon color="brand_one.500" as={ChevronRightIcon} fontSize="2xl" />
+                                                </Flex>
+                                            </Flex>
+                                        </Link>
+                                    </NextLink>
+                                </MotionBox>
+                            ))}
+                        </SimpleGrid>
                     </Box>
                 </Box>
-                <Flex flexDir="column" px={4}>
-                    {snippetCount > 0 &&
-                        <Box as="section" id="snippets">
-                            <Heading my={4} as="h2">Snippets</Heading>
-                            <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
-                                {
-                                    snippetsOrderedByPublishedDate.map(s => {
-                                        return (
-                                            s.data.author == frontMatter.name ?
-                                                <Snippet
-                                                    key={s.data.title}
-                                                    src={`/content/snippets/${s.filePath.replace(/\.mdx?$/, '')}/${s.data.featureImg}`}
-                                                    title={s.data.title}
-                                                    description={s.data.description}
-                                                    tags={s.data.tags}
-                                                    as={`/snippets/${s.filePath.replace(/\.mdx?$/, '')}`}
-                                                    href={`/snippets/[slug]`}
-                                                    image={`/snippet-images/${s.data.logoImage[0]}`}
-                                                    timeAge={timeAgo.format(new Date(s.data.publishedAt))}
-                                                    authorName={s.data.author}
-                                                /> : null
-                                        )
-                                    })
-                                }
-                            </Grid>
-                        </Box>
-                    }
-                    {tutorialCount > 0 &&
-                        <Box as="section" id="tutorials">
-                            <Heading my={4} as="h2">Tutorials</Heading>
-                            <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
-                                {
-                                    tutorialsOrderedByPublishedDate.map(t => {
-                                        return (
-                                            t.data.author == frontMatter.name ?
-                                                <Flex m={1, 1, 1, 2, 2, 2}>
-                                                    <Tutorial
-                                                        key={t.data.title}
-                                                        src={`/content/tutorials/${t.filePath.replace(/\.mdx?$/, '')}/${t.data.featureImg}`}
-                                                        title={t.data.title}
-                                                        description={t.data.description}
-                                                        tags={t.data.tags}
-                                                        as={`/tutorials/${t.filePath.replace(/\.mdx?$/, '')}`}
-                                                        href={`/tutorials/[slug]`}
-                                                    />
-                                                </Flex> : null
-                                        )
-                                    })
-                                }
-                            </Grid>
-                        </Box>
-                    }
-                </Flex>
             </Flex>
         </Container >
     )
@@ -303,19 +308,8 @@ export const getStaticProps = async ({ params }) => {
         scope: data,
     })
 
-    const tutorials = tutorialsFilePaths.map((filePath) => {
-        const source = fs.readFileSync(path.join(TUTORIALS_PATH, filePath))
-        const { content, data } = matter(source)
-
-        return {
-            content,
-            data,
-            filePath,
-        }
-    })
-
-    const snippets = snippetsFilePaths.map((filePath) => {
-        const source = fs.readFileSync(path.join(SNIPPETS_PATH, filePath))
+    const articles = contentFilePaths.map((filePath) => {
+        const source = fs.readFileSync(path.join(CONTENT_PATH, filePath))
         const { content, data } = matter(source)
 
         return {
@@ -327,8 +321,7 @@ export const getStaticProps = async ({ params }) => {
 
     return {
         props: {
-            tutorials,
-            snippets,
+            articles,
             source: mdxSource,
             frontMatter: {
                 ...data

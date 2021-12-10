@@ -1,4 +1,6 @@
-# coffeeclass.io ☕
+<div align="center">
+    <h1>coffeeclass.io ☕</h1>
+</div>
 
 Learn programming and computer science for free.
 
@@ -35,4 +37,4 @@ You can also contribute to the website itself. New features and bug fixes are al
 
 https://benjamincarlson.notion.site/609b8bb171844146a9bcd9fbabd171a8?v=341de17fff6149bea36dbafbe2f2cf88
 
-[Powered by ![Vercel Logo](/public/vercel/logotype/dark/vercel-logotype-dark.png)](https://vercel.com/?utm_source=carlson-technologies&utm_campaign=oss)
+[Powered by ![Vercel Logo](/public/logos/vercel.png)](https://vercel.com/?utm_source=carlson-technologies&utm_campaign=oss)

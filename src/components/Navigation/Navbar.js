@@ -4,9 +4,6 @@ import {
     useColorModeValue,
     Text,
     Heading,
-    InputGroup,
-    Input,
-    InputRightElement,
     Icon,
     Flex,
     Button,
@@ -18,44 +15,16 @@ import {
     MenuList,
     Link,
     MenuDivider,
+    Tooltip,
 } from "@chakra-ui/react"
-import { SearchIcon, ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
-import { FiCoffee } from 'react-icons/fi'
+import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
+import { FiCoffee, FiYoutube, FiGithub } from 'react-icons/fi'
 import NextLink from 'next/link'
 import { FiUser } from 'react-icons/fi'
 import { useRouter } from 'next/router'
 import DarkModeSwitch from './DarkModeSwitch'
-import NavBarTop from './NavbarTop'
-
-const More = () => {
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    return (
-        <Menu isOpen={isOpen}>
-            <MenuButton
-                variant="ghost"
-                mx={1}
-                py={[1, 2, 2]}
-                px={4}
-                borderRadius={5}
-                _hover={{ bg: useColorModeValue("gray.100", "gray.700") }}
-                aria-label="Courses"
-                fontWeight="normal"
-                onMouseEnter={onOpen}
-                onMouseLeave={onClose}
-            >
-                More {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
-            </MenuButton>
-            <MenuList onMouseEnter={onOpen} onMouseLeave={onClose}>
-                <MenuItem><NextLink href="/tags" passHref><Link _hover={{ textDecor: 'none' }} w="100%" href="/tags">Tags</Link></NextLink></MenuItem>
-                <MenuItem><NextLink href="/authors" passHref><Link _hover={{ textDecor: 'none' }} w="100%" href="/authors">Authors</Link></NextLink></MenuItem>
-                <MenuDivider />
-                <Flex justify="flex-end" mr={2}>
-                    <DarkModeSwitch />
-                </Flex>
-            </MenuList>
-        </Menu>
-    )
-}
+import NavBarDrawer from './NavbarDrawer'
+import Search from "./Search"
 
 export default function Navbar() {
     const router = useRouter()
@@ -64,13 +33,16 @@ export default function Navbar() {
     // on scroll get the users scroll position
     // if the user has scrolled 100px, change boxShadow to true
     const [boxShadow, setBoxShadow] = useState(false)
+    const [height, setHeight] = useState('100px')
 
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 100) {
                 setBoxShadow(true)
+                setHeight('60px')
             } else {
                 setBoxShadow(false)
+                setHeight('100px')
             }
         }
         window.addEventListener('scroll', handleScroll)
@@ -79,8 +51,14 @@ export default function Navbar() {
         }
     }, [])
 
+    const bgColor = useColorModeValue('gray.100', 'gray.900')
+    const bgColor1 = useColorModeValue('white', 'gray.800')
+    const boxShadow1 = useColorModeValue("0px 2px 4px rgba(0, 0, 0, 0.2)", "0px 2px 4px rgba(255, 255, 255, 0.1)")
+    const bg = useColorModeValue("gray.200", "gray.700")
+
     return (
         <Box
+            h={height}
             as="nav"
             w="100%"
             px="4"
@@ -90,17 +68,17 @@ export default function Navbar() {
             pos="sticky"
             top={0}
             zIndex={10}
-            boxShadow={boxShadow && useColorModeValue("0px 2px 4px rgba(0, 0, 0, 0.2)", "0px 2px 4px rgba(255, 255, 255, 0.1)")}
-            backdropFilter="saturate(180%) blur(20px)"
-            transition="box-shadow 0.3s ease-in-out"
+            bgColor={router.pathname === '/' ? bgColor : bgColor1}
+            boxShadow={boxShadow && boxShadow1}
+            transition="height .5s ease-in-out"
         >
             <NextLink href="/" mr={1} passHref>
                 <Button
                     as="a"
                     variant="ghost"
                     p={[1, 2, 4]}
-                    _hover={{ backgroundColor: useColorModeValue("gray.100", "gray.700") }}
-                    aria-label="Statistics"
+                    _hover={{ transform: 'scale(1.05)' }}
+                    aria-label="Home"
                     fontWeight="normal"
                     color="brand_one.500"
                 >
@@ -108,105 +86,100 @@ export default function Navbar() {
                     <Heading size="lg" display={["none", "none", "none", "none", "none", "inherit"]}>coffeeclass.io</Heading>
                 </Button>
             </NextLink>
-            {router.pathname != "/search" ?
-                <NextLink href="/search" passHref>
-                    <Box flexGrow="1" mx={1} as="a" href="/search" display={["none", "none", "none", "none", "none", "inherit"]}>
-                        <InputGroup>
-                            <Input
-                                aria-label="Search by title, summary, tags, and author"
-                                placeholder="Search posts..."
-                            />
-                            <InputRightElement>
-                                <SearchIcon />
-                            </InputRightElement>
-                        </InputGroup>
-                    </Box>
-                </NextLink> :
-                <Box flexGrow="1"></Box>
-            }
-            <Box flexGrow="1" display={["inherit", "inherit", "inherit", "inherit", "inherit", "none"]}></Box>
+            <Flex flexGrow={1}>
+                <Search />
+            </Flex>
+            {/* <Box flexGrow="1" display={["inherit", "inherit", "inherit", "inherit", "inherit", "none"]}></Box> */}
             <Box display={["none", "none", "none", "none", "inherit", "inherit"]}>
-                <NextLink href="/snippets" passHref>
+                <NextLink href="/articles" passHref>
                     <Button
                         as="a"
                         variant="ghost"
                         mx={1}
                         p={[1, 2, 4]}
-                        _hover={{ backgroundColor: useColorModeValue("gray.100", "gray.700") }}
-                        aria-label="Snippets"
+                        _hover={{ backgroundColor: bg }}
+                        aria-label="Articles"
                         fontWeight="normal"
-                        bgColor={router.pathname.includes("/snippets") && useColorModeValue("gray.100", "gray.700")}
+                        bgColor={router.pathname.includes("/articles") && bg}
                     >
-                        Snippets
-                    </Button>
-                </NextLink>
-                <NextLink href="/tutorials" passHref>
-                    <Button
-                        as="a"
-                        variant="ghost"
-                        mx={1}
-                        p={[1, 2, 4]}
-                        _hover={{ backgroundColor: useColorModeValue("gray.100", "gray.700") }}
-                        aria-label="Tutorials"
-                        fontWeight="normal"
-                        bgColor={router.pathname.includes("/tutorials") && useColorModeValue("gray.100", "gray.700")}
-                    >
-                        Tutorials
-                    </Button>
-                </NextLink>
-                <NextLink href="/guides" passHref>
-                    <Button
-                        as="a"
-                        variant="ghost"
-                        mx={1}
-                        p={[1, 2, 4]}
-                        _hover={{ backgroundColor: useColorModeValue("gray.100", "gray.700") }}
-                        aria-label="Statistics"
-                        fontWeight="normal"
-                        bgColor={router.pathname.includes("/guides") && useColorModeValue("gray.100", "gray.700")}
-                    >
-                        Guides
+                        Articles
                     </Button>
                 </NextLink>
                 <Menu isOpen={isOpen}>
-                    {/* <NextLink href="/learn" passHref> */}
                     <MenuButton
                         variant="ghost"
-                        onClick={() => router.push("/learn")}
+                        onClick={() => router.push("/courses")}
                         mx={1}
                         py={[1, 2, 2]}
                         px={4}
                         borderRadius={5}
-                        _hover={{ bg: useColorModeValue("gray.100", "gray.700") }}
+                        _hover={{ bg: bg }}
                         aria-label="Courses"
                         fontWeight="normal"
-                        bgColor={router.pathname.includes("/learn") && useColorModeValue("gray.100", "gray.700")}
+                        bgColor={router.pathname.includes("/courses") && bg}
                         onMouseEnter={onOpen}
                         onMouseLeave={onClose}
                     >
                         Courses {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
                     </MenuButton>
-                    {/* </NextLink> */}
-                    <MenuList onMouseEnter={onOpen} onMouseLeave={onClose}>
-                        <MenuItem><NextLink href="/learn/chakra-ui" passHref><Link _hover={{ textDecor: 'none' }} w="100%" href="/learn/chakra-ui">Chakra UI</Link></NextLink></MenuItem>
+                    <MenuList onMouseEnter={onOpen} onMouseLeave={onClose} mt="-8px">
+                        <MenuItem><NextLink href="/courses/chakra-ui" passHref><Link _hover={{ textDecor: 'none' }} w="100%" href="/courses/chakra-ui">Chakra UI</Link></NextLink></MenuItem>
                     </MenuList>
                 </Menu>
-                <More />
+                <Tooltip label="Subscribe to our YouTube channel!" placement="bottom">
+                    <Link href="https://youtube.com/benjamincarlson" isExternal>
+                        <IconButton
+                            isExternal
+                            target="_blank"
+                            borderRadius={5}
+                            icon={<FiYoutube />}
+                            fontSize='20px'
+                            aria-label="YouTube"
+                            href="https://youtube.com/benjamincarlson"
+                            bgColor="transparent"
+                            _hover={{ backgroundColor: "transparent", opacity: 0.8 }}
+                            p={[1, 2, 4]}
+                            ml={1}
+                            w={65}
+                        />
+                    </Link>
+                </Tooltip>
+                <Tooltip label="View this website's code!" placement="bottom">
+                    <Link href="https://github.com/carlson-technologies/coffeeclass.io" isExternal>
+                        <IconButton
+                            isExternal
+                            target="_blank"
+                            borderRadius={5}
+                            icon={<FiGithub />}
+                            fontSize='20px'
+                            aria-label="YouTube"
+                            href="https://github.com/carlson-technologies/coffeeclass.io"
+                            bgColor="transparent"
+                            _hover={{ backgroundColor: "transparent", opacity: 0.8 }}
+                            p={[1, 2, 4]}
+                            ml={1}
+                            w={65}
+                        />
+                    </Link>
+                </Tooltip>
                 <NextLink href="/accounts-waitlist" passHref>
                     <IconButton
+                        w={65}
                         borderRadius={5}
-                        icon={<FiUser size="25px" />}
+                        icon={<FiUser />}
+                        fontSize='20px'
                         aria-label="Join Accounts Wait-List"
                         href="/accounts-waitlist"
-                        as="a"
                         variant="ghost"
-                        _hover={{ backgroundColor: useColorModeValue("gray.100", "gray.700") }}
+                        _hover={{ backgroundColor: bg }}
                         p={[1, 2, 4]}
                         ml={1}
+                        backgroundColor={router.pathname.includes("/accounts-waitlist") && bg}
                     />
                 </NextLink>
+                <DarkModeSwitch />
             </Box>
-            <NavBarTop />
+            <NavBarDrawer />
         </Box>
     )
 }

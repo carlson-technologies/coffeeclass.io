@@ -31,12 +31,12 @@ const prismBaseTheme = css`
     padding-bottom: ${theme.space[10]};
     padding-left: ${theme.space[6]};
     padding-right: ${theme.space[6]};
-    margin: ${theme.space[6]} 0;
-    overflow: auto;
+    overflow: scroll;
     min-width: 100%;
     font-size: ${theme.fontSizes.md};
     white-space: nowrap;
     max-height: 500px;
+    margin: 4em 0;
   }
   :not(pre) > code[class*='language-'],
   pre[class*='language-'] {

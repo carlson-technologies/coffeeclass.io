@@ -12,7 +12,7 @@ export default function EmbeddedVideo({src, alt, ratio, maxW}) {
         <Box my={2} w="100%" maxW={maxW}>
             <AspectRatio ratio={`${ratio || 16 / 9}`}>
                 <iframe
-                    src={src}
+                    src={src || ""}
                     alt={alt}
                     allowFullScreen={true}
                 />

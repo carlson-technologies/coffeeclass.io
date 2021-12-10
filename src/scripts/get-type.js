@@ -3,10 +3,10 @@
 export default function getType(post_type) {
     switch (post_type) {
         case 'tutorial':
-            return '/tutorials/'
+            return '/articles/'
         case 'snippet':
             return '/snippets/'
         case 'learn':
-            return '/learn/'
+            return '/courses/'
     }
 }

@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import NextDocument, { Html, Head, Main, NextScript } from 'next/document'
 import { ColorModeScript } from "@chakra-ui/react"
 import theme from '../styles/theme'
@@ -12,31 +11,32 @@ export default class MyDocument extends NextDocument {
             window.splitbee.track("Snippet Helpful")
         }
 
-        useEffect(() => {
+        if (typeof window !== 'undefined') {
             window.addEventListener('load', handleState)
-            return () => {
-                window.removeEventListener('load', handleState)
-            }
-        })
+        }
+
         return (
             <Html lang="en">
                 <GoogleFonts href="https://fonts.googleapis.com/css?family=Inter&display=swap" />
                 <Head>
-                    {/* Google Adsense */}
-                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8586017200531248"
-                        crossOrigin="anonymous"></script>
+                    {
+                        process.env.NODE_ENV === 'production' && (
+                            <>
+                                {/* Google Adsense */}
+                                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8586017200531248"
+                                    crossOrigin="anonymous"></script>
 
-                    {/* Splitbee Analytics */}
-                    <script async src="https://cdn.splitbee.io/sb.js"></script>
+                                {/* Splitbee Analytics */}
+                                <script async src="https://cdn.splitbee.io/sb.js"></script>
 
-                    {/* Global Site Tag (gtag.js) - Google Analytics */}
-                    <script
-                        async
-                        src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-                    />
-                    <script
-                        dangerouslySetInnerHTML={{
-                            __html: `
+                                {/* Global Site Tag (gtag.js) - Google Analytics */}
+                                <script
+                                    async
+                                    src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+                                />
+                                <script
+                                    dangerouslySetInnerHTML={{
+                                        __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
@@ -44,8 +44,11 @@ export default class MyDocument extends NextDocument {
               page_path: window.location.pathname,
             });
           `,
-                        }}
-                    />
+                                    }}
+                                />
+                            </>
+                        )
+                    }
                 </Head>
                 <body>
                     <ColorModeScript initialColorMode={theme.config.initialColorMode} />

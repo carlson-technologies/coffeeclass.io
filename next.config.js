@@ -120,6 +120,11 @@ module.exports = withMDX({
                 destination: '/articles/using-react-useeffect',
                 permanent: true,
             },
+            {
+                source: '/learn',
+                destination: '/courses',
+                permanent: true,
+            },
         ]
     },
 })

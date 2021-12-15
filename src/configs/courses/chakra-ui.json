@@ -7,38 +7,32 @@
     {
       "title": "Course Introduction",
       "description": "An introduction to this course.",
-      "path": "/courses/chakra-ui/course-introduction",
-      "tag": "new"
+      "path": "/courses/chakra-ui/course-introduction"
     },
     {
       "title": "What Is Chakra UI?",
       "description": "Introduction to Chakra UI - a simple, modular and accessible component library for React based apps.",
-      "path": "/courses/chakra-ui/what-is-chakra-ui",
-      "tag": "new"
+      "path": "/courses/chakra-ui/what-is-chakra-ui"
     },
     {
       "title": "Installing + Getting Started",
       "description": "Install Chakra UI in Next.js, React, and Gatsby.",
-      "path": "/courses/chakra-ui/getting-started-with-chakra-ui",
-      "tag": "new"
+      "path": "/courses/chakra-ui/getting-started-with-chakra-ui"
     },
     {
       "title": "Default Theme",
       "description": "Learn how to use the default theme.",
-      "path": "/courses/chakra-ui/chakra-ui-default-theme",
-      "tag": "new"
+      "path": "/courses/chakra-ui/chakra-ui-default-theme"
     },
     {
       "title": "Custom Theme",
       "description": "Learn how to create a custom theme with custom colors, fonts, and more.",
-      "path": "/courses/chakra-ui/chakra-ui-custom-theme",
-      "tag": "new"
+      "path": "/courses/chakra-ui/chakra-ui-custom-theme"
     },
     {
       "title": "Dark Mode",
       "description": "Add dark mode to your site in just a few lines of code.",
-      "path": "/courses/chakra-ui/chakra-ui-dark-mode",
-      "tag": "new"
+      "path": "/courses/chakra-ui/chakra-ui-dark-mode"
     },
     {
       "title": "Basic Components",

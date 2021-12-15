@@ -36,7 +36,7 @@ const prismBaseTheme = css`
     font-size: ${theme.fontSizes.md};
     white-space: nowrap;
     max-height: 500px;
-    margin: 4em 0;
+    margin: 2em 0;
   }
   :not(pre) > code[class*='language-'],
   pre[class*='language-'] {
@@ -129,7 +129,7 @@ const prismBaseTheme = css`
     border-bottom: 0px;
     border-top-left-radius: ${theme.radii.md};
     border-top-right-radius: ${theme.radii.md};
-    font-size: 0.9rem;
+    font-size: ${theme.fontSizes.xl};
     font-weight: 600;
     margin-bottom: 0;
     margin-top: 2rem;
@@ -217,14 +217,14 @@ export const prismDarkTheme = css`
   }
   :not(pre) > code[class*='language-'],
   pre[class*='language-'] {
-    background: rgb(43, 43, 42);
+    background: ${theme.colors.gray[900]};
     border: 0px;
   }
   .mdx-marker {
     background-color: ${theme.colors.gray[700]};
   }
   .remark-code-title {
-    background: rgb(35, 35, 35);
+    background: #14171c;
     color: ${theme.colors.white};
     border: 0px;
   }

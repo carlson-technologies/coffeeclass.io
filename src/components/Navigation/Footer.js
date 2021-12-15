@@ -76,7 +76,7 @@ const Footer = () => {
                         <NextLink href={`/tags/${tag}`} key={index} passHref>
                             <Link href={`/tags/${tag}`}>
                                 <Badge colorScheme="brand_one" fontSize={["sm", "sm", "sm", "md", "lg", "lg"]} p={2} borderRadius={5} _hover={{ bgColor: bgColor }}>
-                                    {tag}
+                                    #{tag}
                                 </Badge>
                             </Link>
                         </NextLink>

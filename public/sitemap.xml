@@ -53,6 +53,18 @@
   <!--Dynamic URLS-->
 
   <url>
+    <loc>https://www.coffeeclass.io/authors/benjamin-carlson</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/authors/muhammad-nadeem</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/authors/sumit-kumar</loc>
+  </url>
+
+  <url>
     <loc
       >https://www.coffeeclass.io/articles/add-comments-to-nextjs-website</loc
     >
@@ -154,18 +166,6 @@
 
   <url>
     <loc>https://www.coffeeclass.io/articles/using-react-useeffect</loc>
-  </url>
-
-  <url>
-    <loc>https://www.coffeeclass.io/authors/benjamin-carlson</loc>
-  </url>
-
-  <url>
-    <loc>https://www.coffeeclass.io/authors/muhammad-nadeem</loc>
-  </url>
-
-  <url>
-    <loc>https://www.coffeeclass.io/authors/sumit-kumar</loc>
   </url>
 
   <url>

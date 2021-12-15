@@ -1,6 +1,6 @@
-<div align="center">
-    <h1>coffeeclass.io ☕</h1>
-</div>
+![coffeeclass.io header image](/public/readme.png)
+
+# coffeeclass.io ☕
 
 Learn programming and computer science for free.
 
@@ -33,7 +33,9 @@ If you want to contribute an article please follow the steps on https://www.coff
 
 You can also contribute to the website itself. New features and bug fixes are always appreciated. Feel free to check out the [Roadmap 🚗](https://benjamincarlson.notion.site/609b8bb171844146a9bcd9fbabd171a8?v=341de17fff6149bea36dbafbe2f2cf88) for future plans and what we're working on currently.
 
-## Roadmap 🚗 
+## Roadmap 🚗
+
+View the roadmap for for what we are currently working on.
 
 https://benjamincarlson.notion.site/609b8bb171844146a9bcd9fbabd171a8?v=341de17fff6149bea36dbafbe2f2cf88
 

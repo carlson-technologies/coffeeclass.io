@@ -33,7 +33,6 @@ export default function ChakraUI() {
                     flexDir="column"
                 >
                     <Box
-                        bgColor={useColorModeValue("gray.100", "gray.800")}
                         maxW={1000}
                         minH="100vh"
                         alignSelf="center"

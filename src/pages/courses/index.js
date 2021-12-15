@@ -16,7 +16,7 @@ import {
     Box,
 } from '@chakra-ui/react'
 import Container from '../../components/Container'
-import subjects from "../../configs/learn.json"
+import subjects from "../../configs/courses.json"
 import Image from 'next/image'
 import { ExternalLinkIcon } from '@chakra-ui/icons'
 import NextLink from 'next/link'

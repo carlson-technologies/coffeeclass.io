@@ -137,6 +137,11 @@ const CustomTable = (props) => {
 
 const CustomImage = (props) => {
     const [loaded, setLoaded] = useState(false)
+    const { colorMode } = useColorMode()
+    const color = {
+        light: 'brand_one.700',
+        dark: 'brand_one.500'
+    }
     return (
         <Box
             borderRadius={15}
@@ -153,6 +158,17 @@ const CustomImage = (props) => {
                     {...props}
                 />
             </Skeleton>
+            <Box
+                _hover={{ borderBottomColor: `${color[colorMode]}` }}
+                as="span"
+                borderBottom="2px solid"
+                borderBottomColor="transparent"
+                transition="border-bottom-color .2s ease-in-out"
+            >
+                <Link _hover={{ TextDecoder: 'none' }} color={color[colorMode]} href={props.src} isExternal>
+                    View Full Image
+                </Link>
+            </Box>
         </Box>
     )
 }
@@ -183,6 +199,7 @@ const MDXComponents = {
     FloatUpDivAnimation,
     FloatUpDivAnimationNoHeight,
     Step,
+    // props.className.split("language-")[1] <- get language of pre
 }
 
 export default MDXComponents

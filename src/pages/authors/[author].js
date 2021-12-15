@@ -23,16 +23,16 @@ import { contentFilePaths, CONTENT_PATH, authorsFilePaths, AUTHORS_PATH } from '
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
 import NextImage from 'next/image'
-import getAuthorSlug from "../../scripts/get-author-slug"
 import { motion } from "framer-motion"
 import NextLink from 'next/link'
 import { ChevronRightIcon } from '@chakra-ui/icons'
 
 const MotionBox = motion(Box)
 
-export default function Index({ articles, frontMatter }) {
+export default function Index({ articles, frontMatter, filePath, content }) {
     TimeAgo.addLocale(en)
     const timeAgo = new TimeAgo('en-US')
+    console.log(filePath)
 
     const url = `https://www.coffeeclass.io/authors/${frontMatter.slug}`
     const title = `${frontMatter.name} | coffeeclass.io`
@@ -43,9 +43,9 @@ export default function Index({ articles, frontMatter }) {
     const color = useColorModeValue("gray.500", "gray.400")
     const bgColor = useColorModeValue("gray.100", "gray.900")
 
-    // loop through articles and if the author slug matches getAuthorSlug(frontMatter.author) add it
+    // loop through articles and if the author slug matches frontMatter.author add it
     const filteredArticles = articles.filter(article => {
-        return getAuthorSlug(article.data.author) === frontMatter.slug
+        return article.data.author === filePath
     })
 
     return (
@@ -97,9 +97,7 @@ export default function Index({ articles, frontMatter }) {
                                 </SkeletonCircle>
                             </Flex>
                             <Heading as="h1" size="2xl" textAlign="center" letterSpacing="tight" color={useColorModeValue("brand_one.600", "brand_one.500")}>{frontMatter.name}</Heading>
-                            {frontMatter.description &&
-                                <Text textAlign="center" color={color} fontSize="xl">{frontMatter.description}</Text>
-                            }
+                            <Text textAlign="center" color={color} fontSize="xl">{content}</Text>
                             <Flex
                                 my={4}
                                 justifyContent="center"
@@ -219,11 +217,15 @@ export default function Index({ articles, frontMatter }) {
                         </Box>
                     </Flex>
                     <Box bgGradient={`linear(to-r,${useColorModeValue("gray.50", "gray.600")},${useColorModeValue("gray.200", "gray.800")},${useColorModeValue("gray.300", "gray.900")})`}>
-                        <Text pl={2} fontSize="lg"><strong>{filteredArticles.length}</strong> articles</Text>
+                        <Text pl={2} fontSize="lg"><strong>{filteredArticles.length}</strong> article{filteredArticles.length > 1 && "s"}</Text>
                     </Box>
 
                     <Box p={4}>
-                        <SimpleGrid minChildWidth={["100%", "100%", "100%", "100%", "300px", "300px"]} spacing="40px">
+                        <SimpleGrid
+                            minChildWidth={filteredArticles.length > 2 ? ["100%", "100%", "100%", "100%", "300px", "300px"] : null}
+                            spacing="40px"
+                            columns={filteredArticles.length < 3 ? [1, 1, 1, 1, 2, 3] : null}
+                        >
                             {filteredArticles.map((post) => (
                                 <MotionBox
                                     initial={{ opacity: 0, marginTop: 5 }}
@@ -304,6 +306,9 @@ export const getStaticProps = async ({ params }) => {
     const source = fs.readFileSync(authorsPath)
     const { content, data } = matter(source)
 
+    // get the filePath in the format ben-carlson.mdx
+    const filePath = path.basename(authorsPath)
+
     const mdxSource = await serialize(content, {
         scope: data,
     })
@@ -323,8 +328,10 @@ export const getStaticProps = async ({ params }) => {
         props: {
             articles,
             source: mdxSource,
+            filePath,
+            content,
             frontMatter: {
-                ...data
+                ...data,
             },
         },
     }

@@ -42,7 +42,7 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
     relatedPosts.sort((a, b) => {
         return new Date(b.data.publishedAt) - new Date(a.data.publishedAt)
     })
-    
+
     const [scrollY, setScrollY] = useState(0)
 
     const handleScroll = () => {
@@ -83,9 +83,9 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
             <>
                 <Flex
                     flexDir="column"
-                    opacity={scrollY > 200 ? 1 : 0}
+                    opacity={scrollY > 300 ? 1 : 0}
                     transition="opacity .7s ease-in-out"
-                    visibility={scrollY > 200 ? "visible" : "hidden"}
+                    visibility={scrollY > 300 ? "visible" : "hidden"}
                     px={2}
                 >
                     <Box overflowY="auto" overflowX="hidden" h="calc(100vh - 100px)" as="aside">

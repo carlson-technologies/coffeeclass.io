@@ -24,10 +24,10 @@ const GlobalStyle = ({ children }) => {
             background-color: ${colorMode === 'light' ? '#fff' : 'gray.700'};
           }
           ::selection {
-            background-color: ${colorMode === 'light' ? '#EAD9CD' : '#75694f'};
+            background-color: ${colorMode === 'light' ? '#EAD9CD' : '#d1bd9b'};
           }
           ::-moz-selection {
-            background: ${colorMode === 'light' ? '#EAD9CD' : '#714B2F'};
+            background: ${colorMode === 'light' ? '#EAD9CD' : '#d1bd9b'};
           }
         `}
       />

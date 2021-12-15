@@ -29,6 +29,7 @@ import {
     AspectRatio,
     Image,
     Icon,
+    useBreakpointValue,
 } from '@chakra-ui/react'
 import Comments from '../../components/Comments'
 import { motion } from 'framer-motion'
@@ -36,7 +37,6 @@ import NextLink from 'next/link'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
 import { useRouter } from 'next/router'
-import getAuthorSlug from '../../scripts/get-author-slug'
 import RelatedPosts from '../../components/RelatedPosts'
 import Ad from '../../components/Content/Ad'
 import EmbeddedVideo from '../../components/EmbeddedVideo'
@@ -45,6 +45,7 @@ import Container from '../../components/Container'
 import SEO from '../../components/SEO'
 import { ExternalLinkIcon } from '@chakra-ui/icons'
 import { parseISO, format } from 'date-fns'
+import WrittenBy from '../../components/WrittenBy'
 
 export default function PostPage({ source, frontMatter, posts }) {
     TimeAgo.addLocale(en)
@@ -55,10 +56,15 @@ export default function PostPage({ source, frontMatter, posts }) {
         light: 'gray.600',
         dark: 'gray.500'
     }
+    const color1 = {
+        light: 'gray.700',
+        dark: 'gray.400'
+    }
     const router = useRouter()
     const slug = router.query.slug
 
-    var author = frontMatter.author
+    // use useBreakpointValue to set the size to xl on small screens and 2xl on larger screens above 1000px
+    const size = useBreakpointValue({ xl: 'xl', '2xl': '2xl' })
 
     const [width, setWidth] = useState(0)
 
@@ -92,34 +98,75 @@ export default function PostPage({ source, frontMatter, posts }) {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: .5 }}
             >
-                <Flex justify="center">
-                    {/* main content */}
-                    <Flex flexGrow={1} flexDir="column" w="100%" p={4} maxW={800}>
-                        {
-                            frontMatter.logoImage &&
-                            <Box bgColor={bgColor} w="fit-content" p={4} borderRadius={5}>
-                                <AspectRatio ratio={1} w={50}>
-                                    <Image src={`/logos/${frontMatter.logoImage[0]}`} alt={frontMatter.title} />
-                                </AspectRatio>
-                            </Box>
-                        }
+                {
+                    !frontMatter.logoImage &&
+                    <Flex flexDir="column" w={["100%", "100%", "100%", "100%", "80%", "70%"]} align={frontMatter.logoImage ? "left" : ["left", "left", "left", "left", "center", "center"]} maxW={["100%", "100%", "100%", "90%", "90%", "90%"]} mx="auto">
                         <Heading
-                            mt={8}
+                            mt={2}
                             as="h1"
-                            size="xl"
-                            textAlign={frontMatter.logoImage ? "left" : ["left", "left", "left", "center", "center", "center"]}
+                            size={size}
+                            textAlign={frontMatter.logoImage ? "left" : ["left", "left", "left", "left", "center", "center"]}
                         >
                             {frontMatter.title}
                         </Heading>
                         <Text
                             fontSize="xl"
-                            mt={2}
-                            mb={4}
-                            color={color[colorMode]}
-                            textAlign={frontMatter.logoImage ? "left" : ["left", "left", "left", "center", "center", "center"]}
+                            my={2}
+                            color={color1[colorMode]}
+                            textAlign={frontMatter.logoImage ? "left" : ["left", "left", "left", "left", "center", "center"]}
                         >
                             {frontMatter.description}
                         </Text>
+                        <Text
+                            fontSize="md"
+                            textAlign={frontMatter.logoImage ? "left" : ["left", "left", "left", "left", "center", "center"]}
+                            color={color[colorMode]}
+                            mb={4}
+                        >
+                            {frontMatter.readingTime.text} &middot; Shared {timeAgo.format(new Date(frontMatter.publishedAt))} {frontMatter.updatedAt && `· Updated ${timeAgo.format(new Date(frontMatter.updatedAt))}`}
+                        </Text>
+                    </Flex>
+                }
+                <Flex justify="center">
+                    {/* main content */}
+                    <Flex flexGrow={1} flexDir="column" w="100%" px={4} maxW={800}>
+                        {
+                            frontMatter.logoImage &&
+                            <>
+                                {
+                                    frontMatter.logoImage &&
+                                    <Box bgColor={bgColor} w="fit-content" p={4} borderRadius={5}>
+                                        <AspectRatio ratio={1} w={50}>
+                                            <Image src={`/logos/${frontMatter.logoImage[0]}`} alt={frontMatter.title} />
+                                        </AspectRatio>
+                                    </Box>
+                                }
+                                <Heading
+                                    mt={2}
+                                    as="h1"
+                                    size={size}
+                                    textAlign={frontMatter.logoImage ? "left" : ["left", "left", "left", "left", "center", "center"]}
+                                >
+                                    {frontMatter.title}
+                                </Heading>
+                                <Text
+                                    fontSize="xl"
+                                    my={2}
+                                    color={color1[colorMode]}
+                                    textAlign={frontMatter.logoImage ? "left" : ["left", "left", "left", "left", "center", "center"]}
+                                >
+                                    {frontMatter.description}
+                                </Text>
+                                <Text
+                                    fontSize="md"
+                                    textAlign={frontMatter.logoImage ? "left" : ["left", "left", "left", "left", "center", "center"]}
+                                    color={color[colorMode]}
+                                    mb={4}
+                                >
+                                    {frontMatter.readingTime.text} &middot; Shared {timeAgo.format(new Date(frontMatter.publishedAt))}
+                                </Text>
+                            </>
+                        }
                         {
                             frontMatter.youtubeId &&
                             <Flex justify="center">
@@ -194,6 +241,7 @@ export default function PostPage({ source, frontMatter, posts }) {
                     <Flex display={['none', 'none', 'none', 'none', 'none', 'flex']}>
                         <div>
                             <Box maxW={300} overflow="scroll" pos="sticky" top={20}>
+                                <Ad />
                                 <RelatedPosts style="sidebar" tags={frontMatter.tags} posts={posts} currPostTitle={frontMatter.title} />
                             </Box>
                         </div>
@@ -206,18 +254,18 @@ export default function PostPage({ source, frontMatter, posts }) {
                         mt={8}
                         px={4}
                     >
-                        <Button
-                            variant="outline"
-                            w={['100%', '100%', '100%', 200, 250, 300]}
-                            alignSelf="center"
+                        <Link
+                            href="#comments"
+                            _hover={{ textDecor: 'none' }}
                         >
-                            <Link
-                                href="#comments"
-                                _hover={{ textDecor: 'none' }}
+                            <Button
+                                variant="outline"
+                                w={['100%', '100%', '100%', 200, 250, 300]}
+                                alignSelf="center"
                             >
                                 Leave A Comment
-                            </Link>
-                        </Button>
+                            </Button>
+                        </Link>
                     </Flex>
                     <Divider mt={12} mb={4} alignSelf="center" />
                     <Flex flexDir="column" m="auto" my={10}>
@@ -230,12 +278,7 @@ export default function PostPage({ source, frontMatter, posts }) {
                         justify="center"
                         flexDir="column"
                     >
-                        <Avatar src={`/authors/${frontMatter.authorImage}`} size="xl" mb={2} alt={`Image of ${frontMatter.author}`} />
-                        <Flex flexDir="column" align="center">
-                            <Text>Written By {frontMatter.author}</Text>
-                            <Text color={color[colorMode]}>{frontMatter.authorPosition}</Text>
-                            <Text mt={4}><Link href={`/authors/${getAuthorSlug(frontMatter.author)}`} fontWeight="bold">More Articles By {frontMatter.author}</Link></Text>
-                        </Flex>
+                        <WrittenBy frontMatter={frontMatter} />
                     </Flex>
                     <Divider mt={12} mb={8} alignSelf="center" />
                     <Box px={4}>

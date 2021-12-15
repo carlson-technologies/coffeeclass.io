@@ -26,7 +26,7 @@ const Step = ({ number, title }) => {
     }
 
     return (
-        <Flex align="center" mt={4} mb={2}>
+        <Flex align="center" mt={12} mb={1}>
             <Flex borderRadius="50%" border="1px solid" w={35} h={35} alignItems="center" justifyContent="center" mr={2}>
                 {number}
             </Flex>

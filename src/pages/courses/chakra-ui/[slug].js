@@ -112,7 +112,7 @@ export default function PostPage({ source, frontMatter }) {
                     <MDXRemote {...source} components={MDXComponents} />
                 </Flex>
                 <Box mb={4} mt={10}>
-                    {frontMatter.lastUpdated && <Text color="gray.500" fontSize="sm" textAlign="center">Last updated on {format(parseISO(frontMatter.lastUpdated || frontMatter.publishedAt), 'MMMM dd, yyyy')}</Text>}
+                    {frontMatter.updatedAt && <Text color="gray.500" fontSize="sm" textAlign="center">Last updated on {format(parseISO(frontMatter.updatedAt || frontMatter.publishedAt), 'MMMM dd, yyyy')}</Text>}
                 </Box>
                 <Link textDecor="underline" _hover={{ opacity: .8 }} w="fit-content">
                     <Flex align="center">

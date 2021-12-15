@@ -100,7 +100,7 @@ export default function PostPage({ source, frontMatter, posts }) {
             >
                 {
                     !frontMatter.logoImage &&
-                    <Flex flexDir="column" w={["100%", "100%", "100%", "100%", "80%", "70%"]} align={frontMatter.logoImage ? "left" : ["left", "left", "left", "left", "center", "center"]} maxW={["100%", "100%", "100%", "90%", "90%", "90%"]} mx="auto">
+                    <Flex flexDir="column" w={["100%", "100%", "100%", "100%", "80%", "70%"]} align={frontMatter.logoImage ? "left" : ["left", "left", "left", "left", "center", "center"]} maxW={["100%", "100%", "100%", "90%", "90%", "90%"]} mx="auto" px="4">
                         <Heading
                             mt={2}
                             as="h1"

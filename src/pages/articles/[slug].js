@@ -232,7 +232,7 @@ export default function PostPage({ source, frontMatter, posts }) {
                         <Link textDecor="underline" _hover={{ opacity: .8 }} w="fit-content">
                             <Flex align="center">
                                 <Icon as={ExternalLinkIcon} mr={2} />
-                                <Link href={`https://github.com/carlson-technologies/coffeeclass.io/blob/main/content/articles/${slug}.mdx`} isExternal>Edit on GitHib</Link>
+                                <Link href={`https://github.com/carlson-technologies/coffeeclass.io/blob/main/content/articles/${slug}.mdx`} isExternal>Edit on GitHub</Link>
                             </Flex>
                         </Link>
                     </Flex>

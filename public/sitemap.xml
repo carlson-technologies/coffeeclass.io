@@ -54,6 +54,12 @@
 
   <url>
     <loc
+      >https://www.coffeeclass.io/articles/add-algolia-search-to-nextjs-website</loc
+    >
+  </url>
+
+  <url>
+    <loc
       >https://www.coffeeclass.io/articles/add-comments-to-nextjs-website</loc
     >
   </url>
@@ -166,6 +172,10 @@
 
   <url>
     <loc>https://www.coffeeclass.io/authors/sumit-kumar</loc>
+  </url>
+
+  <url>
+    <loc>https://www.coffeeclass.io/tags/algolia</loc>
   </url>
 
   <url>

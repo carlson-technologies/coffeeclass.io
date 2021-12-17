@@ -30,25 +30,95 @@ import DarkModeSwitch from './DarkModeSwitch'
 import NavBarDrawer from './NavbarDrawer'
 import Search from "./Search"
 
+const Tags = () => {
+    const bg = useColorModeValue("gray.200", "gray.700")
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const router = useRouter()
+
+    let featuredTags = [
+        'chakra-ui',
+        'react',
+        'firebase',
+        'flutter',
+        'nextjs',
+        'dart',
+        'javascript',
+        'hooks',
+    ]
+
+    return (
+        <>
+            <Menu isOpen={isOpen} isLazy>
+                <MenuButton
+                    variant="ghost"
+                    onClick={() => router.push("/courses")}
+                    mx={1}
+                    py={[1, 2, 2]}
+                    px={4}
+                    borderRadius={5}
+                    _hover={{ bg: bg }}
+                    aria-label="Courses"
+                    fontWeight="normal"
+                    bgColor={router.pathname.includes("/courses") && bg}
+                    onMouseEnter={onOpen}
+                    onMouseLeave={onClose}
+                    display={['none', 'none', 'none', 'none', 'none', 'flex']}
+                >
+                    Tags {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
+                </MenuButton>
+                <MenuList onMouseEnter={onOpen} onMouseLeave={onClose} mt="-8px">
+                    <MenuGroup title="Featured">
+                        {
+                            featuredTags.map((tag, index) => (
+                                <NextLink href={`/tags/${tag}`} key={index}>
+                                    <MenuItem>
+                                        #{tag}
+                                    </MenuItem>
+                                </NextLink>
+                            ))
+                        }
+                    </MenuGroup>
+                </MenuList>
+            </Menu>
+        </>
+    )
+}
+
 export default function Navbar() {
     const router = useRouter()
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [loaded, setLoaded] = useState(false)
+    const [top, setTop] = useState("0")
 
     // on scroll get the users scroll position
     // if the user has scrolled 100px, change boxShadow to true
     const [boxShadow, setBoxShadow] = useState(false)
-    const [height, setHeight] = useState('100px')
+
+    let lastScrollTop = 0
 
     useEffect(() => {
+        onmousemove = function (e) {
+            if (e.clientY < 100)
+                setTop("0")
+            // console.log("mouse location:", e.clientX, e.clientY)
+        }
         const handleScroll = () => {
             if (window.scrollY > 100) {
                 setBoxShadow(true)
-                setHeight('60px')
             } else {
                 setBoxShadow(false)
-                setHeight('100px')
             }
+
+            // detect whether the user is scrolling up or down
+            let st = window.pageYOffset || document.documentElement.scrollTop
+            if (st > lastScrollTop) {
+                // scrolling down. Let's hide the navbar
+                setTop("-100px")
+            } else {
+                // scrolling up. Let's show the navbar
+                setTop("0")
+            }
+            lastScrollTop = st <= 0 ? 0 : st
         }
         window.addEventListener('scroll', handleScroll)
         return () => {
@@ -63,19 +133,20 @@ export default function Navbar() {
 
     return (
         <Box
-            h={height}
+            // h={height}
             as="nav"
             w="100%"
             px="4"
-            py="2"
+            pt="4"
+            pb="6"
             display="flex"
             alignItems="center"
             pos="sticky"
-            top={0}
+            top={top}
             zIndex={10}
             bgColor={router.pathname === '/' ? bgColor : bgColor1}
             boxShadow={boxShadow && boxShadow1}
-            transition="height .5s ease-in-out"
+            transition="top .5s ease-in-out"
         >
             <NextLink href="/" mr={1} passHref>
                 <Button
@@ -254,6 +325,7 @@ export default function Navbar() {
                         </MenuItem>
                     </MenuList>
                 </Menu>
+                <Tags />
                 <Tooltip label="Subscribe to our YouTube channel!" placement="bottom">
                     <Link href="https://youtube.com/benjamincarlson" isExternal>
                         <IconButton
@@ -268,7 +340,7 @@ export default function Navbar() {
                             _hover={{ backgroundColor: "transparent", opacity: 0.8 }}
                             p={[1, 2, 4]}
                             ml={1}
-                            w={65}
+                            w={50}
                         />
                     </Link>
                 </Tooltip>
@@ -286,13 +358,13 @@ export default function Navbar() {
                             _hover={{ backgroundColor: "transparent", opacity: 0.8 }}
                             p={[1, 2, 4]}
                             ml={1}
-                            w={65}
+                            w={50}
                         />
                     </Link>
                 </Tooltip>
                 <NextLink href="/accounts-waitlist" passHref>
                     <IconButton
-                        w={65}
+                        w={50}
                         borderRadius={5}
                         icon={<FiUser />}
                         fontSize='20px'

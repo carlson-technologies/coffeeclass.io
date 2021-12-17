@@ -121,19 +121,19 @@ const prismBaseTheme = css`
     min-width: fit-content;
   }
   .remark-code-title {
-    padding: ${theme.space[6]};
+    padding: ${theme.space[3]} ${theme.space[6]};
     font-family: ${theme.fonts.mono};
-    background: rgb(237, 236, 232);
+    background: rgb(247, 246, 243); // rgb(237, 236, 232);
     color: ${theme.colors.gray[800]};
     border: 0px;
     border-bottom: 0px;
     border-top-left-radius: ${theme.radii.md};
     border-top-right-radius: ${theme.radii.md};
-    font-size: ${theme.fontSizes.xl};
+    font-size: ${theme.fontSizes.md};
     font-weight: 600;
     margin-bottom: 0;
     margin-top: 2rem;
-    width: 100%;
+    width: fit-content;
     + pre {
       border-top-left-radius: 0;
       border-top-right-radius: 0;
@@ -224,7 +224,7 @@ export const prismDarkTheme = css`
     background-color: ${theme.colors.gray[700]};
   }
   .remark-code-title {
-    background: #14171c;
+    background: ${theme.colors.gray[900]}; // #14171c;
     color: ${theme.colors.white};
     border: 0px;
   }

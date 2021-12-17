@@ -30,7 +30,7 @@ export default function WrittenBy({ frontMatter }) {
     return (
         <>
             <Avatar src={`/authors/${data.data.data.image}`} size="xl" mb={2} alt={`Image of ${frontMatter.author}`} />
-            <Flex flexDir="column" align="center">
+            <Flex flexDir="column" align="center" px={4} textAlign="center">
                 <Text>Written By {data.data.data.name}</Text>
                 <Text color={color[colorMode]}>{data.data.content}</Text>
                 <Text mt={4}><Link href={`/authors/${frontMatter.author.replace(".mdx", "")}`} fontWeight="bold">More Articles By {data.data.data.name}</Link></Text>

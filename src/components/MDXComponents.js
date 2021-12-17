@@ -30,19 +30,20 @@ import Step from "./Content/Step"
 const Quote = (props) => {
     const { colorMode } = useColorMode()
     const bgColor = {
-        light: '#f5e2b8',
-        dark: '#706855'
+        light: 'brand_three.200',
+        dark: 'brand_three.800'
     }
 
     return (
         <Alert
-            my={2}
+            my={10}
             w={["100%", "100%", "100%", "90%", "90%", "80%"]}
             bg={bgColor[colorMode]}
             variant="left-accent"
             status="info"
-            py={0}
-            borderLeftColor="brand_one.500"
+            py={1}
+            borderLeftColor="brand_three.500"
+            borderRightRadius={5}
             {...props}
         />
     )
@@ -123,7 +124,7 @@ const CustomP = (props) => {
 
 const CustomCode = (props) => {
     return (
-        <Code fontSize="0.84em" {...props} />
+        <Code fontSize="0.84em" overflowWrap="break-word" wordBreak="break-word" whiteSpace="normal" {...props} />
     )
 }
 

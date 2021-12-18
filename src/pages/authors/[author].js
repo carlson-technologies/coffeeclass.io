@@ -32,7 +32,7 @@ const MotionBox = motion(Box)
 export default function Index({ articles, frontMatter, filePath, content }) {
     TimeAgo.addLocale(en)
     const timeAgo = new TimeAgo('en-US')
-    console.log(filePath)
+    // console.log(filePath)
 
     const url = `https://www.coffeeclass.io/authors/${frontMatter.slug}`
     const title = `${frontMatter.name} | coffeeclass.io`

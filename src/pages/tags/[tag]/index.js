@@ -44,7 +44,7 @@ export default function Index({ articles, frontMatter }) {
     const color = useColorModeValue("gray.500", "gray.400")
     const bgColor = useColorModeValue("gray.100", "gray.900")
 
-    console.log(filteredArticles)
+    // console.log(filteredArticles)
 
     return (
         <Container title={title} description={description} url={url}>

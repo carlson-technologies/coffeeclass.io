@@ -51,7 +51,7 @@ const Tags = () => {
             <Menu isOpen={isOpen} isLazy>
                 <MenuButton
                     variant="ghost"
-                    onClick={() => router.push("/courses")}
+                    onClick={() => router.push("/tags")}
                     mx={1}
                     py={[1, 2, 2]}
                     px={4}
@@ -59,7 +59,7 @@ const Tags = () => {
                     _hover={{ bg: bg }}
                     aria-label="Courses"
                     fontWeight="normal"
-                    bgColor={router.pathname.includes("/courses") && bg}
+                    bgColor={router.pathname.includes("/tags") && bg}
                     onMouseEnter={onOpen}
                     onMouseLeave={onClose}
                     display={['none', 'none', 'none', 'none', 'none', 'flex']}
@@ -78,6 +78,14 @@ const Tags = () => {
                             ))
                         }
                     </MenuGroup>
+                    <MenuDivider />
+                    <MenuItem>
+                        <NextLink href="/tags" passHref h="100%">
+                            <Link _hover={{ textDecor: 'none' }} w="100%" href="/tags">
+                                All Tags
+                            </Link>
+                        </NextLink>
+                    </MenuItem>
                 </MenuList>
             </Menu>
         </>
@@ -306,22 +314,11 @@ export default function Navbar() {
                         </MenuGroup>
                         <MenuDivider />
                         <MenuItem>
-                            <Flex align="center" h="100%">
-                                <SkeletonCircle isLoaded={loaded} mr={2} h="100%">
-                                    <NextLink href="/courses/chakra-ui" passHref>
-                                        <Link href="/courses/chakra-ui">
-                                            <AspectRatio ratio={1}>
-                                                <Box w={8} h={8} borderRadius={5} bgColor={useColorModeValue("gray.100", "gray.900")} />
-                                            </AspectRatio>
-                                        </Link>
-                                    </NextLink>
-                                </SkeletonCircle>
-                                <NextLink href="/courses" passHref h="100%">
-                                    <Link _hover={{ textDecor: 'none' }} w="100%" href="/courses">
-                                        All Courses
-                                    </Link>
-                                </NextLink>
-                            </Flex>
+                            <NextLink href="/courses" passHref h="100%">
+                                <Link _hover={{ textDecor: 'none' }} w="100%" href="/courses">
+                                    All Courses
+                                </Link>
+                            </NextLink>
                         </MenuItem>
                     </MenuList>
                 </Menu>

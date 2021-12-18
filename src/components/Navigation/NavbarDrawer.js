@@ -15,12 +15,14 @@ import {
     Link,
     Text,
     useColorModeValue,
+    ButtonGroup,
+    Button,
 } from '@chakra-ui/react'
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import { FiYoutube, FiGithub, FiUser } from "react-icons/fi"
 import DarkModeSwitch from './DarkModeSwitch'
 import NextLink from 'next/link'
-import { getMessage } from '../../scripts/time'
+import getMessage from '../../scripts/get-message'
 import { useRouter } from 'next/router'
 
 const NavBarDrawer = ({ placement }) => {
@@ -32,6 +34,10 @@ const NavBarDrawer = ({ placement }) => {
     }
     const bgColor = useColorModeValue("gray.200", "gray.700")
     const router = useRouter()
+
+    // for getMessage()
+    let d = new Date()
+    let hour = d.getHours()
 
     return (
         <>
@@ -62,7 +68,7 @@ const NavBarDrawer = ({ placement }) => {
                 <DrawerContent>
                     <DrawerHeader borderBottomWidth="1px">
                         <Flex justify="space-between">
-                            <Heading as="h4" size="lg">{getMessage()}</Heading>
+                            <Heading as="h4" size="lg">{getMessage(hour)}</Heading>
                             <IconButton
                                 size="md"
                                 onClick={onClose}
@@ -72,28 +78,29 @@ const NavBarDrawer = ({ placement }) => {
                         </Flex>
                     </DrawerHeader>
                     <DrawerBody>
-                        {/* <ButtonGroup spacing="4" justifyContent="space-around" w="100%" size="sm">
-                            <NextLink href="/learn" passHref>
-                                <Button colorScheme="brand_one" minW={[null, null, 110, 110, 110, 110]} href="/learn">Learn</Button>
+                        <ButtonGroup spacing="4" justifyContent="space-around" w="100%" size="sm">
+                            <NextLink href="/courses" passHref>
+                                <Button colorScheme="brand_one" minW={[null, null, 110, 110, 110, 110]} href="/courses">Courses</Button>
                             </NextLink>
-                            <NextLink href="/snippets" passHref>
-                                <Button colorScheme="brand_one" minW={[null, null, 110, 110, 110, 110]} href="/snippets">Snippets</Button>
+                            <NextLink href="/articles" passHref>
+                                <Button colorScheme="brand_one" minW={[null, null, 110, 110, 110, 110]} href="/articles">Articles</Button>
                             </NextLink>
-                            <NextLink href="/tutorials" passHref>
-                                <Button colorScheme="brand_one" minW={[null, null, 110, 110, 110, 110]} href="/tutorials">Tutorials</Button>
+                            <NextLink href="/tags" passHref>
+                                <Button colorScheme="brand_one" minW={[null, null, 110, 110, 110, 110]} href="/tags">Tags</Button>
                             </NextLink>
-                        </ButtonGroup> */}
+                        </ButtonGroup>
                         <Heading
                             as="h3"
                             textTransform="uppercase"
                             marginBottom={2}
-                            marginTop={8}
+                            marginTop={6}
                             color={useColorModeValue('gray.600', 'gray.400')}
                             fontSize="sm"
                             fontWeight="semibold"
                             letterSpacing="wider"
                             textAlign="left"
-                        >Content
+                        >
+                            Content
                         </Heading>
                         <Flex flexDir="column" fontSize="lg">
                             <Text>

@@ -11,7 +11,7 @@ import {
     Badge,
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
-import { year } from '../../scripts/time'
+import { year } from '../../scripts/get-year'
 import ThanksBox from './ThanksBox'
 import useSWR from "swr"
 import fetcher from "../../scripts/fetcher"

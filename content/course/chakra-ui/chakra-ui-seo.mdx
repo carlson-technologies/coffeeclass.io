@@ -1,0 +1,70 @@
+---
+title: "SEO + Chakra UI"
+publishedAt: '2021-12-19T00:00:00Z'
+description: "Learn how to easily optimize your website for search engine optimization (SEO) using Chakra UI."
+author: "Benjamin Carlson"
+updatedAt: "2021-12-19T00:00:00Z"
+type: learn
+language: chakra-ui
+---
+
+SEO is a very important part of any website. It allows companies like Google to easily understand what your website is about and rank it in search results. In this module we will learn how to take advantage of Chakra UI's SEO offerings. Please note this is not a turorial on SEO rather how to use CHakra UI's SEO features.
+
+## `as` Prop
+
+The `as` prop is used to specify the HTML element that the component should render. For example, if I use the `Text` component, I can do the following:
+
+```javascript
+<Text as="span">Hello World</Text>
+```
+
+Now, instead of rendering a `p` tag, the component will render a `span` tag.
+
+This is very useful for SEO purposes. For example, if I wanted to render a `h1` tag, I could do the following:
+
+```javascript
+<Heading as="h1">Hello World</Heading>
+```
+
+The default `Heading` tag is `h2` so using the `as` prop is the *only* way to render another heading tag. The is important for SEO because your content should have desciptive headings and should be in an ascending order. Take a look at the 2 examples below. One is the correct way and one is the incorrect way.
+
+```javascript:wrong&nbspway!
+<Heading>Main Heading</Heading>
+<Heading>Sub Heading 1</Heading>
+<Heading>Sub Sub Heading 1</Heading>
+<Heading>Sub Sub Heading 2</Heading>
+<Heading>Sub Heading 2</Heading>
+<Heading>Sub Sub Heading 1</Heading>
+```
+
+```javascript:correct&nbspway!
+<Heading as="h1">Main Heading</Heading>
+<Heading>Sub Heading 1</Heading> // default is h2 so no need for as prop
+<Heading as="h3">Sub Sub Heading 1</Heading>
+<Heading as="h3">Sub Sub Heading 2</Heading>
+<Heading>Sub Heading 2</Heading>
+<Heading as="h3">Sub Sub Heading 1</Heading>
+```
+
+The first way is the wrong way because all of the heading tags are `h2` tags. The second way is the correct way because the `Heading` components all have an `as` prop making the levels ascending. Note again that the default is `h2` so we don't need to specify the `as` prop on headings that should be `h2` tags.
+
+## Accessability
+
+There are a lot of ways we can improve accessability using Chakra UI. Let's take a look at some of them.
+
+### `VisuallyHidden`
+
+Using `VisuallyHidden` is a great way to make your website more accessible for screen-readers. Take a look at the exaxmple below from the [Chakra UI website](https://chakra-ui.com/docs/disclosure/visually-hidden#visuallyhidden-example):
+
+```javascript
+function Example() {
+  return (
+    <Button>
+      <VisuallyHidden>Checkmark</VisuallyHidden>
+      <CheckIcon />
+    </Button>
+  )
+}
+```
+
+A user will not see the text `Checkmark` but they will see the checkmark icon. A screen-reader *will* be able to see the text `Checkmark` and the checkmark icon.

@@ -9,10 +9,13 @@ import {
     useColorModeValue,
     Image,
     Badge,
+    IconButton,
+    Tooltip,
 } from '@chakra-ui/react'
 import lessons from "../../../configs/courses/chakra-ui.json"
 import Container from "../../../components/Container"
 import NextLink from "next/link"
+import { FiYoutube } from "react-icons/fi"
 
 const url = 'https://www.coffeeclass.io/chakra-ui'
 const title = 'Chakra UI Complete Course'
@@ -23,6 +26,8 @@ export default function ChakraUI() {
     const boxShadow = useColorModeValue("0px 8px 26px rgba(0, 0, 0, 0.25)", "0px 8px 26px rgba(255, 255, 255, 0.1)")
     const bgColor = useColorModeValue("#fff", "#15161a")
     const borderColor = useColorModeValue("gray.200", "gray.700")
+
+    let courseCount = 0
 
     return (
         <Container title={title} description={description} url={url}>
@@ -42,52 +47,96 @@ export default function ChakraUI() {
                             <Flex justify="center" mt={10}>
                                 <Image src={`/logos/${lessons.image}`} w={100} justifySelf="center" alt={`Image of ${lessons.title} Logo`} />
                             </Flex>
-                            <Heading as="h1" size="2xl" mb={4} mt={5} textAlign="center">{lessons.title}</Heading>
+                            <Heading as="h1" size="2xl" mb={4} mt={5} textAlign="center">{lessons.title} Course Road Map 🚗</Heading>
                             <Text mb={8} textAlign="center" fontSize="large">
                                 {lessons.description}
                             </Text>
                         </Box>
-                        <Text fontSize="lg" mb={2} ml={2}>🚗 Road Map / {data.length} modules</Text>
                         {data.map((item, index) => (
-                            <NextLink href={item.path} key={index} passHref>
-                                <Link 
-                                href={item.path} 
-                                _hover={{ textDecor: 'none' }}
-                                    as="button"
-                                    textAlign="left"
-                                    disabled={item.tag == "coming soon" && true}
-                                    _disabled={{
-                                        opacity: 0.5,
-                                        cursor: "not-allowed"
-                                    }}
-                                    w="100%"
+                            <>
+                                <Heading
+                                    as="h2"
+                                    textTransform="uppercase"
+                                    mt={4}
+                                    mb={2}
+                                    color={useColorModeValue('gray.600', 'gray.400')}
+                                    fontSize="md"
+                                    fontWeight="semibold"
+                                    px={[2, 2, 2, 2, 2, 0]}
                                 >
-                                    <Flex
-                                        _hover={{
-                                            transform: "scale(1.05)",
-                                            boxShadow: boxShadow,
-                                        }}
-                                        transition="transform .5s, box-shadow .5s"
-                                        bgColor={bgColor}
-                                        border="1px solid"
-                                        borderColor={borderColor}
-                                        borderRadius={5}
-                                        p={5}
-                                        align="center"
-                                    >
-                                        <Text mr={4} fontSize="lg">{index + 1}.</Text>
-                                        <Flex flexDir="column">
-                                            <Heading as="h2" size="md">{item.title}</Heading>
-                                            <Text mt={1}>{item.description}</Text>
-                                            <Text>{item.tag == "coming soon" && <Badge>Coming Soon!</Badge>}</Text>
-                                        </Flex>
-                                    </Flex>
-                                </Link>
-                            </NextLink>
+                                    {item.title}
+                                </Heading>
+                                <>
+                                    {item?.routes?.map(item => (
+                                        courseCount++,
+                                        <NextLink href={item.path} key={item} passHref>
+                                            <Link
+                                                href={item.path}
+                                                _hover={{ textDecor: 'none' }}
+                                                as="button"
+                                                textAlign="left"
+                                                disabled={item.tag == "coming soon" && true}
+                                                _disabled={{
+                                                    opacity: 0.5,
+                                                    cursor: "not-allowed"
+                                                }}
+                                                w="100%"
+                                            >
+                                                <Flex
+                                                    _hover={{
+                                                        transform: "scale(1.05)",
+                                                        boxShadow: boxShadow,
+                                                    }}
+                                                    transition="transform .5s, box-shadow .5s"
+                                                    bgColor={bgColor}
+                                                    border="1px solid"
+                                                    borderColor={borderColor}
+                                                    borderRadius={5}
+                                                    p={5}
+                                                    align="center"
+                                                    justify="space-between"
+                                                >
+                                                    <Flex align="center">
+                                                        <Text mr={4} fontSize="lg">{courseCount}.</Text>
+                                                        <Flex flexDir="column">
+                                                            <Heading as="h3" size="md">{item.title}</Heading>
+                                                            <Text mt={1}>{item.description}</Text>
+                                                            <Text>{item.tag == "coming soon" && <Badge>Coming Soon!</Badge>}</Text>
+                                                                <Text>{item.tag == "new" && <Badge>New!</Badge>}</Text>
+                                                        </Flex>
+                                                    </Flex>
+                                                    {
+                                                        item.hasVideo &&
+                                                        <>
+                                                            <Tooltip label="Has Video!" placement="top">
+                                                                <IconButton
+                                                                    isExternal
+                                                                    target="_blank"
+                                                                    borderRadius={5}
+                                                                    icon={<FiYoutube />}
+                                                                    fontSize='20px'
+                                                                    aria-label="YouTube"
+                                                                    href="https://youtube.com/benjamincarlson"
+                                                                    bgColor="transparent"
+                                                                    color="red.500"
+                                                                    _hover={{ backgroundColor: "transparent" }}
+                                                                    p={[1, 2, 4]}
+                                                                    ml={1}
+                                                                    w={50}
+                                                                />
+                                                            </Tooltip>
+                                                        </>
+                                                    }
+                                                </Flex>
+                                            </Link>
+                                        </NextLink>
+                                    ))}
+                                </>
+                            </>
                         ))}
                     </Box>
                 </Flex>
             </Stack>
-        </Container>
+        </Container >
     )
 }

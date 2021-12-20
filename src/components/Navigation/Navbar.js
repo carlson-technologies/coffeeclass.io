@@ -128,6 +128,7 @@ export default function Navbar() {
             }
             lastScrollTop = st <= 0 ? 0 : st
         }
+
         window.addEventListener('scroll', handleScroll)
         return () => {
             window.removeEventListener('scroll', handleScroll)
@@ -140,14 +141,15 @@ export default function Navbar() {
     const bg = useColorModeValue("gray.200", "gray.700")
 
     return (
-        <Box
+        <Flex
             // h={height}
             as="nav"
             w="100%"
             px="4"
             pt="4"
             pb="6"
-            display="flex"
+            // display="flex"
+            // display={router.pathname.includes("/courses") ? "none" : "flex"}
             alignItems="center"
             pos="sticky"
             top={top}
@@ -377,6 +379,6 @@ export default function Navbar() {
                 <DarkModeSwitch />
             </Box>
             <NavBarDrawer />
-        </Box>
+        </Flex>
     )
 }

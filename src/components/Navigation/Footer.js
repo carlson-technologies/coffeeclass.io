@@ -63,11 +63,11 @@ const Footer = () => {
     const bgColor = useColorModeValue("brand_one.500", "brand_one.800")
 
     return (
-        <Box bgColor={useColorModeValue("gray.100", "gray.700")} mt={8}>
+        <Box bgColor={useColorModeValue("gray.100", "gray.700")}>
             <Flex
                 flexDir="column"
                 align={['left', 'left', 'left', 'left', 'center', 'center']}
-                my={4}
+                my={6}
                 px={4}
                 as="footer"
             >

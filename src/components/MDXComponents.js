@@ -177,7 +177,7 @@ const CustomImage = (props) => {
 const MDXComponents = {
     h1: (props) => <Heading as="h1" size="2xl" {...props} />,
     h2: (props) => <DocsHeading as="h2" size="xl" mt="1em" {...props} />,
-    h3: (props) => <DocsHeading as="h3" size="lg" mt=".5em" {...props} />,
+    h3: (props) => <DocsHeading as="h3" size="md" mt=".5em" {...props} />,
     h4: (props) => <DocsHeading as="h4" size="md" mt=".5em" {...props} />,
     h5: (props) => <DocsHeading as="h5" size="sm" mt=".5em" {...props} />,
     h6: (props) => <DocsHeading as="h6" size="xs" mt=".5em" {...props} />,

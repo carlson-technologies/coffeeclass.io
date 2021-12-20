@@ -1,0 +1,118 @@
+---
+title: "Top 10 Mac Terminal Commands for Speed and Productivity"
+description: "10 commands that will change how you code forever!"
+seoDescription: "10 Mac terminal commands that will increase your developer speed and productivity."
+author: "thomas-hill.mdx"
+publishedAt: "2021-12-20T18:00:00"
+tags: ["terminal"]
+logoImage: ["apple-icon.png"]
+---
+
+## Introduction
+
+As a developer, I find myself using the terminal all the time. In this article, I'll list the top 10 commands I use the most for speed and productivity, along with some examples.
+
+<Step number="1" title="ls" />
+
+The `ls` command is used to list the contents of a directory. It is a very basic command but it is a lot quicker than using the Finder to list the contents of a directory.
+
+<Step number="2" title="cd" />
+
+Next we'll look at the `cd` command. This command is used to change the current working directory. Again, it is a very basic command but it is a lot quicker than using the Finder to change the current working directory.
+
+<Step number="3" title="pwd" />
+
+`pwd` is used to print the current working directory. This command is very useful when you want to know where you are in a directory structure.
+
+<Step number="4" title="cat" />
+
+Getting into the more advanced commands is the `cat` command. This command is used to read the contents of a file without opening it. Here is an example:
+
+```bash
+cat README.md
+```
+
+Output:
+```bash
+# This is a markdown file
+```
+
+In this example, we are assuming that `README.md` has the contents `# This is a markdown file`.
+
+<Step number="5" title="head" />
+
+The `head` command is used to print the first few lines of a file. Here is an example:
+
+```bash
+head README.md
+```
+
+<Step number="6" title="tail" />
+
+Similarly to `head`, the `tail` command is used to print the last few lines of a file. Here is an example:
+
+```bash
+tail README.md
+```
+
+<Step number="7" title="grep" />
+
+Next is the `grep` command. This command is used to search for a pattern in a file. Here is an example:
+
+```bash
+grep -i "markdown" README.md
+```
+
+### Explanation
+
+In this example, we are searching for the word `markdown` in the file `README.md`. We are also searching for the word `markdown` ignoring case, which is the `-i` flag.
+
+<Step number="8" title="mkdir" />
+
+The `mkdir` command is used to create a new directory. Here is an example:
+
+```bash
+mkdir new-directory
+```
+
+<Step number="9" title="touch" />
+
+The `touch` command is used to create a new file. Here is an example:
+
+```bash
+touch newfile.txt
+```
+
+<Step number="10" title="rm" />
+
+The last command is the `rm` command. This command is used to delete a file or directory. Here is an example:
+
+```bash
+rm newfile.txt
+```
+
+## Bonus 11th Tip!
+
+As a bonus, you can use the `&&` operator to run multiple commands in one line. Here is an example:
+
+```bash
+mkdri new-directory && cd new-directory && touch newfile.txt
+```
+
+You can see we can make a new folder, change to the new folder, and create a new file all in one line!
+
+## Conclusion
+
+That's it for this article! I hope you find this article useful and that you can use it to speed up your development process. Here is a lsit of all the mac terminal commands we went over:
+
+1. `ls`
+2. `cd`
+3. `pwd`
+4. `cat`
+5. `head`
+6. `tail`
+7. `grep`
+8. `mkdir`
+9. `touch`
+10. `rm`
+11. `&&`

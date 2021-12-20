@@ -53,6 +53,8 @@ const Sidebar = ({ src, alt }) => {
     let path2 = router.pathname.split("/")[2]
     let path = "/" + path1 + "/" + path2 // courses/<course-title>
 
+    const color = useColorModeValue('gray.600', 'gray.400')
+
     return (
         <Box>
             <Box
@@ -61,7 +63,6 @@ const Sidebar = ({ src, alt }) => {
                 sx={{
                     overscrollBehavior: "contain",
                 }}
-                maxH="calc(100vh - 5em)"
                 overflowY="auto"
                 flexShrink={0}
                 h="fit-content"
@@ -95,7 +96,7 @@ const Sidebar = ({ src, alt }) => {
                                 textTransform="uppercase"
                                 mt={4}
                                 mb={2}
-                                color={useColorModeValue('gray.600', 'gray.400')}
+                                color={color}
                                 fontSize="md"
                                 fontWeight="semibold"
                                 key={item.title}

@@ -26,6 +26,7 @@ export default function ChakraUI() {
     const boxShadow = useColorModeValue("0px 8px 26px rgba(0, 0, 0, 0.25)", "0px 8px 26px rgba(255, 255, 255, 0.1)")
     const bgColor = useColorModeValue("#fff", "#15161a")
     const borderColor = useColorModeValue("gray.200", "gray.700")
+    const color = useColorModeValue('gray.600', 'gray.400')
 
     let courseCount = 0
 
@@ -59,7 +60,7 @@ export default function ChakraUI() {
                                     textTransform="uppercase"
                                     mt={4}
                                     mb={2}
-                                    color={useColorModeValue('gray.600', 'gray.400')}
+                                    color={color}
                                     fontSize="md"
                                     fontWeight="semibold"
                                     px={[2, 2, 2, 2, 2, 0]}

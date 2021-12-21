@@ -1,0 +1,131 @@
+---
+title: "Create A Grade Converter C Program"
+description: "Learn C by creating a simple grade converter program."
+seoDescription: "Learn C programming by creating a simple grade converter program using if/else, scanf, and local variables."
+author: "benjamin-carlson.mdx"
+publishedAt: "2021-12-20T19:00:00"
+tags: ["c"]
+logoImage: ["c.png"]
+---
+
+## Introduction
+
+C can be a very difficut language to learn. From compiling it, to accepting user input, every aspect has a significant learning curve. In this article, we will build a C converter program which takes in a number between 0 and 100 and returns a letter grade.
+
+## Creating Our File
+
+Create a file named `converter.c`.
+
+## Imports
+
+To import external libraries, we use the `#include` directive. In this program, we will use the `stdio.h` library. This library contains many basic functions, such as `printf`, `scanf`, and `getchar`.
+
+```c:converter.c
+#include <stdio.h>
+```
+
+## Main
+
+We will declare our main program with a return type of int. The function will not take in any args so we will use `void`.
+
+```c:converter.c
+int main(void)
+{
+    // code will go here!
+
+    return 0;
+}
+```
+
+Note the line `return 0;` at the end of the function. This means the function has finished running successfully. If we changed this to `return 1;`, that would mean the function would have failed.
+
+## Accepting User Input
+
+Now that we have our function, we can begin by getting an `int` from the user. We will achieve this in two steps.
+
+1. Declare a variable to hold the user's input.
+2. Use the `scanf` function to get the user's input.
+
+```c:converter.c
+int main(void)
+{
+    int grade; // local variable of type int to store numerical grade
+
+    printf("Enter a numeric grade: "); // prompt user for input
+    scanf("%d", &grade); // store input in local variable grade
+
+    return 0;
+}
+```
+
+We use `%d` to tell the `scanf` function to read in an `int` and store it in the variable `grade`. We use `&grade` to tell the function to store the value of `grade` in the memory address of `grade`.
+
+## If/Else Statements
+
+Lastly, we will use an `if/else` statement to determine the letter grade.
+
+```c:converter.c
+if (grade > 100 || grade < 0) printf("Invalid grade.\n");
+    else if (grade >= 90) printf("A\n");
+    else if (grade >= 80) printf("B\n");
+    else if (grade >= 70) printf("C\n");
+    else if (grade >= 60) printf("D\n");
+    else printf("F\n"); // end if else statement
+```
+
+> `\n` is an escape code that tells the compiler to print a new line!
+
+## Complete Program
+
+All together the code looks like this:
+
+```c:converter.c
+#include <stdio.h>
+
+int main(void)
+{
+    int grade; // local variable of type int to store numerical grade
+
+    printf("Enter a numeric grade: "); // prompt user for input
+    scanf("%d", &grade); // store input in local variable grade
+
+    // start if else statement to determine letter grade
+    if (grade > 100 || grade < 0) printf("Invalid grade.\n");
+    else if (grade >= 90) printf("A\n");
+    else if (grade >= 80) printf("B\n");
+    else if (grade >= 70) printf("C\n");
+    else if (grade >= 60) printf("D\n");
+    else printf("F\n"); // end if else statement
+
+    return 0;
+}
+```
+
+## Compiling
+
+To compile our program, we will use the `gcc` command.
+
+```bash
+gcc -o converter converter.c
+```
+
+This will compile our program and allow us to run it by typing `./converter`. We are using the `-o` flag to tell the compiler to output the executable to the file `converter` instead of the default `a.out`.
+
+## Running
+
+To run our program, we will use the `./converter` command.
+
+```bash
+./converter
+```
+
+If you run the program and pass in a grade of 87, you should see the following output:
+
+```bash
+Enter a numeric grade: 87
+B
+```
+
+## Conclusion
+
+In this article, we created a C program which takes in a numerical grade and returns the letter grade. We covered some basic C concepts such as variables, if/else statements, and functions. We also used the `gcc` command to compile our program. Happy coding!

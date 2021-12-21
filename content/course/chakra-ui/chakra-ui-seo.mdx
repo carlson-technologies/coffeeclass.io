@@ -1,9 +1,9 @@
 ---
 title: "SEO + Chakra UI"
-publishedAt: '2021-12-19T00:00:00Z'
+publishedAt: "2021-12-20T00:00:00"
 description: "Learn how to easily optimize your website for search engine optimization (SEO) using Chakra UI."
 author: "Benjamin Carlson"
-updatedAt: "2021-12-19T00:00:00Z"
+updatedAt: "2021-12-20T00:00:00"
 type: learn
 language: chakra-ui
 ---
@@ -68,3 +68,17 @@ function Example() {
 ```
 
 A user will not see the text `Checkmark` but they will see the checkmark icon. A screen-reader *will* be able to see the text `Checkmark` and the checkmark icon.
+
+### `aria-label`
+
+Using the `aria-label` prop is a great way to make your website more accessible for screen-readers. Let's see how to use it.
+
+```javascript
+<MenuButton
+    as={IconButton}
+    aria-label='Settings'
+    icon={<SettingsIcon />}
+  />
+```
+
+You should use `aria-label` on any buttons, like the one above.

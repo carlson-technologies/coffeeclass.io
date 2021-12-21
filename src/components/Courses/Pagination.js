@@ -33,19 +33,28 @@ const Pagination = () => {
         dark: 'gray.400'
     }
     const hoverColor = {
-        light: 'orange.200',
-        dark: 'orange.400'
+        light: 'brand_one.200',
+        dark: 'brand_one.400'
     }
     const pagination = getPagination(routes)
 
     function getPagination(routes) {
         let data = {}
+        let routesWithTitlesRemoved = []
+
+        // remove the section headers from the routes
         for (var i = 0; i < routes.length; i++) {
-            const curr = routes[i]
+            for (var j = 0; j < routes[i].routes.length; j++) {
+                routesWithTitlesRemoved.push(routes[i].routes[j])
+            }
+        }
+
+        for (var i = 0; i < routesWithTitlesRemoved.length; i++) {
+            const curr = routesWithTitlesRemoved[i]
 
             if (curr && curr.path.includes(query.slug)) {
-                const nextRoute = routes[i + 1]
-                const prevRoute = routes[i - 1]
+                const prevRoute = routesWithTitlesRemoved[i - 1]
+                const nextRoute = routesWithTitlesRemoved[i + 1]
 
                 data = {
                     prevRoute,
@@ -53,6 +62,8 @@ const Pagination = () => {
                 }
             }
         }
+
+        // console.log(data)
         return data
     }
 
@@ -64,6 +75,7 @@ const Pagination = () => {
             w="100%"
             color={color[colorMode]}
             flexDir={["column", "column", "column", "row", "row", "row"]}
+            mb={8}
         >
             {pagination.prevRoute ?
                 <NextLink href={pagination.prevRoute.path} passHref>

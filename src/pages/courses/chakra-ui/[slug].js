@@ -39,6 +39,8 @@ export default function PostPage({ source, frontMatter }) {
         dark: 'gray.400'
     }
     const bgColor = useColorModeValue("gray.100", "gray.800")
+    const bgColor1 = useColorModeValue("gray.100", "gray.700")
+    const hoverBg = useColorModeValue("gray.100", "gray.700")
 
     const router = useRouter()
     const slug = router.query.slug
@@ -62,7 +64,7 @@ export default function PostPage({ source, frontMatter }) {
                     <Accordion allowMultiple mt={4}>
                         <AccordionItem>
                             <h2>
-                                <AccordionButton>
+                                <AccordionButton _hover={{ bgColor: hoverBg }}>
                                     <Box flex="1" textAlign="left">
                                         On this page
                                     </Box>
@@ -76,7 +78,7 @@ export default function PostPage({ source, frontMatter }) {
                                             <Box
                                                 p={1}
                                                 _hover={{
-                                                    bgColor: bgColor,
+                                                    bgColor: bgColor1,
                                                     cursor: "pointer",
                                                 }}
                                                 my={1}
@@ -105,7 +107,6 @@ export default function PostPage({ source, frontMatter }) {
                 </Box>
                 <Flex
                     flexDir="column"
-                    maxW="1000px"
                     id="main-content"
                 >
                     <Ad />
@@ -114,12 +115,12 @@ export default function PostPage({ source, frontMatter }) {
                 <Box mb={4} mt={10}>
                     {frontMatter.updatedAt && <Text color="gray.500" fontSize="sm" textAlign="center">Last updated on {format(parseISO(frontMatter.updatedAt || frontMatter.publishedAt), 'MMMM dd, yyyy')}</Text>}
                 </Box>
-                <Link textDecor="underline" _hover={{ opacity: .8 }} w="fit-content">
-                    <Flex align="center">
+                <Flex align="center" mb={4}>
+                    <Link textDecor="underline" _hover={{ opacity: .8 }} w="fit-content">
                         <Icon as={ExternalLinkIcon} mr={2} />
-                        <Link href={`https://github.com/carlson-technologies/coffeeclass.io/blob/main/content/courses/chakra-ui/${slug}.mdx`} isExternal>Edit on GitHub</Link>
-                    </Flex>
-                </Link>
+                        <Link href={`https://github.com/carlson-technologies/coffeeclass.io/tree/main/content/course/chakra-ui/${slug}.mdx`} isExternal>Edit on GitHub</Link>
+                    </Link>
+                </Flex>
                 <Pagination />
             </motion.div>
         </LearnLayout>

@@ -20,20 +20,15 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { contentFilePaths, CONTENT_PATH, authorsFilePaths, AUTHORS_PATH } from '../../scripts/mdx-utils'
-import TimeAgo from 'javascript-time-ago'
-import en from 'javascript-time-ago/locale/en'
 import NextImage from 'next/image'
 import { motion } from "framer-motion"
 import NextLink from 'next/link'
 import { ChevronRightIcon } from '@chakra-ui/icons'
+import TimeAgo from '../../scripts/time-ago'
 
 const MotionBox = motion(Box)
 
 export default function Index({ articles, frontMatter, filePath, content }) {
-    TimeAgo.addLocale(en)
-    const timeAgo = new TimeAgo('en-US')
-    // console.log(filePath)
-
     const url = `https://www.coffeeclass.io/authors/${frontMatter.slug}`
     const title = `${frontMatter.name} | coffeeclass.io`
     const description = `coffeeclass.io articles written by ${frontMatter.name}. ${frontMatter.description}`
@@ -252,7 +247,7 @@ export default function Index({ articles, frontMatter, filePath, content }) {
                                                 justify="space-between"
                                             >
                                                 <Box>
-                                                    <Text minW={120} textAlign="center" color={color} fontSize="md" mb={6}>{timeAgo.format(new Date(post.data.publishedAt))}</Text>
+                                                    <Text minW={120} textAlign="center" color={color} fontSize="md" mb={6}>{TimeAgo(new Date(post.data.publishedAt))}</Text>
                                                     {post?.data?.logoImage &&
                                                         <Box>
                                                             <Box

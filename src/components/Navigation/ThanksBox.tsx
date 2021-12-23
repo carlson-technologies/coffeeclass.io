@@ -6,7 +6,16 @@ import {
     Image,
 } from '@chakra-ui/react'
 
-export default function ThanksBox({ src, intro, title, href, width, alt }) {
+interface Props {
+    src?: string;
+    alt?: string;
+    title?: string;
+    href?: string;
+    width?: number;
+    intro?: string;
+}
+
+export default function ThanksBox({ src, intro, title, href, width, alt }: Props) {
     const bgColor = useColorModeValue("gray.200", "gray.600")
     const color = useColorModeValue("gray.600", "gray.400")
     

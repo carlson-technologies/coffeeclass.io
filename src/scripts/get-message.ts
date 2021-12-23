@@ -1,5 +1,5 @@
 // returns a message based on the current time
-function getMessage(hour) {
+export function getMessage(hour: number): string {
     if (hour < 12) {
         return 'Good Morning ☕'
     } else if (hour < 17) {
@@ -8,5 +8,3 @@ function getMessage(hour) {
         return 'Good Evening 🌙'
     }
 }
-
-module.exports = getMessage

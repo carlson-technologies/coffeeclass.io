@@ -16,7 +16,7 @@ export default function Custom404() {
         dark: 'brand_one.500'
     }
     return (
-        <Container>
+        <Container title='' description='' url=''>
             <Center minH="calc(100vh - 100px)">
                 <Box
                     textAlign="center"

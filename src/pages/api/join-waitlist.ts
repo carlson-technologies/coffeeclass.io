@@ -1,17 +1,19 @@
-export default async function JoinWaitlist (req, res) {
-    const { email } = req.body
+import type { NextApiRequest, NextApiResponse } from 'next'
 
-    if (!email) {
+export default async function JoinWaitlist (req: NextApiRequest, res: NextApiResponse) {
+    const { email: EMAIL } = req.body
+
+    if (!EMAIL) {
         return res.status(400).json({ error: 'Email is required' })
     }
 
     try {
-        const API_KEY = process.env.BUTTONDOWN__KEY
+        const API_KEY = process.env.BUTTONDOWN_KEY
         const response = await fetch(
             `https://api.buttondown.email/v1/subscribers`,
             {
                 body: JSON.stringify({
-                    email,
+                    email: EMAIL,
                     tags: ['coffeeclass.io', 'accounts-waitlist']
                 }),
                 headers: {
@@ -44,6 +46,6 @@ export default async function JoinWaitlist (req, res) {
 
         return res.status(201).json({ error: '' })
     } catch (error) {
-        return res.status(500).json({ error: error.message || error.toString() })
+        return res.status(500).json({ error: error.toString() })
     }
 }

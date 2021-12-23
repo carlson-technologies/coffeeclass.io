@@ -32,8 +32,6 @@ import {
 import Comments from '../../components/Comments'
 import { motion } from 'framer-motion'
 import NextLink from 'next/link'
-import TimeAgo from 'javascript-time-ago'
-import en from 'javascript-time-ago/locale/en'
 import { useRouter } from 'next/router'
 import RelatedPosts from '../../components/RelatedPosts'
 import Ad from '../../components/Content/Ad'
@@ -46,11 +44,9 @@ import { parseISO, format } from 'date-fns'
 import WrittenBy from '../../components/WrittenBy'
 import useSWR from "swr"
 import fetcher from '../../scripts/fetcher'
+import TimeAgo from '../../scripts/time-ago'
 
 export default function PostPage({ source, frontMatter, posts }) {
-    TimeAgo.addLocale(en)
-    const timeAgo = new TimeAgo('en-US')
-
     const { colorMode } = useColorMode()
     const color = {
         light: 'gray.600',
@@ -115,8 +111,8 @@ export default function PostPage({ source, frontMatter, posts }) {
                         mt={2}
                         as="h1"
                         size={size}
-                        bgGradient={h1ColorGradient}
-                        bgClip='text'
+                        // bgGradient={h1ColorGradient}
+                        // bgClip='text'
                     >
                         {frontMatter.title}
                     </Heading>
@@ -137,128 +133,128 @@ export default function PostPage({ source, frontMatter, posts }) {
                             color={color[colorMode]}
                             mb={4}
                         >
-                            {frontMatter.readingTime.text} &middot; {frontMatter.readingTime.words} words &middot; Shared {timeAgo.format(new Date(frontMatter.publishedAt))} by <Box _hover={{ borderBottomColor: useColorModeValue("brand_one.700", "brand_one.500") }} as="span" borderBottom="2px solid" borderBottomColor="transparent" transition="border-bottom-color .2s ease-in-out"><Link href="#author-bio" color={useColorModeValue("brand_one.700", "brand_one.500")} _hover={{ TextDecoder: 'none' }}>{data?.data?.data?.name}</Link></Box> {frontMatter.updatedAt && `· Updated ${timeAgo.format(new Date(frontMatter.updatedAt))}`}
-                    </Text>
-                    {
-                        frontMatter.youtubeId &&
-                        <Flex justify="center">
-                            <EmbeddedVideo src={getEmbedId(frontMatter?.youtubeId)} alt={frontMatter.title} maxW={800} />
-                        </Flex>
-                    }
-                    {
-                        frontMatter.featureImg && !frontMatter.youtubeId &&
-                        <Flex justify="center">
-                            <AspectRatio w="100%" ratio={16 / 9} maxW={800}>
-                                <Image src={`/content/articles/${slug}/${frontMatter.featureImg}`} alt={frontMatter.title} />
-                            </AspectRatio>
-                        </Flex>
-                    }
-                    <Accordion allowMultiple mt={4}>
-                        <AccordionItem>
-                            <h2>
-                                <AccordionButton _hover={{ bgColor: hoverBg }}>
-                                    <Box flex="1" textAlign="left">
-                                        On this page
-                                    </Box>
-                                    <AccordionIcon />
-                                </AccordionButton>
-                            </h2>
-                            <AccordionPanel>
-                                {frontMatter?.headers.map((h) => {
-                                    return (
-                                        <Link href={`#${h.text}`} key={h.text}>
-                                            <Box
-                                                p={1}
-                                                _hover={{
-                                                    bgColor: bgColor1,
-                                                    cursor: "pointer",
-                                                }}
-                                                my={1}
-                                                borderRadius={2}
-                                            >
-                                                <Heading
-                                                    as="h4"
-                                                    size="sm"
-                                                    color={color[colorMode]}
+                            {frontMatter.readingTime.text} &middot; {frontMatter.readingTime.words} words &middot; Shared {TimeAgo(new Date(frontMatter.publishedAt))} by <Box _hover={{ borderBottomColor: useColorModeValue("brand_one.700", "brand_one.500") }} as="span" borderBottom="2px solid" borderBottomColor="transparent" transition="border-bottom-color .2s ease-in-out"><Link href="#author-bio" color={useColorModeValue("brand_one.700", "brand_one.500")} _hover={{ TextDecoder: 'none' }}>{data?.data?.data?.name}</Link></Box> {frontMatter.updatedAt && `· Updated ${TimeAgo(new Date(frontMatter.publishedAt))}`}
+                        </Text>
+                        {
+                            frontMatter.youtubeId &&
+                            <Flex justify="center">
+                                <EmbeddedVideo src={getEmbedId(frontMatter?.youtubeId)} alt={frontMatter.title} maxW={800} />
+                            </Flex>
+                        }
+                        {
+                            frontMatter.featureImg && !frontMatter.youtubeId &&
+                            <Flex justify="center">
+                                <AspectRatio w="100%" ratio={16 / 9} maxW={800}>
+                                    <Image src={`/content/articles/${slug}/${frontMatter.featureImg}`} alt={frontMatter.title} />
+                                </AspectRatio>
+                            </Flex>
+                        }
+                        <Accordion allowMultiple mt={4}>
+                            <AccordionItem>
+                                <h2>
+                                    <AccordionButton _hover={{ bgColor: hoverBg }}>
+                                        <Box flex="1" textAlign="left">
+                                            On this page
+                                        </Box>
+                                        <AccordionIcon />
+                                    </AccordionButton>
+                                </h2>
+                                <AccordionPanel>
+                                    {frontMatter?.headers.map((h) => {
+                                        return (
+                                            <Link href={`#${h.text}`} key={h.text}>
+                                                <Box
+                                                    p={1}
+                                                    _hover={{
+                                                        bgColor: bgColor1,
+                                                        cursor: "pointer",
+                                                    }}
                                                     my={1}
+                                                    borderRadius={2}
                                                 >
-                                                    <Text
-                                                        ml={(h.level - 2) * 6}
-                                                        _hover={{ textDecor: 'none' }}
+                                                    <Heading
+                                                        as="h4"
+                                                        size="sm"
+                                                        color={color[colorMode]}
+                                                        my={1}
                                                     >
-                                                        {h.text}
-                                                    </Text>
-                                                </Heading>
-                                            </Box>
-                                        </Link>
-                                    )
-                                })}
-                            </AccordionPanel>
-                        </AccordionItem>
-                    </Accordion>
-                    <Ad />
-                    <Box id="main-content">
-                        <MDXRemote {...source} components={MDXComponents} />
-                    </Box>
-                    <Text my={2} color={useColorModeValue("gray.600", "gray.400")}>Published on {format(parseISO(frontMatter.publishedAt), 'MMMM dd, yyyy')} ({timeAgo.format(new Date(frontMatter.publishedAt))})</Text>
-                    <Link textDecor="underline" _hover={{ opacity: .8 }} w="fit-content">
-                        <Flex align="center">
-                            <Icon as={ExternalLinkIcon} mr={2} />
-                            <Link href={`https://github.com/carlson-technologies/coffeeclass.io/blob/main/content/articles/${slug}.mdx`} isExternal>Edit on GitHib</Link>
-                        </Flex>
-                    </Link>
-                </Flex>
-
-                {/* Right sidebar */}
-                <Flex display={['none', 'none', 'none', 'none', 'none', 'flex']}>
-                    <div>
-                        <Box maxW={300} overflow="scroll" pos="sticky" top={20}>
-                            {/* <Ad /> */}
-                            <RelatedPosts style="sidebar" tags={frontMatter.tags} posts={posts} currPostTitle={frontMatter.title} />
+                                                        <Text
+                                                            ml={(h.level - 2) * 6}
+                                                            _hover={{ textDecor: 'none' }}
+                                                        >
+                                                            {h.text}
+                                                        </Text>
+                                                    </Heading>
+                                                </Box>
+                                            </Link>
+                                        )
+                                    })}
+                                </AccordionPanel>
+                            </AccordionItem>
+                        </Accordion>
+                        <Ad />
+                        <Box id="main-content">
+                            <MDXRemote {...source} components={MDXComponents} />
                         </Box>
-                    </div>
+                        <Text my={2} color={useColorModeValue("gray.600", "gray.400")}>Published on {format(parseISO(frontMatter.publishedAt), 'MMMM dd, yyyy')} ({TimeAgo(new Date(frontMatter.publishedAt))})</Text>
+                        <Link textDecor="underline" _hover={{ opacity: .8 }} w="fit-content">
+                            <Flex align="center">
+                                <Icon as={ExternalLinkIcon} mr={2} />
+                                <Link href={`https://github.com/carlson-technologies/coffeeclass.io/blob/main/content/articles/${slug}.mdx`} isExternal>Edit on GitHub</Link>
+                            </Flex>
+                        </Link>
+                    </Flex>
+
+                    {/* Right sidebar */}
+                    <Flex display={['none', 'none', 'none', 'none', 'none', 'flex']}>
+                        <div>
+                            <Box w={300} overflow="scroll" pos="sticky" top={20}>
+                                {/* <Ad /> */}
+                                <RelatedPosts style="sidebar" tags={frontMatter.tags} posts={posts} currPostTitle={frontMatter.title} />
+                            </Box>
+                        </div>
+                    </Flex>
                 </Flex>
-            </Flex>
-            <Box maxW={800} mx="auto" id="end-content">
-                <Flex
-                    justify="center"
-                    flexDir="column"
-                    mt={8}
-                    px={4}
-                >
-                    <Link
-                        href="#comments"
-                        _hover={{ textDecor: 'none' }}
+                <Box maxW={800} mx="auto" id="end-content">
+                    <Flex
+                        justify="center"
+                        flexDir="column"
+                        mt={8}
+                        px={4}
                     >
-                        <Button
-                            variant="outline"
-                            w={['100%', '100%', '100%', 200, 250, 300]}
-                            alignSelf="center"
+                        <Link
+                            href="#comments"
+                            _hover={{ textDecor: 'none' }}
                         >
-                            Leave A Comment
-                        </Button>
-                    </Link>
-                </Flex>
-                <Divider mt={12} mb={4} alignSelf="center" />
-                <Flex flexDir="column" m="auto" my={10}>
-                    <RelatedPosts tags={frontMatter.tags} posts={posts} currPostTitle={frontMatter.title} />
-                </Flex>
-                <Divider mt={12} mb={4} alignSelf="center" />
-                <Flex
-                    align="center"
-                    my={4}
-                    justify="center"
-                    flexDir="column"
-                    id="author-bio"
-                >
-                    <WrittenBy frontMatter={frontMatter} />
-                </Flex>
-                <Divider mt={12} mb={8} alignSelf="center" />
-                <Box px={4}>
-                    <Comments />
+                            <Button
+                                variant="outline"
+                                w={['100%', '100%', '100%', 200, 250, 300]}
+                                alignSelf="center"
+                            >
+                                Leave A Comment
+                            </Button>
+                        </Link>
+                    </Flex>
+                    <Divider mt={12} mb={4} alignSelf="center" />
+                    <Flex flexDir="column" m="auto" my={10}>
+                        <RelatedPosts tags={frontMatter.tags} posts={posts} currPostTitle={frontMatter.title} />
+                    </Flex>
+                    <Divider mt={12} mb={4} alignSelf="center" />
+                    <Flex
+                        align="center"
+                        my={4}
+                        justify="center"
+                        flexDir="column"
+                        id="author-bio"
+                    >
+                        <WrittenBy frontMatter={frontMatter} />
+                    </Flex>
+                    <Divider mt={12} mb={8} alignSelf="center" />
+                    <Box px={4}>
+                        <Comments />
+                    </Box>
                 </Box>
-            </Box>
-        </motion.div>
+            </motion.div>
         </Container >
     )
 }

@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "next-sitemap & node ./src/scripts/build-algolia-search.js",
+    "postbuild": "next-sitemap & node ./src/scripts/build-algolia-search.js & yarn test",
     "start": "next start",
     "test": "jest"
   },
@@ -39,7 +39,8 @@
     "rehype": "^12.0.0",
     "remark-autolink-headings": "^7.0.1",
     "remark-code-titles": "^0.1.2",
-    "swr": "^1.1.1"
+    "swr": "^1.1.1",
+    "ts-jest": "^27.1.2"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.16.5",

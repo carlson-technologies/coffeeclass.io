@@ -105,7 +105,7 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
                                                 fontWeight="semibold"
                                                 _hover={{ color: "brand_one.500" }}
                                             >
-                                                {tag}
+                                                #{tag}
                                             </Link>
                                         </NextLink>
                                     </Box>

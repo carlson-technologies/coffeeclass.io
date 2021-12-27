@@ -53,7 +53,7 @@ const Sidebar = ({ course }: any) => {
         maxH="calc(100vh - 100px)"
       >
         <Flex flexDirection="column">
-          <Flex flexDirection="column" alignItems="center" mt={4} id="logo">
+          <Flex flexDirection="column" alignItems="center" mt={2} id="logo">
             <SkeletonCircle isLoaded={loaded}>
               <NextLink href="/courses/chakra-ui" passHref>
                 <Link href="/courses/chakra-ui">

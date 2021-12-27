@@ -15,7 +15,7 @@ interface Props {
 const Container = ({ title, description, url, children }: Props) => {
   return (
     <>
-      {/* <FeedBackFish /> */}
+      <FeedBackFish />
       <NextSeo
         title={title}
         description={description}

@@ -10,32 +10,32 @@ import theme from "../styles/theme";
 import { GoogleFonts } from "next-google-fonts";
 import { GA_TRACKING_ID } from "../scripts/gtag";
 
-// declare global {
-//   interface Window {
-//     splitbee: any;
-//   }
-// }
+declare global {
+  interface Window {
+    splitbee: any;
+  }
+}
 
 export default class MyDocument extends Document {
-  // static async getInitialProps(ctx: DocumentContext) {
-  //   const initialProps = await Document.getInitialProps(ctx);
+  static async getInitialProps(ctx: DocumentContext) {
+    const initialProps = await Document.getInitialProps(ctx);
 
-  //   return initialProps;
-  // }
+    return initialProps;
+  }
 
   render() {
-    // // Add splitbee event tracking
-    // function handleState() {
-    //   window.splitbee.track("Snippet Helpful");
-    // }
+    // Add splitbee event tracking
+    function handleState() {
+      window.splitbee.track("Snippet Helpful");
+    }
 
-    // if (typeof window !== "undefined") {
-    //   window.addEventListener("load", handleState);
-    // }
+    if (typeof window !== "undefined") {
+      window.addEventListener("load", handleState);
+    }
 
     return (
       <Html lang="en">
-        {/* <GoogleFonts href="https://fonts.googleapis.com/css?family=Inter&display=swap" /> */}
+        <GoogleFonts href="https://fonts.googleapis.com/css?family=Inter&display=swap" />
         <Head>
           {process.env.NODE_ENV === "production" && (
             <>

@@ -34,7 +34,7 @@ interface Props {
 export default function ChakraUI({ files, course }: Props) {
   console.log("courses: " + files);
   console.log("course: " + JSON.stringify(course));
-  const data = lessons.routes;
+  const data: any = lessons.routes;
   const boxShadow = useColorModeValue(
     "0px 8px 26px rgba(0, 0, 0, 0.25)",
     "0px 8px 26px rgba(255, 255, 255, 0.1)"
@@ -66,7 +66,7 @@ export default function ChakraUI({ files, course }: Props) {
                 {lessons.description}
               </Text>
             </Box>
-            {data.map((item, index) => (
+            {data.map((item: any, index: number) => (
               <>
                 <Heading
                   as="h2"
@@ -77,12 +77,13 @@ export default function ChakraUI({ files, course }: Props) {
                   fontSize="md"
                   fontWeight="semibold"
                   px={[2, 2, 2, 2, 2, 0]}
+                  key={index}
                 >
                   {item.title}
                 </Heading>
                 <>
                   {item?.routes?.map(
-                    (item) => (
+                    (item: any) => (
                       courseCount++,
                       (
                         <NextLink href={item.path} key={item.title} passHref>
@@ -99,11 +100,15 @@ export default function ChakraUI({ files, course }: Props) {
                             w="100%"
                           >
                             <Flex
+                              // _hover={{
+                              //   transform: "scale(1.01)",
+                              //   boxShadow: boxShadow,
+                              // }}
+                              transition="transform .5s"
                               _hover={{
-                                transform: "scale(1.05)",
-                                boxShadow: boxShadow,
+                                transform: "translateY(-4px)",
+                                boxShadow: "lg",
                               }}
-                              transition="transform .5s, box-shadow .5s"
                               bgColor={bgColor}
                               border="1px solid"
                               borderColor={borderColor}
@@ -131,9 +136,12 @@ export default function ChakraUI({ files, course }: Props) {
                                   </Text>
                                 </Flex>
                               </Flex>
-                              {/* {item.hasVideo && (
+                              {item.hasVideo && (
                                 <>
-                                  <Tooltip label="Has Video!" placement="top">
+                                  <Tooltip
+                                    label="This module includes a video!"
+                                    placement="top"
+                                  >
                                     <IconButton
                                       isExternal
                                       target="_blank"
@@ -141,7 +149,6 @@ export default function ChakraUI({ files, course }: Props) {
                                       icon={<FiYoutube />}
                                       fontSize="20px"
                                       aria-label="YouTube"
-                                      href="https://youtube.com/benjamincarlson"
                                       bgColor="transparent"
                                       color="red.500"
                                       _hover={{
@@ -153,7 +160,7 @@ export default function ChakraUI({ files, course }: Props) {
                                     />
                                   </Tooltip>
                                 </>
-                              )} */}
+                              )}
                             </Flex>
                           </Link>
                         </NextLink>

@@ -9,7 +9,7 @@ export default async function getAuthor(req: NextApiRequest, res: NextApiRespons
     const AUTHOR_SLUG = req.query.authorSlug
 
     if (!AUTHOR_SLUG) {
-        return res.status(400).json({ error: 'Author Slug is required!' })
+        return res.status(400).json({ error: '`authorSlug` is required!' })
     }
 
     const AUTHORS_PATH = path.join(process.cwd(), "content/authors")

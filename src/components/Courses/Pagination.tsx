@@ -67,9 +67,6 @@ const Pagination = () => {
         <NextLink href={pagination.prevRoute.path} passHref>
           <Link
             href={pagination.prevRoute.path}
-            _hover={{
-              textDecor: "none",
-            }}
           >
             <Button
               variant="ghost"
@@ -94,12 +91,7 @@ const Pagination = () => {
       )}
       {pagination.nextRoute ? (
         <NextLink href={pagination.nextRoute.path} passHref>
-          <Link
-            href={pagination.nextRoute.path}
-            _hover={{
-              color: hoverColor[colorMode],
-            }}
-          >
+          <Link href={pagination.nextRoute.path}>
             <Button
               variant="ghost"
               textAlign="right"

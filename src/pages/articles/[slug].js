@@ -62,7 +62,7 @@ export default function PostPage({ source, frontMatter, posts }) {
     const { data, error } = useSWR(`/api/getAuthor?authorSlug=${frontMatter.author.replace(".mdx", "")}`, fetcher)
 
     // use useBreakpointValue to set the size to xl on small screens and 2xl on larger screens above 1000px
-    const size = useBreakpointValue({ xl: 'xl', '2xl': '2xl' })
+    const size = useBreakpointValue({ lg: 'lg', xl: 'xl', '2xl': '4xl' })
 
     const [width, setWidth] = useState(0)
 
@@ -111,8 +111,8 @@ export default function PostPage({ source, frontMatter, posts }) {
                         mt={2}
                         as="h1"
                         size={size}
-                        // bgGradient={h1ColorGradient}
-                        // bgClip='text'
+                    // bgGradient={h1ColorGradient}
+                    // bgClip='text'
                     >
                         {frontMatter.title}
                     </Heading>
@@ -209,8 +209,8 @@ export default function PostPage({ source, frontMatter, posts }) {
                     <Flex display={['none', 'none', 'none', 'none', 'none', 'flex']}>
                         <div>
                             <Box w={300} overflow="scroll" pos="sticky" top={10}>
-                                {/* <Ad /> */}
                                 <RelatedPosts style="sidebar" tags={frontMatter.tags} posts={posts} currPostTitle={frontMatter.title} />
+                                <Ad />
                             </Box>
                         </div>
                     </Flex>

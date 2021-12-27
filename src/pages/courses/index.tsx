@@ -11,15 +11,12 @@ import {
   Link,
   OrderedList,
   ListItem,
-  Grid,
-  Icon,
   Box,
   SimpleGrid,
 } from "@chakra-ui/react";
 import Container from "../../components/Container";
 import subjects from "../../configs/courses.json";
 import Image from "next/image";
-import { ExternalLinkIcon } from "@chakra-ui/icons";
 import NextLink from "next/link";
 
 const url = "https://www.coffeeclass.io/courses";
@@ -41,10 +38,9 @@ const Wrapper = ({ path, logo, children }: Props) => {
   };
   const bgLogo = {
     light: "green.100",
-    dark: "green.800",
+    dark: "green.500",
   };
 
-  const [opacity, setOpacity] = useState(0);
   const [loaded, setLoaded] = useState(false);
   return (
     <NextLink href={path} passHref>
@@ -53,8 +49,6 @@ const Wrapper = ({ path, logo, children }: Props) => {
         mt={2}
         mr={2}
         _hover={{ textDecor: "none" }}
-        // onMouseOver={() => setOpacity(1)}
-        // onMouseLeave={() => setOpacity(0)}
       >
         <Flex
           _hover={{
@@ -98,6 +92,7 @@ export default function Index() {
           <Heading mt={4} as="h1" size="2xl" color="brand_one.500">
             Courses 🎒
           </Heading>
+
           <Box
             bgColor="brand_one.500"
             h={2}
@@ -108,14 +103,6 @@ export default function Index() {
           />
           <SimpleGrid
             minChildWidth={["100%", "100%", "100%", "100%", "600px", "600px"]}
-            // templateColumns={[
-            //   "repeat(1, 1fr)",
-            //   "repeat(1, 1fr)",
-            //   "repeat(1, 1fr)",
-            //   "repeat(1, 1fr)",
-            //   "repeat(2, 1fr)",
-            //   "repeat(2, 1fr)",
-            // ]}
             gap={6}
           >
             {data.map((item, index) => {
@@ -128,7 +115,6 @@ export default function Index() {
                     {item.description}
                   </Text>
                   <Divider borderColor={dividerBorder} my={4} />
-                  {/* <Heading as="h3" size="sm" textTransform="uppercase" color={useColorModeValue("gray.600", "gray.400")} mb={2}>First Modules</Heading> */}
                   <OrderedList spacing={4} listStylePos="inside">
                     {item["first-5-lessons"].map((lesson, index) => {
                       return (
@@ -155,3 +141,10 @@ export default function Index() {
     </Container>
   );
 }
+
+// export function getStaticProps() {
+//   // gets a string array of all folders in the courses folder. These are the courses
+//   let courses = getCourseFolders(COURSE_PATH);
+
+//   return { props: { courses } };
+// }

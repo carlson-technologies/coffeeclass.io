@@ -59,7 +59,7 @@ const Tags = () => {
           _hover={{ bg: bg }}
           aria-label="Courses"
           fontWeight="normal"
-        //   bgColor={router.pathname.includes("/tags") && bg}
+          bgColor={router.pathname.includes("/tags") && bg}
           onMouseEnter={onOpen}
           onMouseLeave={onClose}
           display={["none", "none", "none", "none", "none", "flex"]}
@@ -102,7 +102,7 @@ export default function Navbar() {
 
   useEffect(() => {
     onmousemove = function (e) {
-      if (e.clientY < 100) setTop("0");
+      if (e.clientY < 30) setTop("0");
       // console.log("mouse location:", e.clientX, e.clientY)
     };
     const handleScroll = () => {
@@ -116,10 +116,10 @@ export default function Navbar() {
       let st = window.pageYOffset || document.documentElement.scrollTop;
       if (st > lastScrollTop) {
         // scrolling down. Let's hide the navbar
-        setTop("-100px");
+        setTop("-60px");
       } else {
         // scrolling up. Let's show the navbar
-        setTop("0");
+        // setTop("0");
       }
       lastScrollTop = st <= 0 ? 0 : st;
     };
@@ -134,27 +134,25 @@ export default function Navbar() {
   const bgColor1 = useColorModeValue("white", "gray.800");
   const boxShadow1 = useColorModeValue(
     "0px 2px 4px rgba(0, 0, 0, 0.2)",
-    "0px 2px 4px rgba(255, 255, 255, 0.1)"
+    "0px 2px 4px rgba(0, 0, 0, 0.4)"
   );
   const bg = useColorModeValue("gray.200", "gray.700");
 
   return (
     <Flex
-      // h={height}
       as="nav"
       w="100%"
       px="4"
       pt="4"
       pb="6"
-      // display="flex"
       // display={router.pathname.includes("/courses") ? "none" : "flex"}
       alignItems="center"
       pos="sticky"
       top={top}
       zIndex={10}
       bgColor={router.pathname === "/" ? bgColor : bgColor1}
-    //   boxShadow={boxShadow && boxShadow1}
-      transition="top .5s ease-in-out"
+      boxShadow={boxShadow && boxShadow1}
+      transition="top .5s ease-in-out, box-shadow .5s ease-in-out"
     >
       <NextLink href="/" passHref>
         <Button
@@ -189,7 +187,7 @@ export default function Navbar() {
             _hover={{ backgroundColor: bg }}
             aria-label="Articles"
             fontWeight="normal"
-            // bgColor={router.pathname.includes("/articles") && bg}
+            bgColor={router.pathname.includes("/articles") && bg}
           >
             Articles
           </Button>
@@ -205,7 +203,7 @@ export default function Navbar() {
             _hover={{ bg: bg }}
             aria-label="Courses"
             fontWeight="normal"
-            // bgColor={router.pathname.includes("/courses") && bg}
+            bgColor={router.pathname.includes("/courses") && bg}
             onMouseEnter={onOpen}
             onMouseLeave={onClose}
           >
@@ -407,7 +405,7 @@ export default function Navbar() {
             _hover={{ backgroundColor: bg }}
             p={[1, 2, 4]}
             ml={1}
-            // bgColor={router.pathname.includes("/accounts-waitlist") && bg}
+            bgColor={router.pathname.includes("/accounts-waitlist") && bg}
           />
         </NextLink>
         <DarkModeSwitch />

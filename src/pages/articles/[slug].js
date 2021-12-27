@@ -208,7 +208,7 @@ export default function PostPage({ source, frontMatter, posts }) {
                     {/* Right sidebar */}
                     <Flex display={['none', 'none', 'none', 'none', 'none', 'flex']}>
                         <div>
-                            <Box w={300} overflow="scroll" pos="sticky" top={20}>
+                            <Box w={300} overflow="scroll" pos="sticky" top={10}>
                                 {/* <Ad /> */}
                                 <RelatedPosts style="sidebar" tags={frontMatter.tags} posts={posts} currPostTitle={frontMatter.title} />
                             </Box>

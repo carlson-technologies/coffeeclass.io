@@ -37,6 +37,9 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <GoogleFonts href="https://fonts.googleapis.com/css?family=Inter&display=swap" />
         <Head>
+          {/* PWA */}
+          <link rel="manifest" href="/manifest.json" />
+
           {process.env.NODE_ENV === "production" && (
             <>
               {/* Google Adsense */}

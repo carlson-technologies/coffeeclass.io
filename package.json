@@ -27,6 +27,7 @@
     "next": "12.0.7",
     "next-google-fonts": "^2.2.0",
     "next-mdx-remote": "^3.0.1",
+    "next-pwa": "^5.4.4",
     "next-remote-watch": "^1.0.0",
     "next-seo": "^4.28.1",
     "next-sitemap": "^1.6.203",

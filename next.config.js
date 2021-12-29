@@ -1,14 +1,23 @@
 const withMDX = require('@next/mdx')({
     extension: /\.mdx?$/,
 })
+const withPWA = require('next-pwa')
+const runtimeCaching = require('next-pwa/cache')
 
-module.exports = withMDX({
+module.exports = withMDX(withPWA({
     pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
     webpack: (config, { isServer }) => {
         if (!isServer) {
             config.resolve.fallback.fs = false;
         }
         return config
+    },
+    pwa: {
+        dest: 'public',
+        runtimeCaching,
+        register: true,
+        skipWaiting: true,
+        disable: process.env.NODE_ENV === "development",
     },
     async redirects() {
         return [
@@ -124,4 +133,4 @@ module.exports = withMDX({
             },
         ]
     },
-})
+}))

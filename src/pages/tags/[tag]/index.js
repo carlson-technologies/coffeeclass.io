@@ -16,20 +16,16 @@ import { serialize } from 'next-mdx-remote/serialize'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import TimeAgo from 'javascript-time-ago'
-import en from 'javascript-time-ago/locale/en'
 import { contentFilePaths, CONTENT_PATH, tagsFilePaths, TAGS_PATH } from '../../../scripts/mdx-utils'
 import { motion } from "framer-motion"
 import NextLink from 'next/link'
 import NextImage from 'next/image'
 import { ChevronRightIcon } from '@chakra-ui/icons'
+import TimeAgo from '../../../scripts/time-ago'
 
 const MotionBox = motion(Box)
 
 export default function Index({ articles, frontMatter }) {
-    TimeAgo.addLocale(en)
-    const timeAgo = new TimeAgo('en-US')
-
     const url = `https://www.coffeeclass.io/tags/${frontMatter.title}`
     const title = `${frontMatter.title}`
     const description = `Articles relating to ${frontMatter.title} on coffeeclass.io.${frontMatter.description ? ` ${frontMatter.description}` : ''}`
@@ -103,7 +99,7 @@ export default function Index({ articles, frontMatter }) {
                                         justify="space-between"
                                     >
                                         <Box>
-                                            <Text minW={120} textAlign="center" color={color} fontSize="md" mb={6}>{timeAgo.format(new Date(post.data.publishedAt))}</Text>
+                                            <Text minW={120} textAlign="center" color={color} fontSize="md" mb={6}>{TimeAgo(new Date(post.data.publishedAt))}</Text>
                                             {post?.data?.logoImage &&
                                                 <Box>
                                                     <Box

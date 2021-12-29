@@ -8,10 +8,10 @@ import SEO from '../components/SEO'
 import Container from '../components/Container'
 import { useRouter } from 'next/router'
 
-export default function LearnLayout({ children, frontMatter, src, alt }) {
+export default function Layout({ children, frontMatter }) {
     const router = useRouter()
     const slug = router.asPath
-    
+        
     return (
         <Container>
             <SEO url={`https://www.coffeeclass.io${slug}`} {...frontMatter} />
@@ -20,7 +20,7 @@ export default function LearnLayout({ children, frontMatter, src, alt }) {
                 <Flex display={['none', 'none', 'none', 'none', 'none', 'flex']} bgColor={useColorModeValue("gray.100", "gray.700")}>
                     <div>
                         <Box w={300} overflow="scroll" pos="sticky" top={10}>
-                            <Sidebar src={src} alt={alt} />
+                            <Sidebar course={router.query.course} />
                         </Box>
                     </div>
                 </Flex>

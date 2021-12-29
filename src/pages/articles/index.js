@@ -16,13 +16,12 @@ import fs from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
 import { contentFilePaths, CONTENT_PATH } from '../../scripts/mdx-utils'
-import TimeAgo from 'javascript-time-ago'
-import en from 'javascript-time-ago/locale/en'
 import { motion } from "framer-motion"
 import NextImage from 'next/image'
 import { useState } from 'react'
 import { ChevronRightIcon } from '@chakra-ui/icons'
 import NextLink from 'next/link'
+import TimeAgo from '../../scripts/time-ago'
 
 const url = 'https://www.coffeeclass.io/articles'
 const title = 'Articles'
@@ -31,8 +30,6 @@ const description = 'Read all coffeeclass.io articles on programming and compute
 const MotionBox = motion(Box)
 
 export default function Index({ posts }) {
-    TimeAgo.addLocale(en)
-    const timeAgo = new TimeAgo('en-US')
 
     const [loaded, setLoaded] = useState(false)
 
@@ -80,7 +77,7 @@ export default function Index({ posts }) {
                                             justify="space-between"
                                         >
                                             <Box>
-                                                <Text minW={120} textAlign="center" color={color} fontSize="md" mb={6}>{timeAgo.format(new Date(post.data.publishedAt))}</Text>
+                                                <Text minW={120} textAlign="center" color={color} fontSize="md" mb={6}>{TimeAgo(new Date(post.data.publishedAt))}</Text>
                                                 {post?.data?.logoImage &&
                                                     <Box>
                                                         <Box

@@ -3,7 +3,7 @@ const withMDX = require('@next/mdx')({
 })
 
 module.exports = withMDX({
-    pageExtensions: ['js', 'jsx', 'mdx'],
+    pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
     webpack: (config, { isServer }) => {
         if (!isServer) {
             config.resolve.fallback.fs = false;
@@ -18,12 +18,12 @@ module.exports = withMDX({
                 permanent: true,
             },
             {
-                source: '/tutorials/add-firebase-to-flutter-mobile-app',
+                source: '/snippets/add-firebase-to-flutter-mobile-app',
                 destination: '/articles/add-firebase-to-flutter-mobile-app',
                 permanent: true,
             },
             {
-                source: '/snippets/add-firebase-to-nextjs',
+                source: '/tutorials/add-firebase-to-nextjs',
                 destination: '/articles/add-firebase-to-nextjs',
                 permanent: true,
             },

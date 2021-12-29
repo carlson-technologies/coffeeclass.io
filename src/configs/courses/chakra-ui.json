@@ -6,7 +6,7 @@
   "version": "v1.6.10",
   "routes": [
     {
-      "title": "Introduction",
+      "title": "👶 Introduction",
       "routes": [
         {
           "title": "Course Introduction",
@@ -21,7 +21,7 @@
       ]
     },
     {
-      "title": "Basics",
+      "title": "🏫 Basics",
       "routes": [
         {
           "title": "Installing + Getting Started",
@@ -64,7 +64,7 @@
       ]
     },
     {
-      "title": "Advanced",
+      "title": "🧨 Advanced",
       "routes": [
         {
           "title": "Animating With Framer Motion",
@@ -93,7 +93,7 @@
       ]
     },
     {
-      "title": "Video Guides",
+      "title": "📹 Video Guides",
       "routes": [
         {
           "title": "Create A Dashboard",

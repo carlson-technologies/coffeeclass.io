@@ -3,25 +3,9 @@
     {
       "title": "Chakra UI",
       "path": "/courses/chakra-ui",
+      "slug": "chakra-ui",
       "image": "chakra-ui.png",
-      "description": "Chakra UI is a simple, modular and accessible component library that gives you the building blocks you need to build your React applications.",
-      "first-5-lessons": [
-        {
-          "title": "Course Introduction"
-        },
-        {
-          "title": "What Is Chakra UI?"
-        },
-        {
-          "title": "Installing + Getting Started"
-        },
-        {
-          "title": "Default Theme"
-        },
-        {
-          "title": "Custom Theme"
-        }
-      ]
+      "description": "Chakra UI is a simple, modular and accessible component library that gives you the building blocks you need to build your React applications."
     }
   ]
 }

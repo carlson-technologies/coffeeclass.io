@@ -20,20 +20,15 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { contentFilePaths, CONTENT_PATH, authorsFilePaths, AUTHORS_PATH } from '../../scripts/mdx-utils'
-import TimeAgo from 'javascript-time-ago'
-import en from 'javascript-time-ago/locale/en'
 import NextImage from 'next/image'
 import { motion } from "framer-motion"
 import NextLink from 'next/link'
 import { ChevronRightIcon } from '@chakra-ui/icons'
+import TimeAgo from '../../scripts/time-ago'
 
 const MotionBox = motion(Box)
 
 export default function Index({ articles, frontMatter, filePath, content }) {
-    TimeAgo.addLocale(en)
-    const timeAgo = new TimeAgo('en-US')
-    // console.log(filePath)
-
     const url = `https://www.coffeeclass.io/authors/${frontMatter.slug}`
     const title = `${frontMatter.name} | coffeeclass.io`
     const description = `coffeeclass.io articles written by ${frontMatter.name}. ${frontMatter.description}`
@@ -226,73 +221,79 @@ export default function Index({ articles, frontMatter, filePath, content }) {
                             spacing="40px"
                             columns={filteredArticles.length < 3 ? [1, 1, 1, 1, 2, 3] : null}
                         >
-                            {filteredArticles.map((post) => (
-                                <MotionBox
-                                    initial={{ opacity: 0, marginTop: 5 }}
-                                    animate={{ opacity: 1, marginTop: 0 }}
-                                    transition={{ duration: 1, delay: 0.3 }}
-                                    style={{
-                                        height: '100%',
-                                    }}
-                                    key={post.data.title}
-                                >
-                                    <NextLink href={`/articles/${post.filePath.replace(".mdx", "")}`} passHref>
-                                        <Link href={`/articles/${post.filePath.replace(".mdx", "")}`} _hover={{ textDecor: 'none' }}>
-                                            <Flex
-                                                flexDir="column"
-                                                bgColor={bgColor}
-                                                h="100%"
-                                                p={5}
-                                                borderRadius={5}
-                                                _hover={{
-                                                    boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
-                                                    transform: 'scale(1.05)',
-                                                }}
-                                                transition="box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out"
-                                                justify="space-between"
-                                            >
-                                                <Box>
-                                                    <Text minW={120} textAlign="center" color={color} fontSize="md" mb={6}>{timeAgo.format(new Date(post.data.publishedAt))}</Text>
-                                                    {post?.data?.logoImage &&
-                                                        <Box>
-                                                            <Box
-                                                                w={50}
-                                                                h={50}
-                                                                my={2}
-                                                                mx="auto"
-                                                            >
-                                                                <AspectRatio ratio={1}>
-                                                                    <Skeleton isLoaded={loaded}>
-                                                                        <NextImage
-                                                                            src={`/logos/${post.data.logoImage[0]}`}
-                                                                            alt={post?.data?.logoImage[0]}
-                                                                            layout="fill"
-                                                                            onLoad={() => setLoaded(true)}
-                                                                        />
-                                                                    </Skeleton>
-                                                                </AspectRatio>
-                                                            </Box>
-                                                        </Box>}
+                            {filteredArticles
+                                .sort(
+                                    (a, b) =>
+                                        Number(new Date(b.data.publishedAt)) -
+                                        Number(new Date(a.data.publishedAt))
+                                )
+                                .map((post) => (
+                                    <MotionBox
+                                        initial={{ opacity: 0, marginTop: 5 }}
+                                        animate={{ opacity: 1, marginTop: 0 }}
+                                        transition={{ duration: 1, delay: 0.3 }}
+                                        style={{
+                                            height: '100%',
+                                        }}
+                                        key={post.data.title}
+                                    >
+                                        <NextLink href={`/articles/${post.filePath.replace(".mdx", "")}`} passHref>
+                                            <Link href={`/articles/${post.filePath.replace(".mdx", "")}`} _hover={{ textDecor: 'none' }}>
+                                                <Flex
+                                                    flexDir="column"
+                                                    bgColor={bgColor}
+                                                    h="100%"
+                                                    p={5}
+                                                    borderRadius={5}
+                                                    _hover={{
+                                                        boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
+                                                        transform: 'scale(1.05)',
+                                                    }}
+                                                    transition="box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out"
+                                                    justify="space-between"
+                                                >
+                                                    <Box>
+                                                        <Text minW={120} textAlign="center" color={color} fontSize="md" mb={6}>{TimeAgo(new Date(post.data.publishedAt))}</Text>
+                                                        {post?.data?.logoImage &&
+                                                            <Box>
+                                                                <Box
+                                                                    w={50}
+                                                                    h={50}
+                                                                    my={2}
+                                                                    mx="auto"
+                                                                >
+                                                                    <AspectRatio ratio={1}>
+                                                                        <Skeleton isLoaded={loaded}>
+                                                                            <NextImage
+                                                                                src={`/logos/${post.data.logoImage[0]}`}
+                                                                                alt={post?.data?.logoImage[0]}
+                                                                                layout="fill"
+                                                                                onLoad={() => setLoaded(true)}
+                                                                            />
+                                                                        </Skeleton>
+                                                                    </AspectRatio>
+                                                                </Box>
+                                                            </Box>}
 
-                                                    {
-                                                        post?.data?.featureImg &&
-                                                        <Flex justify="center">
-                                                            <AspectRatio w="100%" ratio={16 / 9}>
-                                                                <NextImage src={`/content/articles/${post?.filePath.replace(".mdx", "")}/${post?.data?.featureImg}`} alt={post?.data?.title} layout="fill" />
-                                                            </AspectRatio>
-                                                        </Flex>
-                                                    }
-                                                    <Heading as="h3" size="md" mt={4} fontWeight="normal">{post.data.title}</Heading>
-                                                </Box>
-                                                <Flex mt={4} align="center">
-                                                    <Text color="brand_one.500" fontSize="lg">Read article</Text>
-                                                    <Icon color="brand_one.500" as={ChevronRightIcon} fontSize="2xl" />
+                                                        {
+                                                            post?.data?.featureImg &&
+                                                            <Flex justify="center">
+                                                                <AspectRatio w="100%" ratio={16 / 9}>
+                                                                    <NextImage src={`/content/articles/${post?.filePath.replace(".mdx", "")}/${post?.data?.featureImg}`} alt={post?.data?.title} layout="fill" />
+                                                                </AspectRatio>
+                                                            </Flex>
+                                                        }
+                                                        <Heading as="h3" size="md" mt={4} fontWeight="normal">{post.data.title}</Heading>
+                                                    </Box>
+                                                    <Flex mt={4} align="center">
+                                                        <Text color="brand_one.500" fontSize="lg">Read article</Text>
+                                                        <Icon color="brand_one.500" as={ChevronRightIcon} fontSize="2xl" />
+                                                    </Flex>
                                                 </Flex>
-                                            </Flex>
-                                        </Link>
-                                    </NextLink>
-                                </MotionBox>
-                            ))}
+                                            </Link>
+                                        </NextLink>
+                                    </MotionBox>
+                                ))}
                         </SimpleGrid>
                     </Box>
                 </Box>

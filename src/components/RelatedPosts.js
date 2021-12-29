@@ -11,10 +11,9 @@ import {
     Wrap,
 } from '@chakra-ui/react'
 import NextImage from 'next/image'
-import TimeAgo from 'javascript-time-ago'
-import en from 'javascript-time-ago/locale/en'
 import NextLink from 'next/link'
 import Subscribe from '../components/Subscribe'
+import TimeAgo from "../scripts/time-ago"
 
 export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
     var relatedPosts = []
@@ -57,9 +56,6 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
         }
     }, [])
 
-    TimeAgo.addLocale(en)
-    const timeAgo = new TimeAgo('en-US')
-
     const bgColor = useColorModeValue("gray.200", "gray.700")
     const color = useColorModeValue("gray.500", "gray.400")
     const boxShadow = useColorModeValue("0px 8px 26px rgba(0, 0, 0, 0.25)", "0px 8px 26px rgba(255, 255, 255, 0.25)")
@@ -79,7 +75,6 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
 
     if (style == "sidebar") {
         return (
-            relatedPosts.length > 0 &&
             <>
                 <Flex
                     flexDir="column"
@@ -102,7 +97,7 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
                             {tags.map((tag, index) => {
                                 return (
                                     <Box key={index} px={2}>
-                                        <NextLink href="/tags/[tag]" as={`/tags/${tag}`} passHref>
+                                        <NextLink href={`/tags/${tag}`} passHref>
                                             <Link
                                                 href={`/tags/${tag}`}
                                                 color={color}
@@ -110,7 +105,7 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
                                                 fontWeight="semibold"
                                                 _hover={{ color: "brand_one.500" }}
                                             >
-                                                {tag}
+                                                #{tag}
                                             </Link>
                                         </NextLink>
                                     </Box>
@@ -131,7 +126,7 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
                         </Text>
                         {relatedPosts.slice(0, 5).map(post => {
                             return (
-                                <NextLink as={`/articles/${post.filePath.replace(/\.mdx?$/, '')}`} href={`/articles/[slug]`} key={post.data.title}>
+                                <NextLink href={`/articles/${post.filePath.replace(/\.mdx?$/, '')}`} key={post.data.title}>
                                     <Box
                                         p={2}
                                         _hover={{
@@ -149,7 +144,7 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
                                             my={1}
                                             fontWeight="normal"
                                         >
-                                            {post.data.title} &middot; {timeAgo.format(new Date(post.data.publishedAt))}
+                                            {post.data.title} &middot; {TimeAgo(new Date(post.data.publishedAt))}
                                         </Heading>
                                     </Box>
                                 </NextLink>
@@ -170,8 +165,7 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
                     <Flex overflowX="auto">
                         {relatedPosts.map(post => (
                             <NextLink
-                                as={`/articles/${post.filePath.replace(/\.mdx?$/, '')}`}
-                                href={`/articles/[slug]`}
+                                href={`/articles/${post.filePath.replace(/\.mdx?$/, '')}`}
                                 _hover={{
                                     cursor: "pointer",
                                 }}
@@ -191,7 +185,7 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
                                     }}
                                     maxW={200}
                                 >
-                                    <Text mb={2} minW={120} textAlign="center" color={color} fontSize="xs">{timeAgo.format(new Date(post.data.publishedAt))}</Text>
+                                    <Text mb={2} minW={120} textAlign="center" color={color} fontSize="xs">{TimeAgo(new Date(post.data.publishedAt))}</Text>
                                     {post?.data?.logoImage &&
                                         <Box>
                                             <Box
@@ -227,6 +221,6 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
                         ))}
                     </Flex>
                 </Flex>
-            </> : <Text fontSize="lg">No related posts! Like {tags[0]}? Try <NextLink href="/contribute/getting-started" passHref><Link href="/contributing/getting-started" color="brand_one.500">writing about it</Link></NextLink>.</Text>
+            </> : <Text fontSize="lg" px={4}>No related posts! Like {tags[0]}? Try <NextLink href="/contribute/getting-started" passHref><Link href="/contributing/getting-started" color="brand_one.500">writing about it</Link></NextLink>.</Text>
     )
 }

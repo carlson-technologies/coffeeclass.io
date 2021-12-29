@@ -7,7 +7,7 @@ import FeedBackFish from "./Navigation/FeedBackFish";
 
 interface Props {
   title: string;
-  description: string;
+  description?: string; // optional because we have the default SEO description
   url: string;
   children: ReactChild[] | ReactChild;
 }

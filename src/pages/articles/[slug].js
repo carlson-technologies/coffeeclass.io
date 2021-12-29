@@ -111,8 +111,9 @@ export default function PostPage({ source, frontMatter, posts }) {
                         mt={2}
                         as="h1"
                         size={size}
-                    // bgGradient={h1ColorGradient}
-                    // bgClip='text'
+                        bgGradient={h1ColorGradient}
+                        bgClip='text'
+                        py={4}
                     >
                         {frontMatter.title}
                     </Heading>
@@ -123,7 +124,7 @@ export default function PostPage({ source, frontMatter, posts }) {
                     <Flex flexGrow={1} flexDir="column" w="100%" px={4} maxW={850}>
                         <Text
                             fontSize="xl"
-                            my={2}
+                            mb={2}
                             color={color1[colorMode]}
                         >
                             {frontMatter.description}

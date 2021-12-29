@@ -97,7 +97,7 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
                             {tags.map((tag, index) => {
                                 return (
                                     <Box key={index} px={2}>
-                                        <NextLink href="/tags/[tag]" as={`/tags/${tag}`} passHref>
+                                        <NextLink href={`/tags/${tag}`} passHref>
                                             <Link
                                                 href={`/tags/${tag}`}
                                                 color={color}
@@ -126,7 +126,7 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
                         </Text>
                         {relatedPosts.slice(0, 5).map(post => {
                             return (
-                                <NextLink as={`/articles/${post.filePath.replace(/\.mdx?$/, '')}`} href={`/articles/[slug]`} key={post.data.title}>
+                                <NextLink href={`/articles/${post.filePath.replace(/\.mdx?$/, '')}`} key={post.data.title}>
                                     <Box
                                         p={2}
                                         _hover={{
@@ -165,8 +165,7 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
                     <Flex overflowX="auto">
                         {relatedPosts.map(post => (
                             <NextLink
-                                as={`/articles/${post.filePath.replace(/\.mdx?$/, '')}`}
-                                href={`/articles/[slug]`}
+                                href={`/articles/${post.filePath.replace(/\.mdx?$/, '')}`}
                                 _hover={{
                                     cursor: "pointer",
                                 }}

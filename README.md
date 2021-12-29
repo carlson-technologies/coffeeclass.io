@@ -6,26 +6,34 @@ Learn programming and computer science for free.
 
 ## Project Overview
 
+This website is a platform to learn to code. It is inspired by sites like [freeCodeCamp](https://www.freecodecamp.org) and [CSS Tricks](https://css-tricks.com). coffeeclass.io is open source and we encourage contributions to both the website itself and the content! Read on to learn more about the project.
+
 ### Quick Start
 
-1. Clone this repo
+1. Clone this repo: `git clone https://github.com/carlson-technologies/coffeeclass.io.git`
 2. Move into root (where this file is) and run `yarn`
-3. Create a `.env` file and copy into it the content of `.env.example`. It *will* run without these.
+3. (Optional) Create a `.env` file and copy into it the content of `.env.example`. It *will* run without these.
 4. Run `yarn dev` to start the server
 5. Navigate to http://localhost:3000
-6. If you are creating a PR, create a new branch and before you commit run `yarn build`. This will run the tests and make sure everything is working.
+
+If you are creating a PR, **create a new branch**. Before you commit run `yarn build`. This will run the tests and make sure everything is working.
+
+Note: If you are not planning on making a PR, you can run `rm -rf .git` to remove git tracking.
 
 ### Tech Stack Overview
 
 - 🚀 Next.js - Framework
 - 🎨 Chakra UI - CSS Component Library
-- 📜 TypeScript (and some JavaScript)
+- 📜 TypeScript (and some JavaScript) - Web language of choice
 - 🧪 Jest - Testing
 - ✍🏼 MDX - Database for Article, Authors, Courses, Tags
 - 🔺 Vercel - Deployment
 - 💻 GitHub - Version Control
 - 📊 Google Analytics - Analytics
 - 🐝 Splitbee - More Analytics
+- 🔎 Algolia - Search
+
+Besides the above, this site uses additional yarn packages and some other smaller external software.
 
 ### Deep(er-ish) Dive
 

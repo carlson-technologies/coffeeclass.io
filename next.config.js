@@ -18,12 +18,12 @@ module.exports = withMDX({
                 permanent: true,
             },
             {
-                source: '/tutorials/add-firebase-to-flutter-mobile-app',
+                source: '/snippets/add-firebase-to-flutter-mobile-app',
                 destination: '/articles/add-firebase-to-flutter-mobile-app',
                 permanent: true,
             },
             {
-                source: '/snippets/add-firebase-to-nextjs',
+                source: '/tutorials/add-firebase-to-nextjs',
                 destination: '/articles/add-firebase-to-nextjs',
                 permanent: true,
             },

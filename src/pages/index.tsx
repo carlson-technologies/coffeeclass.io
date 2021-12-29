@@ -26,8 +26,6 @@ import TimeAgo from "../scripts/time-ago";
 
 const url = "https://www.coffeeclass.io/";
 const title = "coffeeclass.io Home";
-const description =
-  "Explore the latest programming and computer science articles and learn programming for free on coffeeclass.io.";
 
 /*
 (property) posts: {
@@ -62,7 +60,7 @@ export default function Index({ posts }: Props) {
   const bgColor = useColorModeValue("gray.100", "gray.900");
 
   return (
-    <Container title={title} description={description} url={url}>
+    <Container title={title} url={url}>
       <Flex flexDir="column" maxW="110em">
         <Flex
           flexDir="column"

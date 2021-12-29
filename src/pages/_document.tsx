@@ -39,6 +39,7 @@ export default class MyDocument extends Document {
         <Head>
           {/* PWA */}
           <link rel="manifest" href="/manifest.json" />
+          <link rel="apple-touch-icon" href="/favicon.ico"></link>
 
           {process.env.NODE_ENV === "production" && (
             <>

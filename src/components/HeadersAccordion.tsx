@@ -33,9 +33,9 @@ export default function HeadersAccordion({ headers }: any) {
           </AccordionButton>
         </h2>
         <AccordionPanel>
-          {headers?.map((h: any) => {
+          {headers?.map((h: any, index: number) => {
             return (
-              <Link href={`#${h.text}`} key={h.text}>
+              <Link href={`#${h.text}`} key={index}>
                 <Box
                   p={1}
                   _hover={{

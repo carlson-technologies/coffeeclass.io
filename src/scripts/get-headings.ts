@@ -1,8 +1,10 @@
 export default async function getHeadings(source: any) {
     // Get each line individually, and filter out anything that
-    // isn't a heading.
+    // isn't a heading. Ignore headings within code blocks.
+    let isInCodeBlock = false;
     const headingLines = source.split('\n').filter((line: any) => {
-        return line.match(/^###*\s/);
+        if (line.match(/^```/)) { isInCodeBlock = !isInCodeBlock };
+        return isInCodeBlock ? false : line.match(/^###*\s/);
     });
 
     // Transform the string '## Some text' into an object

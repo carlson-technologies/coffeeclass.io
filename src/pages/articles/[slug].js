@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import fs from 'fs'
 import matter from 'gray-matter'
 import { serialize } from 'next-mdx-remote/serialize'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { MDXRemote } from 'next-mdx-remote'
 import path from 'path'
 import { contentFilePaths, CONTENT_PATH } from '../../scripts/mdx-utils'
@@ -16,11 +17,6 @@ import {
     useColorMode,
     Button,
     Divider,
-    Accordion,
-    AccordionItem,
-    AccordionButton,
-    AccordionPanel,
-    AccordionIcon,
     Box,
     Heading,
     useColorModeValue,
@@ -45,6 +41,7 @@ import WrittenBy from '../../components/WrittenBy'
 import useSWR from "swr"
 import fetcher from '../../scripts/fetcher'
 import TimeAgo from '../../scripts/time-ago'
+import HeadersAccordion from "../../components/HeadersAccordion";
 
 export default function PostPage({ source, frontMatter, posts }) {
     const { colorMode } = useColorMode()
@@ -83,8 +80,6 @@ export default function PostPage({ source, frontMatter, posts }) {
     })
 
     const bgColor = useColorModeValue("gray.100", "gray.700")
-    const bgColor1 = useColorModeValue("gray.100", "gray.700")
-    const hoverBg = useColorModeValue("gray.100", "gray.700")
     const h1ColorGradient = useColorModeValue("linear(to-r, black, black)", "linear(to-r, gray.200, yellow.400, pink.200, red.200)")
 
     return (
@@ -150,49 +145,7 @@ export default function PostPage({ source, frontMatter, posts }) {
                                 </AspectRatio>
                             </Flex>
                         }
-                        <Accordion allowMultiple mt={4}>
-                            <AccordionItem>
-                                <h2>
-                                    <AccordionButton _hover={{ bgColor: hoverBg }}>
-                                        <Box flex="1" textAlign="left">
-                                            On this page
-                                        </Box>
-                                        <AccordionIcon />
-                                    </AccordionButton>
-                                </h2>
-                                <AccordionPanel>
-                                    {frontMatter?.headers.map((h) => {
-                                        return (
-                                            <Link href={`#${h.text}`} key={h.text}>
-                                                <Box
-                                                    p={1}
-                                                    _hover={{
-                                                        bgColor: bgColor1,
-                                                        cursor: "pointer",
-                                                    }}
-                                                    my={1}
-                                                    borderRadius={2}
-                                                >
-                                                    <Heading
-                                                        as="h4"
-                                                        size="sm"
-                                                        color={color[colorMode]}
-                                                        my={1}
-                                                    >
-                                                        <Text
-                                                            ml={(h.level - 2) * 6}
-                                                            _hover={{ textDecor: 'none' }}
-                                                        >
-                                                            {h.text}
-                                                        </Text>
-                                                    </Heading>
-                                                </Box>
-                                            </Link>
-                                        )
-                                    })}
-                                </AccordionPanel>
-                            </AccordionItem>
-                        </Accordion>
+                        <HeadersAccordion headers={frontMatter?.headers} />
                         <Ad />
                         <Box id="main-content">
                             <MDXRemote {...source} components={MDXComponents} />
@@ -211,7 +164,6 @@ export default function PostPage({ source, frontMatter, posts }) {
                         <div>
                             <Box w={300} overflow="scroll" pos="sticky" top={10}>
                                 <RelatedPosts style="sidebar" tags={frontMatter.tags} posts={posts} currPostTitle={frontMatter.title} />
-                                <Ad />
                             </Box>
                         </div>
                     </Flex>
@@ -256,7 +208,7 @@ export default function PostPage({ source, frontMatter, posts }) {
                     </Box>
                 </Box>
             </motion.div>
-        </Container >
+        </Container>
     )
 }
 
@@ -271,7 +223,7 @@ export const getStaticProps = async ({ params }) => {
         mdxOptions: {
             remarkPlugins: [
                 require('remark-code-titles'),
-                // require('rehype-autolink-headings')
+                rehypeAutolinkHeadings,
             ],
             rehypePlugins: [mdxPrism],
         },

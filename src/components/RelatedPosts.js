@@ -6,7 +6,6 @@ import {
     Box,
     useColorModeValue,
     AspectRatio,
-    Skeleton,
     Link,
     Wrap,
 } from '@chakra-ui/react'
@@ -14,6 +13,7 @@ import NextImage from 'next/image'
 import NextLink from 'next/link'
 import Subscribe from '../components/Subscribe'
 import TimeAgo from "../scripts/time-ago"
+import Ad from '../components/Content/Ad'
 
 export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
     var relatedPosts = []
@@ -65,14 +65,6 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
 
     const [loaded, setLoaded] = useState(false)
 
-    // const MySkeleton = ({ children }) => {
-    //     return (
-    //         <Skeleton isLoaded={loaded}>
-    //             {children}
-    //         </Skeleton>
-    //     )
-    // }
-
     if (style == "sidebar") {
         return (
             <>
@@ -113,17 +105,19 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
                             })}
                         </Wrap>
 
-                        <Text
-                            mt={8}
-                            mb={2}
-                            mx={2}
-                            textTransform="uppercase"
-                            color={headerColor}
-                            fontSize="sm"
-                            fontWeight="semibold"
-                        >
-                            Related Posts
-                        </Text>
+                        {relatedPosts.length > 0 && (
+                            <Text
+                                mt={8}
+                                mb={2}
+                                mx={2}
+                                textTransform="uppercase"
+                                color={headerColor}
+                                fontSize="sm"
+                                fontWeight="semibold"
+                            >
+                                Related Posts
+                            </Text>
+                        )}
                         {relatedPosts.slice(0, 5).map(post => {
                             return (
                                 <NextLink href={`/articles/${post.filePath.replace(/\.mdx?$/, '')}`} key={post.data.title}>
@@ -151,6 +145,7 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
                             )
                         })}
                         <Subscribe isSidebar />
+                        <Ad />
                     </Box>
                 </Flex>
             </>

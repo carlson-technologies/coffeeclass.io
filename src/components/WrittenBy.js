@@ -16,7 +16,7 @@ export default function WrittenBy({ frontMatter }) {
         dark: 'gray.500'
     }
 
-    const { data, error } = useSWR(`/api/getAuthor?authorSlug=${frontMatter.author.replace(".mdx","")}`, fetcher)
+    const { data, error } = useSWR(`/api/getAuthor?authorSlug=${frontMatter.author.replace(".mdx", "")}`, fetcher)
 
     if (process.env.NODE_ENV === 'development') {
         if (data) console.log(data)
@@ -31,7 +31,11 @@ export default function WrittenBy({ frontMatter }) {
         <>
             <Avatar src={`/authors/${data.data.data.image}`} size="xl" mb={2} alt={`Image of ${frontMatter.author}`} />
             <Flex flexDir="column" align="center" px={4} textAlign="center">
-                <Text>Written By {data.data.data.name}</Text>
+                {
+                    data.data.data.links.twitter ?
+                        <Text>Written By <Link textDecor="underline" href={data.data.data.links.twitter} isExternal>{data.data.data.name}</Link></Text>
+                        : <Text>Written By {data.data.data.name}</Text>
+                }
                 <Text color={color[colorMode]}>{data.data.content}</Text>
                 <Text mt={4}><Link href={`/authors/${frontMatter.author.replace(".mdx", "")}`} fontWeight="bold">More Articles By {data.data.data.name}</Link></Text>
             </Flex>

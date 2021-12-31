@@ -117,20 +117,22 @@ export default function PostPage({ source, frontMatter, posts }) {
                 <Flex justify="center">
                     {/* main content */}
                     <Flex flexGrow={1} flexDir="column" w="100%" px={4} maxW={850}>
-                        <Text
-                            fontSize="xl"
-                            mb={2}
-                            color={color1[colorMode]}
-                        >
-                            {frontMatter.description}
-                        </Text>
-                        <Text
-                            fontSize="md"
-                            color={color[colorMode]}
-                            mb={4}
-                        >
-                            {frontMatter.readingTime.text} &middot; {frontMatter.readingTime.words} words &middot; Shared {TimeAgo(new Date(frontMatter.publishedAt))} by <Box _hover={{ borderBottomColor: useColorModeValue("brand_one.700", "brand_one.500") }} as="span" borderBottom="2px solid" borderBottomColor="transparent" transition="border-bottom-color .2s ease-in-out"><Link href="#author-bio" color={useColorModeValue("brand_one.700", "brand_one.500")} _hover={{ TextDecoder: 'none' }}>{data?.data?.data?.name}</Link></Box> {frontMatter.updatedAt && `· Updated ${TimeAgo(new Date(frontMatter.publishedAt))}`}
-                        </Text>
+                        <Box bgColor={bgColor} p={5} borderRadius={5}>
+                            <Text
+                                fontSize="md"
+                                color={color[colorMode]}
+                                mb={4}
+                            >
+                                {frontMatter.readingTime.text} &middot; {frontMatter.readingTime.words} words &middot; Shared {TimeAgo(new Date(frontMatter.publishedAt))} by <Box _hover={{ borderBottomColor: useColorModeValue("brand_one.700", "brand_one.500") }} as="span" borderBottom="2px solid" borderBottomColor="transparent" transition="border-bottom-color .2s ease-in-out"><Link href="#author-bio" color={useColorModeValue("brand_one.700", "brand_one.500")} _hover={{ TextDecoder: 'none' }}>{data?.data?.data?.name}</Link></Box> {frontMatter.updatedAt && `· Updated ${TimeAgo(new Date(frontMatter.publishedAt))}`}
+                            </Text>
+                            <Text
+                                fontSize="xl"
+                                mb={2}
+                                color={color1[colorMode]}
+                            >
+                                <strong>Quick Summary:</strong> {frontMatter.description}
+                            </Text>
+                        </Box>
                         {
                             frontMatter.youtubeId &&
                             <Flex justify="center">

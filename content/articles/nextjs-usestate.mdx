@@ -1,0 +1,85 @@
+---
+title: "useState() Hook in Next.JS - React Hooks"
+description: "Learn what useState is and learn how to use useState in Next.JS by coding some examples."
+seoDescription: "Learn what useState is and learn how to use useState in Next.JS by coding some examples."
+author: "benjamin-carlson.mdx"
+publishedAt: "2021-12-30T21:30:00"
+tags: ["react", "usestate", "nextjs", "react-hooks"]
+logoImage: ["react.png"]
+---
+
+## Hooks Overview
+
+React Hooks were introducted React 16.8. They allow you to create stateful components without writing a class. For more info, check out [an article](using-react-useeffect) we wrote on the `useEffect` hook.
+
+## What is `useState` Hook?
+
+The `useState` hook lets you manage state throughout your application. Let's take a look at an example.
+
+### What does calling useState do?
+
+Simply put, a state variable persists the state throughout the lifecycle of your application instead of dissapearing when the function is exited.
+
+> From the React Docs:  It declares a “state variable”. Our variable is called count but we could call it anything else, like banana. This is a way to “preserve” some values between the function calls — useState is a new way to use the exact same capabilities that this.state provides in a class. Normally, variables “disappear” when the function exits but state variables are preserved by React.
+
+### `useState` Hook Example
+
+```javascript
+import React, { useState } from 'react';
+
+function Example() {
+  // Declare a new state variable, which we'll call "count"
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+```
+
+The example above is from the [React docs](https://reactjs.org/docs/hooks-state.html). As you can see, we are storing the count inside a state variable.
+
+We can access the count from the `count` variable and we can change the count using the `setCount` function.
+
+> You cannot change a useState variable directly (i.e. `count = 7`) because it is read only. You must use the `setCount` function to change the value.
+
+### More Complex Example
+
+You can also store more than a simple number in a state variable. Let's look at some examples.
+
+```javascript
+const [count, setCount] = useState(0);
+const [name, setName] = useState('Max');
+const [items, setItems] = useState([1, 2, 3]);
+const [bool, setBool] = useState(true);
+const [obj, setObj] = useState({ a: 1, b: 2 });
+const [null, setNull] = useState(null);
+```
+
+As you can see, we can store ints, strings, arrays, booleans, objects, nulls, custom objects, and more inside of a `useState` variable.
+
+## Uses of `useState`
+
+A cool use of `useState` is to dynamically change a `css` value. Maybe as the user scrolls, we want to change the `font-size` of the text.
+
+```javascript
+const [fontSize, setFontSize] = useState('10px')
+const handleScroll = () => {
+    setFontSize(window.scrollY + "px")
+}
+
+...
+
+<p style={{ fontSize: fontSize }}>
+    Hello World
+</p>
+```
+
+The `p` tag above will increase in size as the user scrolls down the page!
+
+Enjoyed this article on useState? Exmplore more [React hooks](/tags/react-hooks)!

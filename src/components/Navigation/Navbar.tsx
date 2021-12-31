@@ -43,7 +43,7 @@ const Tags = () => {
     "nextjs",
     "dart",
     "javascript",
-    "hooks",
+    "react-hooks",
   ];
 
   return (

@@ -170,7 +170,7 @@ export default function PostPage({ source, frontMatter, posts }) {
                     </Flex>
                 </Flex>
                 <Box maxW={800} mx="auto" id="end-content">
-                    <Flex
+                    {/* <Flex
                         justify="center"
                         flexDir="column"
                         mt={8}
@@ -189,7 +189,7 @@ export default function PostPage({ source, frontMatter, posts }) {
                             </Button>
                         </Link>
                     </Flex>
-                    <Divider mt={12} mb={4} alignSelf="center" />
+                    <Divider mt={12} mb={4} alignSelf="center" /> */}
                     <Flex flexDir="column" m="auto" my={10}>
                         <RelatedPosts tags={frontMatter.tags} posts={posts} currPostTitle={frontMatter.title} />
                     </Flex>

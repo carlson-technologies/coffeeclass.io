@@ -26,6 +26,7 @@ import ExampleColorModeComponent from "./Content/ExampleColorModeComponent";
 import FloatUpDivAnimation from "./Content/FloatUpDivAnimation";
 import FloatUpDivAnimationNoHeight from "./Content/FloatUpDivAnimationNoHeight";
 import Step from "./Content/Step";
+import FeaturedPost from "./Content/FeaturedPost";
 
 const Quote = (props: any) => {
   const { colorMode } = useColorMode();
@@ -214,6 +215,7 @@ const MDXComponents = {
   FloatUpDivAnimation,
   FloatUpDivAnimationNoHeight,
   Step,
+  FeaturedPost,
   // props.className.split("language-")[1] <- get language of pre
 };
 

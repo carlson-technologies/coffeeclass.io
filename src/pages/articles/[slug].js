@@ -25,9 +25,8 @@ import {
     Icon,
     useBreakpointValue,
 } from '@chakra-ui/react'
-import Comments from '../../components/Comments'
+// import Comments from '../../components/Comments'
 import { motion } from 'framer-motion'
-import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import RelatedPosts from '../../components/RelatedPosts'
 import Ad from '../../components/Content/Ad'
@@ -204,10 +203,10 @@ export default function PostPage({ source, frontMatter, posts }) {
                     >
                         <WrittenBy frontMatter={frontMatter} />
                     </Flex>
-                    <Divider mt={12} mb={8} alignSelf="center" />
+                    {/* <Divider mt={12} mb={8} alignSelf="center" />
                     <Box px={4}>
                         <Comments />
-                    </Box>
+                    </Box> */}
                 </Box>
             </motion.div>
         </Container>

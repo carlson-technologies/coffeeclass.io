@@ -17,12 +17,13 @@ test('Correctly parses ### at level 3', () => {
 })
 
 test('Correctly parses <Step> component at level 2', () => {
-  expect(headings.find((heading: any) => heading.text === "1. Title")).toBeTruthy();
+  expect(headings.find((heading: any) => heading.text === "Title")).toBeTruthy();
+  expect(headings.find((heading: any) => heading.text.includes('No Step Number'))).toBeTruthy();
 })
 
 test('Ignores <Step> components if they are missing number or title', () => {
   expect(headings.find((heading: any) => heading.text.includes('25'))).toBeFalsy();
-  expect(headings.find((heading: any) => heading.text.includes('No Step Number'))).toBeFalsy();
+
 })
   
 test('Ignores # lines', () => {

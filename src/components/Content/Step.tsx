@@ -1,10 +1,14 @@
 import {
     Heading,
-    Box,
     Flex
 } from '@chakra-ui/react'
 
-const Step = ({ number, title }) => {
+type StepProps = {
+    number: number,
+    title: string,
+};
+
+const Step = ({ number, title }: StepProps) => {
 
     // for (let i = 0; i < title.length; i++) {
     //     if (title[i] == '`') {

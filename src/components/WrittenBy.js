@@ -32,7 +32,7 @@ export default function WrittenBy({ frontMatter }) {
             <Avatar src={`/authors/${data.data.data.image}`} size="xl" mb={2} alt={`Image of ${frontMatter.author}`} />
             <Flex flexDir="column" align="center" px={4} textAlign="center">
                 {
-                    data.data.data.links.twitter ?
+                    data.data.data.links?.twitter ?
                         <Text>Written By <Link textDecor="underline" href={data.data.data.links.twitter} isExternal>{data.data.data.name}</Link></Text>
                         : <Text>Written By {data.data.data.name}</Text>
                 }

@@ -6,6 +6,10 @@ const runtimeCaching = require('next-pwa/cache')
 
 module.exports = withMDX(withPWA({
     pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
+    images: {
+        formats: ['image/avif', 'image/webp']
+    },
+    swcMinify: true,
     webpack: (config, { isServer }) => {
         if (!isServer) {
             config.resolve.fallback.fs = false;

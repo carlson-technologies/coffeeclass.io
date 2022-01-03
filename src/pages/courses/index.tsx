@@ -1,4 +1,3 @@
-import { ReactChild } from "react";
 import { Heading, Flex, Stack, Box, SimpleGrid } from "@chakra-ui/react";
 import Container from "../../components/Container";
 import courses from "../../configs/courses.json";
@@ -11,13 +10,6 @@ const description =
 
 export default function Index() {
   const data = courses.routes;
-
-  const course = {
-    title: "Coming Soon!",
-    description: "",
-    image: "",
-    path: "",
-  }
 
   return (
     <Container title={title} description={description} url={url}>
@@ -42,7 +34,6 @@ export default function Index() {
             {data.map((course, index) => {
               return <CourseCard course={course} key={index} />;
             })}
-            <CourseCard course={course} />
           </SimpleGrid>
         </Flex>
       </Stack>

@@ -17,7 +17,7 @@ export default function Layout({ children, frontMatter }) {
             <SEO url={`https://www.coffeeclass.io${slug}`} {...frontMatter} />
 
             <Flex>
-                <Flex display={['none', 'none', 'none', 'none', 'none', 'flex']} bgColor={useColorModeValue("gray.100", "gray.700")}>
+                <Flex minH="100vh" display={['none', 'none', 'none', 'none', 'none', 'flex']} bgColor={useColorModeValue("gray.100", "gray.700")}>
                     <div>
                         <Box w={300} overflow="scroll" pos="sticky" top={10}>
                             <Sidebar course={router.query.course} />

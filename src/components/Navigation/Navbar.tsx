@@ -211,7 +211,12 @@ export default function Navbar() {
           </MenuButton>
           <MenuList onMouseEnter={onOpen} onMouseLeave={onClose} mt="-8px">
             <MenuGroup title="CSS Frameworks">
-              <MenuItem>
+              <MenuItem
+                bgColor={
+                  router.query.course == "chakra-ui" &&
+                  useColorModeValue("gray.200", "gray.600")
+                }
+              >
                 <Flex align="center" h="100%">
                   <SkeletonCircle isLoaded={loaded} mr={2} h="100%">
                     <NextLink href="/courses/chakra-ui" passHref>
@@ -237,6 +242,45 @@ export default function Navbar() {
                     </Link>
                   </NextLink>
                 </Flex>
+              </MenuItem>
+            </MenuGroup>
+            <MenuGroup title="CS Fundamentals">
+              <MenuItem
+                bgColor={
+                  router.query.course == "data-structures" &&
+                  useColorModeValue("gray.200", "gray.600")
+                }
+              >
+                <Tooltip label="Coming Soon!">
+                  <Flex align="center" h="100%">
+                    <SkeletonCircle isLoaded={loaded} mr={2} h="100%">
+                      <NextLink href="/courses/data-structures" passHref>
+                        <Link href="/courses/data-structures">
+                          <AspectRatio ratio={1}>
+                            <Box
+                              w={8}
+                              h={8}
+                              borderRadius={5}
+                              bgColor={useColorModeValue(
+                                "gray.100",
+                                "gray.900"
+                              )}
+                            />
+                          </AspectRatio>
+                        </Link>
+                      </NextLink>
+                    </SkeletonCircle>
+                    <NextLink href="/courses/data-structures" passHref>
+                      <Link
+                        _hover={{ textDecor: "none" }}
+                        w="100%"
+                        href="/courses/data-structures"
+                      >
+                        Data Structures
+                      </Link>
+                    </NextLink>
+                  </Flex>
+                </Tooltip>
               </MenuItem>
             </MenuGroup>
             <MenuGroup title="Coming Soon">
@@ -270,40 +314,6 @@ export default function Navbar() {
                       w="100%"
                     >
                       Algorithms
-                    </Link>
-                  </Flex>
-                </Tooltip>
-              </MenuItem>
-              <MenuItem>
-                <Tooltip label="Coming Soon!">
-                  <Flex align="center" h="100%">
-                    <SkeletonCircle isLoaded={loaded} mr={2} h="100%">
-                      <NextLink href="/courses/chakra-ui" passHref>
-                        <Link href="/courses/chakra-ui">
-                          <AspectRatio ratio={1}>
-                            <Box
-                              w={8}
-                              h={8}
-                              borderRadius={5}
-                              bgColor={useColorModeValue(
-                                "gray.100",
-                                "gray.900"
-                              )}
-                            />
-                          </AspectRatio>
-                        </Link>
-                      </NextLink>
-                    </SkeletonCircle>
-                    <Link
-                      disabled={true}
-                      _disabled={{
-                        opacity: 0.5,
-                        cursor: "not-allowed",
-                      }}
-                      _hover={{ textDecor: "none" }}
-                      w="100%"
-                    >
-                      Data Structures
                     </Link>
                   </Flex>
                 </Tooltip>

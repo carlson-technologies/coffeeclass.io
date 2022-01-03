@@ -1,17 +1,32 @@
 {
   "title": "Data Structures",
-  "description": "Learn Chakra UI - a modular and accessible component library for React apps. Learn how to add Chakra UI to a Next.js website, get an overview of it's components, use it to build a modern, responsive landing page, and more.",
-  "image": "chakra-ui.png",
+  "description": "todo",
+  "image": "todo.png",
   "base": "/courses/data-structures",
-  "version": "v1.6.10",
+  "version": "",
   "routes": [
     {
       "title": "👶 Introduction",
       "routes": [
         {
+          "title": "Course Introduction",
+          "description": "An introduction to this course.",
+          "path": "/courses/data-structures/course-introduction"
+        }
+      ]
+    },
+    {
+      "title": "👶 Basics",
+      "routes": [
+        {
           "title": "Arrays",
           "description": "arrays",
           "path": "/courses/data-structures/arrays"
+        },
+        {
+          "title": "Linked Lists",
+          "description": "linked lists",
+          "path": "/courses/data-structures/linked-lists"
         }
       ]
     }

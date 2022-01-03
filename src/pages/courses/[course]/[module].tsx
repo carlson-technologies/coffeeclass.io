@@ -51,7 +51,9 @@ export default function PostPage({ source, frontMatter, params }: Props) {
           <Text color={useColorModeValue("gray.600", "gray.400")} fontSize="xl">
             {frontMatter.description}
           </Text>
-          <HeadersAccordion headers={frontMatter?.headers} />
+          <Box display={["auto", "auto", "auto", "auto", "auto", "none"]}>
+            <HeadersAccordion headers={frontMatter?.headers} />
+          </Box>
         </Box>
         <Flex flexDir="column" id="main-content">
           <Ad />
@@ -72,7 +74,7 @@ export default function PostPage({ source, frontMatter, params }: Props) {
           <Link textDecor="underline" _hover={{ opacity: 0.8 }} w="fit-content">
             <Icon as={ExternalLinkIcon} mr={2} />
             <Link
-              href={`https://github.com/carlson-technologies/coffeeclass.io/tree/main/content/courses/chakra-ui/${params.module}.mdx`}
+              href={`https://github.com/carlson-technologies/coffeeclass.io/tree/main/content/courses/${params.course}/${params.module}.mdx`}
               isExternal
             >
               Edit on GitHub

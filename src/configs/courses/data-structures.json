@@ -19,6 +19,11 @@
       "title": "👶 Basics",
       "routes": [
         {
+          "title": "Big \"O\" Notation",
+          "description": "A brief introduction to the Big \"O\" Notation.",
+          "path": "/courses/data-structures/big-o-notation"
+        },
+        {
           "title": "Arrays",
           "description": "arrays",
           "path": "/courses/data-structures/arrays"

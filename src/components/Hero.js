@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import {
     Text,
     Flex,
@@ -23,7 +22,6 @@ import { motion } from 'framer-motion'
 const MotionBox = motion(Box)
 
 export default function Hero() {
-    const [loaded, setLoaded] = useState(false)
     const logoType = useColorModeValue('dark', 'light')
     return (
         <>
@@ -93,7 +91,7 @@ export default function Hero() {
                 alt=""
                 position="absolute"
                 top="70vh"
-                right="-5%"
+                right="5%"
                 transform="translate(-50%)"
                 width="150px"
                 height="150px"
@@ -169,74 +167,8 @@ export default function Hero() {
                         </NextLink>
                     </MotionBox>
                 </Flex>
-                {/* <Flex
-                    mx={4}
-                    borderRadius={15}
-                    flexDir="column"
-                    w="100%"
-                    maxW={500}
-                    bgColor={useColorModeValue("gray.200", "gray.800")}
-                >
-                    <Flex justify="center" overflow="hidden">
-                        <Skeleton isLoaded={loaded}>
-                            <NextLink href={chakra.base} passHref>
-                                <Link href={chakra.base}>
-                                    <div className="featured-tutorial-img">
-                                        <NextImage
-                                            width={500}
-                                            height={250}
-                                            objectFit="cover"
-                                            src={`/content/courses/chakra-ui/chakra-ui.png`}
-                                            alt={chakra.title}
-                                            onLoad={() => { setLoaded(true) }}
-                                        />
-                                    </div>
-                                </Link>
-                            </NextLink>
-                        </Skeleton>
-                    </Flex>
-                    <Flex
-                        flexDir="column"
-                        align="start"
-                        mx={[4, 4, 4, 2, 0, 0]}
-                        zIndex={1}
-                        p={5}
-                    >
-                        <Flex flexDir="column">
-                            <Heading as="h1" size="xl">
-                                <NextLink href={chakra.base} passHref>
-                                    <Link
-                                        href={chakra.base}
-                                    >
-                                        {chakra.title}
-                                    </Link>
-                                </NextLink>
-                            </Heading>
-                            <Text fontSize="xl" color={useColorModeValue("blackAlpha.700", "gray.400")} mt={2} mb={4}>{chakra.description}</Text>
-                            <Button as="a" href={chakra.routes[0].path} colorScheme="brand_one" variant="outline">Start Course</Button>
-                        </Flex>
-                    </Flex>
-                </Flex> */}
-
-
-                {/* make the motion box below have an bounce animation */}
-                <MotionBox
-
-                >
-                    <Icon as={ChevronDownIcon} fontSize="40px" color={useColorModeValue("gray.700", "gray.200")} zIndex={10} mb={10} />
-                </MotionBox>
+                <Icon as={ChevronDownIcon} fontSize="40px" color={useColorModeValue("gray.700", "gray.200")} zIndex={10} mb={10} />
             </Flex>
-            {/* <style jsx>{`
-            .featured-tutorial-img {
-                transition: opacity .5s ease-in-out, transform .5s ease-in-out;
-                border-radius: 20px;
-                overflow: hidden;
-            }
-            .featured-tutorial-img:hover {
-                opacity: .85;
-                transform: scale(1.1);
-            }
-            `}</style> */}
         </>
     )
 }

@@ -26,7 +26,7 @@ export default class MyDocument extends Document {
   render() {
     // Add splitbee event tracking
     function handleState() {
-      window.splitbee.track("Snippet Helpful");
+      window.splitbee.track("Button Click");
     }
 
     if (typeof window !== "undefined") {
@@ -40,6 +40,12 @@ export default class MyDocument extends Document {
           {/* PWA */}
           <link rel="manifest" href="/manifest.json" />
           <link rel="apple-touch-icon" href="/favicon.ico"></link>
+
+          {/* Algolia */}
+          {/* <link
+            rel="stylesheet"
+            href="https://unpkg.com/instantsearch.css@7/themes/satellite-min.css"
+          /> */}
 
           {process.env.NODE_ENV === "production" && (
             <>

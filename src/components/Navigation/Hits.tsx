@@ -1,13 +1,13 @@
-import { connectStateResults } from "react-instantsearch-dom";
+import { connectStateResults, connectHighlight } from "react-instantsearch-dom";
 import {
   Box,
   Text,
   Link,
-  Heading,
   useColorModeValue,
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
+  theme,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { ChevronRightIcon } from "@chakra-ui/icons";
@@ -17,6 +17,28 @@ interface Props {
   searchResults: any;
 }
 
+const CustomHighlight = connectHighlight(({ highlight, attribute, hit }) => {
+  const parsedHit = highlight({
+    highlightProperty: "_highlightResult",
+    attribute,
+    hit,
+  });
+
+  return (
+    <div>
+      {parsedHit.map((part) =>
+        part.isHighlighted ? (
+          <mark style={{ backgroundColor: theme.colors.orange[200] }}>
+            {part.value}
+          </mark>
+        ) : (
+          part.value
+        )
+      )}
+    </div>
+  );
+});
+
 function Hits({ searchState, searchResults }: Props) {
   const validQuery = searchState.query?.length >= 3; // 3 is the minimum query length
 
@@ -25,8 +47,26 @@ function Hits({ searchState, searchResults }: Props) {
 
   return (
     <>
+      {!validQuery && searchState.query?.length == 1 && (
+        <Text align="center" mt={4} fontSize="lg">
+          <Box as="span" fontWeight="bold">
+            2
+          </Box>{" "}
+          more characters to go!
+        </Text>
+      )}
+      {!validQuery && searchState.query?.length == 2 && (
+        <Text align="center" mt={4} fontSize="lg">
+          <Box as="span" fontWeight="bold">
+            1
+          </Box>{" "}
+          more!
+        </Text>
+      )}
       {searchResults?.hits.length === 0 && validQuery && (
-        <Text mt={2}>No results found!</Text>
+        <Text align="center" mt={4} fontSize="lg">
+          No results found!
+        </Text>
       )}
       {searchResults?.hits.length > 0 && validQuery && (
         <>
@@ -55,7 +95,9 @@ function Hits({ searchState, searchResults }: Props) {
                             </BreadcrumbLink>
                           </BreadcrumbItem>
                         </Breadcrumb>
-                        <Heading size="md">{hit.title}</Heading>
+                        <div className="title">
+                          <CustomHighlight attribute="title" hit={hit} />
+                        </div>
                       </Box>
                     </Link>
                   </NextLink>
@@ -86,7 +128,9 @@ function Hits({ searchState, searchResults }: Props) {
                               </BreadcrumbLink>
                             </BreadcrumbItem>
                           </Breadcrumb>
-                          <Heading size="md">{hit.name}</Heading>
+                          <div className="title">
+                            <CustomHighlight attribute="name" hit={hit} />
+                          </div>
                         </Box>
                       </Link>
                     </NextLink>
@@ -116,7 +160,9 @@ function Hits({ searchState, searchResults }: Props) {
                               <BreadcrumbLink href="/tags">Tag</BreadcrumbLink>
                             </BreadcrumbItem>
                           </Breadcrumb>
-                          <Heading size="md">#{hit.title}</Heading>
+                          <div className="title">
+                            <CustomHighlight attribute="title" hit={hit} />
+                          </div>
                         </Box>
                       </Link>
                     </NextLink>
@@ -127,6 +173,12 @@ function Hits({ searchState, searchResults }: Props) {
           ))}
         </>
       )}
+
+      <style jsx>{`
+        .title {
+          font-size: ${theme.fontSizes.lg};
+        }
+      `}</style>
     </>
   );
 }

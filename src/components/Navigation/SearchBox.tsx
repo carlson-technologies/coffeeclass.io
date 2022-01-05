@@ -9,7 +9,7 @@ let placeHolderArray = [
 
 function SearchBox({ refine }: any) {
   return (
-    <Box>
+    <>
       <Input
         w="100%"
         id="algolia_search"
@@ -23,8 +23,9 @@ function SearchBox({ refine }: any) {
         autoCapitalize="off"
         spellCheck="false"
         autoComplete="off"
+        title="Search"
       />
-    </Box>
+    </>
   );
 }
 

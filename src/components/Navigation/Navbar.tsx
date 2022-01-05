@@ -30,64 +30,6 @@ import DarkModeSwitch from "./DarkModeSwitch";
 import NavBarDrawer from "./NavbarDrawer";
 import Search from "./Search";
 
-const Tags = () => {
-  const bg = useColorModeValue("gray.200", "gray.700");
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const router = useRouter();
-
-  let featuredTags = [
-    "chakra-ui",
-    "react",
-    "firebase",
-    "flutter",
-    "nextjs",
-    "dart",
-    "javascript",
-    "react-hooks",
-  ];
-
-  return (
-    <>
-      <Menu isOpen={isOpen} isLazy>
-        <MenuButton
-          variant="ghost"
-          onClick={() => router.push("/tags")}
-          mx={1}
-          py={[1, 2, 2]}
-          px={4}
-          borderRadius={5}
-          _hover={{ bg: bg }}
-          aria-label="Courses"
-          fontWeight="normal"
-          bgColor={router.pathname.includes("/tags") && bg}
-          onMouseEnter={onOpen}
-          onMouseLeave={onClose}
-          display={["none", "none", "none", "none", "none", "flex"]}
-        >
-          Tags {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
-        </MenuButton>
-        <MenuList onMouseEnter={onOpen} onMouseLeave={onClose} mt="-8px">
-          <MenuGroup title="Featured">
-            {featuredTags.map((tag, index) => (
-              <NextLink href={`/tags/${tag}`} key={index}>
-                <MenuItem>#{tag}</MenuItem>
-              </NextLink>
-            ))}
-          </MenuGroup>
-          <MenuDivider />
-          <MenuItem>
-            <NextLink href="/tags" passHref>
-              <Link _hover={{ textDecor: "none" }} w="100%" href="/tags">
-                All Tags
-              </Link>
-            </NextLink>
-          </MenuItem>
-        </MenuList>
-      </Menu>
-    </>
-  );
-};
-
 export default function Navbar() {
   const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -163,6 +105,7 @@ export default function Navbar() {
           aria-label="Home"
           fontWeight="normal"
           color="brand_one.500"
+          title="Home"
         >
           <Icon fontSize="2xl" as={FiCoffee} mr={[0, 0, 0, 0, 0, 2]} />
           <Heading
@@ -176,7 +119,6 @@ export default function Navbar() {
       <Flex flexGrow={1}>
         <Search />
       </Flex>
-      {/* <Box flexGrow="1" display={["inherit", "inherit", "inherit", "inherit", "inherit", "none"]}></Box> */}
       <Box display={["none", "none", "none", "none", "inherit", "inherit"]}>
         <NextLink href="/articles" passHref>
           <Button
@@ -188,6 +130,7 @@ export default function Navbar() {
             aria-label="Articles"
             fontWeight="normal"
             bgColor={router.pathname.includes("/articles") && bg}
+            display={["none", "none", "none", "none", "none", "inherit"]}
           >
             Articles
           </Button>
@@ -353,7 +296,6 @@ export default function Navbar() {
             </MenuItem>
           </MenuList>
         </Menu>
-        <Tags />
         <Tooltip label="Subscribe to our YouTube channel!" placement="bottom">
           <Link href="https://youtube.com/benjamincarlson" isExternal>
             <IconButton

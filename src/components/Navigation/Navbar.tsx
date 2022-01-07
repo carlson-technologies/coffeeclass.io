@@ -8,20 +8,10 @@ import {
   Flex,
   Button,
   IconButton,
-  useDisclosure,
-  MenuItem,
-  Menu,
-  MenuButton,
-  MenuList,
   Link,
   Tooltip,
-  AspectRatio,
-  SkeletonCircle,
-  MenuDivider,
-  MenuGroup,
 } from "@chakra-ui/react";
-import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
-import { FiCoffee, FiYoutube, FiGithub } from "react-icons/fi";
+import { FiCoffee, FiYoutube, FiGithub, FiStar } from "react-icons/fi";
 import NextLink from "next/link";
 import NextImage from "next/image";
 import { FiUser } from "react-icons/fi";
@@ -29,11 +19,11 @@ import { useRouter } from "next/router";
 import DarkModeSwitch from "./DarkModeSwitch";
 import NavBarDrawer from "./NavbarDrawer";
 import Search from "./Search";
+import NavItem from "./NavItem";
+import CourseNavDropdown from "./CourseNavDropdown";
 
 export default function Navbar() {
   const router = useRouter();
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [loaded, setLoaded] = useState(false);
   const [top, setTop] = useState("0");
 
   // on scroll get the users scroll position
@@ -94,7 +84,7 @@ export default function Navbar() {
       zIndex={10}
       bgColor={router.pathname === "/" ? bgColor : bgColor1}
       boxShadow={boxShadow && boxShadow1}
-      transition="top .5s ease-in-out, box-shadow .5s ease-in-out"
+      transition="top .5s ease-in-out, box-shadow .2s ease-in-out"
     >
       <NextLink href="/" passHref>
         <Button
@@ -120,182 +110,8 @@ export default function Navbar() {
         <Search />
       </Flex>
       <Box display={["none", "none", "none", "none", "inherit", "inherit"]}>
-        <NextLink href="/articles" passHref>
-          <Button
-            as="a"
-            variant="ghost"
-            mx={1}
-            p={[1, 2, 4]}
-            _hover={{ backgroundColor: bg }}
-            aria-label="Articles"
-            fontWeight="normal"
-            bgColor={router.pathname.includes("/articles") && bg}
-            display={["none", "none", "none", "none", "none", "inherit"]}
-          >
-            Articles
-          </Button>
-        </NextLink>
-        <Menu isOpen={isOpen} isLazy>
-          <MenuButton
-            variant="ghost"
-            onClick={() => router.push("/courses")}
-            mx={1}
-            py={[1, 2, 2]}
-            px={4}
-            borderRadius={5}
-            _hover={{ bg: bg }}
-            aria-label="Courses"
-            fontWeight="normal"
-            bgColor={router.pathname.includes("/courses") && bg}
-            onMouseEnter={onOpen}
-            onMouseLeave={onClose}
-          >
-            Courses {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
-          </MenuButton>
-          <MenuList onMouseEnter={onOpen} onMouseLeave={onClose} mt="-8px">
-            <MenuGroup title="CSS Frameworks">
-              <MenuItem>
-                <Flex align="center" h="100%">
-                  <SkeletonCircle isLoaded={loaded} mr={2} h="100%">
-                    <NextLink href="/courses/chakra-ui" passHref>
-                      <Link href="/courses/chakra-ui">
-                        <AspectRatio ratio={1}>
-                          <NextImage
-                            src={`/logos/chakra-ui.png`}
-                            alt="chakra ui"
-                            layout="fill"
-                            onLoad={() => setLoaded(true)}
-                          />
-                        </AspectRatio>
-                      </Link>
-                    </NextLink>
-                  </SkeletonCircle>
-                  <NextLink href="/courses/chakra-ui" passHref>
-                    <Link
-                      _hover={{ textDecor: "none" }}
-                      w="100%"
-                      href="/courses/chakra-ui"
-                    >
-                      Chakra UI
-                    </Link>
-                  </NextLink>
-                </Flex>
-              </MenuItem>
-            </MenuGroup>
-            <MenuGroup title="Coming Soon">
-              <MenuItem>
-                <Tooltip label="Coming Soon!">
-                  <Flex align="center" h="100%">
-                    <SkeletonCircle isLoaded={loaded} mr={2} h="100%">
-                      <NextLink href="/courses/chakra-ui" passHref>
-                        <Link href="/courses/chakra-ui">
-                          <AspectRatio ratio={1}>
-                            <Box
-                              w={8}
-                              h={8}
-                              borderRadius={5}
-                              bgColor={useColorModeValue(
-                                "gray.100",
-                                "gray.900"
-                              )}
-                            />
-                          </AspectRatio>
-                        </Link>
-                      </NextLink>
-                    </SkeletonCircle>
-                    <Link
-                      disabled={true}
-                      _disabled={{
-                        opacity: 0.5,
-                        cursor: "not-allowed",
-                      }}
-                      _hover={{ textDecor: "none" }}
-                      w="100%"
-                    >
-                      Algorithms
-                    </Link>
-                  </Flex>
-                </Tooltip>
-              </MenuItem>
-              <MenuItem>
-                <Tooltip label="Coming Soon!">
-                  <Flex align="center" h="100%">
-                    <SkeletonCircle isLoaded={loaded} mr={2} h="100%">
-                      <NextLink href="/courses/chakra-ui" passHref>
-                        <Link href="/courses/chakra-ui">
-                          <AspectRatio ratio={1}>
-                            <Box
-                              w={8}
-                              h={8}
-                              borderRadius={5}
-                              bgColor={useColorModeValue(
-                                "gray.100",
-                                "gray.900"
-                              )}
-                            />
-                          </AspectRatio>
-                        </Link>
-                      </NextLink>
-                    </SkeletonCircle>
-                    <Link
-                      disabled={true}
-                      _disabled={{
-                        opacity: 0.5,
-                        cursor: "not-allowed",
-                      }}
-                      _hover={{ textDecor: "none" }}
-                      w="100%"
-                    >
-                      Data Structures
-                    </Link>
-                  </Flex>
-                </Tooltip>
-              </MenuItem>
-              <MenuItem>
-                <Tooltip label="Coming Soon!">
-                  <Flex align="center" h="100%">
-                    <SkeletonCircle isLoaded={loaded} mr={2} h="100%">
-                      <NextLink href="/courses/chakra-ui" passHref>
-                        <Link href="/courses/chakra-ui">
-                          <AspectRatio ratio={1}>
-                            <Box
-                              w={8}
-                              h={8}
-                              borderRadius={5}
-                              bgColor={useColorModeValue(
-                                "gray.100",
-                                "gray.900"
-                              )}
-                            />
-                          </AspectRatio>
-                        </Link>
-                      </NextLink>
-                    </SkeletonCircle>
-                    <Link
-                      disabled={true}
-                      _disabled={{
-                        opacity: 0.5,
-                        cursor: "not-allowed",
-                      }}
-                      _hover={{ textDecor: "none" }}
-                      w="100%"
-                    >
-                      Next.js
-                    </Link>
-                  </Flex>
-                </Tooltip>
-              </MenuItem>
-            </MenuGroup>
-            <MenuDivider />
-            <MenuItem>
-              <NextLink href="/courses" passHref>
-                <Link _hover={{ textDecor: "none" }} w="100%" href="/courses">
-                  All Courses
-                </Link>
-              </NextLink>
-            </MenuItem>
-          </MenuList>
-        </Menu>
+        <NavItem title="Articles" href="/articles" />
+        <CourseNavDropdown />
         <Tooltip label="Subscribe to our YouTube channel!" placement="bottom">
           <Link href="https://youtube.com/benjamincarlson" isExternal>
             <IconButton

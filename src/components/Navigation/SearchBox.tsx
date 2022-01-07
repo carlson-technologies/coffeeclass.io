@@ -1,5 +1,5 @@
 import { connectSearchBox } from "react-instantsearch-dom";
-import { Input, Box } from "@chakra-ui/react";
+import { Input } from "@chakra-ui/react";
 
 let placeHolderArray = [
   "How to use Next/Image component",

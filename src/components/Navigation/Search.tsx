@@ -74,6 +74,7 @@ export default function Search({ is404 }: Props) {
       isLoading={isListening}
       loadingText="⏹ Listening..."
       w={"full"}
+      colorScheme="brand_one"
     >
       🎙 Click to search with voice
     </Button>
@@ -180,7 +181,7 @@ export default function Search({ is404 }: Props) {
             >
               {/* <Configure hitsPerPage={5} /> */}
               <SearchBox />
-              <Box w="100%" align="center">
+              <Box align="center">
                 <VoiceSearch
                   searchAsYouSpeak={false}
                   buttonTextComponent={ButtonText}

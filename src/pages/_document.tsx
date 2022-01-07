@@ -36,6 +36,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <GoogleFonts href="https://fonts.googleapis.com/css?family=Inter&display=swap" />
+        {/* <GoogleFonts href="https://fonts.googleapis.com/css?family=Lato&display=swap" /> */}
         <Head>
           {/* PWA */}
           <link rel="manifest" href="/manifest.json" />

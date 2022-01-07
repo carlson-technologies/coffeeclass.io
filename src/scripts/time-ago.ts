@@ -5,7 +5,7 @@ export default function TimeAgo(date: any): string {
         return 'just now'
     }
 
-    // if the date is in the past, return the time ago
+    // if the date is in the past, return the time ago. Anything over 1 month ago will return the date in the format Month D, Yr
     const seconds = Math.floor((new Date().getTime() - date) / 1000)
     const minutes = Math.floor(seconds / 60)
     const hours = Math.floor(minutes / 60)
@@ -39,18 +39,7 @@ export default function TimeAgo(date: any): string {
             return `${days} days ago`
         }
     }
-    else if (months < 12) {
-        if (months == 1) {
-            return '1 month ago'
-        } else {
-            return `${months} months ago`
-        }
-    }
     else {
-        if (years == 1) {
-            return '1 year ago'
-        } else {
-            return `${years} years ago`
-        }
+        return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
     }
 }

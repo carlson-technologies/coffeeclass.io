@@ -27,6 +27,7 @@ import FloatUpDivAnimation from "./Content/FloatUpDivAnimation";
 import FloatUpDivAnimationNoHeight from "./Content/FloatUpDivAnimationNoHeight";
 import Step from "./Content/Step";
 import FeaturedPost from "./Content/FeaturedPost";
+import ThreeDots from "./Content/ThreeDots";
 
 const Quote = (props: any) => {
   const { colorMode } = useColorMode();
@@ -158,33 +159,59 @@ const CustomImage = (props: any) => {
     dark: "brand_one.500",
   };
   return (
-    <Box borderRadius={15} w={1000} maxW="100%">
+    <Box my={4}>
       <Skeleton isLoaded={loaded}>
-        <Image
-          objectFit="contain"
-          width={1000}
-          height={500}
-          onLoad={() => setLoaded(true)}
-          alt={props.alt || ""}
-          {...props}
-        />
+        <div className="image-wrapper">
+          <Image
+            objectFit="cover"
+            layout="fill"
+            onLoad={() => setLoaded(true)}
+            alt={props.alt || ""}
+            {...props}
+          />
+        </div>
       </Skeleton>
-      <Box
-        _hover={{ borderBottomColor: `${color[colorMode]}` }}
-        as="span"
-        borderBottom="2px solid"
-        borderBottomColor="transparent"
-        transition="border-bottom-color .2s ease-in-out"
-      >
-        <Link
-          _hover={{ TextDecoder: "none" }}
-          color={color[colorMode]}
-          href={props.src}
-          isExternal
+      <Flex fontSize="sm" justify="center" mt={2} wrap="wrap">
+        <Box
+          _hover={{ borderBottomColor: `${color[colorMode]}` }}
+          as="span"
+          borderBottom="2px solid"
+          borderBottomColor="transparent"
+          transition="border-bottom-color .2s ease-in-out"
         >
-          View Full Image
-        </Link>
-      </Box>
+          <Link
+            _hover={{ TextDecoder: "none" }}
+            color={color[colorMode]}
+            href={props.src}
+            isExternal
+          >
+            View Full Image
+          </Link>
+        </Box>
+        {props.alt && (
+          <>
+            <Text mx={1} color="gray.500">
+              &middot;
+            </Text>
+            <Text color="gray.500">{props.alt}</Text>
+          </>
+        )}
+      </Flex>
+      <style jsx>{`
+        .image-wrapper {
+          position: relative;
+          border-radius: 25px;
+          overflow: hidden;
+          height: 500px;
+          width: 100%;
+          box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+
+        .image-wrapper img {
+          display: block;
+          vertical-align: bottom;
+        }
+      `}</style>
     </Box>
   );
 };
@@ -216,6 +243,7 @@ const MDXComponents = {
   FloatUpDivAnimationNoHeight,
   Step,
   FeaturedPost,
+  ThreeDots,
   // props.className.split("language-")[1] <- get language of pre
 };
 

@@ -60,6 +60,23 @@ public class Solution {
 }
 ```
 
+#### Java
+```java
+class Solution {
+    public int mostWordsFound(String[] sentences) {
+        int total = 0;
+        
+        for(int i = 0; sentences.length > i; i++){
+            int tempLength = sentences[i].split(" ").length;
+            if(tempLength > total){
+                total = tempLength;
+            }
+        }
+        return total;
+    }
+}
+```
+
 ### Explanation
 
 We are asked to figure out which sentence has the most words. The sentences are held in an array. The idea is to iterate over each of the sentences and count the number of words. Each word is seperated by a space. An easy way to get this count is to use `split()`. After we split by spaces, we can use `length` to get the count.
@@ -80,3 +97,4 @@ The runtime for this problem would be `O(n)` where n is the number of sentences.
 
 ![Leet Code Question 2114 JavaScript](/content/articles/leet-code-benjamin-carlson/2114-javascript.png)
 ![Leet Code Question 2114 C#](/content/articles/leet-code-benjamin-carlson/2114-csharp.png)
+![Leet Code Question 2114 Java](/content/articles/leet-code-benjamin-carlson/2114-java.png)

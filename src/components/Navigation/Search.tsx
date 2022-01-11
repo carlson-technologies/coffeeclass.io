@@ -57,6 +57,9 @@ export default function Search({ is404 }: Props) {
 
   const [key, setKey] = useState(KEY_WINDOWS);
   const [isMobile, setIsMobile] = useState(false);
+  const [placeholderText, setPlaceholderText] = useState(
+    "Search coffeeclass.io"
+  );
 
   const handleKeyPress = (e: any) => {
     // if key is "command + k" or "ctrl + k" then open the search modal
@@ -104,6 +107,7 @@ export default function Search({ is404 }: Props) {
       )
     ) {
       setIsMobile(true);
+      setPlaceholderText("Search")
     }
   }, []);
 
@@ -143,7 +147,7 @@ export default function Search({ is404 }: Props) {
             data-splitbee-event-type="Algolia Search"
           >
             <Text textAlign="left" color={color2}>
-              Search coffeeclass.io
+              {placeholderText}
             </Text>
           </Input>
           {!isMobile && (

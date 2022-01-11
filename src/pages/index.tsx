@@ -25,6 +25,16 @@ import { ChevronRightIcon } from "@chakra-ui/icons";
 import Hero from "../components/Hero";
 import TimeAgo from "../scripts/time-ago";
 import ArticleCard from "../components/ArticleCard";
+import CourseCard from "../components/Courses/CourseCard";
+
+const course = {
+  title: "Chakra UI",
+  path: "/courses/chakra-ui",
+  slug: "chakra-ui",
+  image: "chakra-ui.png",
+  description:
+    "Chakra UI is a simple, modular and accessible component library that gives you the building blocks you need to build your React applications.",
+};
 
 const url = "https://www.coffeeclass.io/";
 const title = "coffeeclass.io Home";
@@ -67,7 +77,23 @@ export default function Index({ posts }: Props) {
 
         <Box maxW={1000} mx="auto" w="100%">
           <Heading
-            as="h1"
+            as="h3"
+            size="xl"
+            fontFamily="lato"
+            mb={2}
+            fontWeight="medium"
+            px={[2, 2, 2, 6, 10, 12]}
+            mt={8}
+          >
+            Latest Course &mdash;
+          </Heading>
+        </Box>
+
+        <CourseCard course={course} />
+
+        <Box maxW={1000} mx="auto" w="100%">
+          <Heading
+            as="h3"
             size="xl"
             fontFamily="lato"
             mb={2}

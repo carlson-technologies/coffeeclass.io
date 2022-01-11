@@ -1,0 +1,125 @@
+---
+title: "Next.js Progressive Web App"
+description: "Turn your Next.js website into a Progressive Web App allowing offline support, push notifications and other great features using the next-pwa package."
+seoDescription: "Turn your Next.js website into a Progressive Web App allowing offline support, push notifications and other great features using the next-pwa package."
+author: "benjamin-carlson.mdx"
+publishedAt: "2022-01-03T13:40:00"
+tags: ["nextjs", "progressive-web-app"]
+youtubeId: "https://youtu.be/uNKBWrkMO_Q"
+logoImage: ["nextjs-light.png"]
+---
+
+## What's A Progressive Web App?
+
+Imagine this... you have a website that is complex. It has a frontend, backend, data, and lots of other features.
+
+You want to make an app for your website. Traditionally, you would have to make 2 apps - one for Android and one for IOS. Another more modern option would be to use a cross platform framework such as Flutter or React Native. This still involves a lot of work!
+
+There has to be another way. Luckily for us, there is (kind of). A Progressive Web App, or PWA, is a website that looks and behaves like a mobile app. PWA's even have splash screens!
+
+The user also doesn't have to download your app from the app or play store and your app is always updated whenvever you update your website.
+
+## PWA Demo
+
+[Here](https://next-pwa-rosy.vercel.app) is a simple site I deployed with the `next-pwa` package. If you open it in Google Chrome or on your phone, you will see a button that says "Install App".
+
+## `next-pwa` Package
+
+Creating a PWA can be difficult. However, with Next.js we can easily create one using the [`next-pwa` package](https://www.npmjs.com/package/next-pwa). Under the hook this package uses [Workbox](https://developers.google.com/web/tools/workbox/). Here are some of the features you get from using `next-pwa`:
+
+### Features
+
+- 0️⃣ Zero config for registering and generating service worker
+- ✨ Optimized precache and runtime cache
+- 💯 Maximize lighthouse score
+- 🎈 Easy to understand examples
+- 📴 Completely offline support with fallbacks example 🆕
+- 📦 Use workbox and workbox-window v6
+- 🍪 Work with cookies out of the box
+- 🔉 Default range requests for audios and videos
+- ☕ No custom server needed for Next.js 9+ example
+- 🔧 Handle PWA lifecycle events opt-in example
+- 📐 Custom worker to run extra code with code splitting and typescript support example
+- 📜 Public environment variables available in custom worker as usual
+- 🐞 Debug service worker with confidence in development mode without caching
+- 🌏 Internationalization (a.k.a I18N) with next-i18next example
+- 🛠 Configurable by the same workbox configuration options for GenerateSW and InjectManifest
+- 🚀 Spin up a GitPod and try out examples in rocket speed
+- ⚡ Support blitz.js (simply add to blitz.config.js)
+- 🔩 (Experimental) precaching .module.js when next.config.js has experimental.modern set to true
+
+## `next-pwa` Installation
+
+First, Add the `next-pwa` package. I'll be using `yarn`.
+
+```bash
+yarn add next-pwa
+```
+
+## `manifest.json`
+
+We need to create a `manifest.json` file to tell `next-pwa` some basic info about our app. We can use [this website](https://www.simicart.com/manifest-generator.html/) to help us out.
+
+Go ahead and fill out all the fields that are required and the optional fiels if you'd like. For the display option, be sure to select standalone.
+
+When you are done, download it and move all the files into your `public` folder. Rename the `manifest.webmanifest` file to `manifest.json`.
+
+## `_document.js`
+
+Add the following code to `_document.js` inside of the `Head` tag. If you don't have this file, create it.
+
+```javascript:_document.js
+<Head>
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="apple-touch-icon" href="/icon.png"></link>
+  {/* other stuff here */}
+</Head>
+```
+
+## `next.config.js`
+
+Add the following to `next.config.js`:
+
+```javascript:next.config.js
+const withPWA = require("next-pwa");
+
+module.exports = withPWA({
+  pwa: {
+    dest: "public",
+    register: true,
+    skipWaiting: true,
+    disable: process.env.NODE_ENV === "development",
+  },
+});
+```
+
+These options set up the `next-pwa` package to work with our project. If you run yarn dev with the `disable` option commented out, you will see some generated files inside of the `public` folder. We don't need these in dev so that is the reason we have added that line.
+
+Going one step further, we can add the following to `.gitignore` so the PWA files will not be tracked by git.
+
+```javascript:.gitignore
+# PWA files
+**/public/sw.js
+**/public/workbox-*.js
+**/public/worker-*.js
+**/public/sw.js.map
+**/public/workbox-*.js.map
+**/public/worker-*.js.map
+```
+
+## Deploying
+
+Go ahead and deploy your website. Then navigate to chrome and at the top you should see a button to install the PWA.
+
+## Conclusion
+
+Congrats! You have just created a Progressive Web App!
+
+To recap, in this article we:
+
+- Added the `next-pwa` package
+- Added the `manifest.json` file
+- Added the `_document.js` file
+- Added the `next.config.js` file
+- Added the `.gitignore` file
+- Deployed the website

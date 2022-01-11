@@ -193,7 +193,7 @@ const Footer = () => {
           w={50}
         />
         <Text as="small" mt={4}>
-          &copy; Copyright {year},{" "}
+          &copy; Copyright 2021 - {year},{" "}
           <Link
             href="https://carlsontechnologies.dev/"
             textDecor="underline"

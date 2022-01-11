@@ -25,7 +25,6 @@ import {
     Icon,
     useBreakpointValue,
 } from '@chakra-ui/react'
-// import Comments from '../../components/Comments'
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/router'
 import RelatedPosts from '../../components/RelatedPosts'
@@ -41,6 +40,7 @@ import useSWR from "swr"
 import fetcher from '../../scripts/fetcher'
 import TimeAgo from '../../scripts/time-ago'
 import HeadersAccordion from "../../components/HeadersAccordion";
+import HeadersSidebar from "../../components/HeadersSidebar";
 
 export default function PostPage({ source, frontMatter, posts }) {
     const { colorMode } = useColorMode()
@@ -108,6 +108,9 @@ export default function PostPage({ source, frontMatter, posts }) {
                         bgGradient={h1ColorGradient}
                         bgClip='text'
                         py={4}
+                        fontWeight="bold"
+                        letterSpacing="tight"
+                        mb={2}
                     >
                         {frontMatter.title}
                     </Heading>
@@ -134,16 +137,8 @@ export default function PostPage({ source, frontMatter, posts }) {
                         </Box>
                         {
                             frontMatter.youtubeId &&
-                            <Flex justify="center">
+                            <Flex justify="center" my={2}>
                                 <EmbeddedVideo src={getEmbedId(frontMatter?.youtubeId)} alt={frontMatter.title} maxW={800} />
-                            </Flex>
-                        }
-                        {
-                            frontMatter.featureImg && !frontMatter.youtubeId &&
-                            <Flex justify="center">
-                                <AspectRatio w="100%" ratio={16 / 9} maxW={800}>
-                                    <Image src={`/content/articles/${slug}/${frontMatter.featureImg}`} alt={frontMatter.title} />
-                                </AspectRatio>
                             </Flex>
                         }
                         <HeadersAccordion headers={frontMatter?.headers} />
@@ -163,35 +158,22 @@ export default function PostPage({ source, frontMatter, posts }) {
                     {/* Right sidebar */}
                     <Flex display={['none', 'none', 'none', 'none', 'none', 'flex']}>
                         <div>
+                            {/* <Box w={300} overflow="scroll" pos="sticky" top={10}>
+                                <RelatedPosts style="sidebar" frontMatter={frontMatter} posts={posts} />
+                            </Box> */}
+                            <Box w={300}>
+                                <RelatedPosts style="sidebar" frontMatter={frontMatter} posts={posts} />
+                            </Box>
                             <Box w={300} overflow="scroll" pos="sticky" top={10}>
-                                <RelatedPosts style="sidebar" tags={frontMatter.tags} posts={posts} currPostTitle={frontMatter.title} />
+                                <HeadersSidebar headers={frontMatter?.headers} />
                             </Box>
                         </div>
                     </Flex>
                 </Flex>
+
                 <Box maxW={800} mx="auto" id="end-content">
-                    {/* <Flex
-                        justify="center"
-                        flexDir="column"
-                        mt={8}
-                        px={4}
-                    >
-                        <Link
-                            href="#comments"
-                            _hover={{ textDecor: 'none' }}
-                        >
-                            <Button
-                                variant="outline"
-                                w={['100%', '100%', '100%', 200, 250, 300]}
-                                alignSelf="center"
-                            >
-                                Leave A Comment
-                            </Button>
-                        </Link>
-                    </Flex>
-                    <Divider mt={12} mb={4} alignSelf="center" /> */}
                     <Flex flexDir="column" m="auto" my={10}>
-                        <RelatedPosts tags={frontMatter.tags} posts={posts} currPostTitle={frontMatter.title} />
+                        <RelatedPosts frontMatter={frontMatter} posts={posts} />
                     </Flex>
                     <Divider mt={12} mb={4} alignSelf="center" />
                     <Flex
@@ -203,10 +185,6 @@ export default function PostPage({ source, frontMatter, posts }) {
                     >
                         <WrittenBy frontMatter={frontMatter} />
                     </Flex>
-                    {/* <Divider mt={12} mb={8} alignSelf="center" />
-                    <Box px={4}>
-                        <Comments />
-                    </Box> */}
                 </Box>
             </motion.div>
         </Container>

@@ -14,15 +14,16 @@ import NextLink from 'next/link'
 import Subscribe from '../components/Subscribe'
 import TimeAgo from "../scripts/time-ago"
 import Ad from '../components/Content/Ad'
+import HeadersSidebar from './HeadersSidebar'
 
-export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
+export default function RelatedPosts({ frontMatter, posts, style }) {
     var relatedPosts = []
 
     // loop through all tags and see if they match any of the tags of the current post
-    for (var i = 0; i < tags.length; i++) {
+    for (var i = 0; i < frontMatter.tags.length; i++) {
         posts.map(post => {
             post.data.tags.map(tag => {
-                if (tags[i] == tag) {
+                if (frontMatter.tags[i] == tag) {
                     relatedPosts.push(post)
                 }
             })
@@ -34,7 +35,7 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
 
     // remove current post
     relatedPosts = relatedPosts.filter(
-        post => post.data.title !== currPostTitle
+        post => post.data.title !== frontMatter.title
     )
 
     // order posts by date
@@ -70,12 +71,13 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
             <>
                 <Flex
                     flexDir="column"
-                    opacity={scrollY > 300 ? 1 : 0}
+                    opacity={scrollY > 100 ? 1 : 0}
                     transition="opacity .7s ease-in-out"
-                    visibility={scrollY > 300 ? "visible" : "hidden"}
+                    visibility={scrollY > 100 ? "visible" : "hidden"}
                     px={2}
                 >
-                    <Box overflowY="auto" overflowX="hidden" h="calc(100vh - 100px)" as="aside">
+                    <Box>
+                    {/* <Box overflowY="auto" overflowX="hidden" h="calc(100vh - 100px)" as="aside"> */}
                         <Text
                             m={2}
                             textTransform="uppercase"
@@ -86,7 +88,7 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
                             Related Tags
                         </Text>
                         <Wrap>
-                            {tags.map((tag, index) => {
+                            {frontMatter.tags.map((tag, index) => {
                                 return (
                                     <Box key={index} px={2}>
                                         <NextLink href={`/tags/${tag}`} passHref>
@@ -145,6 +147,7 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
                             )
                         })}
                         <Subscribe isSidebar />
+                        {/* <HeadersSidebar headers={frontMatter?.headers} /> */}
                         <Ad />
                     </Box>
                 </Flex>
@@ -216,6 +219,6 @@ export default function RelatedPosts({ tags, posts, style, currPostTitle }) {
                         ))}
                     </Flex>
                 </Flex>
-            </> : <Text fontSize="lg" px={4}>No related posts! Like {tags[0]}? Try <NextLink href="/contribute/getting-started" passHref><Link href="/contributing/getting-started" color="brand_one.500">writing about it</Link></NextLink>.</Text>
+            </> : <Text fontSize="lg" px={4}>No related posts! Like {frontMatter.tags[0]}? Try <NextLink href="/contribute/getting-started" passHref><Link href="/contributing/getting-started" color="brand_one.500">writing about it</Link></NextLink>.</Text>
     )
 }

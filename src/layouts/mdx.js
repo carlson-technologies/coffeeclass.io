@@ -21,6 +21,7 @@ export default function MdxLayout(props) {
             <SEO url={`https://www.coffeeclass.io${slug}`} {...frontMatter} />
             <Box pos="relative" h={200} w="100%">
                 <Image
+                    priority
                     src="/writing.jpg"
                     alt="Writing"
                     layout='fill'

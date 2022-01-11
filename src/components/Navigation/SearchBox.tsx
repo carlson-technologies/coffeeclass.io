@@ -1,5 +1,5 @@
 import { connectSearchBox } from "react-instantsearch-dom";
-import { Input, Box } from "@chakra-ui/react";
+import { Input } from "@chakra-ui/react";
 
 let placeHolderArray = [
   "How to use Next/Image component",
@@ -9,7 +9,7 @@ let placeHolderArray = [
 
 function SearchBox({ refine }: any) {
   return (
-    <Box>
+    <>
       <Input
         w="100%"
         id="algolia_search"
@@ -23,8 +23,9 @@ function SearchBox({ refine }: any) {
         autoCapitalize="off"
         spellCheck="false"
         autoComplete="off"
+        title="Search"
       />
-    </Box>
+    </>
   );
 }
 

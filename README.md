@@ -1,4 +1,4 @@
-![coffeeclass.io header image](/public/readme.png)
+![coffeeclass.io header image](/public/github/readme.png)
 
 # coffeeclass.io ☕
 
@@ -6,13 +6,13 @@ Learn programming and computer science for free.
 
 ## Project Overview
 
-This website is a platform to learn to code. It is inspired by sites like [freeCodeCamp](https://www.freecodecamp.org) and [CSS Tricks](https://css-tricks.com). coffeeclass.io is open source and we encourage contributions to both the website itself and the content! Read on to learn more about the project.
+This website is a platform to learn to code. It is inspired by sites like [freeCodeCamp](https://www.freecodecamp.org), [CSS Tricks](https://css-tricks.com), [Fireship.io](https://fireship.io), [Smashing Magazine](https://www.smashingmagazine.com), and many others. Coffeeclass.io is open source and we encourage contributions to both the website and the content! Read on to learn more about the project.
 
 ### Quick Start
 
 1. Clone this repo: `git clone https://github.com/carlson-technologies/coffeeclass.io.git`
 2. Move into root (where this file is) and run `yarn`
-3. (Optional) Create a `.env` file and copy into it the content of `.env.example`. It *will* run without these.
+3. (Optional) Create a `.env` file and copy into it the content of `.env.example`. It _will_ run without these.
 4. Run `yarn dev` to start the server
 5. Navigate to http://localhost:3000
 
@@ -48,6 +48,8 @@ Inside the `src` folder, we have the following:
 
 - `components`: Our UI components.
 - `configs`: Various configuration files for courses.
+- `hooks`: Custom TS hooks.
+- `layouts`: MDX page layouts.
 - `pages`: Where the pages (routes) and api routes are stored.
 - `scripts`: Stand alone scripts (DRY) and build scripts
 - `styles`: Theme styles and Chakra UI default theme config.
@@ -70,6 +72,10 @@ Our roadmap is also our agile development process. View cards, see what we are w
 
 https://benjamincarlson.notion.site/609b8bb171844146a9bcd9fbabd171a8?v=341de17fff6149bea36dbafbe2f2cf88
 
-## Vercel
+## Thanks
 
-[Powered by ![Vercel Logo](/public/logos/vercel.png)](https://vercel.com/?utm_source=carlson-technologies&utm_campaign=oss)
+The following companies and services have given free services to this website. Go check them out!
+
+[![Vercel](/public/github/vercel.png)](https://vercel.com/?utm_source=carlson-technologies&utm_campaign=oss)
+[![Splitbee](/public/github/splitbee.png)](https://splitbee.io)
+[![Algolia](/public/github/algolia.png)](https://www.algolia.com)

@@ -5,6 +5,7 @@ import { device } from "./constants/devices";
 const fonts = {
   body: `Inter,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"`,
   heading: `Inter,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"`,
+  lato: `Lato, "Helvetica Neue", Helvetica, Arial, sans-serif`,
 };
 
 const breakpoints = createBreakpoints({

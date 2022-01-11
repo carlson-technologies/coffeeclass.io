@@ -25,4 +25,4 @@ export function activeHeader(
     }, [selectors, options])
 
     return activeId
-} 
+}

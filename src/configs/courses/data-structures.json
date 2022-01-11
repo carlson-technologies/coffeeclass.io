@@ -1,0 +1,39 @@
+{
+  "title": "Data Structures",
+  "description": "todo",
+  "image": "todo.png",
+  "base": "/courses/data-structures",
+  "version": "",
+  "routes": [
+    {
+      "title": "👶 Introduction",
+      "routes": [
+        {
+          "title": "Course Introduction",
+          "description": "An introduction to this course.",
+          "path": "/courses/data-structures/course-introduction"
+        }
+      ]
+    },
+    {
+      "title": "👶 Basics",
+      "routes": [
+        {
+          "title": "Big \"O\" Notation",
+          "description": "A brief introduction to the Big \"O\" Notation.",
+          "path": "/courses/data-structures/big-o-notation"
+        },
+        {
+          "title": "Arrays",
+          "description": "arrays",
+          "path": "/courses/data-structures/arrays"
+        },
+        {
+          "title": "Linked Lists",
+          "description": "linked lists",
+          "path": "/courses/data-structures/linked-lists"
+        }
+      ]
+    }
+  ]
+}

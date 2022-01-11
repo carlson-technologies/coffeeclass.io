@@ -1,0 +1,73 @@
+---
+title: "Arrays"
+publishedAt: "2022-01-01T00:00:00"
+description: "Arrays!"
+author: "Benjamin Carlson"
+updatedAt: "2022-01-01T00:00:00"
+---
+
+The most fundamental data structure is an array. An array is simply a collection of data that can be accessed by indexing. Depending on the language, an array may hold a single type of data or a collection of different types of data.
+
+## Array Implementation
+
+Let's take a look at how we can create an array, declare a size, and add data.
+
+### Creating an Array
+
+Declaring an array is as simple as creating a variable and assigning it a value. Let's take a look at declaring an array `Java`, `JavaScript`, and `C#`.
+
+```java
+int myArray[];
+```
+
+```javascript
+let myArray = [];
+```
+
+```csharp
+int[] myArray;
+```
+
+### Declaring an Array Size
+
+Note that above we are not actually adding any values to the arrays or declaring any sizes. Now, lets declare the size of the arrays.
+
+```java
+myArray = new int[5];
+```
+
+```javascript
+myArray = new Array(5);
+```
+
+```csharp
+myArray = new int[5];
+```
+
+### Adding Data
+
+Now that we have an array and it's size declared, we can add data to the array. We can add data in multiple ways. The most common way is adding it all at once, or by adding it via an index.
+
+```java
+myArray[0] = 1;
+myArray[1] = 2;
+myArray[2] = 3;
+myArray[3] = 4;
+myArray[4] = 5;
+```
+
+### Doing it All at Once
+
+Creating an array, declaring a size, and adding data in 3 seperate steps is the long way of doing it. We can do it all at once in one line.
+
+```java
+ int[] myArray = new int[]{ 10, 3, 5, 7, 9 }; 
+```
+
+```javascript
+let myArray = [10, 3, 5, 7, 9]; // no need to declare types in JS!
+```
+
+```csharp
+int[] myArray = new int[] { 10, 3, 5, 7, 9 };
+```

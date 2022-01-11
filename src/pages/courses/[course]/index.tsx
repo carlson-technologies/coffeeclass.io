@@ -20,6 +20,9 @@ import {
   COURSE_PATH,
   getCourseFolders,
 } from "../../../scripts/mdx-utils";
+import chakraUISidebar from "../../../configs/courses/chakra-ui.json";
+import dataStructuresSidebar from "../../../configs/courses/data-structures.json";
+import { useRouter } from "next/router";
 
 const url = "https://www.coffeeclass.io/chakra-ui";
 const title = "Chakra UI Complete Course";
@@ -32,13 +35,18 @@ interface Props {
 }
 
 export default function ChakraUI({ files, course }: Props) {
-  console.log("courses: " + files);
-  console.log("course: " + JSON.stringify(course));
-  const data: any = lessons.routes;
-  const boxShadow = useColorModeValue(
-    "0px 8px 26px rgba(0, 0, 0, 0.25)",
-    "0px 8px 26px rgba(255, 255, 255, 0.1)"
-  );
+  const configMap: any = {
+    "chakra-ui": chakraUISidebar,
+    "data-structures": dataStructuresSidebar,
+  };
+
+  const { query } = useRouter();
+  const c = query.course;
+
+  const modules: any = configMap[c.toString()].routes;
+
+  // console.log("courses: " + files);
+  // console.log("course: " + JSON.stringify(course));
   const bgColor = useColorModeValue("#fff", "#15161a");
   const borderColor = useColorModeValue("gray.200", "gray.700");
   const color = useColorModeValue("gray.600", "gray.400");
@@ -53,20 +61,20 @@ export default function ChakraUI({ files, course }: Props) {
             <Box px={4}>
               <Flex justify="center" mt={10}>
                 <Image
-                  src={`/logos/${lessons.image}`}
+                  src={`/logos/${configMap[c.toString()].image}`}
                   w={100}
                   justifySelf="center"
-                  alt={`Image of ${lessons.title} Logo`}
+                  alt={`Image of ${configMap[c.toString()].title} Logo`}
                 />
               </Flex>
               <Heading as="h1" size="2xl" mb={4} mt={5} textAlign="center">
-                {lessons.title} Course Road Map 🚗
+                {configMap[c.toString()].title} Course Road Map 🚗
               </Heading>
               <Text mb={8} textAlign="center" fontSize="large">
-                {lessons.description}
+                {configMap[c.toString()].description}
               </Text>
             </Box>
-            {data.map((item: any, index: number) => (
+            {modules.map((item: any, index: number) => (
               <>
                 <Heading
                   as="h2"
@@ -86,7 +94,7 @@ export default function ChakraUI({ files, course }: Props) {
                     (item: any) => (
                       courseCount++,
                       (
-                        <NextLink href={item.path} key={item.title} passHref>
+                        <NextLink href={item.path} key={courseCount} passHref>
                           <Link
                             href={item.path}
                             _hover={{ textDecor: "none" }}

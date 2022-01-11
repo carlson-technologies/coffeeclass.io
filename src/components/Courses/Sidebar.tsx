@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import chakraUISidebar from "../../configs/courses/chakra-ui.json";
+import dataStructuresSidebar from "../../configs/courses/data-structures.json";
 import {
   Box,
   Flex,
@@ -32,6 +33,7 @@ const Sidebar = ({ course }: any) => {
 
   const configMap: any = {
     "chakra-ui": chakraUISidebar,
+    "data-structures": dataStructuresSidebar,
   };
 
   const modules: any = configMap[course].routes;

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Box,
   useColorModeValue,
@@ -10,21 +10,150 @@ import {
   MenuButton,
   MenuList,
   Link,
-  Tooltip,
   AspectRatio,
   SkeletonCircle,
-  MenuDivider,
-  MenuGroup,
+  Icon,
 } from "@chakra-ui/react";
-import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
+import {
+  ChevronDownIcon,
+  ChevronUpIcon,
+  ExternalLinkIcon,
+} from "@chakra-ui/icons";
 import NextLink from "next/link";
 import NextImage from "next/image";
 import { useRouter } from "next/router";
 
+const courseList = [
+  {
+    title: "Chakra UI",
+    path: "/courses/chakra-ui",
+    image: "chakra-ui.png",
+    colorLight: "teal.100",
+    colorDark: "teal.500",
+    available: true,
+    description:
+      "Chakra UI is a simple, modular and accessible component library that gives you the building blocks you need to build your React applications.",
+  },
+  {
+    title: "Firebase",
+    path: "/courses/firebase",
+    image: "firebase.png",
+    colorLight: "orange.100",
+    colorDark: "orange.500",
+    available: false,
+    description:
+      "Firebase is a cloud platform for building mobile, web, and server apps.",
+  },
+  {
+    title: "Data Structures",
+    path: "/courses/data-structures",
+    image: "data-structures.png",
+    colorLight: "purple.100",
+    colorDark: "purple.500",
+    available: false,
+    description:
+      "Data Structures is a course that teaches you how to think about data structures and algorithms.",
+  },
+  {
+    title: "Algorithms",
+    path: "/courses/algorithms",
+    image: "algorithms.png",
+    colorLight: "yellow.100",
+    colorDark: "yellow.500",
+    available: false,
+    description:
+      "Algorithms is a course that teaches you how to think about algorithms and data structures.",
+  },
+];
+
+type Course = {
+  title: string;
+  path: string;
+  image: string;
+  colorLight: string;
+  colorDark: string;
+  available: boolean;
+  description: string;
+};
+
+interface CourseItemProps {
+  course: Course;
+}
+
+const CourseItem = ({ course }: CourseItemProps) => {
+  const [loaded, setLoaded] = useState(false);
+  const [opacity, setOpacity] = useState(0);
+  const [mb, setMb] = useState("-20px");
+  return (
+    <MenuItem
+      transition="background-color 0.2s ease-in-out"
+      _hover={{
+        bgColor: useColorModeValue(
+          `${course.colorLight}`,
+          `${course.colorDark}`
+        ),
+      }}
+      h={20}
+      as="a"
+      href={course.path}
+      onMouseEnter={() => {
+        setOpacity(1), setMb("0px");
+      }}
+      onMouseLeave={() => {
+        setOpacity(0), setMb("-20px");
+      }}
+    >
+      <Flex align="center" h="100%" justify="space-between" w="100%">
+        <Flex align="center" h="100%">
+          <Flex w={50} h={50} mr={2}>
+            <SkeletonCircle isLoaded={loaded} alignSelf="center">
+              <NextLink href={course.path} passHref>
+                <Link href={course.path}>
+                  <AspectRatio ratio={1}>
+                    <NextImage
+                      src={`/logos/${course.image}`}
+                      alt={course.title}
+                      layout="fill"
+                      onLoad={() => setLoaded(true)}
+                    />
+                  </AspectRatio>
+                </Link>
+              </NextLink>
+            </SkeletonCircle>
+          </Flex>
+          <NextLink href={course.path} passHref>
+            <Link _hover={{ textDecor: "none" }} w="100%" href={course.path}>
+              <Flex flexDir="column" flexGrow={1}>
+                <Text mb={mb} transition=".2s margin-bottom ease-in-out">
+                  {course.title}
+                </Text>
+                <Text
+                  fontSize="sm"
+                  opacity={opacity}
+                  transition=".2s opacity ease-in-out"
+                  noOfLines={2}
+                >
+                  {course.description}
+                </Text>
+              </Flex>
+            </Link>
+          </NextLink>
+        </Flex>
+        <Icon
+          as={ExternalLinkIcon}
+          fontSize="xl"
+          opacity={opacity}
+          ml="auto"
+          transition="opacity 0.2s ease-in-out"
+        />
+      </Flex>
+    </MenuItem>
+  );
+};
+
 export default function CourseNavDropdown() {
   const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [loaded, setLoaded] = useState(false);
   const bg = useColorModeValue("gray.200", "gray.700");
   return (
     <Menu isOpen={isOpen} isLazy>
@@ -47,136 +176,33 @@ export default function CourseNavDropdown() {
           Courses {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
         </Text>
       </MenuButton>
-      <MenuList onMouseEnter={onOpen} onMouseLeave={onClose} mt="-8px">
-        <MenuGroup title="CSS Frameworks">
-          <MenuItem>
-            <Flex align="center" h="100%">
-              <SkeletonCircle isLoaded={loaded} mr={2} h="100%">
-                <NextLink href="/courses/chakra-ui" passHref>
-                  <Link href="/courses/chakra-ui">
-                    <AspectRatio ratio={1}>
-                      <NextImage
-                        src={`/logos/chakra-ui.png`}
-                        alt="chakra ui"
-                        layout="fill"
-                        onLoad={() => setLoaded(true)}
-                      />
-                    </AspectRatio>
-                  </Link>
-                </NextLink>
-              </SkeletonCircle>
-              <NextLink href="/courses/chakra-ui" passHref>
-                <Link
-                  _hover={{ textDecor: "none" }}
-                  w="100%"
-                  href="/courses/chakra-ui"
-                >
-                  Chakra UI
-                </Link>
-              </NextLink>
-            </Flex>
-          </MenuItem>
-        </MenuGroup>
-        <MenuGroup title="Coming Soon">
-          <MenuItem>
-            <Tooltip label="Coming Soon!">
-              <Flex align="center" h="100%">
-                <SkeletonCircle isLoaded={loaded} mr={2} h="100%">
-                  <NextLink href="/courses/chakra-ui" passHref>
-                    <Link href="/courses/chakra-ui">
-                      <AspectRatio ratio={1}>
-                        <Box
-                          w={8}
-                          h={8}
-                          borderRadius={5}
-                          bgColor={useColorModeValue("gray.100", "gray.900")}
-                        />
-                      </AspectRatio>
-                    </Link>
-                  </NextLink>
-                </SkeletonCircle>
-                <Link
-                  disabled={true}
-                  _disabled={{
-                    opacity: 0.5,
-                    cursor: "not-allowed",
-                  }}
-                  _hover={{ textDecor: "none" }}
-                  w="100%"
-                >
-                  Algorithms
-                </Link>
-              </Flex>
-            </Tooltip>
-          </MenuItem>
-          <MenuItem>
-            <Tooltip label="Coming Soon!">
-              <Flex align="center" h="100%">
-                <SkeletonCircle isLoaded={loaded} mr={2} h="100%">
-                  <NextLink href="/courses/chakra-ui" passHref>
-                    <Link href="/courses/chakra-ui">
-                      <AspectRatio ratio={1}>
-                        <Box
-                          w={8}
-                          h={8}
-                          borderRadius={5}
-                          bgColor={useColorModeValue("gray.100", "gray.900")}
-                        />
-                      </AspectRatio>
-                    </Link>
-                  </NextLink>
-                </SkeletonCircle>
-                <Link
-                  disabled={true}
-                  _disabled={{
-                    opacity: 0.5,
-                    cursor: "not-allowed",
-                  }}
-                  _hover={{ textDecor: "none" }}
-                  w="100%"
-                >
-                  Data Structures
-                </Link>
-              </Flex>
-            </Tooltip>
-          </MenuItem>
-          <MenuItem>
-            <Tooltip label="Coming Soon!">
-              <Flex align="center" h="100%">
-                <SkeletonCircle isLoaded={loaded} mr={2} h="100%">
-                  <NextLink href="/courses/chakra-ui" passHref>
-                    <Link href="/courses/chakra-ui">
-                      <AspectRatio ratio={1}>
-                        <Box
-                          w={8}
-                          h={8}
-                          borderRadius={5}
-                          bgColor={useColorModeValue("gray.100", "gray.900")}
-                        />
-                      </AspectRatio>
-                    </Link>
-                  </NextLink>
-                </SkeletonCircle>
-                <Link
-                  disabled={true}
-                  _disabled={{
-                    opacity: 0.5,
-                    cursor: "not-allowed",
-                  }}
-                  _hover={{ textDecor: "none" }}
-                  w="100%"
-                >
-                  Next.js
-                </Link>
-              </Flex>
-            </Tooltip>
-          </MenuItem>
-        </MenuGroup>
-        <MenuDivider />
-        <MenuItem>
+      <MenuList
+        onMouseEnter={onOpen}
+        onMouseLeave={onClose}
+        mt="-8px"
+        w="500px"
+        py={0}
+      >
+        {courseList.map(
+          (course) =>
+            course.available && (
+              <CourseItem key={course.title} course={course} />
+            )
+        )}
+        <MenuItem
+          h={20}
+          transition="background-color 0.2s ease-in-out"
+          _hover={{
+            bgColor: useColorModeValue("gray.200", "gray.600"),
+          }}
+          as="a"
+          href="/courses"
+        >
           <NextLink href="/courses" passHref>
             <Link _hover={{ textDecor: "none" }} w="100%" href="/courses">
-              All Courses
+              <Text align="center" fontSize="lg">
+                All Courses
+              </Text>
             </Link>
           </NextLink>
         </MenuItem>

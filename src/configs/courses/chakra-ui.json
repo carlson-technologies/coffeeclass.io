@@ -6,57 +6,57 @@
   "version": "v1.6.10",
   "routes": [
     {
-      "title": "👶 Introduction",
+      "title": "Introduction",
       "routes": [
         {
-          "title": "Course Introduction",
+          "title": "🚀 Course Introduction",
           "description": "An introduction to this course.",
           "path": "/courses/chakra-ui/course-introduction"
         },
         {
-          "title": "What Is Chakra UI?",
+          "title": "👶 What Is Chakra UI?",
           "description": "Introduction to Chakra UI - a simple, modular and accessible component library for React based apps.",
           "path": "/courses/chakra-ui/what-is-chakra-ui"
         }
       ]
     },
     {
-      "title": "🏫 Basics",
+      "title": "Basics",
       "routes": [
         {
-          "title": "Installing + Getting Started",
+          "title": "🕛 Installing + Getting Started",
           "description": "Install Chakra UI in Next.js, React, and Gatsby.",
           "path": "/courses/chakra-ui/getting-started-with-chakra-ui"
         },
         {
-          "title": "Default Theme",
+          "title": "🖼️ Default Theme",
           "description": "Learn how to use the default theme.",
           "path": "/courses/chakra-ui/chakra-ui-default-theme"
         },
         {
-          "title": "Custom Theme",
+          "title": "🎨 Custom Theme",
           "description": "Learn how to create a custom theme with custom colors, fonts, and more.",
           "path": "/courses/chakra-ui/chakra-ui-custom-theme"
         },
         {
-          "title": "Dark Mode",
+          "title": "🌑 Dark Mode",
           "description": "Add dark mode to your site in just a few lines of code.",
           "path": "/courses/chakra-ui/chakra-ui-dark-mode"
         },
         {
-          "title": "Basic Components",
+          "title": "⏰ Basic Components",
           "description": "",
           "path": "",
           "tag": "coming soon"
         },
         {
-          "title": "CSS Grid Using Grid Component",
+          "title": "🧱 CSS Grid Using Grid Component",
           "description": "",
           "path": "",
           "tag": "coming soon"
         },
         {
-          "title": "CSS Flex Box Using Flex Component",
+          "title": "📦 CSS Flex Box Using Flex Component",
           "description": "",
           "path": "",
           "tag": "coming soon"
@@ -64,28 +64,28 @@
       ]
     },
     {
-      "title": "🧨 Advanced",
+      "title": "Advanced",
       "routes": [
         {
-          "title": "Animating With Framer Motion",
+          "title": "🧨 Animating With Framer Motion",
           "description": "Let's animate some Chakra UI components with Framer Motion!",
           "path": "",
           "tag": "coming soon"
         },
         {
-          "title": "Theme Extensions",
+          "title": "🏃 Theme Extensions",
           "description": "",
           "path": "",
           "tag": "coming soon"
         },
         {
-          "title": "SEO",
+          "title": "🔔 SEO",
           "description": "Learn how to easily optimize your website for search engine optimization (SEO) using Chakra UI.",
           "path": "/courses/chakra-ui/chakra-ui-seo",
           "tag": "new"
         },
         {
-          "title": "Build A Landing Page",
+          "title": "💻 Build A Landing Page",
           "description": "",
           "path": "",
           "tag": "coming soon"
@@ -93,17 +93,17 @@
       ]
     },
     {
-      "title": "📹 Video Guides",
+      "title": "Video Guides",
       "routes": [
         {
-          "title": "Create A Dashboard",
+          "title": "📹 Create A Dashboard",
           "description": "Learn how to create a dashboard in Chakra UI!",
           "path": "/courses/chakra-ui/create-a-dashboard",
           "hasVideo": true,
           "tag": "new"
         },
         {
-          "title": "Create A Sidebar Navigation",
+          "title": "🚏 Create A Sidebar Navigation",
           "description": "Code a beautiful sidebar navigation using Chakra UI.",
           "path": "/courses/chakra-ui/create-a-sidebar-navigation",
           "hasVideo": true,

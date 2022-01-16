@@ -14,11 +14,19 @@ import {
   SkeletonCircle,
   AspectRatio,
   useColorModeValue,
+  IconButton,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import NextLink from "next/link";
+import { ChevronLeftIcon } from "@chakra-ui/icons";
 
-const Sidebar = ({ course }: any) => {
+const Sidebar = ({
+  course,
+  display,
+  setDisplay,
+  courseHeaderDisplay,
+  setCourseHeaderDisplay,
+}: any) => {
   const router = useRouter();
   const [loaded, setLoaded] = useState(false);
   const { colorMode } = useColorMode();
@@ -42,7 +50,7 @@ const Sidebar = ({ course }: any) => {
   const color = useColorModeValue("gray.600", "gray.400");
 
   return (
-    <>
+    <Box>
       <Box
         as="aside"
         aria-label="Sidebar Navigation"
@@ -52,10 +60,34 @@ const Sidebar = ({ course }: any) => {
         overflowY="auto"
         flexShrink={0}
         h="fit-content"
-        maxH="calc(100vh - 100px)"
+        maxH="calc(100vh - 50px)"
+        id="sidebar"
+        onMouseEnter={() => {
+          setCourseHeaderDisplay("flex");
+        }}
+        onMouseLeave={() => {
+          setCourseHeaderDisplay("none");
+        }}
       >
-        <Flex flexDirection="column">
-          <Flex flexDirection="column" alignItems="center" mt={2} id="logo">
+        <Flex flexDirection="column" w={300}>
+          <IconButton
+            opacity={courseHeaderDisplay == "flex" ? 1 : 0}
+            aria-label="Close Sidebar"
+            icon={<ChevronLeftIcon />}
+            size="md"
+            pos="absolute"
+            top={0}
+            right={0}
+            m={4}
+            onClick={() => {
+              setDisplay(display === "none" ? "flex" : "none");
+              localStorage.setItem(
+                "sidebarDisplay",
+                display === "none" ? "flex" : "none"
+              );
+            }}
+          />
+          <Flex flexDirection="column" alignItems="center" id="logo" mt={4}>
             <SkeletonCircle isLoaded={loaded}>
               <NextLink href="/courses/chakra-ui" passHref>
                 <Link href="/courses/chakra-ui">
@@ -91,79 +123,86 @@ const Sidebar = ({ course }: any) => {
                 {item.title}
               </Heading>
               <>
-                {item?.routes?.map(
-                  (item: any) => (
-                    (
-                      <NextLink href={item.path} key={item.title} passHref>
-                        <Link
-                          href={item.path}
-                          _hover={{
-                            textDecoration: "none",
-                          }}
-                          as="button"
-                          textAlign="left"
-                          disabled={item.tag == "coming soon" && true}
-                          _disabled={{
-                            opacity: 0.5,
-                            cursor: "not-allowed",
-                          }}
-                          w="100%"
-                        >
-                          <Box
-                            _hover={{
-                              textDecoration: "none",
-                              backgroundColor: item.path.includes(
-                                router.query.module
-                              )
-                                ? sideBarActiveColor[colorMode]
-                                : sideBarHoverColor[colorMode],
-                            }}
-                            transition="background-color .15s ease-in-out"
-                            w="100%"
-                            borderRadius={2}
-                            py={2}
-                            px={4}
-                            backgroundColor={
-                              item.path.includes(router.query.module)
-                                ? sideBarActiveColor[colorMode]
-                                : null
-                            }
-                          >
-                            <Flex flexDir="column">
-                              <Text py="1px" pl={1}>
-                                {item.title}
-                              </Text>
-                              {item.tag && (
-                                <Badge
-                                  w="fit-content"
-                                  colorScheme={
-                                    item.tag == "new" ? "green" : "purple"
-                                  }
-                                >
-                                  {item.tag}
-                                </Badge>
-                              )}
-                            </Flex>
-                          </Box>
-                        </Link>
-                      </NextLink>
-                    )
-                  )
-                )}
+                {item?.routes?.map((item: any) => (
+                  <NextLink href={item.path} key={item.title} passHref>
+                    <Link
+                      href={item.path}
+                      _hover={{
+                        textDecoration: "none",
+                      }}
+                      as="button"
+                      textAlign="left"
+                      disabled={item.tag == "coming soon" && true}
+                      _disabled={{
+                        opacity: 0.5,
+                        cursor: "not-allowed",
+                      }}
+                      w="100%"
+                    >
+                      <Box
+                        _hover={{
+                          textDecoration: "none",
+                          backgroundColor: item.path.includes(
+                            router.query.module
+                          )
+                            ? sideBarActiveColor[colorMode]
+                            : sideBarHoverColor[colorMode],
+                        }}
+                        transition="background-color .15s ease-in-out"
+                        w="100%"
+                        borderRadius={2}
+                        py={2}
+                        px={4}
+                        backgroundColor={
+                          item.path.includes(router.query.module)
+                            ? sideBarActiveColor[colorMode]
+                            : null
+                        }
+                      >
+                        <Flex flexDir="column">
+                          <Text py="1px" pl={1}>
+                            {item.title}
+                          </Text>
+                          {item.tag && (
+                            <Badge
+                              w="fit-content"
+                              colorScheme={
+                                item.tag == "new" ? "green" : "purple"
+                              }
+                            >
+                              {item.tag}
+                            </Badge>
+                          )}
+                        </Flex>
+                      </Box>
+                    </Link>
+                  </NextLink>
+                ))}
               </>
             </>
           ))}
         </Flex>
       </Box>
-      <Box
-        py={4}
+      <Flex
         borderTop={`1px solid ${useColorModeValue("#E2E8F0", "#A0AEC0")}`}
+        h="50px"
+        alignItems="center"
       >
-        <Text ml={2}>
-          {configMap[course].title} - {configMap[course].version}
-        </Text>
-      </Box>
-    </>
+        <Heading
+          as="h3"
+          textTransform="uppercase"
+          color={useColorModeValue("gray.600", "gray.400")}
+          fontSize="sm"
+          fontWeight="semibold"
+          letterSpacing="wider"
+          textAlign="left"
+          pl={2}
+        >
+          {configMap[course].title}{" "}
+          {configMap[course].version ? ` - ${configMap[course].version}` : ""}
+        </Heading>
+      </Flex>
+    </Box>
   );
 };
 

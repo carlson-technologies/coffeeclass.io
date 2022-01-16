@@ -1,37 +1,92 @@
 {
   "title": "Data Structures",
-  "description": "todo",
-  "image": "todo.png",
+  "description": "The fundamentals of compute science. Learn every data structure you need to ace your college DS classes or coding interviews.",
+  "image": "ds.png",
   "base": "/courses/data-structures",
-  "version": "",
   "routes": [
     {
-      "title": "👶 Introduction",
+      "title": "Introduction",
       "routes": [
         {
-          "title": "Course Introduction",
-          "description": "An introduction to this course.",
-          "path": "/courses/data-structures/course-introduction"
+          "title": "🚀 Course Introduction",
+          "description": "An overview of the course.",
+          "path": "/courses/data-structures/course-introduction",
+          "tag": "new"
         }
       ]
     },
     {
-      "title": "👶 Basics",
+      "title": "Fundamentals",
       "routes": [
         {
-          "title": "Big \"O\" Notation",
-          "description": "A brief introduction to the Big \"O\" Notation.",
-          "path": "/courses/data-structures/big-o-notation"
+          "title": "👶 Arrays",
+          "description": "Learn the most fundamental data structure and how to use it. We create an array, add data to it, and access that data in Java, JavaScript, and C#.",
+          "path": "/courses/data-structures/arrays",
+          "tag": "new"
         },
         {
-          "title": "Arrays",
-          "description": "arrays",
-          "path": "/courses/data-structures/arrays"
+          "title": "🔗 Linked Lists",
+          "description": "Learn Singly LL's, Circular LL's, Doubly LL's, and how to use them. We'll finish by reversing a LL.",
+          "path": "/courses/data-structures/linked-lists",
+          "tag": "new"
+        }
+      ]
+    },
+    {
+      "title": "Intermediate",
+      "routes": [
+        {
+          "title": "📚 Stacks",
+          "description": "stacks",
+          "path": "/courses/data-structures/stacks",
+          "tag": "new"
         },
         {
-          "title": "Linked Lists",
-          "description": "linked lists",
-          "path": "/courses/data-structures/linked-lists"
+          "title": "🎢 Queues",
+          "description": "Queues, Deques, and Priority Queue ADT",
+          "path": "/courses/data-structures/queues",
+          "tag": "coming soon"
+        },
+        {
+          "title": "🗒️ List ADTs",
+          "description": "list adt",
+          "path": "/courses/data-structures/list-adt",
+          "tag": "coming soon"
+        }
+      ]
+    },
+    {
+      "title": "Advanced",
+      "routes": [
+        {
+          "title": "🌲 Trees",
+          "description": "trees",
+          "path": "/courses/data-structures/trees",
+          "tag": "coming soon"
+        },
+        {
+          "title": "✨ Heaps",
+          "description": "heaps",
+          "path": "/courses/data-structures/heaps",
+          "tag": "coming soon"
+        },
+        {
+          "title": "🗺️ Maps",
+          "description": "maps",
+          "path": "/courses/data-structures/maps",
+          "tag": "coming soon"
+        },
+        {
+          "title": "🏓 Hash Tables",
+          "description": "hash tables",
+          "path": "/courses/data-structures/hash-tables",
+          "tag": "coming soon"
+        },
+        {
+          "title": "🥧 Graphs",
+          "description": "graphs",
+          "path": "/courses/data-structures/graphs",
+          "tag": "coming soon"
         }
       ]
     }

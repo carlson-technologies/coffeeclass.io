@@ -22,6 +22,7 @@ import {
   useColorMode,
   Link,
   Icon,
+  Divider,
 } from "@chakra-ui/react";
 import Ad from "../../../components/Content/Ad";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
@@ -44,16 +45,21 @@ export default function PostPage({ source, frontMatter, params }: Props) {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <Box>
+        <Box mb={4}>
           <Heading as="h1" size="2xl" letterSpacing="tight" mb={2} mt={6}>
             {frontMatter.title}
           </Heading>
-          <Text color={useColorModeValue("gray.600", "gray.400")} fontSize="xl">
-            {frontMatter.description}
+          <Text
+            fontSize="xl"
+            color={useColorModeValue("gray.600", "gray.400")}
+          >
+            <strong>Module Summary:</strong> {frontMatter.description}
           </Text>
-          <Box display={["auto", "auto", "auto", "auto", "auto", "none"]}>
-            <HeadersAccordion headers={frontMatter?.headers} />
-          </Box>
+          <Text fontSize="md" color="gray.500" mb={4}>
+            {frontMatter.readingTime.text} &middot;{" "}
+            {frontMatter.readingTime.words} words
+          </Text>
+          <HeadersAccordion headers={frontMatter?.headers} />
         </Box>
         <Flex flexDir="column" id="main-content">
           <Ad />

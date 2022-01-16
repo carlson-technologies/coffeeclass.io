@@ -24,11 +24,6 @@ import chakraUISidebar from "../../../configs/courses/chakra-ui.json";
 import dataStructuresSidebar from "../../../configs/courses/data-structures.json";
 import { useRouter } from "next/router";
 
-const url = "https://www.coffeeclass.io/chakra-ui";
-const title = "Chakra UI Complete Course";
-const description =
-  "Learn the css framework Chakra UI though our easy to follow, step by step course modules.";
-
 interface Props {
   files: string[];
   course: string;
@@ -39,6 +34,8 @@ export default function ChakraUI({ files, course }: Props) {
     "chakra-ui": chakraUISidebar,
     "data-structures": dataStructuresSidebar,
   };
+
+  console.log(files);
 
   const { query } = useRouter();
   const c = query.course;
@@ -52,6 +49,10 @@ export default function ChakraUI({ files, course }: Props) {
   const color = useColorModeValue("gray.600", "gray.400");
 
   let courseCount = 0;
+
+  const url = `https://www.coffeeclass.io/${c}`;
+  const title = `${configMap[c.toString()].title} Complete Course`;
+  const description = configMap[c.toString()].description;
 
   return (
     <Container title={title} description={description} url={url}>

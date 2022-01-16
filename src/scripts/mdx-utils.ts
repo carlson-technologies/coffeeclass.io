@@ -11,7 +11,7 @@ export const TAGS_PATH: string = path.join(process.cwd(), "content/tags")
 export const COURSE_PATH: string = path.join(process.cwd(), "content/courses")
 
 
-/* Get's all mdx files for the folder passed in. It will go down 2 levels max
+/* Gets all mdx files for the folder passed in. It will go down 2 levels max
 * Parameters:
 *   coursePath: the path to the folder we want to get the files from
 * Returns:

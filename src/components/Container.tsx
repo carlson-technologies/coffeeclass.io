@@ -4,6 +4,7 @@ import Footer from "./Navigation/Footer";
 import Navbar from "./Navigation/Navbar";
 import { NextSeo } from "next-seo";
 // import FeedBackFish from "./Navigation/FeedBackFish";
+import { useRouter } from "next/router";
 
 interface Props {
   title: string;
@@ -13,6 +14,8 @@ interface Props {
 }
 
 const Container = ({ title, description, url, children }: Props) => {
+  const router = useRouter();
+  const { query } = router;
   return (
     <>
       {/* <FeedBackFish /> */}
@@ -26,7 +29,7 @@ const Container = ({ title, description, url, children }: Props) => {
           description,
         }}
       />
-      <Navbar />
+      {!query.module && <Navbar />}
       <Flex flexDirection="column">
         <Flex display="block" minH="100vh" as="main">
           {children}

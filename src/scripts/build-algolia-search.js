@@ -6,6 +6,14 @@ const algoliasearch = require("algoliasearch/lite");
 
 // node ./src/scripts/build-algolia-search.js
 
+/*
+This script adds the following to search:
+
+- Articles
+- Authors
+- Tags
+*/
+
 try {
     dotenv.config();
 

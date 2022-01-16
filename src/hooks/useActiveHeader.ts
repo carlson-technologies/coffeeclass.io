@@ -1,3 +1,7 @@
+/*
+* Takes in a list of headers and returns the active header using IntersectionObserver.
+*/
+
 import * as React from 'react'
 
 export function activeHeader(

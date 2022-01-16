@@ -81,8 +81,7 @@
         {
           "title": "🔔 SEO",
           "description": "Learn how to easily optimize your website for search engine optimization (SEO) using Chakra UI.",
-          "path": "/courses/chakra-ui/chakra-ui-seo",
-          "tag": "new"
+          "path": "/courses/chakra-ui/chakra-ui-seo"
         },
         {
           "title": "💻 Build A Landing Page",
@@ -99,15 +98,13 @@
           "title": "📹 Create A Dashboard",
           "description": "Learn how to create a dashboard in Chakra UI!",
           "path": "/courses/chakra-ui/create-a-dashboard",
-          "hasVideo": true,
-          "tag": "new"
+          "hasVideo": true
         },
         {
           "title": "🚏 Create A Sidebar Navigation",
           "description": "Code a beautiful sidebar navigation using Chakra UI.",
           "path": "/courses/chakra-ui/create-a-sidebar-navigation",
-          "hasVideo": true,
-          "tag": "new"
+          "hasVideo": true
         }
       ]
     }

@@ -133,16 +133,14 @@ export default function ChakraUI({ files, course }: Props) {
                                 <Flex flexDir="column">
                                   <Heading as="h3" size="md">
                                     {item.title}
+                                    {item.tag == "new" && (
+                                      <Badge ml={2}>New!</Badge>
+                                    )}
+                                    {item.tag == "coming soon" && (
+                                      <Badge ml={2}>Coming Soon!</Badge>
+                                    )}
                                   </Heading>
                                   <Text mt={1}>{item.description}</Text>
-                                  <Text>
-                                    {item.tag == "coming soon" && (
-                                      <Badge>Coming Soon!</Badge>
-                                    )}
-                                  </Text>
-                                  <Text>
-                                    {item.tag == "new" && <Badge>New!</Badge>}
-                                  </Text>
                                 </Flex>
                               </Flex>
                               {item.hasVideo && (

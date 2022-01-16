@@ -71,9 +71,12 @@ const Sidebar = ({
       >
         <Flex flexDirection="column" w={300}>
           <IconButton
+            _hover={{
+              bgColor: useColorModeValue("gray.200", "gray.800"),
+            }}
             opacity={courseHeaderDisplay == "flex" ? 1 : 0}
             aria-label="Close Sidebar"
-            icon={<ChevronLeftIcon />}
+            icon={<ChevronLeftIcon fontSize="24px" />}
             size="md"
             pos="absolute"
             top={0}

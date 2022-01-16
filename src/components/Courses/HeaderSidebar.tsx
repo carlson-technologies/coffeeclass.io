@@ -6,7 +6,7 @@ import {
   useColorMode,
   Link,
 } from "@chakra-ui/react";
-import { activeHeader } from "../../hooks/active-header";
+import { activeHeader } from "../../hooks/useActiveHeader";
 
 export default function HeaderSidebar({ headers }: any) {
   const { colorMode } = useColorMode();

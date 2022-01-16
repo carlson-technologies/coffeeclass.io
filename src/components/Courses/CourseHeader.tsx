@@ -48,11 +48,20 @@ export default function CourseHeader({
       }}
     >
       <IconButton
+        _hover={{
+          bgColor: useColorModeValue("gray.200", "gray.800"),
+        }}
         opacity={display == "flex" ? 0 : courseHeaderDisplay == "flex" ? 1 : 0}
-        display={display == "flex" ? "none" : "flex"}
+        display={[
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          display == "flex" ? "none" : "flex",
+        ]}
         aria-label="Close Sidebar"
-        icon={<ChevronRightIcon />}
-        size="md"
+        icon={<ChevronRightIcon fontSize="24px" />}
         m={4}
         onClick={() => {
           setDisplay(display === "none" ? "flex" : "none");

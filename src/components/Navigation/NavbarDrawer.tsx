@@ -47,12 +47,12 @@ const NavBarDrawer = ({ placement }: Props) => {
       >
         <IconButton
           aria-label="Open Menu"
-          size="lg"
           bgColor="transparent"
           _hover={{
             textDecoration: "none",
+            bgColor: useColorModeValue("gray.200", "gray.800"),
           }}
-          icon={<HamburgerIcon />}
+          icon={<HamburgerIcon fontSize="20px" />}
           onClick={onOpen}
           borderRadius={5}
         />

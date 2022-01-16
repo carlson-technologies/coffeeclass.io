@@ -29,6 +29,7 @@ import Step from "./Content/Step";
 import FeaturedPost from "./Content/FeaturedPost";
 import ThreeDots from "./Content/ThreeDots";
 import DefinitionPopup from "./Courses/DefinitionPopup";
+import { useCopyToClipboard } from "../hooks/useCopyToClipboard";
 
 const Quote = (props: any) => {
   const { colorMode } = useColorMode();

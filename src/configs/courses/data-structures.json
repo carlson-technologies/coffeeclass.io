@@ -9,7 +9,7 @@
       "routes": [
         {
           "title": "🚀 Course Introduction",
-          "description": "An overview of the course.",
+          "description": "An overview of the coffeeclass.io data structures course.",
           "path": "/courses/data-structures/course-introduction",
           "tag": "new"
         }
@@ -26,7 +26,7 @@
         },
         {
           "title": "🔗 Linked Lists",
-          "description": "Learn Singly LL's, Circular LL's, Doubly LL's, and how to use them. We'll finish by reversing a LL.",
+          "description": "Learn Singly Linked Lists, Circular LL's, Doubly LL's, and how to use them. We'll finish by solving a common interview question: reversing a linked list.",
           "path": "/courses/data-structures/linked-lists",
           "tag": "new"
         }
@@ -37,7 +37,7 @@
       "routes": [
         {
           "title": "📚 Stacks",
-          "description": "stacks",
+          "description": "What's a Stack ADT? Learn what stacks are, the benefits, and how to implement them using an array and a linked list in this module.",
           "path": "/courses/data-structures/stacks",
           "tag": "new"
         },

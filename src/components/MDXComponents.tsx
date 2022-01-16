@@ -28,6 +28,8 @@ import FloatUpDivAnimationNoHeight from "./Content/FloatUpDivAnimationNoHeight";
 import Step from "./Content/Step";
 import FeaturedPost from "./Content/FeaturedPost";
 import ThreeDots from "./Content/ThreeDots";
+import DefinitionPopup from "./Courses/DefinitionPopup";
+import { useCopyToClipboard } from "../hooks/useCopyToClipboard";
 
 const Quote = (props: any) => {
   const { colorMode } = useColorMode();
@@ -108,7 +110,7 @@ const CustomListItem = (props: any) => {
   return (
     <ListItem
       my={2}
-      fontSize="xl"
+      fontSize="lg"
       key={props.children}
       color={color[colorMode]}
       listStylePos="inside"
@@ -128,7 +130,7 @@ const CustomP = (props: any) => {
     light: "gray.800",
     dark: "gray.200",
   };
-  return <Text fontSize="xl" my={4} color={color[colorMode]} {...props} />;
+  return <Text fontSize="lg" my={2} color={color[colorMode]} {...props} />;
 };
 
 const CustomCode = (props: any) => {
@@ -218,11 +220,11 @@ const CustomImage = (props: any) => {
 
 const MDXComponents = {
   h1: (props: any) => <Heading as="h1" size="2xl" {...props} />,
-  h2: (props: any) => <DocsHeading as="h2" size="lg" mt="1em" {...props} />,
-  h3: (props: any) => <DocsHeading as="h3" size="md" mt=".5em" {...props} />,
-  h4: (props: any) => <DocsHeading as="h4" size="md" mt=".5em" {...props} />,
+  h2: (props: any) => <DocsHeading as="h2" size="xl" mt="1em" {...props} />,
+  h3: (props: any) => <DocsHeading as="h3" size="lg" mt=".8em" {...props} />,
+  h4: (props: any) => <DocsHeading as="h4" size="md" mt=".6em" {...props} />,
   h5: (props: any) => <DocsHeading as="h5" size="sm" mt=".5em" {...props} />,
-  h6: (props: any) => <DocsHeading as="h6" size="xs" mt=".5em" {...props} />,
+  h6: (props: any) => <DocsHeading as="h6" size="sm" mt=".5em" {...props} />,
   p: CustomP,
   inlineCode: (props: any) => <CustomCode {...props} />,
   ul: (props: any) => <UnorderedList my={4} {...props} />,
@@ -244,7 +246,7 @@ const MDXComponents = {
   Step,
   FeaturedPost,
   ThreeDots,
-  // props.className.split("language-")[1] <- get language of pre
+  DefinitionPopup,
 };
 
 export default MDXComponents;

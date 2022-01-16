@@ -132,7 +132,7 @@ export default function PostPage({ source, frontMatter, posts }) {
                                 mb={2}
                                 color={color1[colorMode]}
                             >
-                                <strong>Quick Summary:</strong> {frontMatter.description}
+                                <strong>Article Summary:</strong> {frontMatter.description}
                             </Text>
                         </Box>
                         {

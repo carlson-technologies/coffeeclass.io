@@ -35,7 +35,14 @@ export default function CourseCard({ course }: any) {
         rounded={"md"}
         overflow={"hidden"}
       >
-        <Image
+        <Box
+          bgColor={useColorModeValue(
+            `${course.colorLight}`,
+            `${course.colorDark}`
+          )}
+          h={"120px"}
+        />
+        {/* <Image
           h={"120px"}
           w={"full"}
           src={
@@ -43,14 +50,14 @@ export default function CourseCard({ course }: any) {
           }
           alt=""
           objectFit={"cover"}
-        />
+        /> */}
         <Flex justify={"center"} mt={-12}>
           <Avatar
             size={"xl"}
             src={`/logos/${course.image}`}
-            alt={"Author"}
+            alt={"Course Logo"}
             css={{
-              border: "2px solid white",
+              boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.4)",
             }}
             icon={<FiBook />}
           />

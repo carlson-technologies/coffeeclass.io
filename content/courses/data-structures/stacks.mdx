@@ -1,0 +1,188 @@
+---
+title: "📚 Stacks"
+description: "What's a Stack ADT? Learn what stacks are, the benefits, and how to implement them using an array and a linked list in this module."
+author: "benjamin-carlson.mdx"
+publishedAt: "2022-01-16T15:00:00"
+updatedAt: "2022-01-16T15:00:00"
+---
+
+## Introduction
+
+**A stack is defined as a collection of objects that are inserted and removed in a last-in-first-out (LIFO) manner.** You can only add (push) and remove (pop) objects from the top of the stack.
+
+Think of Google Chrome. When you visit a page, that page is pushed onto a stack. When you visit another page, that new page is pushed onto the stack. To find the current page, you look at the top element of the stack. To find the previous page, you pop the top element off the stack. If you visit 10 pages and want to find the first page, you would have to pop every element until you find the first page.
+
+<p>
+  A stack is an{" "}
+  <DefinitionPopup title="abstract data type.">
+    An abstract data type (ADT) is a type who's behavior is defined by a set of
+    values and operations.
+  </DefinitionPopup>{" "}
+  It supports 2 operations: push and pop. Stacks also support the following
+  accessor operations: peek, size, and isEmpty.
+</p>
+
+## Array Based Stack
+
+We can use an array to implement a stack. The first element, array[0], will be the first element in. We'll implement the following methods for the stack:
+
+- `push(item)` - adds an item to the top of the stack
+- `pop()` - removes the top item from the stack
+- `peek()` - returns the top item from the stack
+- `size()` - returns the number of items in the stack
+- `isEmpty()` - returns true if the stack is empty
+
+### Java
+
+```java
+public class ArrayStack<E> implements Stack<E> {
+    public static final int DEFAULT_CAPACITY = 10;
+    private E[] data;
+    private int t = -1;
+
+    public ArrayStack() {
+        this(DEFAULT_CAPACITY);
+    }
+
+    public ArrayStack(int capacity) {
+        data = (E[]) new Object[capacity];
+    }
+
+    public int size() {
+        return t + 1;
+    }
+
+    public boolean isEmpty() {
+        return t == -1;
+    }
+
+    public void push(E e) throws IllegalStateException {
+        if (size() == data.length) {
+            throw new IllegalStateException("Stack is full");
+        }
+        data[++t] = e; // increment t (before storing the new item) and set the new element
+    }
+
+    public E peek() {
+        if (isEmpty()) {
+            throw new IllegalStateException("Stack is empty");
+        }
+        return data[t];
+    }
+
+    public E pop() {
+        if (isEmpty()) {
+            throw new IllegalStateException("Stack is empty");
+        }
+        E item = data[t];
+        data[t] = null;
+        t--;
+        return item;
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder("[");
+        for (int i = 0; i <= t; i++) {
+            sb.append(data[i]);
+            if (i < t) {
+                sb.append(", ");
+            }
+        }
+        sb.append("]");
+        return sb.toString();
+    }
+}
+```
+
+Test:
+
+```java
+public static void main(String[] args) {
+    ArrayStack<Integer> stack = new ArrayStack<>();
+
+    System.out.println(stack.isEmpty()); // returns true
+    System.out.println(stack.size()); // returns 0
+    System.out.println(stack.toString()); // returns []
+
+    stack.push(1);
+    System.out.println(stack.isEmpty()); // returns false
+    System.out.println(stack.size()); // returns 1
+    System.out.println(stack.toString()); // returns [1]
+    System.out.println(stack.peek()); // returns 1
+
+    // Expect an exception on pushing the last element (11)
+    for (int i = 2; i <= 11; i++) {
+        stack.push(i);
+        System.out.println(stack.toString());
+    }
+}
+```
+
+The array based stack is simple and easy to implement. One drawback is that it has a fixed size. Let's see how we can implement a stack with a linked list which does not have a fixed size.
+
+## Singly Linked List Stack
+
+To implement the stack with a linked list, we'll first need to create a singly linked list, which we already did in the [previous module](/courses/data-structures/linked-lists).
+
+### Java
+
+```java
+public class SinglyLinkedListStack<E> {
+    private SinglyLinkedList<E> list = new SinglyLinkedList();
+
+    public SinglyLinkedListStack() {
+    }
+
+    public int size() {
+        return list.size();
+    }
+
+    public boolean isEmpty() {
+        return list.isEmpty();
+    }
+
+    public void push(E e) {
+        list.addFirst(e);
+    }
+
+    public E peek() {
+        return list.first();
+    }
+
+    public E pop() {
+        return list.removeFirst();
+    }
+
+    public String toString() {
+        return list.toString();
+    }
+}
+```
+
+Test:
+
+```java
+public static void main(String[] args) {
+    SinglyLinkedListStack<Integer> stack = new SinglyLinkedListStack<>();
+
+    System.out.println(stack.isEmpty()); // returns true
+    System.out.println(stack.size()); // returns 0
+    System.out.println(stack.toString()); // returns []
+
+    stack.push(1);
+    System.out.println(stack.isEmpty()); // returns false
+    System.out.println(stack.size()); // returns 1
+    System.out.println(stack.toString()); // returns [1]
+    System.out.println(stack.peek()); // returns 1
+
+    // Expect an exception
+    for (int i = 2; i <= 11; i++) {
+        stack.push(i);
+        System.out.println(stack.toString());
+    }
+}
+```
+
+## Conclusion
+
+In this module, you learned how to implement a stack using an array and a singly linked list.

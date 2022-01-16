@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import chakraUISidebar from "../../configs/courses/chakra-ui.json";
+import dataStructuresSidebar from "../../configs/courses/data-structures.json";
 import { Flex, Text, Link, useColorMode, Icon, Button } from "@chakra-ui/react";
 import { ChevronRightIcon, ChevronLeftIcon } from "@chakra-ui/icons";
 import NextLink from "next/link";
@@ -10,6 +11,7 @@ const Pagination = () => {
 
   const configMap: any = {
     "chakra-ui": chakraUISidebar,
+    "data-structures": dataStructuresSidebar,
   };
 
   const modules: any = configMap[course.toString()].routes;
@@ -19,10 +21,7 @@ const Pagination = () => {
     light: "gray.600",
     dark: "gray.400",
   };
-  const hoverColor = {
-    light: "brand_one.200",
-    dark: "brand_one.400",
-  };
+
   const pagination = getPagination(modules);
 
   function getPagination(modules: any): any {
@@ -65,9 +64,7 @@ const Pagination = () => {
     >
       {pagination.prevRoute ? (
         <NextLink href={pagination.prevRoute.path} passHref>
-          <Link
-            href={pagination.prevRoute.path}
-          >
+          <Link href={pagination.prevRoute.path}>
             <Button
               variant="ghost"
               textAlign="right"

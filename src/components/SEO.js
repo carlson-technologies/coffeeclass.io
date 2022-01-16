@@ -1,34 +1,42 @@
 import { NextSeo, ArticleJsonLd } from 'next-seo'
+import useSWR from "swr";
+import fetcher from "../scripts/fetcher";
 
-const SEO = ({ title, seoDescription, publishedAt, updatedAt, url, author, featureImg, slug }) => {
+const SEO = ({ title, description, publishedAt, updatedAt, url, author }) => {
     const date = new Date(publishedAt).toISOString()
     const featuredImage = {
-        url: featureImg ? `https://www.coffeeclass.io/content${slug}/${featureImg}` : `https://www.coffeeclass.io/logo-white-bg.png`,
+        url: "https://www.coffeeclass.io/logo-white-bg.png",
         alt: title,
     }
+
+    const { data } = useSWR(
+        `/api/getAuthor?authorSlug=${author.replace(".mdx", "")}`,
+        fetcher
+    );
 
     return (
         <>
             <NextSeo
                 title={title}
-                description={seoDescription}
+                description={description}
                 canonical={url}
                 openGraph={{
                     type: 'article',
                     article: {
-                        publishedTime: date
+                        publishedTime: date,
+                        modifiedTime: updatedAt,
                     },
                     url,
                     title,
-                    description: seoDescription,
+                    description: description,
                     images: [featuredImage]
                 }}
             />
             <ArticleJsonLd
-                authorName={author}
-                dateModified={updatedAt ? updatedAt : date}
+                authorName={data?.data?.data?.name}
                 datePublished={date}
-                description={seoDescription}
+                dateModified={updatedAt ? updatedAt : date}
+                description={description}
                 images={[featuredImage]}
                 publisherLogo="/logo-white-bg.png"
                 publisherName="coffeeclass.io"

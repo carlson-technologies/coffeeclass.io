@@ -5,13 +5,9 @@ import {
   Button,
   Text,
   Box,
-  Link,
-  Icon,
   useColorMode,
   useColorModeValue,
   SimpleGrid,
-  AspectRatio,
-  Skeleton,
   Divider,
 } from "@chakra-ui/react";
 import Container from "../components/Container";
@@ -23,17 +19,32 @@ import path from "path";
 import { contentFilePaths, CONTENT_PATH } from "../scripts/mdx-utils";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import Hero from "../components/Hero";
-import TimeAgo from "../scripts/time-ago";
 import ArticleCard from "../components/ArticleCard";
 import CourseCard from "../components/Courses/CourseCard";
 
-const course = {
-  title: "Chakra UI",
-  path: "/courses/chakra-ui",
-  slug: "chakra-ui",
-  image: "chakra-ui.png",
-  description:
-    "Chakra UI is a simple, modular and accessible component library that gives you the building blocks you need to build your React applications.",
+const data = {
+  routes: [
+    {
+      title: "Chakra UI",
+      path: "/courses/chakra-ui",
+      slug: "chakra-ui",
+      image: "chakra-ui.png",
+      colorLight: "teal.100",
+      colorDark: "teal.500",
+      description:
+        "Chakra UI is a simple, modular and accessible component library that gives you the building blocks you need to build your React applications.",
+    },
+    {
+      title: "Data Structures",
+      path: "/courses/data-structures",
+      slug: "data-structures",
+      image: "ds.png",
+      colorLight: "purple.100",
+      colorDark: "purple.500",
+      description:
+        "The fundamentals of compute science. Learn every data structure you need to ace your college DS classes or coding interviews.",
+    },
+  ],
 };
 
 const url = "https://www.coffeeclass.io/";
@@ -85,11 +96,35 @@ export default function Index({ posts }: Props) {
             px={[2, 2, 2, 6, 10, 12]}
             mt={8}
           >
-            Latest Course &mdash;
+            Latest Courses &mdash;
           </Heading>
         </Box>
 
-        <CourseCard course={course} />
+        <SimpleGrid
+          minChildWidth={["100%", "100%", "100%", "100%", "600px", "600px"]}
+          gap={6}
+        >
+          {data.routes.map((course: any, index: number) => {
+            return <CourseCard course={course} key={index} />;
+          })}
+        </SimpleGrid>
+
+        <Flex flexDir="column" px={[2, 2, 2, 6, 10, 12]} mb={8} mx="auto">
+          <NextLink href={`/courses`} passHref>
+            <Button
+              w={300}
+              mx="auto"
+              as="a"
+              href={`/courses`}
+              rightIcon={<ChevronRightIcon />}
+              size="lg"
+              variant="outline"
+              mt={8}
+            >
+              All Courses
+            </Button>
+          </NextLink>
+        </Flex>
 
         <Box maxW={1000} mx="auto" w="100%">
           <Heading

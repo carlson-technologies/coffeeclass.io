@@ -64,7 +64,7 @@ export default function Index({ posts }: Props) {
 
   return (
     <Container title={title} url={url}>
-      <Flex flexDir="column" maxW="110em">
+      <Flex flexDir="column" maxW="100vw">
         <Flex
           flexDir="column"
           as="section"

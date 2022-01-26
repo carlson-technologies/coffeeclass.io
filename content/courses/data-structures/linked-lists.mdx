@@ -1,0 +1,652 @@
+---
+title: "🔗 Linked Lists"
+description: "Learn Singly Linked Lists, Circular LL's, Doubly LL's, and how to use them. We'll finish by solving a common interview question: reversing a linked list."
+author: "benjamin-carlson.mdx"
+publishedAt: "2022-01-16T15:00:00"
+updatedAt: "2022-01-16T15:00:00"
+---
+
+## Introduction
+
+**Linked Lists are a data structure that is a linear collection of data.** An element in a linked list is called a node. Each node points to the next node in the list. Along with the pointer, nodes can also contain data.
+
+## Linked Lists V.S. Arrays
+
+You might be thinking, "Isn't an array a linear collection of data too? What's the difference?". In an array, the data is stored right next to each other in memory. In a linked list, this is not the case. Because elements in a linked lists point to the next element, 2 elements that point to each other might be very far away in memory.
+
+Furthermore, arrays have some drawbacks.
+
+1. The capacity of an array is fixed when it is created.
+2. Inserting and deleting elements from an array is expensive because it requires shifting all the elements in the array.
+
+If you are still unsure about the differences, imagine needing to delete the last element in an array but you don't know the length. You would have to iterate over the entire array! Or, what if you want to add an element at position 0. You would have to shift every element by 1. This is very expensive if we have thousands or millions of elements.
+
+In this module, we will explore the different types of linked lists and how to traverse them.
+
+## Singly Linked Lists
+
+The most basic linked list is a singly linked list. **The first node of the linked list is called the head**. We must keep a reference to the head. **The last node of the linked list is called the tail**. We do not need to keep a reference to the tail. Instead, we can traverse the linked list starting with the head. The tail will point to `null`.
+
+```bash
+[Node 1 (head)] -> [Node 2] -> [Node 3] -> ... -> [Node n (tail)] -> null
+```
+
+### Inserting an element at the Head
+
+Creating a linked list is not as simple as creating an array. We need to create a few parts.
+
+### Inserting an Element at the Head
+
+Let's first take a look at how to insert an element at the head of a linked list.
+
+Steps:
+
+1. Create a new node.
+2. Set the next property of the new node to the current head.
+3. Set the head property of the linked list to the new node.
+4. Increment the length of the linked list.
+
+### Inserting an Element at the Tail
+
+Next, let's take a look at how to insert an element at the tail of a linked list.
+
+Steps:
+
+1. Create a new node.
+2. Set the next property of the new node to `null`.
+3. Set the tail property of the linked list to the new node.
+4. Increment the length of the linked list.
+
+### Removing an Element From the Head
+
+Removing an element from the head of a linked list is essentially the reverse of inserting an element at the head.
+
+Steps:
+
+1. Set the head property of the linked list to the next property of the current head.
+2. Decrement the length of the linked list.
+
+### Removing an Element From the Tail
+
+Removing an element from the tail of a linked list is not easy. This is because we don't have a reference to the tail. If you recall, to find the tail we need to traverse the entire linked list starting from the beginning. However, even if we kept a reference to the tail or traversed the linked list and found the tail, we need a reference to the node _before_ the tail also. It is possible to find this but it's expensive. A better way is to use a doubly linked list. We will discus this a bit later on.
+
+### Implementing a Complete Singly Linked List
+
+Now that we understand what a singly linked list is and how to insert and remove elements from it, let's implement a complete singly linked list in Java, JavaScript, and C#.
+
+Our implementation will support the following operations:
+
+- `size()` - Returns the number of elements in the linked list.
+- `isEmpty()` - Returns `true` if the linked list is empty.
+- `first()` - Returns the first element in the linked list - the head.
+- `last()` - Returns the last element in the linked list - the tail.
+- `addFirst(e)` - Inserts an element at the head of the linked list.
+- `addLast(e)` - Inserts an element at the tail of the linked list.
+- `removeFirst()` - Removes the first element in the linked list.
+- `toString()` - Returns a string representation of the linked list.
+
+#### Java
+
+For the Java implementation, we will use a `Node` class to represent a node in the linked list. The data in the node will be type `E`. This is Java's generics framework. It will allow you to use any type of data in the linked list, including custom objects.
+
+```java:SinglyLinkedList.java
+public class SinglyLinkedList<E> {
+
+    private static class Node<E> {
+        E element;
+        private Node<E> next;
+
+        // Node holds the data and a reference to the next node
+        public Node(E e, Node<E> n) {
+            this.element = e;
+            this.next = n;
+        }
+
+        public E getElement() {
+            return element;
+        }
+
+        public Node<E> getNext() {
+            return next;
+        }
+
+        public void setNext(Node<E> n) {
+            this.next = n;
+        }
+    }
+
+    // Head, tails are null initially and size is 0
+    private Node<E> head = null;
+    private Node<E> tail = null;
+    private int size = 0;
+
+    public SinglyLinkedList() { } // constructs an empty list
+
+    public int size() {
+        return size;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public E first() {
+        if (isEmpty()) {
+            return null;
+        }
+        return head.getElement();
+    }
+
+    public E last() {
+        if (isEmpty()) {
+            return null;
+        }
+        return tail.getElement();
+    }
+
+    public void addFirst(E e) {
+        head = new Node<E>(e, head);
+        if (size == 0) {
+            tail = head;
+        }
+        size++;
+    }
+
+    public void addLast(E e) {
+        Node<E> newest = new Node<E>(e, null);
+        if (isEmpty()) {
+            head = newest;
+        } else {
+            tail.setNext(newest);
+        }
+        tail = newest;
+        size++;
+    }
+
+    public E removeFirst() {
+        if (isEmpty()) {
+            return null;
+        }
+        E answer = head.getElement();
+        head = head.getNext();
+        size--;
+        if (size == 0) {
+            tail = null;
+        }
+        return answer;
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        Node<E> walk = head;
+        while (walk != null) {
+            sb.append(walk.getElement());
+            if (walk != tail) {
+                sb.append(", ");
+            }
+            walk = walk.getNext();
+        }
+        sb.append("]");
+        return sb.toString();
+    }
+}
+```
+
+The above is an implementation of a singly linked list in Java. You can add more to it but this covers all the basics. Let's go ahead and test this code out! Add the following code right below `public class SinglyLinkedList<E> {`:
+
+```java:SinglyLinkedList.java
+public static void main(String[] args) {
+    SinglyLinkedList<String> list = new SinglyLinkedList<String>();
+
+    System.out.println(list.isEmpty()); // returns true
+    System.out.println(list.size()); // returns 0
+    System.out.println(list.toString()); // returns []
+    System.out.println(list.first()); // returns null
+    System.out.println(list.last()); // returns null
+
+    list.addFirst("Ben"); // Adds "Ben" to the front of the list
+    System.out.println(list.toString()); // returns [Ben]
+
+    list.addLast("Cindy"); // Adds "Cindy" to the end of the list
+    System.out.println(list.toString()); // returns [Ben, Cindy]
+
+    list.addFirst("Bob"); // Adds "Bob" to the front of the list
+    System.out.println(list.toString()); // returns [Bob, Ben, Cindy]
+
+    System.out.println(list.size()); // returns 3
+    System.out.println(list.isEmpty()); // returns false
+    System.out.println(list.first()); // returns Bob
+    System.out.println(list.last()); // returns Cindy
+
+    list.removeFirst(); // Removes the first element from the list
+    System.out.println(list.toString()); // returns [Ben, Cindy]
+    System.out.println(list.size()); // returns 2
+}
+```
+
+![Singly LL Test](/content/courses/data-structures/linked-lists/singly-test.png)
+
+## Circularly Linked Lists
+
+While singly linked lists store data in a linear order, circularly linked lists store data in a cyclic order, with no defined beginning or end. In a circularly linked list, we still have a head and a tail. However, the tail is not null, but rather points to the head.
+
+```bash
+[Node 1 (head)] -> [Node 2] -> [Node 3] -> ... -> [Node n (tail)] -> [Node 1 (head)]
+```
+
+Note, there are not 2 heads. The representation above is to show you that the tail points to the head.
+
+### Circularly Linked Lists Implementation
+
+Our circularly LL will have the same methods as our singly LL, but we will also have a `rotate()` method. This method will move the first element to the end of the list.
+
+### Rotate Method Diagram
+
+To illustrate the rotate method, let's take a look at the following with the data being strings.
+
+```bash
+Initial state: ["Ben" (head)] -> ["Tom"] -> ... -> ["Mike"] -> ["Rob" (tail)] -> ["Ben" (head)]
+Rotated state: ["Ben" (tail)] -> ["Tom" (head)] -> ... ["Mike"] -> ["Rob"] -> ["Ben" (tail)]
+```
+
+For the implementation, we also do not need to maintain a reference to the head. Because the tail points to the head now, we can use `tail.getNext()` to locate the head.
+
+```java:CircularlyLinkedList.java
+public class CircularlyLinkedList<E> {
+
+    // Node class is the same as singly linked list
+    private static class Node<E> {
+        E element;
+        private Node<E> next;
+
+        // Node holds the data and a reference to the next node
+        public Node(E e, Node<E> n) {
+            this.element = e;
+            this.next = n;
+        }
+
+        public E getElement() {
+            return element;
+        }
+
+        public Node<E> getNext() {
+            return next;
+        }
+
+        public void setNext(Node<E> n) {
+            this.next = n;
+        }
+    }
+
+    private Node<E> tail = null;
+    private int size = 0;
+
+    public CircularlyLinkedList() { }
+
+    public int size() {
+        return size;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public E first() {
+        if (isEmpty()) {
+            return null;
+        }
+        return tail.getNext().getElement();
+    }
+
+    public E last() {
+        if (isEmpty()) {
+            return null;
+        }
+        return tail.getElement();
+    }
+
+    public void rotate() {
+        if (isEmpty()) {
+            return;
+        }
+        tail = tail.getNext();
+    }
+
+    public void addFirst(E e) {
+        if (isEmpty()) {
+            tail = new Node<>(e, null);
+            tail.setNext(tail);
+        } else {
+            Node<E> newest = new Node<>(e, tail.getNext());
+            tail.setNext(newest);
+        }
+        size++;
+    }
+
+    public void addLast(E e) {
+        addFirst(e);
+        tail = tail.getNext();
+    }
+
+    public E removeFirst() {
+        if (isEmpty()) {
+            return null;
+        }
+
+        Node<E> head = tail.getNext();
+
+        if (head == tail) {
+            tail = null;
+        } else {
+            tail.setNext(head.getNext());
+        }
+        size--;
+        return head.getElement();
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+
+        if (isEmpty()) {
+            return sb.append("]").toString();
+        }
+
+        Node<E> head = tail.getNext();
+
+        if (head != null) {
+            Node<E> current = head;
+            do {
+                sb.append(current.getElement());
+                current = current.getNext();
+                if (current != head && current != null) {
+                    sb.append(", ");
+                }
+            } while (current != head && current != null);
+        }
+        sb.append("]");
+        return sb.toString();
+    }
+}
+```
+
+To test our code, add the following code right below `public class CircularlyLinkedList<E> {`:
+
+```java:CircularlyLinkedList.java
+public static void main(String[] args) {
+    CircularlyLinkedList<String> list = new CircularlyLinkedList<String>();
+
+    System.out.println(list.isEmpty()); // returns true
+    System.out.println(list.size()); // returns 0
+    System.out.println(list.toString()); // returns []
+    System.out.println(list.first()); // returns null
+    System.out.println(list.last()); // returns null
+
+    list.addFirst("Ben"); // Adds "Ben" to the front of the list
+    System.out.println(list.toString()); // returns [Ben]
+
+    list.addLast("Cindy"); // Adds "Cindy" to the end of the list
+    System.out.println(list.toString()); // returns [Ben, Cindy]
+
+    list.addFirst("Bob"); // Adds "Bob" to the front of the list
+    System.out.println(list.toString()); // returns [Bob, Ben, Cindy]
+
+    System.out.println(list.size()); // returns 3
+    System.out.println(list.isEmpty()); // returns false
+    System.out.println(list.first()); // returns Bob
+    System.out.println(list.last()); // returns Cindy
+
+    System.out.println(list.toString()); // returns [Bob, Ben, Cindy]
+    System.out.println("Rotating the list...");
+    list.rotate();
+    System.out.println(list.toString()); // returns [Ben, Cindy, Bob]
+
+    list.removeFirst(); // Removes the first element from the list
+    System.out.println(list.toString());  // returns [Cindy, Bob]
+    System.out.println(list.size()); // returns 2
+}
+```
+
+![Circular LL Test](/content/courses/data-structures/linked-lists/circularly-test.png)
+
+## Doubly Linked Lists
+
+**A doubly linked list is exactly like a singly linked list, except that each node has a reference to the previous node**. This is important because as we saw earlier, we cannot efficiently delete a node at the tail of a singly linked list.
+
+```bash
+[Node 1 (head)] <-> [Node 2] <-> [Node 3] <-> ... <-> [Node n (tail)] -> null
+```
+
+Note that the tail still _does not_ point to the head.
+
+### Implementing Doubly Linked Lists
+
+We will now implement the doubly linked list with the following methods:
+
+- `size()` - Returns the number of elements in the linked list.
+- `isEmpty()` - Returns `true` if the linked list is empty.
+- `first()` - Returns the first element in the linked list - the head.
+- `last()` - Returns the last element in the linked list - the tail.
+- `addFirst(e)` - Inserts an element at the head of the linked list.
+- `addLast(e)` - Inserts an element at the tail of the linked list.
+- `removeFirst()` - Removes the first element in the linked list.
+- **`removeLast()` - Removes the last element in the linked list.** (Not in Singly LL!)
+- `toString()` - Returns a string representation of the linked list.
+
+```java:LinkedList.java
+public class DoublyLinkedList<E> {
+
+    private static class Node<E> {
+        private E element;
+        private Node<E> prev;
+        private Node<E> next;
+
+        public Node(E e, Node<E> p, Node<E> n) {
+            element = e;
+            prev = p;
+            next = n;
+        }
+
+        public E getElement() {
+            return element;
+        }
+
+        public Node<E> getPrev() {
+            return prev;
+        }
+
+        public Node<E> getNext() {
+            return next;
+        }
+
+        public void setPrev(Node<E> p) {
+            prev = p;
+        }
+
+        public void setNext(Node<E> n) {
+            next = n;
+        }
+    }
+
+    private Node<E> header;
+    private Node<E> trailer;
+    private int size = 0;
+
+    public DoublyLinkedList() {
+        header = new Node<>(null, null, null);
+        trailer = new Node<>(null, header, null);
+        header.setNext(trailer);
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public E first() {
+        if (isEmpty()) {
+            return null;
+        }
+        return header.getNext().getElement();
+    }
+
+    public E last() {
+        if (isEmpty()) {
+            return null;
+        }
+        return trailer.getPrev().getElement();
+    }
+
+    public void addFirst(E e) {
+        addBetween(e, header, header.getNext());
+    }
+
+    public void addLast(E e) {
+        addBetween(e, trailer.getPrev(), trailer);
+    }
+
+    public E removeFirst() {
+        if (isEmpty()) {
+            return null;
+        }
+        return remove(header.getNext());
+    }
+
+    public E removeLast() {
+        if (isEmpty()) {
+            return null;
+        }
+        return remove(trailer.getPrev());
+    }
+
+    public String toString() {
+        if (isEmpty()) {
+            return "[]";
+        }
+
+        StringBuilder sb = new StringBuilder("[");
+        Node<E> current = header.getNext();
+        while (current != trailer) {
+            sb.append(current.getElement());
+            current = current.getNext();
+            if (current != trailer && current != null) {
+                sb.append(", ");
+            }
+        }
+        sb.append("]");
+        return sb.toString();
+    }
+
+    private void addBetween(E e, Node<E> predecessor, Node<E> successor) {
+        Node<E> newest = new Node<>(e, predecessor, successor);
+        predecessor.setNext(newest);
+        successor.setPrev(newest);
+        size++;
+    }
+
+    private E remove(Node<E> node) {
+        Node<E> predecessor = node.getPrev();
+        Node<E> successor = node.getNext();
+        predecessor.setNext(successor);
+        successor.setPrev(predecessor);
+        size--;
+        return node.getElement();
+    }
+}
+```
+
+Just like we've been doing, let's test this code out.
+
+```java:DoublyLinkedListTest.java
+public static void main(String[] args) {
+    DoublyLinkedList<String> list = new DoublyLinkedList<>();
+
+    System.out.println(list.isEmpty()); // returns true
+    System.out.println(list.size()); // returns 0
+    System.out.println(list.toString()); // returns []
+    System.out.println(list.first()); // returns null
+    System.out.println(list.last()); // returns null
+
+    list.addFirst("Ben"); // Adds "Ben" to the front of the list
+    System.out.println(list.toString()); // returns [Ben]
+
+    list.addLast("Cindy"); // Adds "Cindy" to the end of the list
+    System.out.println(list.toString()); // returns [Ben, Cindy]
+
+    list.addFirst("Bob"); // Adds "Bob" to the front of the list
+    System.out.println(list.toString()); // returns [Bob, Ben, Cindy]
+
+    System.out.println(list.size()); // returns 3
+    System.out.println(list.isEmpty()); // returns false
+    System.out.println(list.first()); // returns Bob
+    System.out.println(list.last()); // returns Cindy
+
+    list.removeFirst(); // Removes the first element from the list
+    System.out.println(list.toString()); // returns [Ben, Cindy]
+    System.out.println(list.size()); // returns 2
+
+    list.removeLast(); // Removes the last element from the list
+    System.out.println(list.toString()); // returns [Ben]
+}
+```
+
+![Doubly LL Test](/content/courses/data-structures/linked-lists/doubly-test.png)
+
+## Reversing a Linked List
+
+Now that you know how to implement linked lists, let's take a look at a common interview question, how to reverse a linked list. This is the only algorithm type question we will cover in this course.
+
+Our goal:
+
+```bash
+Take this: 1 -> 2 -> 3 -> 4 -> 5 -> null
+To this: 5 -> 4 -> 3 -> 2 -> 1 -> null
+```
+
+Steps:
+
+1. Loop over the LL until you reach the end.
+2. Set currents next pointer to the previous node. Initially previous is null
+3. set the previous node to the current node.
+4. set the current node to the next node.
+
+### Implementation
+
+```java:SinglyLinkedList.java
+public void reverse() {
+    Node<E> prev = null;
+    Node<E> current = head;
+    Node<E> next;
+    while (current != null) {
+        next = current.getNext();
+        current.setNext(prev);
+        prev = current;
+        current = next;
+    }
+    Node<E> temp = head;
+    head = tail;
+    tail = temp;
+}
+```
+
+Test out the code:
+
+```java:SinglyLinkedListTest.java
+SinglyLinkedList<Integer> list2 = new SinglyLinkedList<Integer>();
+list2.addLast(1);
+list2.addLast(2);
+list2.addLast(3);
+list2.addLast(4);
+list2.addLast(5);
+System.out.println(list2.toString());
+list2.reverse();
+System.out.println(list2.toString());
+```
+
+## Conclusion
+
+In this module we covered singly linked lists, circularly linked lists, and doubly linked lists. We implemented each of them, tested them and went over the benefits and drawbacks of each. We finished with reversing a linked list. There is one more main kind of linked list called the circular doubly linked list. We will not cover that here as it is not widely used.

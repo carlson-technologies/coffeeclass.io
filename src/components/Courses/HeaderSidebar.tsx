@@ -6,9 +6,9 @@ import {
   useColorMode,
   Link,
 } from "@chakra-ui/react";
-import { activeHeader } from "../hooks/useActiveHeader";
+import { activeHeader } from "../../hooks/useActiveHeader";
 
-export default function HeaderSidebars({ headers }: any) {
+export default function HeaderSidebar({ headers }: any) {
   const { colorMode } = useColorMode();
   const color = {
     light: "gray.600",
@@ -34,11 +34,10 @@ export default function HeaderSidebars({ headers }: any) {
         as="h1"
         size="sm"
         letterSpacing="tight"
-        mt={8}
         mb={2}
         color={useColorModeValue("gray.700", "gray.300")}
       >
-        On This Page
+        In This Module
       </Heading>
       {headers?.map((h: any, index: number) => {
         return (
@@ -50,7 +49,7 @@ export default function HeaderSidebars({ headers }: any) {
               color={color[colorMode]}
               my={2}
               ml={(h.level - 2) * 6}
-              _hover={{ opacity: 0.8 }}
+              _hover={{ opacity: 0.7 }}
             >
               {h.text}
             </Heading>

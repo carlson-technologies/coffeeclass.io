@@ -12,8 +12,9 @@ export default function MdxLayout(props) {
 
     const frontMatter = {
         title: "Getting Started",
-        seoDescription: "Learn how to write articles for coffeeclass.io",
+        description: "Learn how to write articles for coffeeclass.io",
         publishedAt: "2021-12-29T12:00:00",
+        author: "benjamin-carlson.mdx",
     }
 
     return (

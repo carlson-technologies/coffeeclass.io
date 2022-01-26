@@ -30,12 +30,6 @@ interface Props {
 
 const NavBarDrawer = ({ placement }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { colorMode } = useColorMode();
-  const hoverColor = {
-    light: "gray.400",
-    dark: "gray.500",
-  };
-  const bgColor = useColorModeValue("gray.200", "gray.700");
   const router = useRouter();
 
   let d = new Date();
@@ -44,18 +38,21 @@ const NavBarDrawer = ({ placement }: Props) => {
   return (
     <>
       <Box
-        display={["inherit", "inherit", "inherit", "inherit", "none", "none"]}
+        display={
+          router.query.module
+            ? "inherit"
+            : ["inherit", "inherit", "inherit", "inherit", "none", "none"]
+        }
         aria-label="Open navigation menu"
       >
         <IconButton
-          bgColor="transparent"
           aria-label="Open Menu"
-          size="lg"
+          bgColor="transparent"
           _hover={{
             textDecoration: "none",
-            color: hoverColor[colorMode],
+            bgColor: useColorModeValue("gray.200", "gray.800"),
           }}
-          icon={<HamburgerIcon />}
+          icon={<HamburgerIcon fontSize="20px" />}
           onClick={onOpen}
           borderRadius={5}
         />

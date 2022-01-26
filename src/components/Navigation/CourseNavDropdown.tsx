@@ -31,8 +31,6 @@ const courseList = [
     colorLight: "teal.100",
     colorDark: "teal.500",
     available: true,
-    description:
-      "Chakra UI is a simple, modular and accessible component library that gives you the building blocks you need to build your React applications.",
   },
   {
     title: "Firebase",
@@ -41,18 +39,14 @@ const courseList = [
     colorLight: "orange.100",
     colorDark: "orange.500",
     available: false,
-    description:
-      "Firebase is a cloud platform for building mobile, web, and server apps.",
   },
   {
     title: "Data Structures",
     path: "/courses/data-structures",
-    image: "data-structures.png",
+    image: "ds.png",
     colorLight: "purple.100",
     colorDark: "purple.500",
-    available: false,
-    description:
-      "Data Structures is a course that teaches you how to think about data structures and algorithms.",
+    available: true,
   },
   {
     title: "Algorithms",
@@ -61,8 +55,6 @@ const courseList = [
     colorLight: "yellow.100",
     colorDark: "yellow.500",
     available: false,
-    description:
-      "Algorithms is a course that teaches you how to think about algorithms and data structures.",
   },
 ];
 
@@ -73,7 +65,6 @@ type Course = {
   colorLight: string;
   colorDark: string;
   available: boolean;
-  description: string;
 };
 
 interface CourseItemProps {
@@ -83,7 +74,7 @@ interface CourseItemProps {
 const CourseItem = ({ course }: CourseItemProps) => {
   const [loaded, setLoaded] = useState(false);
   const [opacity, setOpacity] = useState(0);
-  const [mb, setMb] = useState("-20px");
+  const [fontWeight, setFontWeight] = useState("normal");
   return (
     <MenuItem
       transition="background-color 0.2s ease-in-out"
@@ -97,10 +88,10 @@ const CourseItem = ({ course }: CourseItemProps) => {
       as="a"
       href={course.path}
       onMouseEnter={() => {
-        setOpacity(1), setMb("0px");
+        setOpacity(1), setFontWeight("bold");
       }}
       onMouseLeave={() => {
-        setOpacity(0), setMb("-20px");
+        setOpacity(0), setFontWeight("normal");
       }}
     >
       <Flex align="center" h="100%" justify="space-between" w="100%">
@@ -124,16 +115,11 @@ const CourseItem = ({ course }: CourseItemProps) => {
           <NextLink href={course.path} passHref>
             <Link _hover={{ textDecor: "none" }} w="100%" href={course.path}>
               <Flex flexDir="column" flexGrow={1}>
-                <Text mb={mb} transition=".2s margin-bottom ease-in-out">
-                  {course.title}
-                </Text>
                 <Text
-                  fontSize="sm"
-                  opacity={opacity}
-                  transition=".2s opacity ease-in-out"
-                  noOfLines={2}
+                  transition=".2s font-weight ease-in-out"
+                  fontWeight={fontWeight}
                 >
-                  {course.description}
+                  {course.title}
                 </Text>
               </Flex>
             </Link>

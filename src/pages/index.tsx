@@ -9,10 +9,10 @@ import {
   useColorModeValue,
   SimpleGrid,
   Divider,
+  Link,
 } from "@chakra-ui/react";
 import Container from "../components/Container";
 import NextLink from "next/link";
-import NextImage from "next/image";
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
@@ -184,7 +184,10 @@ export default function Index({ posts }: Props) {
           <Text fontSize="xl" mt={2} mb={4} textAlign="center">
             Like to write code? Try writing about it!
           </Text>
-          <NextLink href="/contribute/getting-started" passHref>
+          <Link
+            isExternal
+            href="https://benjamincarlson.notion.site/Contributing-to-Coffeeclass-io-27ab5e894368424a9c86a7f11555514b"
+          >
             <Button
               colorScheme="brand_one"
               w={["100%", "100%", "100%", 200, 200, 200]}
@@ -192,7 +195,7 @@ export default function Index({ posts }: Props) {
             >
               See How
             </Button>
-          </NextLink>
+          </Link>
         </Flex>
       </Flex>
     </Container>

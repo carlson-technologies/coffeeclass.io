@@ -77,7 +77,6 @@ export default function Navbar() {
       px="4"
       pt="4"
       pb="6"
-      // display={router.pathname.includes("/courses") ? "none" : "flex"}
       alignItems="center"
       pos="sticky"
       top={top}

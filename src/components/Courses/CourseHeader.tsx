@@ -8,15 +8,16 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  Text,
   Icon,
   IconButton,
   Box,
+  Badge,
 } from "@chakra-ui/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import NavBarDrawer from "../Navigation/NavbarDrawer";
 import NextLink from "next/link";
 import { FiCoffee } from "react-icons/fi";
+import { HiOutlineChevronDoubleRight } from "react-icons/hi";
 
 export default function CourseHeader({
   title,
@@ -26,16 +27,21 @@ export default function CourseHeader({
   courseHeaderDisplay,
   setCourseHeaderDisplay,
 }: any) {
-  // convert course slug to name. data-structures => Data Structures
-  const courseName = course.replace(/-/g, " ");
-  // capitalize first letter of each word
-  const courseNameCapitalized = courseName.replace(
-    /\w\S*/g,
-    (txt: string) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
-  );
+  // a switch statement that takes in the slug and returns the title
+  const courseTitle =
+    course === "chakra-ui"
+      ? "Chakra UI"
+      : course === "data-structures"
+      ? "Data Structures"
+      : course === "algorithms"
+      ? "Algorithms"
+      : course === "nextjs-algolia-instantsearch"
+      ? "Algolia InstantSearch"
+      : "";
 
   return (
     <Flex
+      bgColor={useColorModeValue("#fff", "gray.800")}
       align="center"
       justify="space-between"
       w="100%"
@@ -49,7 +55,7 @@ export default function CourseHeader({
     >
       <IconButton
         _hover={{
-          bgColor: useColorModeValue("gray.200", "gray.800"),
+          bgColor: useColorModeValue("gray.200", "gray.700"),
         }}
         opacity={display == "flex" ? 0 : courseHeaderDisplay == "flex" ? 1 : 0}
         display={[
@@ -60,8 +66,9 @@ export default function CourseHeader({
           "none",
           display == "flex" ? "none" : "flex",
         ]}
+        bgColor="transparent"
         aria-label="Close Sidebar"
-        icon={<ChevronRightIcon fontSize="24px" />}
+        icon={<HiOutlineChevronDoubleRight fontSize="20px" />}
         m={4}
         onClick={() => {
           setDisplay(display === "none" ? "flex" : "none");
@@ -73,7 +80,7 @@ export default function CourseHeader({
       />
 
       <Breadcrumb
-        spacing="8px"
+        spacing="0px"
         separator={<ChevronRightIcon color="gray.500" />}
       >
         <BreadcrumbItem
@@ -95,7 +102,7 @@ export default function CourseHeader({
               transition="background-color 0.2s ease-in-out"
               _hover={{
                 textDecor: "none",
-                bgColor: useColorModeValue("gray.300", "gray.600"),
+                bgColor: useColorModeValue("gray.200", "gray.700"),
               }}
             >
               coffeeclass.io
@@ -122,7 +129,7 @@ export default function CourseHeader({
               transition="background-color 0.2s ease-in-out"
               _hover={{
                 textDecor: "none",
-                bgColor: useColorModeValue("gray.300", "gray.600"),
+                bgColor: useColorModeValue("gray.200", "gray.700"),
               }}
             >
               <Icon fontSize="lg" as={FiCoffee} />
@@ -149,10 +156,11 @@ export default function CourseHeader({
               transition="background-color 0.2s ease-in-out"
               _hover={{
                 textDecor: "none",
-                bgColor: useColorModeValue("gray.300", "gray.600"),
+                bgColor: useColorModeValue("gray.200", "gray.700"),
               }}
             >
               Courses
+              <Badge ml={1}>Beta</Badge>
             </BreadcrumbLink>
           </NextLink>
         </BreadcrumbItem>
@@ -176,10 +184,10 @@ export default function CourseHeader({
               transition="background-color 0.2s ease-in-out"
               _hover={{
                 textDecor: "none",
-                bgColor: useColorModeValue("gray.300", "gray.600"),
+                bgColor: useColorModeValue("gray.200", "gray.700"),
               }}
             >
-              {courseNameCapitalized}
+              {courseTitle}
             </BreadcrumbLink>
           </NextLink>
         </BreadcrumbItem>
@@ -202,16 +210,20 @@ export default function CourseHeader({
             transition="background-color 0.2s ease-in-out"
             _hover={{
               textDecor: "none",
-              bgColor: useColorModeValue("gray.300", "gray.600"),
+              bgColor: useColorModeValue("gray.200", "gray.700"),
             }}
           >
             <Menu>
-              <MenuButton>
-                <Text>...</Text>
-              </MenuButton>
+              <MenuButton>...</MenuButton>
               <MenuList>
-                <MenuItem>Courses</MenuItem>
-                <MenuItem>{courseNameCapitalized}</MenuItem>
+                <NextLink href="/courses" passHref>
+                  <MenuItem>
+                    Courses<Badge ml={1}>Beta</Badge>
+                  </MenuItem>
+                </NextLink>
+                <NextLink href={`/courses/${course}`} passHref>
+                  <MenuItem>{courseTitle}</MenuItem>
+                </NextLink>
               </MenuList>
             </Menu>
           </BreadcrumbLink>
@@ -227,7 +239,7 @@ export default function CourseHeader({
               transition="background-color 0.2s ease-in-out"
               _hover={{
                 textDecor: "none",
-                bgColor: useColorModeValue("gray.300", "gray.600"),
+                bgColor: useColorModeValue("gray.200", "gray.700"),
               }}
               isCurrentPage
             >
@@ -237,7 +249,7 @@ export default function CourseHeader({
         </BreadcrumbItem>
       </Breadcrumb>
 
-      <Box opacity={courseHeaderDisplay == "flex" ? 1 : 0}>
+      <Box opacity={[1, 1, 1, 1, 1, courseHeaderDisplay == "flex" ? 1 : 0]}>
         <NavBarDrawer />
       </Box>
     </Flex>

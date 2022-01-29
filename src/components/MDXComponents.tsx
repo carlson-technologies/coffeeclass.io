@@ -18,6 +18,7 @@ import {
   Th,
   Td,
   Skeleton,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import EmbeddedVideo from "./EmbeddedVideo";
@@ -30,6 +31,7 @@ import FeaturedPost from "./Content/FeaturedPost";
 import ThreeDots from "./Content/ThreeDots";
 import DefinitionPopup from "./Courses/DefinitionPopup";
 import { useCopyToClipboard } from "../hooks/useCopyToClipboard";
+import AuthorCard from "./Courses/AuthorCard";
 
 const Quote = (props: any) => {
   const { colorMode } = useColorMode();
@@ -54,12 +56,6 @@ const Quote = (props: any) => {
 };
 
 const CustomLink = (props: any) => {
-  const { colorMode } = useColorMode();
-  const color = {
-    light: "brand_one.700",
-    dark: "brand_one.500",
-  };
-
   const href = props.href;
   const isInternalLink = href && (href.startsWith("/") || href.startsWith("#"));
 
@@ -67,17 +63,13 @@ const CustomLink = (props: any) => {
     return (
       <NextLink href={href} passHref>
         <Box
-          _hover={{ borderBottomColor: `${color[colorMode]}` }}
+          _hover={{ borderBottomColor: "blue.500" }}
           as="span"
           borderBottom="2px solid"
           borderBottomColor="transparent"
           transition="border-bottom-color .2s ease-in-out"
         >
-          <Link
-            _hover={{ TextDecoder: "none" }}
-            color={color[colorMode]}
-            {...props}
-          />
+          <Link _hover={{ TextDecoder: "none" }} color="blue.500" {...props} />
         </Box>
       </NextLink>
     );
@@ -85,7 +77,7 @@ const CustomLink = (props: any) => {
 
   return (
     <Box
-      _hover={{ borderBottomColor: `${color[colorMode]}` }}
+      _hover={{ borderBottomColor: "blue.500" }}
       as="span"
       borderBottom="2px solid"
       borderBottomColor="transparent"
@@ -93,7 +85,7 @@ const CustomLink = (props: any) => {
     >
       <Link
         _hover={{ TextDecoder: "none" }}
-        color={color[colorMode]}
+        color="blue.500"
         isExternal
         {...props}
       />
@@ -130,7 +122,7 @@ const CustomP = (props: any) => {
     light: "gray.800",
     dark: "gray.200",
   };
-  return <Text fontSize="lg" my={2} color={color[colorMode]} {...props} />;
+  return <Text fontSize="lg" my={4} color={color[colorMode]} {...props} />;
 };
 
 const CustomCode = (props: any) => {
@@ -155,27 +147,27 @@ const CustomTable = (props: any) => {
 
 const CustomImage = (props: any) => {
   const [loaded, setLoaded] = useState(false);
-  const { colorMode } = useColorMode();
-  const color = {
-    light: "brand_one.700",
-    dark: "brand_one.500",
-  };
   return (
     <Box my={4}>
-      <Skeleton isLoaded={loaded}>
-        <div className="image-wrapper">
-          <Image
-            objectFit="cover"
-            layout="fill"
-            onLoad={() => setLoaded(true)}
-            alt={props.alt || ""}
-            {...props}
-          />
-        </div>
+      <Skeleton isLoaded={loaded} borderRadius="15px">
+        <Box
+          p={["0px", "0px", "0px", "5%", "5%", "5%"]}
+          bgColor={useColorModeValue("rgb(247, 246, 243)", "gray.900")}
+        >
+          <div className="image-wrapper">
+            <Image
+              objectFit="cover"
+              layout="fill"
+              onLoad={() => setLoaded(true)}
+              alt={props.alt || ""}
+              {...props}
+            />
+          </div>
+        </Box>
       </Skeleton>
       <Flex fontSize="sm" justify="center" mt={2} wrap="wrap">
         <Box
-          _hover={{ borderBottomColor: `${color[colorMode]}` }}
+          _hover={{ borderBottomColor: "blue.500" }}
           as="span"
           borderBottom="2px solid"
           borderBottomColor="transparent"
@@ -183,7 +175,7 @@ const CustomImage = (props: any) => {
         >
           <Link
             _hover={{ TextDecoder: "none" }}
-            color={color[colorMode]}
+            color="blue.500"
             href={props.src}
             isExternal
           >
@@ -202,7 +194,7 @@ const CustomImage = (props: any) => {
       <style jsx>{`
         .image-wrapper {
           position: relative;
-          border-radius: 25px;
+          border-radius: 15px;
           overflow: hidden;
           height: 500px;
           width: 100%;
@@ -220,8 +212,8 @@ const CustomImage = (props: any) => {
 
 const MDXComponents = {
   h1: (props: any) => <Heading as="h1" size="2xl" {...props} />,
-  h2: (props: any) => <DocsHeading as="h2" size="xl" mt="1em" {...props} />,
-  h3: (props: any) => <DocsHeading as="h3" size="lg" mt=".8em" {...props} />,
+  h2: (props: any) => <DocsHeading as="h2" size="xl" mt=".8em" {...props} />,
+  h3: (props: any) => <DocsHeading as="h3" size="lg" mt=".7em" {...props} />,
   h4: (props: any) => <DocsHeading as="h4" size="md" mt=".6em" {...props} />,
   h5: (props: any) => <DocsHeading as="h5" size="sm" mt=".5em" {...props} />,
   h6: (props: any) => <DocsHeading as="h6" size="sm" mt=".5em" {...props} />,
@@ -247,6 +239,7 @@ const MDXComponents = {
   FeaturedPost,
   ThreeDots,
   DefinitionPopup,
+  AuthorCard,
 };
 
 export default MDXComponents;

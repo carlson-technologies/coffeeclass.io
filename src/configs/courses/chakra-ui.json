@@ -4,6 +4,7 @@
   "image": "chakra-ui.png",
   "base": "/courses/chakra-ui",
   "version": "v1.6.10",
+  "color": "teal",
   "routes": [
     {
       "title": "Introduction",
@@ -45,36 +46,30 @@
         },
         {
           "title": "⏰ Basic Components",
-          "description": "",
+          "description": "An overview of some basic Chakra UI components including Flex, Grid, Text, Heaiding, Button, and more.",
           "path": "",
           "tag": "coming soon"
         },
         {
           "title": "🧱 CSS Grid Using Grid Component",
-          "description": "",
+          "description": "Easily implement a CSS grid using the Chakra UI Grid component.",
           "path": "",
           "tag": "coming soon"
         },
         {
           "title": "📦 CSS Flex Box Using Flex Component",
-          "description": "",
+          "description": "Easily implement a CSS flex box using the Chakra UI Flex component.",
           "path": "",
           "tag": "coming soon"
         }
       ]
     },
     {
-      "title": "Advanced",
+      "title": "Intermediate",
       "routes": [
         {
           "title": "🧨 Animating With Framer Motion",
           "description": "Let's animate some Chakra UI components with Framer Motion!",
-          "path": "",
-          "tag": "coming soon"
-        },
-        {
-          "title": "🏃 Theme Extensions",
-          "description": "",
           "path": "",
           "tag": "coming soon"
         },

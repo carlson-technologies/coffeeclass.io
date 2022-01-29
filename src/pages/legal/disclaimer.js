@@ -42,7 +42,7 @@ export default function Privacy() {
                         <ListItem><strong>Company</strong> (referred to as either &apos;the Company&apos;, &apos;We&apos;, &apos;Us&apos; or &apos;Our&apos; in this Disclaimer) refers to Carlson Technologies LLC, 224 Briarwood Lane, Middletown, CT 06457.</ListItem>
                         <ListItem><strong>Service</strong> refers to the Website.</ListItem>
                         <ListItem><strong>You</strong> means the individual accessing the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</ListItem>
-                        <ListItem><strong>Website</strong> refers to coffeeclass.io, accessible from <Link color="brand_one.500" href="https://www.coffeeclass.io/" rel="external nofollow noopener" target="_blank">https://www.coffeeclass.io/</Link>.</ListItem>
+                        <ListItem><strong>Website</strong> refers to coffeeclass.io, accessible from <Link color="blue.500" href="https://www.coffeeclass.io/" rel="external nofollow noopener" target="_blank">https://www.coffeeclass.io/</Link>.</ListItem>
                     </UnorderedList>
                     <Heading mt={4} as="h2">Disclaimer</Heading>
                     <Text color={useColorModeValue("gray.600", "gray.400")}>The information contained on the Service is for general information purposes only.</Text>
@@ -71,7 +71,7 @@ export default function Privacy() {
                     <Heading mt={4} as="h2">Contact Us</Heading>
                     <Text color={useColorModeValue("gray.600", "gray.400")}>If you have any questions about this Disclaimer, You can contact Us:</Text>
                     <UnorderedList listStylePos="inside" color={useColorModeValue("gray.600", "gray.400")}>
-                        <ListItem>By email: <Link color="brand_one.500" href="mailto:ben@carlsontechnologies.dev">ben@carlsontechnologies.dev</Link></ListItem>
+                        <ListItem>By email: <Link color="blue.500" href="mailto:ben@carlsontechnologies.dev">ben@carlsontechnologies.dev</Link></ListItem>
                     </UnorderedList>
                 </Flex>
             </Stack>

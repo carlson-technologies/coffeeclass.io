@@ -58,9 +58,20 @@ Inside the `src` folder, we have the following:
 
 This entire project is open source. We encourage contributions! Read on to see how you can contribute.
 
-### Contributing an Article
+### Contributing Content
 
-If you want to contribute an article please follow the steps on https://www.coffeeclass.io/contribute/getting-started/
+If you want to contribute an article please follow the steps on https://benjamincarlson.notion.site/Contributing-to-Coffeeclass-io-27ab5e894368424a9c86a7f11555514b. Below is a quick guide to submit an article or start a new course. 
+
+#### Article
+
+#### Course
+
+Here are the steps to add a new course:
+
+1. Add course to `courses.json`
+2. Add json file in `configs/courses` folder
+3. Import json and add it to `configMap` in `pages/courses/[course]/index.tsx`, `Components/Courses/Sidebar`, and `Components/Courses/Pagination`
+4. Add folder to `content/courses` with at least one module
 
 ### Contributing to the Website
 

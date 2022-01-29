@@ -15,7 +15,7 @@ export default function Layout({ children, frontMatter }) {
     const router = useRouter()
     const slug = router.asPath
 
-    const [display, setDisplay] = useState(null)
+    const [display, setDisplay] = useState("flex")
     const [buttonDisplay, setButtonDisplay] = useState("none")
 
     useEffect(() => {
@@ -30,7 +30,11 @@ export default function Layout({ children, frontMatter }) {
             <SEO url={`https://www.coffeeclass.io${slug}`} {...frontMatter} />
 
             <Flex>
-                <Flex minH="100vh" display={['none', 'none', 'none', 'none', 'none', 'flex']} bgColor={useColorModeValue("gray.100", "gray.700")}>
+                <Flex
+                    minH="100vh"
+                    display={['none', 'none', 'none', 'none', 'none', 'flex']}
+                    bgColor={useColorModeValue("rgb(247, 246, 243)", "gray.700")}
+                >
                     <div>
                         <Box w={300} overflow="scroll" pos="sticky" top={0} display={display}>
                             <Sidebar course={router.query.course} display={display} setDisplay={setDisplay} courseHeaderDisplay={buttonDisplay} setCourseHeaderDisplay={setButtonDisplay} />
@@ -38,12 +42,13 @@ export default function Layout({ children, frontMatter }) {
                     </div>
                 </Flex>
 
-                <Flex flexDir="column" mx="auto" w="100%" overflowX="scroll">
-                    <Flex h="50px" w="100%" bgColor={useColorModeValue("gray.100", "gray.700")}>
-                        <CourseHeader title={frontMatter?.title} course={router.query.course} display={display} setDisplay={setDisplay} courseHeaderDisplay={buttonDisplay} setCourseHeaderDisplay={setButtonDisplay} />
-                    </Flex>
 
-                    <Box maxW={1000} mx="auto" w="100%" overflowX="scroll" px={4}>
+                <Flex flexDir="column" mx="auto" w="100%" overflowX="scroll" overflowY="auto">
+                    <Box overflow="auto" mt={2}>
+                        <CourseHeader title={frontMatter?.title} course={router.query.course} display={display} setDisplay={setDisplay} courseHeaderDisplay={buttonDisplay} setCourseHeaderDisplay={setButtonDisplay} />
+                    </Box>
+
+                    <Box maxW={900} mx="auto" w="100%" overflowX="scroll" px={4} mt={["2em", "2em", "2em", "3em", "3em", "4em"]}>
                         {children}
                     </Box>
                 </Flex>
@@ -55,6 +60,7 @@ export default function Layout({ children, frontMatter }) {
                         </Box>
                     </div>
                 </Flex> */}
+
             </Flex>
         </Container>
     )

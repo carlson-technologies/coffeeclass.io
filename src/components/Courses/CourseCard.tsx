@@ -1,20 +1,35 @@
+import { useState } from "react";
 import {
   Heading,
-  Avatar,
   Box,
   Center,
-  Image,
-  Flex,
   Text,
   Stack,
   Button,
   useColorModeValue,
+  AspectRatio,
+  Skeleton,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import NextLink from "next/link";
 import useSWR, { SWRResponse } from "swr";
 import fetcher from "../../scripts/fetcher";
-import { FiBook } from "react-icons/fi";
+import NextImage from "next/image";
+
+const CourseImage = ({ course }: any) => {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <Skeleton isLoaded={loaded}>
+      <NextImage
+        src={`/logos/${course.image}`}
+        alt={course.title}
+        layout="fill"
+        onLoad={() => setLoaded(true)}
+      />
+    </Skeleton>
+  );
+};
 
 export default function CourseCard({ course }: any) {
   const bg = useColorModeValue("#151f21", "gray.900");
@@ -42,26 +57,25 @@ export default function CourseCard({ course }: any) {
           )}
           h={"120px"}
         />
-        {/* <Image
-          h={"120px"}
-          w={"full"}
-          src={
-            "https://images.unsplash.com/photo-1612865547334-09cb8cb455da?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
-          }
-          alt=""
-          objectFit={"cover"}
-        /> */}
-        <Flex justify={"center"} mt={-12}>
-          <Avatar
-            size={"xl"}
-            src={`/logos/${course.image}`}
-            alt={"Course Logo"}
-            css={{
-              boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.4)",
-            }}
-            icon={<FiBook />}
-          />
-        </Flex>
+        <Box
+          w={100}
+          h={100}
+          mx="auto"
+          mt={-10}
+          css={{
+            boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.4)",
+          }}
+          borderRadius={5}
+          p={2}
+          bgColor={useColorModeValue(
+            "rgba(255, 255, 255, .2)",
+            "rgba(26, 32, 44, .2)"
+          )}
+        >
+          <AspectRatio ratio={1}>
+            <CourseImage course={course} />
+          </AspectRatio>
+        </Box>
 
         <Box p={6}>
           <Stack spacing={0} align={"center"} mb={5}>

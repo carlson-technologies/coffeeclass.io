@@ -7,9 +7,9 @@ import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 
 interface Props {
-  title: string;
-  description?: string; // optional because we have the default SEO description
-  url: string;
+  title?: string;
+  description?: string;
+  url?: string;
   children: ReactChild[] | ReactChild;
 }
 

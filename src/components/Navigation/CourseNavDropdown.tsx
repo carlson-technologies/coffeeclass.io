@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+  Badge,
   Box,
   useColorModeValue,
   Text,
@@ -156,11 +157,23 @@ export default function CourseNavDropdown() {
         onMouseEnter={onOpen}
         onMouseLeave={onClose}
       >
-        <Text
-          borderBottom={router.pathname.includes("/courses") && "2px solid"}
-        >
-          Courses {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
-        </Text>
+        <Box pos="relative">
+          <Badge
+            pos="absolute"
+            top={0}
+            left={0}
+            mt={-4}
+            size="sm"
+            colorScheme={useColorModeValue("blackAlpha", "gray")}
+          >
+            Beta
+          </Badge>
+          <Text
+            borderBottom={router.pathname.includes("/courses") && "2px solid"}
+          >
+            Courses {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
+          </Text>
+        </Box>
       </MenuButton>
       <MenuList
         onMouseEnter={onOpen}

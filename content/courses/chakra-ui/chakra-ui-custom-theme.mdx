@@ -2,8 +2,8 @@
 title: "🎨 Custom Theme"
 description: "Overriding the default Chakra UI theme."
 author: "benjamin-carlson.mdx"
-publishedAt: '2021-08-05'
-updatedAt: '2021-08-05'
+publishedAt: '2021-08-05T00:00:00'
+updatedAt: '2022-01-29T00:00:00'
 ---
 
 In the [last module](/courses/chakra-ui/chakra-ui-default-theme), we took a look at Chakra UI's default theme. These styles work great, however you will most likely need to custimize some or all of them. We can do this by creating a custom theme, also known as overriding the default theme.
@@ -156,3 +156,39 @@ const colors = {
     },
 }
 ```
+
+## Adding + Overriding Components
+
+We can also add and override Chakra components. For example, the `Badge` component does not come with a `size` prop out of the box. We can add one easily.
+
+```javascript:theme.js
+const components = {
+  Badge: {
+    sizes: {
+      sm: {
+        fontSize: "10px",
+      },
+    },
+  },
+};
+
+const overrides = {
+  fonts,
+  breakpoints,
+  config,
+  colors,
+  components, // <-- pass in our components
+};
+```
+
+Now, we can use the `Badge` component like so:
+
+```javascript
+<Badge size="sm">I am a custom badge!</Badge>
+```
+
+This works for any component and for any prop.
+
+## Conclusion
+
+In this module we learned how to create a custom theme and override Chakra UI's default theme.

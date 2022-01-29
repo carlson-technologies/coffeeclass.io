@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Heading,
   Text,
@@ -6,12 +7,13 @@ import {
   Stack,
   Box,
   useColorModeValue,
-  Image,
   Badge,
   IconButton,
   Tooltip,
+  Button,
+  AspectRatio,
+  Skeleton,
 } from "@chakra-ui/react";
-import lessons from "../../../configs/courses/chakra-ui.json";
 import Container from "../../../components/Container";
 import NextLink from "next/link";
 import { FiYoutube } from "react-icons/fi";
@@ -20,9 +22,15 @@ import {
   COURSE_PATH,
   getCourseFolders,
 } from "../../../scripts/mdx-utils";
+import { useRouter } from "next/router";
+import { ChevronRightIcon } from "@chakra-ui/icons";
+import NextImage from "next/image";
+// Course routes below
 import chakraUISidebar from "../../../configs/courses/chakra-ui.json";
 import dataStructuresSidebar from "../../../configs/courses/data-structures.json";
-import { useRouter } from "next/router";
+import algorithmsSidebar from "../../../configs/courses/algorithms.json";
+import algoliaNextInstantSearchSidebar from "../../../configs/courses/nextjs-algolia-instantsearch.json";
+import ModuleBadge from "../../../components/Courses/ModuleBadge";
 
 interface Props {
   files: string[];
@@ -33,20 +41,25 @@ export default function ChakraUI({ files, course }: Props) {
   const configMap: any = {
     "chakra-ui": chakraUISidebar,
     "data-structures": dataStructuresSidebar,
+    algorithms: algorithmsSidebar,
+    "nextjs-algolia-instantsearch": algoliaNextInstantSearchSidebar,
   };
-
-  console.log(files);
 
   const { query } = useRouter();
   const c = query.course;
 
   const modules: any = configMap[c.toString()].routes;
 
-  // console.log("courses: " + files);
-  // console.log("course: " + JSON.stringify(course));
+  if (process.env.NODE_ENV === "development") {
+    console.log("courses: " + files);
+    console.log("course: " + JSON.stringify(course));
+  }
+
   const bgColor = useColorModeValue("#fff", "#15161a");
   const borderColor = useColorModeValue("gray.200", "gray.700");
   const color = useColorModeValue("gray.600", "gray.400");
+
+  const [loaded, setLoaded] = useState(false);
 
   let courseCount = 0;
 
@@ -60,20 +73,51 @@ export default function ChakraUI({ files, course }: Props) {
         <Flex flexDir="column">
           <Box maxW={1000} minH="100vh" alignSelf="center" w="100%">
             <Box px={4}>
-              <Flex justify="center" mt={10}>
-                <Image
-                  src={`/logos/${configMap[c.toString()].image}`}
-                  w={100}
-                  justifySelf="center"
-                  alt={`Image of ${configMap[c.toString()].title} Logo`}
-                />
-              </Flex>
+              <Box
+                w={100}
+                h={100}
+                mx="auto"
+                mt={10}
+                css={{
+                  boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.4)",
+                }}
+                borderRadius={5}
+                p={2}
+                bgColor={useColorModeValue(
+                  "rgba(255, 255, 255, .2)",
+                  "rgba(26, 32, 44, .2)"
+                )}
+              >
+                <AspectRatio ratio={1}>
+                  <Skeleton isLoaded={loaded}>
+                    <NextImage
+                      src={`/logos/${configMap[c.toString()].image}`}
+                      alt={`Image of ${configMap[c.toString()].title} Logo`}
+                      layout="fill"
+                      onLoad={() => setLoaded(true)}
+                    />
+                  </Skeleton>
+                </AspectRatio>
+              </Box>
               <Heading as="h1" size="2xl" mb={4} mt={5} textAlign="center">
                 {configMap[c.toString()].title} Course Road Map 🚗
               </Heading>
               <Text mb={8} textAlign="center" fontSize="large">
                 {configMap[c.toString()].description}
               </Text>
+              <Flex justify="center">
+                <NextLink href={modules[0].routes[0].path} passHref>
+                  <Button
+                    size="lg"
+                    rightIcon={<ChevronRightIcon />}
+                    colorScheme={configMap[c.toString()].color}
+                    href={modules[0].routes[0].path}
+                    as="a"
+                  >
+                    Start Course
+                  </Button>
+                </NextLink>
+              </Flex>
             </Box>
             {modules.map((item: any, index: number) => (
               <>
@@ -101,7 +145,7 @@ export default function ChakraUI({ files, course }: Props) {
                             _hover={{ textDecor: "none" }}
                             as="button"
                             textAlign="left"
-                            disabled={item.tag == "coming soon" && true}
+                            disabled={item.tag == "coming soon"}
                             _disabled={{
                               opacity: 0.5,
                               cursor: "not-allowed",
@@ -109,10 +153,6 @@ export default function ChakraUI({ files, course }: Props) {
                             w="100%"
                           >
                             <Flex
-                              // _hover={{
-                              //   transform: "scale(1.01)",
-                              //   boxShadow: boxShadow,
-                              // }}
                               transition="transform .5s"
                               _hover={{
                                 transform: "translateY(-4px)",
@@ -131,15 +171,12 @@ export default function ChakraUI({ files, course }: Props) {
                                   {courseCount}.
                                 </Text>
                                 <Flex flexDir="column">
-                                  <Heading as="h3" size="md">
-                                    {item.title}
-                                    {item.tag == "new" && (
-                                      <Badge ml={2}>New!</Badge>
-                                    )}
-                                    {item.tag == "coming soon" && (
-                                      <Badge ml={2}>Coming Soon!</Badge>
-                                    )}
-                                  </Heading>
+                                  <Flex align="center">
+                                    <Heading as="h3" size="md" mr={2}>
+                                      {item.title}
+                                    </Heading>
+                                    <ModuleBadge item={item} />
+                                  </Flex>
                                   <Text mt={1}>{item.description}</Text>
                                 </Flex>
                               </Flex>
@@ -177,6 +214,19 @@ export default function ChakraUI({ files, course }: Props) {
                 </>
               </>
             ))}
+            <Flex justify="center" my={8}>
+              <NextLink href={modules[0].routes[0].path} passHref>
+                <Button
+                  size="lg"
+                  rightIcon={<ChevronRightIcon />}
+                  colorScheme={configMap[c.toString()].color}
+                  href={modules[0].routes[0].path}
+                  as="a"
+                >
+                  Start Course
+                </Button>
+              </NextLink>
+            </Flex>
           </Box>
         </Flex>
       </Stack>

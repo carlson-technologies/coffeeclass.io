@@ -110,7 +110,7 @@ export default function Terms() {
                     <Heading mt={4} as="h2">Contact Us</Heading>
                     <Text color={useColorModeValue("gray.600", "gray.400")}>If you have any questions about these Terms and Conditions, You can contact us:</Text>
                     <UnorderedList listStylePos="inside" color={useColorModeValue("gray.600", "gray.400")}>
-                        <ListItem>By email: <Link color="brand_one.500" href="mailto:ben@carlsontechnologies.dev">ben@carlsontechnologies.dev</Link></ListItem>
+                        <ListItem>By email: <Link color="blue.500" href="mailto:ben@carlsontechnologies.dev">ben@carlsontechnologies.dev</Link></ListItem>
                     </UnorderedList>
                 </Flex>
             </Stack>

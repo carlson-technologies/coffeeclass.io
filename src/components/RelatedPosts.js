@@ -71,13 +71,13 @@ export default function RelatedPosts({ frontMatter, posts, style }) {
             <>
                 <Flex
                     flexDir="column"
-                    opacity={scrollY > 100 ? 1 : 0}
+                    // opacity={scrollY > 100 ? 1 : 0}
                     transition="opacity .7s ease-in-out"
-                    visibility={scrollY > 100 ? "visible" : "hidden"}
+                    // visibility={scrollY > 100 ? "visible" : "hidden"}
                     px={2}
                 >
                     <Box>
-                    {/* <Box overflowY="auto" overflowX="hidden" h="calc(100vh - 100px)" as="aside"> */}
+                        {/* <Box overflowY="auto" overflowX="hidden" h="calc(100vh - 100px)" as="aside"> */}
                         <Text
                             m={2}
                             textTransform="uppercase"
@@ -219,6 +219,6 @@ export default function RelatedPosts({ frontMatter, posts, style }) {
                         ))}
                     </Flex>
                 </Flex>
-            </> : <Text fontSize="lg" px={4}>No related posts! Like {frontMatter.tags[0]}? Try <NextLink href="/contribute/getting-started" passHref><Link href="/contributing/getting-started" color="brand_one.500">writing about it</Link></NextLink>.</Text>
+            </> : <Text fontSize="lg" px={4}>No related posts! Like {frontMatter.tags[0]}? Try <Link href="https://benjamincarlson.notion.site/Contributing-to-Coffeeclass-io-27ab5e894368424a9c86a7f11555514b" isExternal color="blue.500">writing about it</Link>.</Text>
     )
 }

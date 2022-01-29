@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import chakraUISidebar from "../../configs/courses/chakra-ui.json";
-import dataStructuresSidebar from "../../configs/courses/data-structures.json";
 import {
   Box,
   Flex,
@@ -10,15 +8,20 @@ import {
   Link,
   useColorMode,
   Divider,
-  Badge,
-  SkeletonCircle,
   AspectRatio,
   useColorModeValue,
   IconButton,
+  Skeleton,
 } from "@chakra-ui/react";
-import Image from "next/image";
+import NextImage from "next/image";
 import NextLink from "next/link";
-import { ChevronLeftIcon } from "@chakra-ui/icons";
+import ModuleBadge from "./ModuleBadge";
+import { HiOutlineChevronDoubleLeft } from "react-icons/hi";
+// Course routes below
+import chakraUISidebar from "../../configs/courses/chakra-ui.json";
+import dataStructuresSidebar from "../../configs/courses/data-structures.json";
+import algorithmsSidebar from "../../configs/courses/algorithms.json";
+import algoliaNextInstantSearchSidebar from "../../configs/courses/nextjs-algolia-instantsearch.json";
 
 const Sidebar = ({
   course,
@@ -31,17 +34,19 @@ const Sidebar = ({
   const [loaded, setLoaded] = useState(false);
   const { colorMode } = useColorMode();
   const sideBarActiveColor = {
-    light: "gray.300",
+    light: "#dbdad7",
     dark: "gray.600",
   };
   const sideBarHoverColor = {
-    light: "gray.300",
+    light: "#dbdad7",
     dark: "gray.600",
   };
 
   const configMap: any = {
     "chakra-ui": chakraUISidebar,
     "data-structures": dataStructuresSidebar,
+    algorithms: algorithmsSidebar,
+    "nextjs-algolia-instantsearch": algoliaNextInstantSearchSidebar,
   };
 
   const modules: any = configMap[course].routes;
@@ -59,8 +64,7 @@ const Sidebar = ({
         }}
         overflowY="auto"
         flexShrink={0}
-        h="fit-content"
-        maxH="calc(100vh - 50px)"
+        h="calc(100vh - 50px)"
         id="sidebar"
         onMouseEnter={() => {
           setCourseHeaderDisplay("flex");
@@ -74,9 +78,10 @@ const Sidebar = ({
             _hover={{
               bgColor: useColorModeValue("gray.200", "gray.800"),
             }}
+            bgColor="transparent"
             opacity={courseHeaderDisplay == "flex" ? 1 : 0}
             aria-label="Close Sidebar"
-            icon={<ChevronLeftIcon fontSize="24px" />}
+            icon={<HiOutlineChevronDoubleLeft fontSize="20px" />}
             size="md"
             pos="absolute"
             top={0}
@@ -91,20 +96,31 @@ const Sidebar = ({
             }}
           />
           <Flex flexDirection="column" alignItems="center" id="logo" mt={4}>
-            <SkeletonCircle isLoaded={loaded}>
-              <NextLink href="/courses/chakra-ui" passHref>
-                <Link href="/courses/chakra-ui">
-                  <AspectRatio ratio={1}>
-                    <Image
-                      src={`/logos/${configMap[course].image}`}
-                      alt={configMap[course].title}
-                      layout="fill"
-                      onLoad={() => setLoaded(true)}
-                    />
-                  </AspectRatio>
-                </Link>
-              </NextLink>
-            </SkeletonCircle>
+            <Box
+              w={50}
+              h={50}
+              mx="auto"
+              css={{
+                boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.4)",
+              }}
+              borderRadius={5}
+              p={2}
+              bgColor={useColorModeValue(
+                "rgba(255, 255, 255, .2)",
+                "rgba(26, 32, 44, .2)"
+              )}
+            >
+              <AspectRatio ratio={1}>
+                <Skeleton isLoaded={loaded}>
+                  <NextImage
+                    src={`/logos/${configMap[course].image}`}
+                    alt={configMap[course].title}
+                    layout="fill"
+                    onLoad={() => setLoaded(true)}
+                  />
+                </Skeleton>
+              </AspectRatio>
+            </Box>
             <Heading as="h4" size="md" my={4}>
               Modules 🔖
             </Heading>
@@ -135,7 +151,7 @@ const Sidebar = ({
                       }}
                       as="button"
                       textAlign="left"
-                      disabled={item.tag == "coming soon" && true}
+                      disabled={item.tag == "coming soon"}
                       _disabled={{
                         opacity: 0.5,
                         cursor: "not-allowed",
@@ -166,16 +182,7 @@ const Sidebar = ({
                           <Text py="1px" pl={1}>
                             {item.title}
                           </Text>
-                          {item.tag && (
-                            <Badge
-                              w="fit-content"
-                              colorScheme={
-                                item.tag == "new" ? "green" : "purple"
-                              }
-                            >
-                              {item.tag}
-                            </Badge>
-                          )}
+                          <ModuleBadge item={item} />
                         </Flex>
                       </Box>
                     </Link>

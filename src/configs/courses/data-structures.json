@@ -3,6 +3,7 @@
   "description": "The fundamentals of compute science. Learn every data structure you need to ace your college DS classes or coding interviews.",
   "image": "ds.png",
   "base": "/courses/data-structures",
+  "color": "purple",
   "routes": [
     {
       "title": "Introduction",

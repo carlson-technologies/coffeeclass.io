@@ -17,6 +17,24 @@
       "colorLight": "purple.100",
       "colorDark": "purple.500",
       "description": "The fundamentals of compute science. Learn every data structure you need to ace your college DS classes or coding interviews."
+    },
+    {
+      "title": "Algorithms",
+      "path": "/courses/algorithms",
+      "slug": "algorithms",
+      "image": "algorithms.png",
+      "colorLight": "pink.100",
+      "colorDark": "pink.500",
+      "description": "Algorithms! todo"
+    },
+    {
+      "title": "Algolia InstantSearch",
+      "path": "/courses/nextjs-algolia-instantsearch",
+      "slug": "nextjs-algolia-instantsearch",
+      "image": "algolia.png",
+      "colorLight": "#5468FF",
+      "colorDark": "#5468FF",
+      "description": "Learn how to integrate Algolia InstantSearch with Next.js to improve conversions and user experience."
     }
   ]
 }

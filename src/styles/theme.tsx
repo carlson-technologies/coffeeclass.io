@@ -18,7 +18,6 @@ const breakpoints = createBreakpoints({
 });
 
 const config = {
-  // initialColorMode: "light",
   useSystemColorMode: true,
   cssVarPrefix: "coffeeclass-io",
 };
@@ -108,6 +107,36 @@ const colors = {
     800: "",
     900: "",
   },
+  algolia: {
+    50: "#809dff",
+    100: "#6e90ff",
+    200: "#668aff",
+    300: "#5e84ff",
+    400: "#5e71ff",
+    500: "#5468FF", // main
+    600: "#3C4CFF",
+    700: "#2C3CFF",
+    800: "#1C2CFF",
+    900: "#0C1CFF",
+  },
+};
+
+const components = {
+  Badge: {
+    sizes: {
+      sm: {
+        fontSize: "10px",
+      },
+    },
+  },
+  // make the xl size for heading 20px
+  // Heading: {
+  //   sizes: {
+  //     xl: {
+  //       fontSize: "1.8em",
+  //     },
+  //   },
+  // },
 };
 
 const overrides = {
@@ -115,6 +144,7 @@ const overrides = {
   breakpoints,
   config,
   colors,
+  components,
 };
 
 const customTheme = extendTheme(overrides);

@@ -103,8 +103,8 @@ export default function Index({ articles, frontMatter }) {
                                             <Heading as="h3" size="lg" mt={4} fontWeight="medium" letterSpacing="wide">{post.data.title}</Heading>
                                         </Box>
                                         <Flex mt={4} align="center">
-                                            <Text color="brand_one.500" fontSize="lg">Read article</Text>
-                                            <Icon color="brand_one.500" as={ChevronRightIcon} fontSize="2xl" />
+                                            <Text color="blue.500" fontSize="lg">Read article</Text>
+                                            <Icon color="blue.500" as={ChevronRightIcon} fontSize="2xl" />
                                         </Flex>
                                     </Flex>
                                 </Link>

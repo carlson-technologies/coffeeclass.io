@@ -136,9 +136,9 @@ const Footer = () => {
               text="Carlson Technologies"
               href="https://carlsontechnologies.dev/"
             />
-            <FooterNavItem
+            <FooterNavItemExternal
               text="Write For Us"
-              href="/contribute/getting-started"
+              href="https://benjamincarlson.notion.site/Contributing-to-Coffeeclass-io-27ab5e894368424a9c86a7f11555514b"
             />
           </Box>
 

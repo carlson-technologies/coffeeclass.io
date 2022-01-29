@@ -1,0 +1,64 @@
+{
+  "title": "Algolia InstantSearch",
+  "description": "Learn how to integrate Algolia InstantSearch with Next.js to improve conversions and user experience.",
+  "image": "algolia.png",
+  "base": "/courses/nextjs-algolia-instantsearch",
+  "color": "algolia",
+  "routes": [
+    {
+      "title": "Introduction",
+      "routes": [
+        {
+          "title": "🚀 Course Introduction",
+          "description": "An overview of the coffeeclass.io Algolia InstantSearch course.",
+          "path": "/courses/nextjs-algolia-instantsearch/course-introduction"
+        },
+        {
+          "title": "Set Up",
+          "description": "Get your starter files all set up and ready to go.",
+          "path": "",
+          "tag": "coming soon"
+        }
+      ]
+    },
+    {
+      "title": "Managing Search Records",
+      "routes": [
+        {
+          "title": "👶 Getting Started",
+          "description": "Learn how to integrate Algolia InstantSearch with Next.js to improve conversions and user experience.",
+          "path": "",
+          "tag": "coming soon"
+        },
+        {
+          "title": "🏆 Adding Records",
+          "description": "Learn how to integrate Algolia InstantSearch with Next.js to improve conversions and user experience.",
+          "path": "",
+          "tag": "coming soon"
+        }
+      ]
+    },
+    {
+      "title": "User Interface",
+      "routes": [
+        {
+          "title": "⚛️ React InstantSearch",
+          "description": "Learn what React InstantSearch is and how to use it to rapidly build your search experience.",
+          "path": "",
+          "tag": "coming soon"
+        }
+      ]
+    },
+    {
+      "title": "Advanced",
+      "routes": [
+        {
+          "title": "🎤 Voice Search",
+          "description": "Add voice search to your search experience.",
+          "path": "",
+          "tag": "coming soon"
+        }
+      ]
+    }
+  ]
+}

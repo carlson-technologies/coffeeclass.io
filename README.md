@@ -12,7 +12,7 @@ This website is a platform to learn to code. It is inspired by sites like [freeC
 
 1. Clone this repo: `git clone https://github.com/carlson-technologies/coffeeclass.io.git`
 2. Move into root (where this file is) and run `yarn`
-3. (Optional) Create a `.env` file and copy into it the content of `.env.example`. It _will_ run without these.
+3. (Optional) Create a `.env` file and copy into it the content of `.env.example`.
 4. Run `yarn dev` to start the server
 5. Navigate to http://localhost:3000
 

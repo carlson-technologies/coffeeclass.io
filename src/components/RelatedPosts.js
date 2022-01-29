@@ -14,7 +14,6 @@ import NextLink from 'next/link'
 import Subscribe from '../components/Subscribe'
 import TimeAgo from "../scripts/time-ago"
 import Ad from '../components/Content/Ad'
-import HeadersSidebar from './HeadersSidebar'
 
 export default function RelatedPosts({ frontMatter, posts, style }) {
     var relatedPosts = []
@@ -77,7 +76,6 @@ export default function RelatedPosts({ frontMatter, posts, style }) {
                     px={2}
                 >
                     <Box>
-                        {/* <Box overflowY="auto" overflowX="hidden" h="calc(100vh - 100px)" as="aside"> */}
                         <Text
                             m={2}
                             textTransform="uppercase"
@@ -147,7 +145,6 @@ export default function RelatedPosts({ frontMatter, posts, style }) {
                             )
                         })}
                         <Subscribe isSidebar />
-                        {/* <HeadersSidebar headers={frontMatter?.headers} /> */}
                         <Ad />
                     </Box>
                 </Flex>
@@ -184,35 +181,25 @@ export default function RelatedPosts({ frontMatter, posts, style }) {
                                     maxW={200}
                                 >
                                     <Text mb={2} minW={120} textAlign="center" color={color} fontSize="xs">{TimeAgo(new Date(post.data.publishedAt))}</Text>
-                                    {post?.data?.logoImage &&
-                                        <Box>
-                                            <Box
-                                                w={50}
-                                                h={50}
-                                                my={2}
-                                                mx="auto"
-                                            >
-                                                <AspectRatio ratio={1}>
-                                                    {/* <MySkeleton> */}
-                                                    <NextImage
-                                                        src={`/logos/${post.data.logoImage[0]}`}
-                                                        alt={post?.data?.logoImage[0]}
-                                                        layout="fill"
-                                                    // onLoad={() => setLoaded(true)}
-                                                    />
-                                                    {/* </MySkeleton> */}
-                                                </AspectRatio>
-                                            </Box>
-                                        </Box>}
-
-                                    {
-                                        post?.data?.featureImg &&
-                                        <Flex justify="center">
-                                            <AspectRatio w="100%" ratio={16 / 9}>
-                                                <NextImage src={`/content/articles/${post?.filePath.replace(".mdx", "")}/${post?.data?.featureImg}`} alt={post?.data?.title} layout="fill" />
+                                    <Box>
+                                        <Box
+                                            w={50}
+                                            h={50}
+                                            my={2}
+                                            mx="auto"
+                                        >
+                                            <AspectRatio ratio={1}>
+                                                {/* <MySkeleton> */}
+                                                <NextImage
+                                                    src={`/logos/${post.data.logoImage[0]}`}
+                                                    alt={post?.data?.logoImage[0]}
+                                                    layout="fill"
+                                                // onLoad={() => setLoaded(true)}
+                                                />
+                                                {/* </MySkeleton> */}
                                             </AspectRatio>
-                                        </Flex>
-                                    }
+                                        </Box>
+                                    </Box>
                                     <Heading size="sm" mt={4}>{post.data.title}</Heading>
                                 </Flex>
                             </NextLink>

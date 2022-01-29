@@ -13,8 +13,8 @@ const DarkModeSwitch = () => {
       onClick={toggleColorMode}
       borderRadius={5}
       variant="ghost"
-      _hover={{ transform: "scale(1.1) rotate(360deg)" }}
-      transition="transform 1s"
+      _hover={{ transform: "scale(1.1) rotate(90deg)" }}
+      transition="transform .5s"
       w={50}
       data-splitbee-event="Button Click"
       data-splitbee-event-type="Dark Mode Toggle"

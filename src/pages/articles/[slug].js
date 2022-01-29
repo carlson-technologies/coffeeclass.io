@@ -58,7 +58,7 @@ export default function PostPage({ source, frontMatter, posts }) {
     const { data, error } = useSWR(`/api/getAuthor?authorSlug=${frontMatter.author.replace(".mdx", "")}`, fetcher)
 
     // use useBreakpointValue to set the size to xl on small screens and 2xl on larger screens above 1000px
-    const size = useBreakpointValue({ lg: 'lg', xl: 'xl', '2xl': '4xl' })
+    const size = useBreakpointValue({ lg: 'lg', xl: 'xl', '2xl': '2xl' })
 
     const [width, setWidth] = useState(0)
 

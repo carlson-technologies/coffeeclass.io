@@ -52,10 +52,19 @@ export default function Card({ article }: Props) {
           onMouseLeave={() => setMargin(0)}
         >
           <Flex
+            bgGradient={useColorModeValue(
+              "linear(to-br, gray.300, gray.200, gray.100, gray.50)",
+              "linear(to-br, gray.800, gray.700, gray.600, gray.500)"
+            )}
             borderRadius={15}
+            // align="flex-start"
           >
             {article?.data?.logoImage && (
-              <Box p={4} borderRadius={5}>
+              <Box
+                p={4}
+                borderRadius={5}
+                // bgColor={useColorModeValue("gray.100", "gray.700")}
+              >
                 <Box w={50} h={50} my={2} mx="auto">
                   <AspectRatio ratio={1}>
                     <Skeleton isLoaded={loaded}>

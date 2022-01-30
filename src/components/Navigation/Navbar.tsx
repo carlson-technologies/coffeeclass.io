@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import {
   Box,
   useColorModeValue,
-  Text,
   Heading,
   Icon,
   Flex,
@@ -21,6 +20,7 @@ import NavBarDrawer from "./NavbarDrawer";
 import Search from "./Search";
 import NavItem from "./NavItem";
 import CourseNavDropdown from "./CourseNavDropdown";
+import Auth from "./Auth";
 
 export default function Navbar() {
   const router = useRouter();
@@ -150,21 +150,7 @@ export default function Navbar() {
             />
           </Link>
         </Tooltip>
-        <NextLink href="/accounts-waitlist" passHref>
-          <IconButton
-            w={50}
-            borderRadius={5}
-            icon={<FiUser />}
-            fontSize="20px"
-            aria-label="Join Accounts Wait-List"
-            href="/accounts-waitlist"
-            variant="ghost"
-            _hover={{ backgroundColor: bg }}
-            p={[1, 2, 4]}
-            ml={1}
-            bgColor={router.pathname.includes("/accounts-waitlist") && bg}
-          />
-        </NextLink>
+        <Auth />
         <DarkModeSwitch />
       </Box>
       <NavBarDrawer />

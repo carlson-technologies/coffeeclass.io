@@ -83,7 +83,7 @@ export default function PostPage({ source, frontMatter, posts }) {
 
     return (
         <Container>
-            <SEO url={`https://www.coffeeclass.io${slug}`} slug={slug} {...frontMatter} />
+            <SEO url={`https://www.coffeeclass.io/articles/${slug}`} slug={slug} {...frontMatter} />
             <Box h={1} as="div" bg="brand_one.500" pos="fixed" top={0} left={0} zIndex={15} w={`${width}%`} transition="width .3s ease-in-out"></Box>
 
             <motion.div
@@ -100,6 +100,12 @@ export default function PostPage({ source, frontMatter, posts }) {
                                 <Image src={`/logos/${frontMatter.logoImage[0]}`} alt={frontMatter.title} />
                             </AspectRatio>
                         </Box>
+                    }
+                    {
+                        frontMatter.image && 
+                        <AspectRatio ratio={16 / 9}  h={"100%"}  mt={2}>
+                            <Image h={"100%"} src={`/content/articles/${slug}/${frontMatter.image}`} alt={frontMatter.title} />
+                        </AspectRatio>
                     }
                     <Heading
                         mt={2}

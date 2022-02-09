@@ -1,9 +1,12 @@
 import { useRouter } from "next/router";
-import chakraUISidebar from "../../configs/courses/chakra-ui.json";
-import dataStructuresSidebar from "../../configs/courses/data-structures.json";
 import { Flex, Text, Link, useColorMode, Icon, Button } from "@chakra-ui/react";
 import { ChevronRightIcon, ChevronLeftIcon } from "@chakra-ui/icons";
 import NextLink from "next/link";
+// Course routes below
+import chakraUISidebar from "../../configs/courses/chakra-ui.json";
+import dataStructuresSidebar from "../../configs/courses/data-structures.json";
+import algorithmsSidebar from "../../configs/courses/algorithms.json";
+import algoliaNextInstantSearchSidebar from "../../configs/courses/nextjs-algolia-instantsearch.json";
 
 const Pagination = () => {
   const { query } = useRouter();
@@ -12,6 +15,8 @@ const Pagination = () => {
   const configMap: any = {
     "chakra-ui": chakraUISidebar,
     "data-structures": dataStructuresSidebar,
+    algorithms: algorithmsSidebar,
+    "nextjs-algolia-instantsearch": algoliaNextInstantSearchSidebar,
   };
 
   const modules: any = configMap[course.toString()].routes;
@@ -64,7 +69,14 @@ const Pagination = () => {
     >
       {pagination.prevRoute ? (
         <NextLink href={pagination.prevRoute.path} passHref>
-          <Link href={pagination.prevRoute.path}>
+          <Link
+            href={pagination.prevRoute.path}
+            disabled={pagination.prevRoute?.tag == "coming soon"}
+            _disabled={{
+              opacity: 0.5,
+              cursor: "not-allowed",
+            }}
+          >
             <Button
               variant="ghost"
               textAlign="right"
@@ -88,7 +100,14 @@ const Pagination = () => {
       )}
       {pagination.nextRoute ? (
         <NextLink href={pagination.nextRoute.path} passHref>
-          <Link href={pagination.nextRoute.path}>
+          <Link
+            href={pagination.nextRoute.path}
+            disabled={pagination.nextRoute?.tag == "coming soon"}
+            _disabled={{
+              opacity: 0.5,
+              cursor: "not-allowed",
+            }}
+          >
             <Button
               variant="ghost"
               textAlign="right"

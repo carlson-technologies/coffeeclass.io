@@ -1,0 +1,80 @@
+---
+title: "🛁 Bubble Sort"
+description: "Learn how to implement bubble sort."
+author: "benjamin-carlson.mdx"
+publishedAt: "2022-01-29T00:00:00"
+updatedAt: "2022-01-29T00:00:00"
+---
+
+## Bubble Sort Introduction
+
+The first elementry sorting algorithm we will look at is bubble sort. Before you tackle bubble sort, you should be familiar with [arrays](/courses/data-structures/arrays).
+
+## How it Works
+
+Bubble sort consists of moving through the list swapping adjacent items if they are out of order. Take a look at the following example:
+
+### Steps
+
+With the above definition in mind, let's write the steps to implement bubble sort.
+
+1. Start at the beggining of array and compare the first 2 elements.
+2. If the first element is greater than the second element, swap them.
+3. Continue to the next pair of elements and compare them.
+4. When you get to the end of the array, repeat starting with the second element
+5. Continue until the array is sorted.
+
+We can improve the algorithm slightly by adding a stop condition to the outer for loop if no swaps occur. This means the array is sorted and we do not need to keep checking.
+
+## Implementation
+
+Let's take a look at an implementation of bubble sort.
+
+### Java
+
+```java
+// Bubble Sort Implementation
+// Input: Unsorted Array arr
+// Output: Sorted Array
+
+public static void bubbleSort(int array[]) {
+        int temp;
+        int numberOfItems = array.length;
+        boolean cont = true;
+        for (int pass = 1; pass != numberOfItems; pass++) {
+            if (cont) {
+                cont = false;
+                for (int index = 0; index != numberOfItems - pass; index++) {
+                    if (array[index] > (array[index + 1])) {
+                        temp = array[index];
+                        array[index] = array[index + 1];
+                        array[index + 1] = temp;
+                        cont = true;
+                    } // end inner if
+                } // end inner for
+            } else
+                break; // end outer if
+        }
+
+        System.out.println("Sorted file:");
+        for (int i = 0; i < array.length; i++)
+            System.out.print(array[i] + " ");
+        System.out.println();
+    }
+```
+
+## Runtime Complexity
+
+### Best Case
+
+The best case would be when the input `n` is already sorted. In this case, we would only have to go through the array once and the algorithm would run in linear time - O(n).
+
+> It is important to add the check to the outer loop of the algorith to see if no swaps occur. If we did not have this, the algorithm would run in O(n^2) even on the best case.
+
+### Worst Case
+
+The worst case would be when the input `n` is in reverse order. In this case, each time we go through the array, we would be putting an element into its correct position. This would take O(n^2) time.
+
+### Average Case
+
+The average case would be when the input `n` is randomly ordered. This runtime would also be O(n^2).

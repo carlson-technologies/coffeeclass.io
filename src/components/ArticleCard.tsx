@@ -25,7 +25,6 @@ type Props = {
 export default function Card({ article }: Props) {
   const [loaded, setLoaded] = useState(false);
   const [margin, setMargin] = useState(0);
-  const bgColor = useColorModeValue("gray.100", "gray.900");
   const color = useColorModeValue("gray.500", "gray.400");
   const color1 = useColorModeValue("gray.700", "gray.300");
 
@@ -44,7 +43,6 @@ export default function Card({ article }: Props) {
           className="gradient"
           href={`/articles/${article.filePath.replace(".mdx", "")}`}
           _hover={{
-            // bgGradient: "linear(to-r, green.200, pink.500)",
             textDecor: "none",
           }}
           my={6}
@@ -54,7 +52,6 @@ export default function Card({ article }: Props) {
           onMouseLeave={() => setMargin(0)}
         >
           <Flex
-            // bgColor={useColorModeValue("white", "gray.800")}
             borderRadius={15}
           >
             {article?.data?.logoImage && (
@@ -80,18 +77,19 @@ export default function Card({ article }: Props) {
               flexDir="column"
               maxW={1000}
             >
-              <Flex>
-                {/* <Avatar
-                size="md"
-                name={data?.data?.data?.name}
-                src={`/authors/${data?.data?.data?.image}`}
-              /> */}
+              <Flex align="center">
+                <Avatar
+                  size="sm"
+                  name={data?.data?.data?.name}
+                  src={`/authors/${data?.data?.data?.image}`}
+                  mr={2}
+                />
                 <Text fontSize="md">
                   <NextLink
                     href={`/authors/${article.data.author.replace(".mdx", "")}`}
                     passHref
                   >
-                    <Link color="brand_one.500">{data?.data?.data?.name}</Link>
+                    <Link color="blue.500">{data?.data?.data?.name}</Link>
                   </NextLink>{" "}
                   <Text as="span" color="gray.500">
                     shared
@@ -115,7 +113,7 @@ export default function Card({ article }: Props) {
                   align="center"
                   mt={4}
                   textDecor="underline"
-                  color="brand_one.500"
+                  color="blue.500"
                   onMouseEnter={() => setMargin(2)}
                   onMouseLeave={() => setMargin(1)}
                 >

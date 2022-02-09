@@ -12,7 +12,7 @@ This website is a platform to learn to code. It is inspired by sites like [freeC
 
 1. Clone this repo: `git clone https://github.com/carlson-technologies/coffeeclass.io.git`
 2. Move into root (where this file is) and run `yarn`
-3. (Optional) Create a `.env` file and copy into it the content of `.env.example`. It _will_ run without these.
+3. (Optional) Create a `.env` file and copy into it the content of `.env.example`.
 4. Run `yarn dev` to start the server
 5. Navigate to http://localhost:3000
 
@@ -58,9 +58,20 @@ Inside the `src` folder, we have the following:
 
 This entire project is open source. We encourage contributions! Read on to see how you can contribute.
 
-### Contributing an Article
+### Contributing Content
 
-If you want to contribute an article please follow the steps on https://www.coffeeclass.io/contribute/getting-started/
+If you want to contribute an article please follow the steps on https://benjamincarlson.notion.site/Contributing-to-Coffeeclass-io-27ab5e894368424a9c86a7f11555514b. Below is a quick guide to submit an article or start a new course. 
+
+#### Article
+
+#### Course
+
+Here are the steps to add a new course:
+
+1. Add course to `courses.json`
+2. Add json file in `configs/courses` folder
+3. Import json and add it to `configMap` in `pages/courses/[course]/index.tsx`, `Components/Courses/Sidebar`, and `Components/Courses/Pagination`
+4. Add folder to `content/courses` with at least one module
 
 ### Contributing to the Website
 

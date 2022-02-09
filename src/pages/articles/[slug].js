@@ -116,16 +116,16 @@ export default function PostPage({ source, frontMatter, posts }) {
                     </Heading>
                 </Flex>
 
-                <Flex justify="center">
+                <Flex mx="auto" maxW={[850, 850, 850, 850, 850, 1150]}>
                     {/* main content */}
-                    <Flex flexGrow={1} flexDir="column" w="100%" px={4} maxW={850}>
+                    <Flex flexDir="column" mx="auto" w="100%" overflowX="scroll" px={4} maxW={850}>
                         <Box bgColor={bgColor} p={5} borderRadius={5}>
                             <Text
                                 fontSize="md"
                                 color={color[colorMode]}
                                 mb={4}
                             >
-                                {frontMatter.readingTime.text} &middot; {frontMatter.readingTime.words} words &middot; Shared {TimeAgo(new Date(frontMatter.publishedAt))} by <Box _hover={{ borderBottomColor: useColorModeValue("brand_one.700", "brand_one.500") }} as="span" borderBottom="2px solid" borderBottomColor="transparent" transition="border-bottom-color .2s ease-in-out"><Link href="#author-bio" color={useColorModeValue("brand_one.700", "brand_one.500")} _hover={{ TextDecoder: 'none' }}>{data?.data?.data?.name}</Link></Box> {frontMatter.updatedAt && `· Updated ${TimeAgo(new Date(frontMatter.publishedAt))}`}
+                                {frontMatter.readingTime.text} &middot; {frontMatter.readingTime.words} words &middot; Shared {TimeAgo(new Date(frontMatter.publishedAt))} by <Box _hover={{ borderBottomColor: "blue.500" }} as="span" borderBottom="2px solid" borderBottomColor="transparent" transition="border-bottom-color .2s ease-in-out"><Link href="#author-bio" color="blue.500" _hover={{ TextDecoder: 'none' }}>{data?.data?.data?.name}</Link></Box> {frontMatter.updatedAt && `· Updated ${TimeAgo(new Date(frontMatter.publishedAt))}`}
                             </Text>
                             <Text
                                 fontSize="xl"
@@ -141,12 +141,14 @@ export default function PostPage({ source, frontMatter, posts }) {
                                 <EmbeddedVideo src={getEmbedId(frontMatter?.youtubeId)} alt={frontMatter.title} maxW={800} />
                             </Flex>
                         }
-                        <HeadersAccordion headers={frontMatter?.headers} />
+                        <Box display={['block', 'block', 'block', 'block', 'block', 'none']}>
+                            <HeadersAccordion headers={frontMatter?.headers} />
+                        </Box>
                         <Ad />
                         <Box id="main-content">
                             <MDXRemote {...source} components={MDXComponents} />
                         </Box>
-                        <Text my={2} color={useColorModeValue("gray.600", "gray.400")}>Published on {format(parseISO(frontMatter.publishedAt), 'MMMM dd, yyyy')} ({TimeAgo(new Date(frontMatter.publishedAt))})</Text>
+                        <Text my={2} color={useColorModeValue("gray.600", "gray.400")}>Published {TimeAgo(new Date(frontMatter.publishedAt))}</Text>
                         <Link textDecor="underline" _hover={{ opacity: .8 }} w="fit-content">
                             <Flex align="center">
                                 <Icon as={ExternalLinkIcon} mr={2} />
@@ -158,9 +160,6 @@ export default function PostPage({ source, frontMatter, posts }) {
                     {/* Right sidebar */}
                     <Flex display={['none', 'none', 'none', 'none', 'none', 'flex']}>
                         <div>
-                            {/* <Box w={300} overflow="scroll" pos="sticky" top={10}>
-                                <RelatedPosts style="sidebar" frontMatter={frontMatter} posts={posts} />
-                            </Box> */}
                             <Box w={300}>
                                 <RelatedPosts style="sidebar" frontMatter={frontMatter} posts={posts} />
                             </Box>

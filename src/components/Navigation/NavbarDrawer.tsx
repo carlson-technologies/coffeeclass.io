@@ -2,7 +2,6 @@ import {
   Flex,
   Box,
   IconButton,
-  useColorMode,
   Heading,
   Drawer,
   useDisclosure,
@@ -16,6 +15,7 @@ import {
   useColorModeValue,
   ButtonGroup,
   Button,
+  Badge,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { FiYoutube, FiGithub, FiUser } from "react-icons/fi";
@@ -50,7 +50,7 @@ const NavBarDrawer = ({ placement }: Props) => {
           bgColor="transparent"
           _hover={{
             textDecoration: "none",
-            bgColor: useColorModeValue("gray.200", "gray.800"),
+            bgColor: useColorModeValue("gray.200", "gray.700"),
           }}
           icon={<HamburgerIcon fontSize="20px" />}
           onClick={onOpen}
@@ -94,6 +94,9 @@ const NavBarDrawer = ({ placement }: Props) => {
                   href="/courses"
                 >
                   Courses
+                  <Badge ml={1} color="white" bgColor="gray">
+                    Beta
+                  </Badge>
                 </Button>
               </NextLink>
               <NextLink href="/articles" passHref>
@@ -167,6 +170,7 @@ const NavBarDrawer = ({ placement }: Props) => {
                     transition="margin .3s ease-in-out"
                   >
                     Courses
+                    <Badge ml={1}>Beta</Badge>
                   </Link>
                 </NextLink>
               </Text>
@@ -215,17 +219,16 @@ const NavBarDrawer = ({ placement }: Props) => {
             </Heading>
             <Flex flexDir="column" fontSize="lg">
               <Text>
-                <NextLink href="/contribute/getting-started" passHref>
-                  <Link
-                    href="/contribute/getting-started"
-                    _hover={{ textDecor: "none", ml: "2" }}
-                    aria-label="Getting Started"
-                    color="gray.500"
-                    transition="margin .3s ease-in-out"
-                  >
-                    Getting Started
-                  </Link>
-                </NextLink>
+                <Link
+                  isExternal
+                  href="https://benjamincarlson.notion.site/Contributing-to-Coffeeclass-io-27ab5e894368424a9c86a7f11555514b"
+                  _hover={{ textDecor: "none", ml: "2" }}
+                  aria-label="Getting Started"
+                  color="gray.500"
+                  transition="margin .3s ease-in-out"
+                >
+                  Getting Started
+                </Link>
               </Text>
             </Flex>
 
@@ -401,13 +404,10 @@ const NavBarDrawer = ({ placement }: Props) => {
                   href="/accounts-waitlist"
                   variant="ghost"
                   _hover={{
-                    backgroundColor: useColorModeValue("gray.200", "gray.700"),
+                    backgroundColor: useColorModeValue("gray.200", "gray.800"),
                   }}
                   p={[1, 2, 4]}
                   ml={1}
-                  // bgColor={
-                  //   router.pathname.includes("/accounts-waitlist") && bgColor
-                  // }
                 />
               </NextLink>
               <DarkModeSwitch />

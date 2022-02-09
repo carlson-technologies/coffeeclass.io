@@ -46,7 +46,7 @@ export default function PostPage({ source, frontMatter, params }: Props) {
         transition={{ duration: 0.5 }}
       >
         <Box mb={4}>
-          <Heading as="h1" size="2xl" letterSpacing="tight" mb={2} mt={6}>
+          <Heading as="h1" size="2xl" letterSpacing="tight" mb={2}>
             {frontMatter.title}
           </Heading>
           <Text

@@ -93,14 +93,11 @@ export default function PostPage({ source, frontMatter, posts }) {
             >
                 {/* w is 850 + 300 */}
                 <Flex flexDir="column" w="100%" maxW={[850, 850, 850, 850, 850, 1150]} px={4} mx="auto">
-                    {
-                        frontMatter.logoImage &&
-                        <Box bgColor={bgColor} w="fit-content" p={4} borderRadius={5}>
-                            <AspectRatio ratio={1} w={50}>
-                                <Image src={`/logos/${frontMatter.logoImage[0]}`} alt={frontMatter.title} />
-                            </AspectRatio>
-                        </Box>
-                    }
+                    <Box bgColor={bgColor} w="fit-content" p={4} borderRadius={5}>
+                        <AspectRatio ratio={1} w={50}>
+                            <Image src={`/logos/${frontMatter.logoImage}`} alt={frontMatter.title} />
+                        </AspectRatio>
+                    </Box>
                     <Heading
                         mt={2}
                         as="h1"

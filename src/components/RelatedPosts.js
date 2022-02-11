@@ -184,26 +184,25 @@ export default function RelatedPosts({ frontMatter, posts, style }) {
                                     maxW={200}
                                 >
                                     <Text mb={2} minW={120} textAlign="center" color={color} fontSize="xs">{TimeAgo(new Date(post.data.publishedAt))}</Text>
-                                    {post?.data?.logoImage &&
-                                        <Box>
-                                            <Box
-                                                w={50}
-                                                h={50}
-                                                my={2}
-                                                mx="auto"
-                                            >
-                                                <AspectRatio ratio={1}>
-                                                    {/* <MySkeleton> */}
-                                                    <NextImage
-                                                        src={`/logos/${post.data.logoImage[0]}`}
-                                                        alt={post?.data?.logoImage[0]}
-                                                        layout="fill"
-                                                    // onLoad={() => setLoaded(true)}
-                                                    />
-                                                    {/* </MySkeleton> */}
-                                                </AspectRatio>
-                                            </Box>
-                                        </Box>}
+                                    <Box>
+                                        <Box
+                                            w={50}
+                                            h={50}
+                                            my={2}
+                                            mx="auto"
+                                        >
+                                            <AspectRatio ratio={1}>
+                                                {/* <MySkeleton> */}
+                                                <NextImage
+                                                    src={`/logos/${post.data.logoImage}`}
+                                                    alt={post?.data?.logoImage}
+                                                    layout="fill"
+                                                // onLoad={() => setLoaded(true)}
+                                                />
+                                                {/* </MySkeleton> */}
+                                            </AspectRatio>
+                                        </Box>
+                                    </Box>
 
                                     {
                                         post?.data?.featureImg &&

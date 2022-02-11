@@ -68,11 +68,6 @@ export default function Index({ posts }: Props) {
     dark: "linear-gradient(to bottom,rgba(45,55,72, 0),rgba(45,55,72, .2) 90%)",
   };
 
-  const [loaded, setLoaded] = useState(false);
-
-  const color = useColorModeValue("gray.500", "gray.400");
-  const bgColor = useColorModeValue("gray.100", "gray.900");
-
   return (
     <Container title={title} url={url}>
       <Flex flexDir="column" maxW="100vw">

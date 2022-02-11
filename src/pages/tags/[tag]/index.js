@@ -1,15 +1,11 @@
-import { useState } from 'react'
 import {
     Heading,
     Flex,
     useColorModeValue,
     Box,
-    Grid,
     Text,
-    Link,
     AspectRatio,
-    Skeleton,
-    Icon,
+    Image,
 } from '@chakra-ui/react'
 import Container from '../../../components/Container'
 import { serialize } from 'next-mdx-remote/serialize'
@@ -17,12 +13,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { contentFilePaths, CONTENT_PATH, tagsFilePaths, TAGS_PATH } from '../../../scripts/mdx-utils'
-import { motion } from "framer-motion"
-import NextLink from 'next/link'
-import { ChevronRightIcon } from '@chakra-ui/icons'
-import TimeAgo from '../../../scripts/time-ago'
-
-const MotionBox = motion(Box)
+import ArticleCard from "../../../components/ArticleCard"
 
 export default function Index({ articles, frontMatter }) {
     const url = `https://www.coffeeclass.io/tags/${frontMatter.title}`
@@ -34,12 +25,7 @@ export default function Index({ articles, frontMatter }) {
         return article.data.tags.includes(frontMatter.title)
     })
 
-    const [loaded, setLoaded] = useState(false)
-
     const color = useColorModeValue("gray.500", "gray.400")
-    const bgColor = useColorModeValue("gray.100", "gray.900")
-
-    // console.log(filteredArticles)
 
     return (
         <Container title={title} description={description} url={url}>
@@ -69,50 +55,35 @@ export default function Index({ articles, frontMatter }) {
                     }
                 </Box>
             </Flex>
-
-            <Box p={4}>
-                <Grid templateColumns={['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(4, 1fr)']} gap={6}>
-                    {filteredArticles.map((post) => (
-                        <MotionBox
-                            initial={{ opacity: 0, marginTop: 5 }}
-                            animate={{ opacity: 1, marginTop: 0 }}
-                            transition={{ duration: 1, delay: 0.3 }}
-                            style={{
-                                height: '100%',
-                            }}
-                            key={post.data.title}
-                        >
-                            <NextLink href={`/articles/${post.filePath.replace(".mdx", "")}`} passHref>
-                                <Link href={`/articles/${post.filePath.replace(".mdx", "")}`} _hover={{ textDecor: 'none' }}>
-                                    <Flex
-                                        minH={400}
-                                        flexDir="column"
-                                        bgColor={bgColor}
-                                        h="100%"
-                                        p={5}
-                                        borderRadius={5}
-                                        _hover={{
-                                            boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
-                                            transform: "translateY(-2px)",
-                                        }}
-                                        transition="box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out"
-                                        justify="space-between"
-                                    >
-                                        <Box>
-                                            <Text minW={120} textAlign="center" color={color} fontSize="md" mb={6}>{TimeAgo(new Date(post.data.publishedAt))}</Text>
-                                            <Heading as="h3" size="lg" mt={4} fontWeight="medium" letterSpacing="wide">{post.data.title}</Heading>
-                                        </Box>
-                                        <Flex mt={4} align="center">
-                                            <Text color="blue.500" fontSize="lg">Read article</Text>
-                                            <Icon color="blue.500" as={ChevronRightIcon} fontSize="2xl" />
-                                        </Flex>
-                                    </Flex>
-                                </Link>
-                            </NextLink>
-                        </MotionBox>
+            <Flex flexDir="column">
+                <Box px={4} mt={10} maxW={1000} mx="auto" w="100%">
+                    <Text
+                        as="small"
+                        textTransform="uppercase"
+                        mt={4}
+                        mb={1}
+                        fontFamily="lato"
+                        color={useColorModeValue("gray.600", "gray.400")}
+                        fontSize="sm"
+                    >
+                        {filteredArticles.length} article{filteredArticles.length > 1 && "s"}
+                    </Text>
+                    <Heading
+                        as="h1"
+                        size="2xl"
+                        fontFamily="lato"
+                        mb={2}
+                        fontWeight="medium"
+                    >
+                        Articles
+                    </Heading>
+                </Box>
+                <Flex flexDir="column" px={[2, 2, 2, 6, 10, 12]} mx="auto">
+                    {filteredArticles.map((post, index) => (
+                        <ArticleCard key={index} article={post} />
                     ))}
-                </Grid>
-            </Box>
+                </Flex>
+            </Flex>
         </Container>
     )
 }

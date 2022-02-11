@@ -51,25 +51,21 @@ export default function Card({ article }: Props) {
           onMouseEnter={() => setMargin(1)}
           onMouseLeave={() => setMargin(0)}
         >
-          <Flex
-            borderRadius={15}
-          >
-            {article?.data?.logoImage && (
-              <Box p={4} borderRadius={5}>
-                <Box w={50} h={50} my={2} mx="auto">
-                  <AspectRatio ratio={1}>
-                    <Skeleton isLoaded={loaded}>
-                      <NextImage
-                        src={`/logos/${article.data.logoImage[0]}`}
-                        alt={article?.data?.logoImage[0]}
-                        layout="fill"
-                        onLoad={() => setLoaded(true)}
-                      />
-                    </Skeleton>
-                  </AspectRatio>
-                </Box>
+          <Flex borderRadius={15}>
+            <Box p={4} borderRadius={5}>
+              <Box w={50} h={50} my={2} mx="auto">
+                <AspectRatio ratio={1}>
+                  <Skeleton isLoaded={loaded}>
+                    <NextImage
+                      src={`/logos/${article.data.logoImage}`}
+                      alt={article?.data?.logoImage}
+                      layout="fill"
+                      onLoad={() => setLoaded(true)}
+                    />
+                  </Skeleton>
+                </AspectRatio>
               </Box>
-            )}
+            </Box>
             <Flex
               h="100%"
               w="100%"

@@ -25,7 +25,7 @@ const GlobalStyle = ({ children }: Props) => {
           #__next {
             background-color: ${colorMode === "light" ? "#fff" : "gray.700"};
             color: ${colorMode === "light" ? "black" : "white"};
-            transition: width .5s ease;
+            transition: width 0.5s ease;
           }
           html {
             background-color: ${colorMode === "light" ? "#fff" : "gray.700"};

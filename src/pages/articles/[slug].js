@@ -41,6 +41,7 @@ import fetcher from '../../scripts/fetcher'
 import TimeAgo from '../../scripts/time-ago'
 import HeadersAccordion from "../../components/HeadersAccordion";
 import HeadersSidebar from "../../components/HeadersSidebar";
+import Comments from '../../components/Comments'
 
 export default function PostPage({ source, frontMatter, posts }) {
     const { colorMode } = useColorMode()
@@ -184,6 +185,8 @@ export default function PostPage({ source, frontMatter, posts }) {
                     >
                         <WrittenBy frontMatter={frontMatter} />
                     </Flex>
+                    <Divider mt={12} mb={4} alignSelf="center" />
+                    <Comments />
                 </Box>
             </motion.div>
         </Container>

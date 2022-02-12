@@ -140,6 +140,10 @@ const Footer = () => {
               text="Write For Us"
               href="https://benjamincarlson.notion.site/Contributing-to-Coffeeclass-io-27ab5e894368424a9c86a7f11555514b"
             />
+            <FooterNavItemExternal
+              text="Advertise With Us"
+              href="https://benjamincarlson.notion.site/Advertising-with-Coffeeclass-io-3a049a1af6914c47944ce45f9893a115"
+            />
           </Box>
 
           <Box>

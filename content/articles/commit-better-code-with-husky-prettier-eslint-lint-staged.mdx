@@ -2,30 +2,27 @@
 title: "Commit Better Code with Husky, Prettier, ESLint, and Lint-Staged"
 description: "Improve your developer experience by linting and formatting your code through git hooks."
 author: "roewyn-umayam.mdx"
-publishedAt: "2021-12-20T21:30:00"
+publishedAt: "2022-02-16T21:30:00"
 tags: ["git", "github"]
+logoImage: "git.png"
 ---
 
 Creating code is easy, but creating great code is not. When we start to learn programming, we make what works and we're happy just with that. As we mature our skills, it's important to give ourselves the best environment to produce quality code. We can stop poor code from being pushed in our repository through [linting](https://stackoverflow.com/questions/8503559/what-is-linting) and formatting. In this article, we'll learn how to improve our developer experience (DX). Let's go ahead and dive right in!
 
 ## TDLR
 
-You can access the source code on this [github repo]()
+You can access the source code on this [github repo](https://github.com/Umayarz18/commit-better-code-with-husky-prettier-eslint-lint-staged)
 
 ## Tools of the Trade 🧰
 To create such a useful environment, we'll use these packages to check our code through git hooks:
 
 - **`Husky`** 🐶: Supercharges our DX by linting, testing, or formatting code as code is committed with git.
-
 - **`ESLint`** ✔️: Checks for certain code patterns to stop errors or potential bugs.
-
 - **`Lint-Staged`** 🔧: Lints code before a commit occurs to keep production code clean.
-
 - **`Prettier`** ✨: Keeps code formatting consistent based on our own preferences.
 
 ## Commiting Clean Code to a Project
 
-### Making a Clean Project
 We'll use create-react-app to make the initial project. We won't be doing anything too much with React and you should still be able to follow along.
 
 ```Bash
@@ -67,8 +64,7 @@ npm init @eslint/config
 ```
 You can select your own preferences through that command. If you're unsure what to pick, just make a copy of this `.eslintrc.json` in our root directory with the following configuration:
 
-```JSON
-//.eslintrc.json
+```JSON:.eslintrc.json
 {
 	"env": {
 		"browser": true,
@@ -91,7 +87,15 @@ You can select your own preferences through that command. If you're unsure what 
 }
 ```
 
-You'll notice there are a lot more errors appearing in the code than before. That is ESLint enforcing our selected code style based in the config file. Before we fix these errors, lets make our Prettier config file to help format our linted code.
+Let's also make a `.eslintignore` file to prevent linting on tests:
+```Markup
+src/*.test.js
+```
+
+You'll notice there are a lot more errors appearing in the code than before. 
+That is ESLint enforcing our selected code style based in the config file. 
+Before we fix these errors, lets make our Prettier config file to help format 
+our linted code.
 
 ```Bash
 touch prettierrc.json //or create manually
@@ -99,8 +103,7 @@ touch prettierrc.json //or create manually
 
 Once your config file is made, add the following code to sync up both ESLint and Prettier:
 
-```JSON
-//prettierrc.json
+```JSON:prettierrc.json
 {
 	"tabWidth": 2,
 	"useTabs": true,
@@ -149,8 +152,7 @@ npx lint-staged
 
 Add the lint-staged configuration to `package.json` so when certain files are staged for a commit, we run ESLint and Prettier.
 
-```JSON
-//package.json
+```JSON:package.json
 ...,
 "lint-staged":{
     "**/*.{js,jsx,ts,tsx}":[
@@ -168,8 +170,6 @@ Let's find out what happens if we commit our code as-is:
 git add.
 git commit -m 'test commit with husky'
 ```
-![Failed Commit](/content/articles/commit-better-code-with-husky-prettier-eslint-lint-staged/failed-commit.JPG)
-
 
 Oops! Seems our commit failed. Luckily, the packages we use inform us what is causing the linting problem in `App.js`. Let's fix it and try again:
 
@@ -180,6 +180,13 @@ git commit -m 'test commit with husky again :)'
 
 Success! 🥳🥳 We have just committed clean code to our repository like a true pro 😎. 
 
-## Wrapping Up
 
-### Further Resources
+## Further Resources
+To further your own DX while you code, you can refer back to the documentation 
+of these technologies to discover more ways to use git hooks.
+
+- [Prettier Docs](https://prettier.io/)
+- [ESLint Docs](https://eslint.org/)
+- [Husky Docs](https://typicode.github.io/husky/#/)
+- [Lint-Staged Docs](https://github.com/okonet/lint-staged)
+- [Automating Code Checks and Tests with Git Hooks](https://www.antstack.io/blog/adding-git-hooks-to-your-project/)

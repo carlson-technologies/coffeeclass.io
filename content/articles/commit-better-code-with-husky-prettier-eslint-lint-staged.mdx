@@ -2,7 +2,7 @@
 title: "Commit Better Code with Husky, Prettier, ESLint, and Lint-Staged"
 description: "Improve your developer experience by linting and formatting your code through git hooks."
 author: "roewyn-umayam.mdx"
-publishedAt: "2022-02-16T21:30:00"
+publishedAt: "2022-02-17T12:30:00"
 tags: ["git", "github"]
 logoImage: "git.png"
 ---
@@ -14,6 +14,7 @@ Creating code is easy, but creating great code is not. When we start to learn pr
 You can access the source code on this [github repo](https://github.com/Umayarz18/commit-better-code-with-husky-prettier-eslint-lint-staged)
 
 ## Tools of the Trade 🧰
+
 To create such a useful environment, we'll use these packages to check our code through git hooks:
 
 - **`Husky`** 🐶: Supercharges our DX by linting, testing, or formatting code as code is committed with git.
@@ -116,6 +117,7 @@ Once your config file is made, add the following code to sync up both ESLint and
 ```
 
 Then modify `eslintrc.json` to include the following as the final item in the `"extends"` configuration:
+
 ```JSON
 ...,
 "extends": [
@@ -128,6 +130,7 @@ Then modify `eslintrc.json` to include the following as the final item in the `"
 Now with those two set up, we can move on to Husky and lint-staged.
 
 ### Configuring Husky
+
 Let's initialize Husky to our project:
 ```Bash
 npx husky-init && npm install       
@@ -137,6 +140,7 @@ This command will freshly add Husky to our project in the `.husky` folder. Insid
 There are many Git hooks you can use to set up certain actions when using Git with your code. This tutorial will only deal with `pre-commit` Git hook provided to format and lint our code before it gets committed to our repository. Refer to [Husky's Documentation](https://typicode.github.io/husky/#/) for more examples of Git Hooks to use to improve your developer experience on your projects.
 
 While we're here, let's install lint-staged:
+
 ```Bash
 npm i --save-dev lint-staged
 ```
@@ -163,9 +167,11 @@ Add the lint-staged configuration to `package.json` so when certain files are st
 ```
 
 ### Testing Our Setup
+
 Now that we've installed and configured our tools, let's test this out in action!
 
 Let's find out what happens if we commit our code as-is:
+
 ```Bash
 git add.
 git commit -m 'test commit with husky'
@@ -182,7 +188,8 @@ Success! 🥳🥳 We have just committed clean code to our repository like a tru
 
 
 ## Further Resources
-To further your own DX while you code, you can refer back to the documentation 
+
+To further your own DX while you code, refer back to the documentation 
 of these technologies to discover more ways to use git hooks.
 
 - [Prettier Docs](https://prettier.io/)

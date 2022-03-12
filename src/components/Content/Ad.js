@@ -16,7 +16,11 @@ const CarbonAd = () => {
     }, [])
 
     return (
-        <div id="carbonads" />
+        <>
+            {process.env.NODE_ENV === "production" && (
+                <div id="carbonads" />
+            )}
+        </>
     )
 }
 

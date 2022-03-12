@@ -9,6 +9,7 @@ import SEO from "../../next-seo.config";
 import customTheme from "../styles/theme";
 import { lightAvatarTheme, darkAvatarTheme } from "../styles/avatar";
 import { AppProps } from "next/app";
+import { carbon } from "../styles/carbon";
 
 interface Props {
   children: ReactChild[];
@@ -22,10 +23,11 @@ const GlobalStyle = ({ children }: Props) => {
         styles={css`
           ${colorMode === "light" ? prismLightTheme : prismDarkTheme};
           ${colorMode === "light" ? lightAvatarTheme : darkAvatarTheme};
+          ${carbon};
           #__next {
             background-color: ${colorMode === "light" ? "#fff" : "gray.700"};
             color: ${colorMode === "light" ? "black" : "white"};
-            transition: width .5s ease;
+            transition: width 0.5s ease;
           }
           html {
             background-color: ${colorMode === "light" ? "#fff" : "gray.700"};

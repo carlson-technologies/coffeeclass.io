@@ -13,7 +13,7 @@ import NextImage from 'next/image'
 import NextLink from 'next/link'
 import Subscribe from '../components/Subscribe'
 import TimeAgo from "../scripts/time-ago"
-import Ad from '../components/Content/Ad'
+import CarbonAd from '../components/Content/Ad'
 import HeadersSidebar from './HeadersSidebar'
 
 export default function RelatedPosts({ frontMatter, posts, style }) {
@@ -148,7 +148,7 @@ export default function RelatedPosts({ frontMatter, posts, style }) {
                         })}
                         <Subscribe isSidebar />
                         {/* <HeadersSidebar headers={frontMatter?.headers} /> */}
-                        <Ad />
+                        <CarbonAd />
                     </Box>
                 </Flex>
             </>

@@ -25,12 +25,12 @@ import {
 import { useRouter } from "next/router";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import NextImage from "next/image";
+import ModuleBadge from "../../../components/Courses/ModuleBadge";
 // Course routes below
 import chakraUISidebar from "../../../configs/courses/chakra-ui.json";
 import dataStructuresSidebar from "../../../configs/courses/data-structures.json";
 import algorithmsSidebar from "../../../configs/courses/algorithms.json";
 import algoliaNextInstantSearchSidebar from "../../../configs/courses/nextjs-algolia-instantsearch.json";
-import ModuleBadge from "../../../components/Courses/ModuleBadge";
 
 interface Props {
   files: string[];

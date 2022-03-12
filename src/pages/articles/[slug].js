@@ -28,7 +28,7 @@ import {
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/router'
 import RelatedPosts from '../../components/RelatedPosts'
-import Ad from '../../components/Content/Ad'
+import CarbonAd from '../../components/Content/Ad'
 import EmbeddedVideo from '../../components/EmbeddedVideo'
 import getEmbedId from '../../scripts/get-embed-id'
 import Container from '../../components/Container'
@@ -141,7 +141,7 @@ export default function PostPage({ source, frontMatter, posts }) {
                         <Box display={['block', 'block', 'block', 'block', 'block', 'none']}>
                             <HeadersAccordion headers={frontMatter?.headers} />
                         </Box>
-                        <Ad />
+                        <CarbonAd />
                         <Box id="main-content">
                             <MDXRemote {...source} components={MDXComponents} />
                         </Box>

@@ -24,7 +24,7 @@ import {
   Icon,
   Divider,
 } from "@chakra-ui/react";
-import Ad from "../../../components/Content/Ad";
+import CarbonAd from "../../../components/Content/Ad";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import HeadersAccordion from "../../../components/HeadersAccordion";
 
@@ -49,10 +49,7 @@ export default function PostPage({ source, frontMatter, params }: Props) {
           <Heading as="h1" size="2xl" letterSpacing="tight" mb={2}>
             {frontMatter.title}
           </Heading>
-          <Text
-            fontSize="xl"
-            color={useColorModeValue("gray.600", "gray.400")}
-          >
+          <Text fontSize="xl" color={useColorModeValue("gray.600", "gray.400")}>
             <strong>Module Summary:</strong> {frontMatter.description}
           </Text>
           <Text fontSize="md" color="gray.500" mb={4}>
@@ -62,7 +59,7 @@ export default function PostPage({ source, frontMatter, params }: Props) {
           <HeadersAccordion headers={frontMatter?.headers} />
         </Box>
         <Flex flexDir="column" id="main-content">
-          <Ad />
+          <CarbonAd />
           <MDXRemote {...source} components={MDXComponents} />
         </Flex>
         <Box mb={2} mt={10}>

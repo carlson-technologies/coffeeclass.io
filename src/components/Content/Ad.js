@@ -1,28 +1,27 @@
 import React, { useEffect } from "react"
 
-const BlogAd = () => {
+const CarbonAd = () => {
     useEffect(() => {
         try {
-            (window.adsbygoogle = window.adsbygoogle || []).push({})
+            const script = document.createElement("script")
+            script.async = true
+            script.type = "text/javascript"
+            script.src = "//cdn.carbonads.com/carbon.js?serve=CEAI453W&placement=wwwcoffeeclassio"
+            script.id = "_carbonads_js"
+            const carbon = document.getElementById("carbonads")
+            carbon.appendChild(script)
         } catch (err) {
             console.log(err);
         }
     }, [])
 
-
     return (
         <>
-            {process.env.NODE_ENV !== 'development' ?
-                <div style={{ width: '100%', marginTop: "5px", marginBottom: "5px", overflowX: 'scroll' }}>
-                    <ins className="adsbygoogle"
-                        style={{ display: 'block' }}
-                        data-ad-format="fluid"
-                        data-ad-layout-key="-fb+5w+4e-db+86"
-                        data-ad-client="ca-pub-8586017200531248"
-                        data-ad-slot="2779657459" />
-                </div> : null}
+            {process.env.NODE_ENV === "production" && (
+                <div id="carbonads" />
+            )}
         </>
     )
 }
 
-export default BlogAd
+export default CarbonAd

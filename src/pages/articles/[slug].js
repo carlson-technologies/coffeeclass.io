@@ -141,7 +141,9 @@ export default function PostPage({ source, frontMatter, posts }) {
                         <Box display={['block', 'block', 'block', 'block', 'block', 'none']}>
                             <HeadersAccordion headers={frontMatter?.headers} />
                         </Box>
-                        <CarbonAd />
+                        <Box my={2}>
+                            <CarbonAd />
+                        </Box>
                         <Box id="main-content">
                             <MDXRemote {...source} components={MDXComponents} />
                         </Box>

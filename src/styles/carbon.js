@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
 
-export const carbon = css`
+export const carbonBase = css`
 #carbonads * {
   margin: initial;
   padding: initial;
@@ -13,8 +13,6 @@ export const carbon = css`
 #carbonads {
   display: flex;
   max-width: 330px;
-  background-color: hsl(0, 0%, 98%);
-  box-shadow: 0 1px 4px 1px hsla(0, 0%, 0%, 0.1);
   z-index: 100;
 }
 #carbonads a {
@@ -50,7 +48,6 @@ export const carbon = css`
 #carbonads .carbon-poweredby {
   display: block;
   padding: 6px 8px;
-  background: #f1f1f2;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -63,3 +60,25 @@ export const carbon = css`
   right: 0;
 }
 `
+
+export const carbonLight = css`
+  ${carbonBase};
+  #carbonads {
+    box-shadow: 0 1px 4px 1px hsla(0, 0%, 0%, 0.1);
+    background-color: hsl(0, 0%, 98%);
+  }
+  #carbonads .carbon-poweredby {
+    background: #f1f1f2;
+  }
+`
+
+export const carbonDark = css`
+  ${carbonBase};
+  #carbonads {
+    box-shadow: 0 1px 4px 1px hsla(0, 0%, 0%, 0.1);
+    background-color: hsl(0, 0%, 10%);
+  }
+  #carbonads .carbon-poweredby {
+    background: #1f1e1e;
+  }
+  `

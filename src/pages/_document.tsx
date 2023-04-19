@@ -56,6 +56,10 @@ export default class MyDocument extends Document {
                 src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8586017200531248"
                 crossOrigin="anonymous"
               ></script>
+          
+              {/* BurnerPage*/}
+              {/* eslint-disable-next-line @next/next/no-sync-scripts*/}
+              <script src="https://admin.burner.page/js/tm_2LkDIAb5vvKmaaazKOwyvhXU1mN"></script>
 
               {/* Splitbee Analytics */}
               <script async src="https://cdn.splitbee.io/sb.js"></script>

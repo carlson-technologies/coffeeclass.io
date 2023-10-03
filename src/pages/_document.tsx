@@ -59,7 +59,7 @@ export default class MyDocument extends Document {
           
               {/* BurnerPage */}
               {/* eslint-disable-next-line @next/next/no-sync-scripts*/}
-              <script src="https://admin.burner.page/js/tm_2LkDIAb5vvKmaaazKOwyvhXU1mN"></script>
+              {/* <script src="https://admin.burner.page/js/tm_2LkDIAb5vvKmaaazKOwyvhXU1mN"></script> */}
 
               {/* BurnerPage testing goals */}
               {/* eslint-disable-next-line @next/next/no-sync-scripts*/}

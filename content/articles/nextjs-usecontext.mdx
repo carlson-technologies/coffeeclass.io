@@ -1,0 +1,90 @@
+---
+title: 'useContext() Hook in Next.js - React Hooks'
+description: 'Learn what useContext is and how to use it in Next.js to manage global state with React Hooks.'
+author: 'benjamin-carlson.mdx'
+publishedAt: '2023-10-08T18:30:00'
+tags: ['react', 'usecontext', 'nextjs', 'react-hooks']
+logoImage: 'react.png'
+---
+
+## Hooks Overview
+
+React Hooks have revolutionized the way we manage state and side effects in functional components. Introduced in React 16.8, they make it possible to handle state without writing class components. If you're new to hooks, you might want to check out our previous article on the `useEffect` hook, [linked here](using-react-useeffect).
+
+> Missed our `useState` in Next.js article? [View it here!](/articles/nextjs-usestate)
+
+### What is `useContext` Hook?
+
+The `useContext` hook is a powerful tool for managing global state in your React application. It allows you to share state and functions across components without prop drilling. Let's dive into an example to understand how it works.
+
+### How does `useContext` work?
+
+In a nutshell, `useContext` provides access to a value, known as the context value, that's defined by a `Provider` component. This value can be shared across multiple components, making it a great choice for managing global state and reducing component complexity.
+
+### `useContext` Hook Example
+
+```javascript
+import React, { useContext } from 'react'
+
+// Create a context
+const MyContext = React.createContext()
+
+function ParentComponent() {
+  // Define a state value in the parent component
+  const stateValue = 'Hello from Parent'
+
+  return (
+    <MyContext.Provider value={stateValue}>
+      <ChildComponent />
+    </MyContext.Provider>
+  )
+}
+
+function ChildComponent() {
+  // Access the state value using the useContext hook
+  const contextValue = useContext(MyContext)
+
+  return <p>{contextValue}</p>
+}
+```
+
+In this example, the ParentComponent defines a state value and provides it through the MyContext.Provider. The ChildComponent then consumes this value using the useContext hook.
+
+## Uses of `useContext` Hook
+
+The useContext hook is particularly useful for scenarios where you need to manage global state, such as user authentication, theme preferences, or language settings. By using context, you can easily share this state and update it from any part of your component tree.
+
+Here's a quick example of using useContext to manage the theme of your application:
+
+```javascript
+import React, { createContext, useContext, useState } from 'react'
+
+// Create a context
+const ThemeContext = createContext()
+
+function ThemeProvider({ children }) {
+  const [theme, setTheme] = useState('light')
+
+  return <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>
+}
+
+function App() {
+  const { theme, setTheme } = useContext(ThemeContext)
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light')
+  }
+
+  return (
+    <div className={`App ${theme}`}>
+      <button onClick={toggleTheme}>Toggle Theme</button>
+    </div>
+  )
+}
+```
+
+In this example, we create a ThemeContext to manage the theme state. The ThemeProvider component provides the theme state to its children. The App component, which is a child of ThemeProvider, uses the useContext hook to access and update the theme.
+
+## Explore More Hooks
+
+The useContext hook is just one of the many powerful hooks that React provides for building functional and efficient components. Explore more [React hooks](/tags/react-hooks)! Happy React hooking!

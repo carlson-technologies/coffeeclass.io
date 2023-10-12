@@ -63,7 +63,7 @@ export default class MyDocument extends Document {
 
               {/* BurnerPage testing goals */}
               {/* eslint-disable-next-line @next/next/no-sync-scripts*/}
-              <script src="https://burner-admin-git-goals-burnerpage.vercel.app/js/tm_2LkDIAb5vvKmaaazKOwyvhXU1mN"></script>
+              <script src="https://dev.burner.page/js/tm_2WOc3ymmx4qjHO0bqf44CSILtl2"></script>
 
               {/* Splitbee Analytics */}
               <script async src="https://cdn.splitbee.io/sb.js"></script>

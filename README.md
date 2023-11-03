@@ -18,7 +18,7 @@ This website is a platform to learn to code. It is inspired by sites like [freeC
 
 If you are creating a PR, **create a new branch**. Before you commit run `yarn build`. This will run the tests and make sure everything is working.
 
-Note: If you are not planning on making a PR, you can run `rm -rf .git` to remove git tracking.
+> Note: If you are not planning on making a PR, you can run `rm -rf .git` to remove git tracking.
 
 ### Tech Stack Overview
 
@@ -39,18 +39,7 @@ This entire project is open source. We encourage contributions! Read on to see h
 
 ### Contributing Content
 
-If you want to contribute an article please follow the steps on https://benjamincarlson.notion.site/Contributing-to-Coffeeclass-io-27ab5e894368424a9c86a7f11555514b. Below is a quick guide to submit an article or start a new course.
-
-#### Article
-
-#### Course
-
-Here are the steps to add a new course:
-
-1. Add course to `courses.json`
-2. Add json file in `configs/courses` folder
-3. Import json and add it to `configMap` in `pages/courses/[course]/index.tsx`, `Components/Courses/Sidebar`, and `Components/Courses/Pagination`
-4. Add folder to `content/courses` with at least one module
+If you want to contribute an article please follow the steps on https://benjamincarlson.notion.site/Contributing-to-Coffeeclass-io-27ab5e894368424a9c86a7f11555514b.
 
 ### Contributing to the Website
 

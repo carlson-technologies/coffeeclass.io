@@ -1,10 +1,10 @@
 ---
-title: "useState() Hook in Next JS - React Hooks"
-description: "Learn what useState is and learn how to use useState in Next JS by coding some examples."
-author: "benjamin-carlson.mdx"
-publishedAt: "2021-12-30T21:30:00"
-tags: ["react", "usestate", "nextjs", "react-hooks"]
-logoImage: "react.png"
+title: 'useState() Hook in Next JS - React Hooks'
+description: 'Learn what useState is and learn how to use useState in Next JS by coding some examples.'
+author: 'benjamin-carlson.mdx'
+publishedAt: '2021-12-30T21:30:00'
+tags: ['react', 'usestate', 'nextjs', 'react-hooks']
+logoImage: 'react.png'
 ---
 
 ## Hooks Overview
@@ -19,25 +19,23 @@ The `useState` hook lets you manage state throughout your application. Let's tak
 
 Simply put, a state variable persists the state throughout the lifecycle of your application instead of dissapearing when the function is exited.
 
-> From the React Docs:  It declares a “state variable”. Our variable is called count but we could call it anything else, like banana. This is a way to “preserve” some values between the function calls — useState is a new way to use the exact same capabilities that this.state provides in a class. Normally, variables “disappear” when the function exits but state variables are preserved by React.
+> From the React Docs: It declares a “state variable”. Our variable is called count but we could call it anything else, like banana. This is a way to “preserve” some values between the function calls — useState is a new way to use the exact same capabilities that this.state provides in a class. Normally, variables “disappear” when the function exits but state variables are preserved by React.
 
 ### `useState` Hook Example
 
 ```javascript
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
 function Example() {
   // Declare a new state variable, which we'll call "count"
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0)
 
   return (
     <div>
       <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>
-        Click me
-      </button>
+      <button onClick={() => setCount(count + 1)}>Click me</button>
     </div>
-  );
+  )
 }
 ```
 
@@ -81,4 +79,4 @@ const handleScroll = () => {
 
 The `p` tag above will increase in size as the user scrolls down the page!
 
-Enjoyed this article on useState? Exmplore more [React hooks](/tags/react-hooks)!
+Enjoyed this article on useState? Explore more [React hooks](/tags/react-hooks)!

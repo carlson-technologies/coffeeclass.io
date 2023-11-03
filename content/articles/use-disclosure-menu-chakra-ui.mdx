@@ -1,10 +1,10 @@
 ---
-title: "Chakra UI Menu Dropdown on Hover"
+title: 'Chakra UI Menu Dropdown on Hover'
 description: "How to use Chakra UI's useDisclosure hook to create a dropdown menu on hover."
-author: "benjamin-carlson.mdx"
-publishedAt: "2021-10-27T19:30:00"
-tags: ["chakra-ui", "navigation", "react-hooks"]
-logoImage: "chakra-ui.png"
+author: 'benjamin-carlson.mdx'
+publishedAt: '2021-10-27T19:30:00'
+tags: ['chakra-ui', 'navigation', 'react-hooks']
+logoImage: 'chakra-ui.png'
 ---
 
 ## Introduction
@@ -24,7 +24,7 @@ logoImage: "chakra-ui.png"
 We can import the `useDisclosure` hook from `@chakra-ui/react`.
 
 ```javascript
-import { useDisclosure } from "@chakra-ui/react"
+import { useDisclosure } from '@chakra-ui/react'
 ```
 
 ### Usage
@@ -92,8 +92,8 @@ At this point, the Menu dropdown works, but there is still no hover effect! To a
 When we use it like such:
 
 ```javascript
-onMouseEnter={onOpen} 
-onMouseLeave={onClose}
+onMouseEnter = { onOpen }
+onMouseLeave = { onClose }
 ```
 
 We are saying when a user hovers over that Component, set the `isOpen` parameter to `true`. When they leave the Component, set the `isOpen` parameter to `false`. Simple!

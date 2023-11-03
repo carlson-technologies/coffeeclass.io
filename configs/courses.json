@@ -1,0 +1,40 @@
+{
+  "routes": [
+    {
+      "title": "Chakra UI",
+      "path": "/courses/chakra-ui",
+      "slug": "chakra-ui",
+      "image": "chakra-ui.png",
+      "colorLight": "teal.100",
+      "colorDark": "teal.500",
+      "description": "Chakra UI is a simple, modular and accessible component library that gives you the building blocks you need to build your React applications."
+    },
+    {
+      "title": "Data Structures",
+      "path": "/courses/data-structures",
+      "slug": "data-structures",
+      "image": "ds.png",
+      "colorLight": "purple.100",
+      "colorDark": "purple.500",
+      "description": "The fundamentals of compute science. Learn every data structure you need to ace your college DS classes or coding interviews."
+    },
+    {
+      "title": "Algorithms",
+      "path": "/courses/algorithms",
+      "slug": "algorithms",
+      "image": "algorithms.png",
+      "colorLight": "pink.100",
+      "colorDark": "pink.500",
+      "description": "Learn how to implement common algorithms."
+    },
+    {
+      "title": "Algolia InstantSearch",
+      "path": "/courses/nextjs-algolia-instantsearch",
+      "slug": "nextjs-algolia-instantsearch",
+      "image": "algolia.png",
+      "colorLight": "#5468FF",
+      "colorDark": "#5468FF",
+      "description": "Learn how to integrate Algolia InstantSearch with Next.js to improve conversions and user experience."
+    }
+  ]
+}

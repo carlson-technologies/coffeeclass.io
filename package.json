@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "next-sitemap & node ./src/scripts/build-algolia-search.js & yarn test",
+    "postbuild": "next-sitemap & node ./lib/scripts/build-algolia-search.js",
     "start": "next start",
     "test": "jest"
   },

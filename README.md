@@ -23,7 +23,7 @@ Note: If you are not planning on making a PR, you can run `rm -rf .git` to remov
 ### Tech Stack Overview
 
 - 🚀 Next.js - Framework
-- 🎨 Chakra UI - CSS Component Library
+- 🎨 Tailwind - CSS Framework
 - 📜 TypeScript (and some JavaScript) - Web language of choice
 - 🧪 Jest - Testing
 - ✍🏼 MDX - Database for Article, Authors, Courses, Tags
@@ -35,32 +35,13 @@ Note: If you are not planning on making a PR, you can run `rm -rf .git` to remov
 
 Besides the above, this site uses additional yarn packages and some other smaller external software.
 
-### Deep(er-ish) Dive
-
-This repo is broken up into 4 main parts.
-
-- `src`: This is the Next.js website.
-- `content`: This is the content for the website stored in `mdx` files.
-- `public`: This is the static assets for the website.
-- `tests`: Jest unit tests for the website.
-
-Inside the `src` folder, we have the following:
-
-- `components`: Our UI components.
-- `configs`: Various configuration files for courses.
-- `hooks`: Custom TS hooks.
-- `layouts`: MDX page layouts.
-- `pages`: Where the pages (routes) and api routes are stored.
-- `scripts`: Stand alone scripts (DRY) and build scripts
-- `styles`: Theme styles and Chakra UI default theme config.
-
 ## Open Source
 
 This entire project is open source. We encourage contributions! Read on to see how you can contribute.
 
 ### Contributing Content
 
-If you want to contribute an article please follow the steps on https://benjamincarlson.notion.site/Contributing-to-Coffeeclass-io-27ab5e894368424a9c86a7f11555514b. Below is a quick guide to submit an article or start a new course. 
+If you want to contribute an article please follow the steps on https://benjamincarlson.notion.site/Contributing-to-Coffeeclass-io-27ab5e894368424a9c86a7f11555514b. Below is a quick guide to submit an article or start a new course.
 
 #### Article
 

@@ -1,11 +1,11 @@
 ---
-title: "Advanced Chakra UI"
-description: "Learn 5 Chakra UI advanced tricks and tips to bring you from a beginner React developer to advanced."
-author: "benjamin-carlson.mdx"
-publishedAt: "2021-08-29T19:00:00"
-tags: ["chakra-ui", "react"]
-logoImage: "chakra-ui.png"
-youtubeId: "https://youtu.be/joYNKCG3cWo"
+title: 'Advanced Chakra UI'
+description: 'Learn 5 Chakra UI advanced tricks and tips to bring you from a beginner React developer to advanced.'
+author: 'benjamin-carlson.mdx'
+publishedAt: '2021-08-29T19:00:00'
+tags: ['chakra-ui', 'react']
+logoImage: 'chakra-ui.png'
+youtubeId: 'https://youtu.be/joYNKCG3cWo'
 ---
 
 ## Introduction
@@ -30,25 +30,25 @@ You'll notice we are importing a few other files. `styles.js` will be all of our
 
 ```jsx
 // theme/index.js
-import { extendTheme } from "@chakra-ui/react"
+import { extendTheme } from '@chakra-ui/react'
 
 // Global style overrides
-import styles from "./styles"
+import styles from './styles'
 
 // Foundational style overrides
-import borders from "./foundations/borders"
+import borders from './foundations/borders'
 
 // Component style overrides
-import Button from "./components/button"
+import Button from './components/button'
 
 const overrides = {
   styles,
   borders,
   // Other foundational style overrides go here
   components: {
-    Button,
+    Button
     // Other components go here
-  },
+  }
 }
 
 export default extendTheme(overrides)
@@ -66,11 +66,11 @@ Normally to create responsive values in Chakra UI you do something like this:
 <Text fontSize={{ base: "24px", md: "40px", lg: "56px" }}>I am responsive.</Text>
 ```
 
-However, some properties like variant and size don't accept this. For these properties, we need to use the `useBreakpointValue` hook. By using this, we can achieve the same effect as the array and object syntax. 
+However, some properties like variant and size don't accept this. For these properties, we need to use the `useBreakpointValue` hook. By using this, we can achieve the same effect as the array and object syntax.
 
 ```jsx
 function Example() {
-  const variant = useBreakpointValue({ base: "outline", md: "solid" })
+  const variant = useBreakpointValue({ base: 'outline', md: 'solid' })
 
   return (
     <VStack align="flex-start">
@@ -89,13 +89,9 @@ function Example() {
 
 ```jsx
 function Example() {
-  const [isLargerThan1280] = useMediaQuery("(min-width: 1280px)")
+  const [isLargerThan1280] = useMediaQuery('(min-width: 1280px)')
 
-  return (
-    <Text>
-      {isLargerThan1280 ? "larger than 1280px" : "smaller than 1280px"}
-    </Text>
-  )
+  return <Text>{isLargerThan1280 ? 'larger than 1280px' : 'smaller than 1280px'}</Text>
 }
 ```
 
@@ -105,15 +101,15 @@ There is a property called `config` which is passed into the `extendTheme` hook.
 
 ```jsx
 const config = {
-    initialColorMode: "light",
-    useSystemColorMode: false,
-    cssVarPrefix: "coffeeclass-io",
+  initialColorMode: 'light',
+  useSystemColorMode: false,
+  cssVarPrefix: 'coffeeclass-io'
 }
 ```
 
-The first is `initialColorMode`. This is the initial color mode that will render when the user gets to your site. 
+The first is `initialColorMode`. This is the initial color mode that will render when the user gets to your site.
 
-The second is `useSystemColorMode`. This is a boolean value that tells Chakra UI to use the system color mode (or not if it's set to `false`). 
+The second is `useSystemColorMode`. This is a boolean value that tells Chakra UI to use the system color mode (or not if it's set to `false`).
 
 The third is `cssVarPrefix`. This is the prefix that Chakra UI will use for all of its css variables. It does not change any of the behavior but it is a cool way to further personalize your app.
 
@@ -138,8 +134,8 @@ custom_brand: {
 
 ```jsx
 <Button colorScheme="custom_brand" size="xs">
-    Button
- </Button>
+  Button
+</Button>
 ```
 
 ![Chakra UI default red color pallete](/content/articles/advanced-chakra-ui-do-you-know-all-5/color-pallete.png)

@@ -22,18 +22,16 @@ Note: If you are not planning on making a PR, you can run `rm -rf .git` to remov
 
 ### Tech Stack Overview
 
-- 🚀 Next.js - Framework
+- 🚀 Next.js - JS Framework
 - 🎨 Tailwind - CSS Framework
+- ☯️ Chakra UI - CSS Framework (in the process of switching to Tailwind)
 - 📜 TypeScript (and some JavaScript) - Web language of choice
 - 🧪 Jest - Testing
-- ✍🏼 MDX - Database for Article, Authors, Courses, Tags
+- ✍🏼 MDX - Stores content for articles, authors, courses, and tags
 - 🔺 Vercel - Deployment
 - 💻 GitHub - Version Control
 - 📊 Google Analytics - Analytics
-- 🐝 Splitbee - More Analytics
 - 🔎 Algolia - Search
-
-Besides the above, this site uses additional yarn packages and some other smaller external software.
 
 ## Open Source
 

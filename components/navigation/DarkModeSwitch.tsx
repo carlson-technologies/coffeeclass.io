@@ -6,42 +6,25 @@ const DarkModeSwitch = () => {
   const { colorMode, toggleColorMode } = useColorMode()
   const { theme, setTheme } = useTheme()
 
+  const handleThemeChange = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light')
+    toggleColorMode()
+  }
+
   return (
     <>
       {colorMode === 'dark' ? (
         <FiSun
           className="hover:opacity-80 text-lg cursor-pointer"
-          onClick={() => {
-            toggleColorMode()
-            setTheme(theme === 'light' ? 'dark' : 'light')
-          }}
+          onClick={handleThemeChange}
         />
       ) : (
         <FiMoon
           className="hover:opacity-80 text-lg cursor-pointer"
-          onClick={() => {
-            toggleColorMode()
-            setTheme(theme === 'light' ? 'dark' : 'light')
-          }}
+          onClick={handleThemeChange}
         />
       )}
     </>
-    // <IconButton
-    //   size="md"
-    //   aria-label={`Toggle ${colorMode === 'dark' ? 'light' : 'dark'} mode`}
-    //   icon={colorMode === 'dark' ? <FiSun /> : <FiMoon />}
-    //   fontSize="20px"
-    //   onClick={() => {
-    //     toggleColorMode()
-    //     setTheme(theme === 'light' ? 'dark' : 'light')
-    //   }}
-    //   borderRadius={5}
-    //   variant="ghost"
-    //   transition="transform 1s"
-    //   w={50}
-    //   data-splitbee-event="Button Click"
-    //   data-splitbee-event-type="Dark Mode Toggle"
-    // />
   )
 }
 

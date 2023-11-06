@@ -1,14 +1,15 @@
 import { useColorMode, IconButton } from '@chakra-ui/react'
 import { useTheme } from 'next-themes'
+import React from 'react'
 import { FiSun, FiMoon } from 'react-icons/fi'
 
 const DarkModeSwitch = () => {
-  const { colorMode, toggleColorMode } = useColorMode()
+  const { colorMode, setColorMode } = useColorMode()
   const { theme, setTheme } = useTheme()
 
   const handleThemeChange = () => {
     setTheme(theme === 'light' ? 'dark' : 'light')
-    toggleColorMode()
+    setColorMode(theme === 'light' ? 'dark' : 'light')
   }
 
   return (

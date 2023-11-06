@@ -1,0 +1,51 @@
+{
+  "title": "Algorithms",
+  "description": "Learn how to implement common algorithms.",
+  "image": "algorithms.png",
+  "base": "/courses/algorithms",
+  "color": "pink",
+  "routes": [
+    {
+      "title": "Introduction",
+      "routes": [
+        {
+          "title": "🚀 Course Introduction",
+          "description": "An overview of the coffeeclass.io algorithms course.",
+          "path": "/courses/algorithms/course-introduction"
+        }
+      ]
+    },
+    {
+      "title": "Basics",
+      "routes": [
+        {
+          "title": "🍩 Big \"O\" Notation",
+          "description": "Learn how to use Big \"O\" notation to describe the performance of algorithms.",
+          "path": "/courses/algorithms/big-o-notation"
+        }
+      ]
+    },
+    {
+      "title": "Elementary Sorts",
+      "routes": [
+        {
+          "title": "🛁 Bubble Sort",
+          "description": "Learn how to implement bubble sort.",
+          "path": "/courses/algorithms/bubble-sort"
+        },
+        {
+          "title": "⌚ Insertion Sort",
+          "description": "Learn how to implement insertion sort.",
+          "path": "",
+          "tag": "coming soon"
+        },
+        {
+          "title": "🪀 Selection Sort",
+          "description": "Learn how to implement selection sort.",
+          "path": "",
+          "tag": "coming soon"
+        }
+      ]
+    }
+  ]
+}

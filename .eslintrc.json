@@ -1,3 +1,63 @@
 {
-  "extends": "next/core-web-vitals"
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "jest"],
+  "env": {
+    "jest/globals": true
+  },
+  "extends":  ["next/core-web-vitals", "plugin:prettier/recommended", "plugin:mdx/recommended"],
+  "settings": {
+    "mdx/code-blocks": false
+  },
+  "globals": {
+    "React": true,
+    "JSX": true,
+    "Proxy": true
+  },
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "printWidth": 100,
+        "arrowParens": "avoid",
+        "singleQuote": true,
+        "tabWidth": 2,
+        "trailingComma": "none",
+        "useTabs": false,
+        "semi": false
+      }
+    ],
+    "import/order": [
+      "error",
+      {
+        "groups": ["external", "builtin", "internal", "parent", "sibling", "index"],
+        "pathGroups": [
+          {
+            "pattern": "@/**",
+            "group": "internal",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["@/**"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ],
+    "no-unused-vars": 0,
+    "no-extra-semi": 0,
+    "no-console": 2,
+    "@next/next/no-img-element": 0,
+    "no-empty": 0,
+    "@typescript-eslint/ban-ts-comment": 0,
+    "@typescript-eslint/no-empty-function": 0,
+    "@typescript-eslint/no-empty-interface": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/no-inferrable-types": 0,
+    "@typescript-eslint/no-namespace": 0,
+    "@typescript-eslint/no-non-null-assertion": 2,
+    "@typescript-eslint/no-var-requires": 0
+  }
 }

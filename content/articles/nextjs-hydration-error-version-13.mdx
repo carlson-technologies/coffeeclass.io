@@ -1,0 +1,58 @@
+---
+title: 'Fix For - Error: Hydration Failed Because The Initial UI Does Not Match What Was Rendered on The Server'
+description: 'When upgrading to Next.js version 13, I encountered a hydration error. This is what a hydration error is and how to fix them.'
+author: 'benjamin-carlson.mdx'
+publishedAt: '2023-11-03T22:44:33'
+tags: ['nextjs', 'react']
+logoImage: 'nextjs-light.png'
+---
+
+Errors are never fun. I had a project that I was updating to the latest version of Next.js and I got the following error:
+
+![Screenshot of the hydration error](/content/articles/nextjs-hydration-error-version-13/error.png)
+
+## What's A Hydration Error?
+
+This error is a hydration error. Hydration is the process of taking the HTML that is rendered on the server and turning it into a fully interactive React application in the client. This error is telling us that the HTML that was rendered on the server is different than what was rendered on the client. This is a problem because React will not be able to hydrate the application.
+
+## How To Fix A Hydration Error
+
+A hydration error can be caused by a multiple issues which makes this a bit tricky to debug. I was also updating all my packages at once so I wasn't sure which yarn package was actually causing this error.
+
+Luckily, Next.js gives us some info about possible reasons for this error. In my case it was a mismatched `<a>` tag. In case that wasn't the issue, I also went to the [link](https://nextjs.org/docs/messages/react-hydration-error) the suggested. Here I found some more possible reasons:
+
+1. Incorrect nesting of HTML tags
+    1. `<p>` nested in another `<p>` tag
+2. Using checks like typeof window !== 'undefined' in your rendering logic
+3. Using browser-only APIs like window or localStorage in your rendering logic
+4. ... and some more reasons
+
+I was able to pinpoint my issue to the upgrade of the `Next/Link` component. You used to have to wrap your own `<a>` tag in the `Next/Link` component. Now you can just use the `Next/Link` component and it will render the `<a>` tag for you.
+
+## Quick Fix Using Code Mod
+
+Before going through your entire code base and manually finding and fixing each and every nested `a` tag, it might behove you to know that a codemod is available to fix this issue.
+
+> [Codemods](https://nextjs.org/docs/app/building-your-application/upgrading/codemods) are transformations that run on your codebase programmatically. This allows a large number of changes to be programmatically applied without having to manually go through every file.
+
+[Here](https://nextjs.org/docs/app/building-your-application/upgrading/codemods#remove-a-tags-from-link-components) is the link to the codemod that will remove `<a>` tags inside Link Components, or add a legacyBehavior prop to Links that cannot be auto-fixed. Here is an example of what it will do:
+
+```jsx
+<Link href="/about">
+  <a>About</a>
+</Link>
+// transforms into
+<Link href="/about">
+  About
+</Link>
+ 
+<Link href="/about">
+  <a onClick={() => console.log('clicked')}>About</a>
+</Link>
+// transforms into
+<Link href="/about" onClick={() => console.log('clicked')}>
+  About
+</Link>
+```
+
+If you are not able to fix this error, it will still run in production. You will just see an error in the console but it won't break your application.

@@ -1,12 +1,12 @@
 ---
-title: "Connect Firebase To Next.js"
+title: 'Connect Firebase To Next.js'
 description: "Learn how to connect Next.js to Google's Firebase and use authentication, cloud Firestore, Realtime Database, and cloud storage."
-author: "benjamin-carlson.mdx"
-publishedAt: "2021-04-15T00:00:00"
-tags: ["firebase", "nextjs"]
-logoImage: "firebase.png"
-youtubeId: "https://youtu.be/SYnu6CLKD70"
-githubURL: "https://github.com/bjcarlson42/nextjs-with-firebase"
+author: 'benjamin-carlson.mdx'
+publishedAt: '2021-04-15T00:00:00'
+tags: ['firebase', 'nextjs']
+logoImage: 'firebase.png'
+youtubeId: 'https://youtu.be/SYnu6CLKD70'
+githubURL: 'https://github.com/bjcarlson42/nextjs-with-firebase'
 ---
 
 ## Introduction
@@ -284,7 +284,7 @@ Import this function into `index.js` and you'll see your data in the console!
 ### Popup Auth Flow
 
 Create a folder called `Auth` inside of your components folder. Inside of there,
-create a file named `FirebaseAuth.js`. We will be using the sign in pop up flow from the ract firebase ui 
+create a file named `FirebaseAuth.js`. We will be using the sign in pop up flow from the ract firebase ui
 library. We'll start by importing what we need.
 
 ```javascript:FirebaseAuth.js
@@ -514,7 +514,7 @@ const useUser = () => {
 export { useUser }
 ```
 
-The auth should now work. Try to log in with email and password. Note, if you want to use any of the OAuth 
+The auth should now work. Try to log in with email and password. Note, if you want to use any of the OAuth
 providers you will need to turn them on in your firebase auth settings page.
 
 Now that we have auth, we want to dynamically show a custom index page based on if the user is logged in or not.
@@ -670,7 +670,7 @@ const Counter = ({ id }) => {
     const [count, setCount] = useState('')
     useEffect(() => {
         const onCountIncrease = (count) => setCount(count.val())
-        
+
         const fetchData = async () => {
             firebase.database().ref('counts').child(id).on('value', onCountIncrease)
         }
@@ -713,7 +713,7 @@ export default (req, res) => {
             total: snapshot.val()
         })
     })
-} 
+}
 ```
 
 Now, lets import the component inside `index.js` and use it! Remember to pass in a unique id; I will be using the users uid from `useUser`.
@@ -755,7 +755,7 @@ const UploadFile = () => {
 }
 ```
 
-As you can see, we are using useState and useRef to handle the procress indicator and the file upload. To upload the 
+As you can see, we are using useState and useRef to handle the procress indicator and the file upload. To upload the
 file, we need to get the file, and use `.put` to send it to firebase.
 
 ```javascript:uploadFile.js

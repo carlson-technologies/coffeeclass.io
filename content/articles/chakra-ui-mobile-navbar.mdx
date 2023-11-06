@@ -1,10 +1,10 @@
 ---
-title: "Chakra-UI Mobile Navbar (Drawer Component)"
+title: 'Chakra-UI Mobile Navbar (Drawer Component)'
 description: "Use Chakra UI's drawer component to create a simple mobile navigation bar."
-author: "benjamin-carlson.mdx"
-publishedAt: "2021-08-02T00:00:00"
-tags: ["chakra-ui", "navigation"]
-logoImage: "chakra-ui.png"
+author: 'benjamin-carlson.mdx'
+publishedAt: '2021-08-02T00:00:00'
+tags: ['chakra-ui', 'navigation']
+logoImage: 'chakra-ui.png'
 ---
 
 ## Introduction
@@ -30,10 +30,10 @@ const Navbar = () => {
         onClick={onOpen} // what's this?
       />
     </>
-  );
-};
+  )
+}
 
-export default NavBarTop;
+export default NavBarTop
 ```
 
 You will notice that the `onClick` property is set to `onOpen`. This is from `useDisclosure`. [Chakra UI](https://chakra-ui.com/) gives us this along with `isOpen` and `onClose` to handle the state of the Drawer.
@@ -50,8 +50,8 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerBody,
-  DrawerFooter,
-} from "@chakra-ui/react";
+  DrawerFooter
+} from '@chakra-ui/react'
 ```
 
 Now, we can use the `Drawer` component to create the drawer. We can add this right under the `IconButton` which I will not show below for brevity.
@@ -64,10 +64,7 @@ Now, we can use the `Drawer` component to create the drawer. We can add this rig
       <Heading>I am the Header!</Heading>
     </DrawerHeader>
     <DrawerBody>
-      <Text>
-        I am the body! Add aything in here, even components like Flex and
-        Button.
-      </Text>
+      <Text>I am the body! Add aything in here, even components like Flex and Button.</Text>
       <Flex>
         <Button />
       </Flex>
@@ -79,7 +76,7 @@ Now, we can use the `Drawer` component to create the drawer. We can add this rig
 The last step is to add the `useDisclosure` hook above the return statement.
 
 ```javascript
-const { isOpen, onOpen, onClose } = useDisclosure();
+const { isOpen, onOpen, onClose } = useDisclosure()
 ```
 
 <Step number="3" title="More Improvements" />
@@ -87,12 +84,7 @@ const { isOpen, onOpen, onClose } = useDisclosure();
 Lastly, let's add a button to close the Drawer. We can use the `onClose` method to do this. Again, I am not repeating any code for brevity.
 
 ```javascript
-<IconButton
-  size="md"
-  onClick={onClose}
-  icon={<CloseIcon fontSize="xs" />}
-  borderRadius={5}
-/>
+<IconButton size="md" onClick={onClose} icon={<CloseIcon fontSize="xs" />} borderRadius={5} />
 ```
 
 As always, refer to the Chakra UI docs for additional [Drawer props](https://chakra-ui.com/docs/overlay/drawer#props).

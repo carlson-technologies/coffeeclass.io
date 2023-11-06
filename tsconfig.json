@@ -1,5 +1,20 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": [
+        "components/*"
+      ],
+      "@/lib/*": [
+        "lib/*"
+      ],
+      "@/pages/*": [
+        "pages/*"
+      ],
+      "@/styles/*": [
+        "styles/*"
+      ]
+    },
     "target": "es5",
     "lib": [
       "dom",
@@ -26,7 +41,7 @@
     "**/*.tsx",
     "**/*.js",
     "**/*.jsx"
-  ],
+, "next.config.js"  ],
   "exclude": [
     "node_modules"
   ]

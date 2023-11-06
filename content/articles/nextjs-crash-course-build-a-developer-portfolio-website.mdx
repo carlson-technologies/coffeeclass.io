@@ -1,12 +1,12 @@
 ---
-title: "Next.js Crash Course"
-description: "Build a developer blog/portfolio using Next.js, Chakra UI, next-mdx-remote, next-seo and deploy it to Vercel in this Next.js crash course."
-author: "benjamin-carlson.mdx"
-publishedAt: "2021-07-10T00:00:00"
-tags: ["crash-course", "nextjs"]
-logoImage: "nextjs-light.png"
-youtubeId: "https://youtu.be/LTm0urYKSl4"
-githubURL: "https://github.com/bjcarlson42/nextjs-developer-portfolio"
+title: 'Next.js Crash Course'
+description: 'Build a developer blog/portfolio using Next.js, Chakra UI, next-mdx-remote, next-seo and deploy it to Vercel in this Next.js crash course.'
+author: 'benjamin-carlson.mdx'
+publishedAt: '2021-07-10T00:00:00'
+tags: ['crash-course', 'nextjs']
+logoImage: 'nextjs-light.png'
+youtubeId: 'https://youtu.be/LTm0urYKSl4'
+githubURL: 'https://github.com/bjcarlson42/nextjs-developer-portfolio'
 ---
 
 ## Introduction
@@ -31,36 +31,38 @@ When we run this command, all of the necessary files will created.
 
 - The `node_modules` folder holds all of our yarn and npm packages such as react-bootstrap, lodash, and next.
 - The pages folder holds, you guessed it, our pages. For example, index.js can be reached at the root of our website. In development, this is http://localhost:3000/. If we created a blog page and called the file blog.js, that page can be reached at http://localhost:3000/blog. There are 2 exceptions to this.
-    - `_app.js` is a special next.js file. It is the entry point to our app. At the bare minimum, `_app.js` includes a function that returns the page component. We can also import global css, add custom error handling, and do a couple of other advanced things inside of here. We will be coming back to `_app.js` in a bit when we add chakra-UI for our css framework.
-    - The second exception is `_document.js`. This file is optional because Next.js provides it if we don't create it. If we need to add something to the `<html>` or `<body>` tags of our site, we will need to override this file. We can do that easily by creating it and adding the following code:
 
-    ```jsx
-    import Document, { Html, Head, Main, NextScript } from 'next/document'
+  - `_app.js` is a special next.js file. It is the entry point to our app. At the bare minimum, `_app.js` includes a function that returns the page component. We can also import global css, add custom error handling, and do a couple of other advanced things inside of here. We will be coming back to `_app.js` in a bit when we add chakra-UI for our css framework.
+  - The second exception is `_document.js`. This file is optional because Next.js provides it if we don't create it. If we need to add something to the `<html>` or `<body>` tags of our site, we will need to override this file. We can do that easily by creating it and adding the following code:
 
-    class MyDocument extends Document {
-      static async getInitialProps(ctx) {
-        const initialProps = await Document.getInitialProps(ctx)
-        return { ...initialProps }
-      }
+  ```jsx
+  import Document, { Html, Head, Main, NextScript } from 'next/document'
 
-      render() {
-        return (
-          <Html>
-            <Head />
-            <body>
-              <Main />
-              <NextScript />
-            </body>
-          </Html>
-        )
-      }
+  class MyDocument extends Document {
+    static async getInitialProps(ctx) {
+      const initialProps = await Document.getInitialProps(ctx)
+      return { ...initialProps }
     }
 
-    export default MyDocument
-    ```
+    render() {
+      return (
+        <Html>
+          <Head />
+          <body>
+            <Main />
+            <NextScript />
+          </body>
+        </Html>
+      )
+    }
+  }
 
-    - One of the nice things about Next.js is its support for dynamic routes. Because we are making a developer portfolio, let's say we have a bunch of projects. We can create a folder called `project` and inside of it, create a file called `[project].js`. The brackets tell Next that this route will be dynamic. Now if we navigate to the following route: [https://localhost/projects/1](https://localhost/projects/1) we don't see any errors.
-    - What if we wanted to grab that dynamic route and display it to the user? We can use `next/router` for this. Inside of our file import `useRouter` from `next/router`. Declare a variable `router` and set it equal to the `useRouter()` hook we imported. We can now use this variable to access a bunch of different properties. In our case, we can grab the dynamic route using `router.query`. Now, we can use this anywhere inside of our component.
+  export default MyDocument
+  ```
+
+  - One of the nice things about Next.js is its support for dynamic routes. Because we are making a developer portfolio, let's say we have a bunch of projects. We can create a folder called `project` and inside of it, create a file called `[project].js`. The brackets tell Next that this route will be dynamic. Now if we navigate to the following route: [https://localhost/projects/1](https://localhost/projects/1) we don't see any errors.
+  - What if we wanted to grab that dynamic route and display it to the user? We can use `next/router` for this. Inside of our file import `useRouter` from `next/router`. Declare a variable `router` and set it equal to the `useRouter()` hook we imported. We can now use this variable to access a bunch of different properties. In our case, we can grab the dynamic route using `router.query`. Now, we can use this anywhere inside of our component.
+
 - The final thing you will notice inside of the pages folder is the api folder. This is where any api routes will live. Because Jamstack does not have a server (it can if you need one), all of the data and authentication can be done using api routes. Next provides us with a simple example, in which we are returning some json. This can be accessed on the route [localhost:3000/api/hello](http://localhost:3000/api/hello). We can also consume this api endpoint in our application and display the data to the user, which we'll see in a bit.
 - The next folder is the `public` folder. Inside here we can put any static images, gifs, favicons, txt files, like robots.txt, and xlm files such as our sitemap.
 - The last folder is the styles folder. Here we can add any css or sass style sheets. We can go ahead and delete this folder because we will be using chakra-ui along with css in js to style our app.
@@ -152,13 +154,13 @@ Let's take a look at one of the best features of Next.js, api routes. Earlier in
 We can do this using `swr`. SWR is a React hook created by the Next.js team. It handles caching, revalidation, focus tracking, refetching on interval, and more. To use it, we first need to import it:
 
 ```jsx
-import useSWR from "swr";
+import useSWR from 'swr'
 ```
 
 We can then use it like such:
 
 ```jsx
-const { data, error } = useSWR("/api/github");
+const { data, error } = useSWR('/api/github')
 ```
 
 We now have the data returned stored inside of a variable `data` and if we have an error it will be stored inside the variable `error`. The data is coming from the api route `github.js`, a file we will create momentarily. Let's first add three return statements to handle our different states.
@@ -173,26 +175,26 @@ if (error)
     <Container>
       <Text>Failed to load projects!</Text>
     </Container>
-  );
+  )
 if (!data)
   return (
     <Container>
       <Text>Loading...</Text>
     </Container>
-  );
+  )
 return (
   <Container>
     <Heading as="h1">Projects</Heading>
   </Container>
-);
+)
 ```
 
 Now inside of the `api` folder, create a file named `github.js`. The syntax for an api route is as such:
 
 ```jsx
 export default async (req, res) => {
-  return res.status(200).json({});
-};
+  return res.status(200).json({})
+}
 ```
 
 We can now use vanilla javascript to fetch data from the GitHub api. As always, refer to GitHubs official docs for any help with this.
@@ -247,13 +249,13 @@ The final step is to make a dynamic page for each individual blog post. Inside o
 
 Inside of `getStaticProps`, we are doing something very similar to what we did in `blog.js`, instead here we are only working with one blog post - the requested post. Declare a variable `postFilePath` and set it to the current url. Grab the source of the post using `fs`. Next, parse through the source using `gray-matter`. Finally, serialize the content and pass in any `mdxOptions` such as prism for code styling. Then, return the source and frontMatter.
 
-In our page component, pass both of these variables in. We are setting the content of the post by the line: 
+In our page component, pass both of these variables in. We are setting the content of the post by the line:
 
 ```javascript:blog.js
 <MDXRemote {...source} components={components} />
 ```
 
-Now, you are probably wondering what the components variable is. That is where the markdown maps to its html element and it is also where we pass in our custom components. For example, we can declare a custom a tag like such: 
+Now, you are probably wondering what the components variable is. That is where the markdown maps to its html element and it is also where we pass in our custom components. For example, we can declare a custom a tag like such:
 
 ```javascript:blog.js
 a: (props) => <Link {...props} color={useColorModeValue("blue.700", "blue.400")} />,

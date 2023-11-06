@@ -23,7 +23,7 @@ import { useState, useEffect } from 'react'
 import readingTime from 'reading-time'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import remarkCodeTitles from 'remark-flexible-code-titles'
-import useSWR from 'swr'
+import useSWR, { SWRResponse } from 'swr'
 
 import fs from 'fs'
 import path from 'path'
@@ -75,9 +75,16 @@ export default function PostPage({ source, frontMatter, posts }: Props) {
 
   const {
     data
-  }: {
-    data: any
-  } = useSWR(`/api/getAuthor?authorSlug=${frontMatter.author.replace('.mdx', '')}`, fetcher)
+  }:
+    | SWRResponse<{
+        data: {
+          data: {
+            name: string
+          }
+        }
+      }>
+    | any
+  = useSWR(`/api/getAuthor?authorSlug=${frontMatter.author.replace('.mdx', '')}`, fetcher)
 
   // use useBreakpointValue to set the size to xl on small screens and 2xl on larger screens above 1000px
   const size = useBreakpointValue({ lg: 'lg', xl: 'xl', '2xl': '2xl' })
@@ -205,7 +212,7 @@ export default function PostPage({ source, frontMatter, posts }: Props) {
               <CarbonAd />
             </Box>
             <Box id="main-content">
-              <MDXRemote {...source} components={MDXComponents} />
+              <MDXRemote {...source} components={MDXComponents as any} />
             </Box>
             <Text my={2} color={useColorModeValue('gray.600', 'gray.400')}>
               Published {TimeAgo(new Date(frontMatter.publishedAt))}

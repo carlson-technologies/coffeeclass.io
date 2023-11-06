@@ -12,13 +12,13 @@ import remarkCodeTitles from 'remark-flexible-code-titles'
 
 import fs from 'fs'
 
-import CarbonAd from '@/../components/content/Ad'
-import Layout from '@/../components/courses/course'
-import Pagination from '@/../components/courses/Pagination'
-import HeadersAccordion from '@/../components/HeadersAccordion'
-import MDXComponents from '@/../components/MDXComponents'
-import getHeaders from '@/../lib/scripts/get-headings'
-import { getCourseFilePaths, COURSE_PATH } from '@/../lib/scripts/mdx-utils'
+import CarbonAd from '@/components/content/Ad'
+import Layout from '@/components/courses/course'
+import Pagination from '@/components/courses/Pagination'
+import HeadersAccordion from '@/components/HeadersAccordion'
+import MDXComponents from '@/components/MDXComponents'
+import getHeaders from '@/lib/scripts/get-headings'
+import { getCourseFilePaths, COURSE_PATH } from '@/lib/scripts/mdx-utils'
 
 interface Props {
   source: any

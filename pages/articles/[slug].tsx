@@ -83,8 +83,7 @@ export default function PostPage({ source, frontMatter, posts }: Props) {
           }
         }
       }>
-    | any
-  = useSWR(`/api/getAuthor?authorSlug=${frontMatter.author.replace('.mdx', '')}`, fetcher)
+    | any = useSWR(`/api/getAuthor?authorSlug=${frontMatter.author.replace('.mdx', '')}`, fetcher)
 
   // use useBreakpointValue to set the size to xl on small screens and 2xl on larger screens above 1000px
   const size = useBreakpointValue({ lg: 'lg', xl: 'xl', '2xl': '2xl' })
@@ -134,11 +133,11 @@ export default function PostPage({ source, frontMatter, posts }: Props) {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        {/* w is 950 + 300 */}
+        {/* w is 800 + 300 */}
         <Flex
           flexDir="column"
           w="100%"
-          maxW={[950, 950, 950, 950, 950, 1250]}
+          maxW={[800, 800, 800, 800, 800, 1100]}
           px={4}
           py={4}
           mx="auto"
@@ -162,9 +161,9 @@ export default function PostPage({ source, frontMatter, posts }: Props) {
           </Heading>
         </Flex>
 
-        <Flex mx="auto" maxW={[950, 950, 950, 950, 950, 1250]}>
+        <Flex mx="auto" maxW={[800, 800, 800, 800, 800, 1100]}>
           {/* main content */}
-          <Flex flexDir="column" mx="auto" w="100%" overflowX="scroll" px={4} maxW={950}>
+          <Flex flexDir="column" mx="auto" w="100%" overflowX="scroll" px={4} maxW={800}>
             <Flex color={color[colorMode]} alignItems="center" fontFamily="Recursive">
               {frontMatter.readingTime.text}{' '}
               <span className="font-bold text-2xl mx-1">&middot;</span>{' '}
@@ -179,7 +178,13 @@ export default function PostPage({ source, frontMatter, posts }: Props) {
                 transition="border-bottom-color .2s ease-in-out"
                 ml={1}
               >
-                <Link href="#author-bio" color="blue.500" _hover={{ TextDecoder: 'none' }}>
+                <Link
+                  href={`
+                  /authors/${frontMatter.author.replace('.mdx', '')}
+                `}
+                  color="blue.500"
+                  _hover={{ TextDecoder: 'none' }}
+                >
                   {data?.data?.data?.name}
                 </Link>
               </Flex>
@@ -214,9 +219,6 @@ export default function PostPage({ source, frontMatter, posts }: Props) {
             <Box id="main-content">
               <MDXRemote {...source} components={MDXComponents as any} />
             </Box>
-            <Text my={2} color={useColorModeValue('gray.600', 'gray.400')}>
-              Published {TimeAgo(new Date(frontMatter.publishedAt))}
-            </Text>
             <Link
               textDecor="underline"
               _hover={{ opacity: 0.8 }}
@@ -225,8 +227,8 @@ export default function PostPage({ source, frontMatter, posts }: Props) {
               isExternal
             >
               <Flex align="center">
-                <Icon as={ExternalLinkIcon} mr={2} />
-                Edit on GitHub
+                <Icon as={ExternalLinkIcon} />
+                <Text ml={2}>Edit on GitHub</Text>
               </Flex>
             </Link>
           </Flex>
@@ -249,8 +251,19 @@ export default function PostPage({ source, frontMatter, posts }: Props) {
           <Flex flexDir="column" m="auto" my={10}>
             <RelatedPosts frontMatter={frontMatter} posts={posts} />
           </Flex>
-          <Divider mt={12} mb={4} alignSelf="center" />
-          <Flex align="center" my={4} justify="center" flexDir="column" id="author-bio">
+          <Divider
+            mt={12}
+            mb={4}
+            alignSelf="center"
+            display={['inherit', 'inherit', 'inherit', 'inherit', 'inherit', 'none']}
+          />
+          <Flex
+            align="center"
+            my={4}
+            justify="center"
+            flexDir="column"
+            display={['flex', 'flex', 'flex', 'flex', 'flex', 'none']}
+          >
             <WrittenBy frontMatter={frontMatter} />
           </Flex>
         </Box>

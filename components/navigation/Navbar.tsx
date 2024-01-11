@@ -18,7 +18,6 @@ interface Props {
 export default function Navbar({ selected }: Props) {
   const router = useRouter()
   const { query } = router
-  const bgColor = useColorModeValue('transparent', 'gray.900')
   const bgColor1 = useColorModeValue('white', 'gray.800')
 
   return (
@@ -30,7 +29,7 @@ export default function Navbar({ selected }: Props) {
         pt="4"
         pb={2}
         zIndex={10}
-        bgColor={router.pathname === '/' ? bgColor : bgColor1}
+        bgColor={router.pathname === '/' ? 'transparent' : bgColor1}
         borderBottom="1px solid"
         borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
       >
@@ -53,7 +52,7 @@ export default function Navbar({ selected }: Props) {
               CoffeeClass.io
             </Heading>
           </NextLink>
-          <div className="flex items-center hidden md:flex space-x-4">
+          <div className="flex items-center justify-end hidden md:flex space-x-4 max-w-[300px] w-full">
             <NavItem title="Articles" href="/articles" isSelected={selected === 'article'} />
             <NavItem title="Courses" href="/courses" isSelected={selected === 'course'} />
             <Link href="https://youtube.com/benjamincarlson" isExternal>

@@ -4,7 +4,7 @@ import { MDXProvider } from '@mdx-js/react'
 import { AppProps } from 'next/app'
 import { DefaultSeo } from 'next-seo'
 import { ThemeProvider } from 'next-themes'
-import React, { ReactChild } from 'react'
+import React from 'react'
 
 import { config } from '@/lib/common/config'
 
@@ -16,7 +16,7 @@ import customTheme from '../styles/theme'
 import '../styles/global.css'
 
 interface Props {
-  children: ReactChild[]
+  children: React.ReactNode
 }
 
 const GlobalStyle = ({ children }: Props) => {
@@ -52,7 +52,7 @@ const GlobalStyle = ({ children }: Props) => {
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={customTheme}>
-      <ThemeProvider attribute="class">
+      <ThemeProvider attribute="class" defaultTheme="light">
         <MDXProvider components={MDXComponents}>
           <GlobalStyle>
             <DefaultSeo {...config.seo} />
